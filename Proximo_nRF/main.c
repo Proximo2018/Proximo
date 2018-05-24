@@ -1194,6 +1194,7 @@ int main(void)
     advertising_start(true);
 
     proximo_tps_on();
+    proximo_ldr_on();
     nrf_delay_ms(100);
     sk6812(SK6812_BLUE);
     read_temperature();

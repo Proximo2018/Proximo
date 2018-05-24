@@ -49,6 +49,17 @@ __inline void proximo_tps_off(void)
   nrf_gpio_pin_write(TPS_EN_PIN, 0);
 }
 
+__inline void proximo_ldr_on(void)
+{
+  nrf_gpio_pin_write(LDR_VCC_PIN, 1);
+}
+
+__inline void proximo_ldr_off(void)
+{
+  nrf_gpio_pin_write(LDR_VCC_PIN, 0);
+}
+
+
 
 
 

@@ -65,6 +65,9 @@ void movement_deinit  (void);
 void proximo_tps_on   (void);
 void proximo_tps_off  (void);
 
+void proximo_ldr_on   (void);
+void proximo_ldr_off  (void);
+
 #ifdef __cplusplus
 }
 #endif
