@@ -28,8 +28,6 @@ void Buzz(uint32_t dutycycle)
     // Calculate the PWM register value from the maximum top value and the given duty Cycle.
     regVal = (topvalue * dutycycle) / 1000;
     topvalue /= 10;
-//    NRF_LOG_INFO("Buzz Regval : %u/%u", regVal, topvalue);
-
 
     nrf_drv_pwm_config_t const config0 =
     {

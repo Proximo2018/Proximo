@@ -50,11 +50,11 @@
  </TraceWindow>
  <Watch1>
   <Watches active="1" update="Never">
-   <Watchpoint numelements="0" expression="G" evalMode="0" name="G" radix="-1" linenumber="173" filename="sk6812.c" list=""/>
-   <Watchpoint numelements="0" expression="R" evalMode="0" name="R" radix="-1" linenumber="174" filename="sk6812.c" list=""/>
-   <Watchpoint numelements="0" expression="B" evalMode="0" name="B" radix="-1" linenumber="175" filename="sk6812.c" list=""/>
-   <Watchpoint numelements="0" expression="offset" evalMode="0" name="offset" radix="-1" linenumber="189" filename="sk6812.c" list=""/>
-   <Watchpoint numelements="234" expression="seq_values" evalMode="2" name="seq_values" radix="-1" linenumber="182" filename="sk6812.c" list=""/>
+   <Watchpoint numelements="0" expression="G" evalMode="0" name="G" radix="-1" linenumber="159" filename="sk6812.c" list=""/>
+   <Watchpoint numelements="0" expression="R" evalMode="0" name="R" radix="-1" linenumber="160" filename="sk6812.c" list=""/>
+   <Watchpoint numelements="0" expression="B" evalMode="0" name="B" radix="-1" linenumber="161" filename="sk6812.c" list=""/>
+   <Watchpoint numelements="0" expression="offset" evalMode="0" name="offset" radix="-1" linenumber="175" filename="sk6812.c" list=""/>
+   <Watchpoint numelements="234" expression="seq_values" evalMode="2" name="seq_values" radix="-1" linenumber="168" filename="sk6812.c" list=""/>
   </Watches>
  </Watch1>
  <Watch2>
@@ -67,18 +67,21 @@
   <Watches active="0" update="Never"/>
  </Watch4>
  <Files>
-  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="1175" useTextEdit="1" useBinaryEdit="0" left="0" path="main.c" debugPath="main.c" selected="1" top="1162" codecName="Default"/>
-  <SessionOpenFile windowGroup="DockEditLeft" x="13" y="212" useTextEdit="1" useBinaryEdit="0" left="0" path="sk6812.c" debugPath="sk6812.c" selected="0" top="183" codecName="Default"/>
-  <SessionOpenFile windowGroup="DockEditLeft" x="40" y="22" useTextEdit="1" useBinaryEdit="0" left="0" path="sk6812.h" debugPath="sk6812.h" selected="0" top="0" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="1163" useTextEdit="1" useBinaryEdit="0" left="0" path="main.c" debugPath="main.c" selected="1" top="1022" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="140" useTextEdit="1" useBinaryEdit="0" left="0" path="sk6812.c" debugPath="sk6812.c" selected="0" top="113" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="10" useTextEdit="1" useBinaryEdit="0" left="0" path="sk6812.h" debugPath="sk6812.h" selected="0" top="0" codecName="Default"/>
   <SessionOpenFile windowGroup="DockEditLeft" x="0" y="1538" useTextEdit="1" useBinaryEdit="0" left="0" path="config/sdk_config.h" debugPath="config/sdk_config.h" selected="0" top="1511" codecName="Default"/>
-  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="67" useTextEdit="1" useBinaryEdit="0" left="0" path="Board/proximo_board.h" debugPath="Board/proximo_board.h" selected="0" top="17" codecName="Default"/>
-  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="51" useTextEdit="1" useBinaryEdit="0" left="0" path="Board/proximo_board.c" debugPath="Board/proximo_board.c" selected="0" top="21" codecName="Default"/>
-  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="121" useTextEdit="1" useBinaryEdit="0" left="0" path="../nRF5_SDK_15.0.0/components/libraries/util/app_error.c" debugPath="../nRF5_SDK_15.0.0/components/libraries/util/app_error.c" selected="0" top="95" codecName="Default"/>
-  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="34" useTextEdit="1" useBinaryEdit="0" left="0" path="buzzer.c" debugPath="buzzer.c" selected="0" top="8" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="72" useTextEdit="1" useBinaryEdit="0" left="0" path="Board/proximo_board.h" debugPath="Board/proximo_board.h" selected="0" top="42" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="23" useTextEdit="1" useBinaryEdit="0" left="0" path="Board/proximo_board.c" debugPath="Board/proximo_board.c" selected="0" top="0" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="25" useTextEdit="1" useBinaryEdit="0" left="0" path="buzzer.c" debugPath="buzzer.c" selected="0" top="3" codecName="Default"/>
   <SessionOpenFile windowGroup="DockEditLeft" x="0" y="18" useTextEdit="1" useBinaryEdit="0" left="0" path="buzzer.h" debugPath="buzzer.h" selected="0" top="0" codecName="Default"/>
-  <SessionOpenFile windowGroup="DockEditLeft" x="1" y="113" useTextEdit="1" useBinaryEdit="0" left="0" path="th06.c" debugPath="th06.c" selected="0" top="92" codecName="Default"/>
-  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="62" useTextEdit="1" useBinaryEdit="0" left="0" path="th06.h" debugPath="th06.h" selected="0" top="33" codecName="Default"/>
-  <SessionOpenFile windowGroup="DockEditLeft" x="51" y="44" useTextEdit="1" useBinaryEdit="0" left="0" path="adc.c" debugPath="adc.c" selected="0" top="36" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="63" useTextEdit="1" useBinaryEdit="0" left="0" path="th06.c" debugPath="th06.c" selected="0" top="52" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="70" useTextEdit="1" useBinaryEdit="0" left="0" path="th06.h" debugPath="th06.h" selected="0" top="42" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="0" useTextEdit="1" useBinaryEdit="0" left="0" path="adc.c" debugPath="adc.c" selected="0" top="0" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="27" useTextEdit="1" useBinaryEdit="0" left="0" path="system.c" debugPath="system.c" selected="0" top="0" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="7" useTextEdit="1" useBinaryEdit="0" left="0" path="system.h" debugPath="system.h" selected="0" top="0" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="19" useTextEdit="1" useBinaryEdit="0" left="0" path="adc.h" debugPath="adc.h" selected="0" top="0" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="78" useTextEdit="1" useBinaryEdit="0" left="0" path="../nRF5_SDK_15.0.0/components/libraries/pwr_mgmt/nrf_pwr_mgmt.h" debugPath="../nRF5_SDK_15.0.0/components/libraries/pwr_mgmt/nrf_pwr_mgmt.h" selected="0" top="43" codecName="Default"/>
  </Files>
- <ARMCrossStudioWindow activeProject="Proximo" fileDialogDefaultFilter="*.c" autoConnectTarget="J-Link" buildConfiguration="Debug" debugSearchFileMap="" fileDialogInitialDirectory="D:/localrep/Proximo/nRF5_SDK_15.0.0/integration/nrfx/legacy" debugSearchPath="" autoConnectCapabilities="3711"/>
+ <ARMCrossStudioWindow activeProject="Proximo" fileDialogDefaultFilter="*.c" autoConnectTarget="J-Link" buildConfiguration="Debug" debugSearchFileMap="" fileDialogInitialDirectory="D:/localrep/Proximo/nRF5_SDK_15.0.0/integration/nrfx/legacy" debugSearchPath="" autoConnectCapabilities="3199"/>
 </session>
