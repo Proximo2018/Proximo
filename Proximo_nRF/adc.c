@@ -1,18 +1,9 @@
+
 #include "adc.h"
-#include "nrf.h"
-#include "nrf_log.h"
-#include "nrf_drv_saadc.h"
 
-#define UART_PRINTING_ENABLED                     //Enable to see SAADC output on UART. Comment out for low power operation.
-#define SAADC_CALIBRATION_INTERVAL  5              //Determines how often the SAADC should be calibrated relative to NRF_DRV_SAADC_EVT_DONE event. E.g. value 5 will make the SAADC calibrate every fifth time the NRF_DRV_SAADC_EVT_DONE is received.
-#define SAADC_SAMPLES_IN_BUFFER     2                 //Number of SAADC samples in RAM before returning a SAADC event. For low power SAADC set this constant to 1. Otherwise the EasyDMA will be enabled for an extended time which consumes high current.
 
-static nrf_saadc_value_t       m_buffer_pool[2][SAADC_SAMPLES_IN_BUFFER];
-#ifdef UART_PRINTING_ENABLED
-//  static uint32_t                m_adc_evt_counter = 0;
-#endif //UART_PRINTING_ENABLED
-
-static volatile bool m_saadc_initialized = false; 
+static nrf_saadc_value_t  m_buffer_pool[2][SAADC_SAMPLES_IN_BUFFER];
+static volatile bool      m_saadc_initialized = false; 
 
 
 void measure_vcc(void)
@@ -28,36 +19,36 @@ void measure_vcc(void)
 }
 
 
-void saadc_callback(nrf_drv_saadc_evt_t const * p_event)
-{
-#ifdef UART_PRINTING_ENABLED
-    int16_t  vcc, ldr;
-#endif
+//void saadc_callback(nrf_drv_saadc_evt_t const * p_event)
+//{
+//#ifdef UART_PRINTING_ENABLED
+//    int16_t  vcc, ldr;
+//#endif
+//
+//    if (p_event->type == NRF_DRV_SAADC_EVT_DONE)                                                        //Capture offset calibration complete event
+//    {
+//        ret_code_t err_code;
+//			     
+//        err_code = nrf_drv_saadc_buffer_convert(p_event->data.done.p_buffer, SAADC_SAMPLES_IN_BUFFER);  //Set buffer so the SAADC can write to it again. This is either "buffer 1" or "buffer 2"
+//        APP_ERROR_CHECK(err_code);
+//
+//    #ifdef UART_PRINTING_ENABLED
+////        NRF_LOG_INFO("ADC event number: %d",(int)m_adc_evt_counter);                                      //Print the event number on UART
+//
+//
+//        vcc = (p_event->data.done.p_buffer[0] * 3600) / 4096;
+//        ldr = (p_event->data.done.p_buffer[1] * vcc) / 4096;
+//        NRF_LOG_INFO("VCC: %d, %d mV LDR: %04X, %d mV", p_event->data.done.p_buffer[0], vcc, (uint16_t) p_event->data.done.p_buffer[1], ldr);    //Print the SAADC result on UART
+//
+////        m_adc_evt_counter++;
+//    #endif //UART_PRINTING_ENABLED				
+//				                                                                 //Unintialize SAADC to disable EasyDMA and save power
+//        NRF_SAADC->INTENCLR = (SAADC_INTENCLR_END_Clear << SAADC_INTENCLR_END_Pos);               //Disable the SAADC interrupt
+//        NVIC_ClearPendingIRQ(SAADC_IRQn);                                                         //Clear the SAADC interrupt if set
+//    }
+//}
 
-    if (p_event->type == NRF_DRV_SAADC_EVT_DONE)                                                        //Capture offset calibration complete event
-    {
-        ret_code_t err_code;
-			     
-        err_code = nrf_drv_saadc_buffer_convert(p_event->data.done.p_buffer, SAADC_SAMPLES_IN_BUFFER);  //Set buffer so the SAADC can write to it again. This is either "buffer 1" or "buffer 2"
-        APP_ERROR_CHECK(err_code);
-
-    #ifdef UART_PRINTING_ENABLED
-//        NRF_LOG_INFO("ADC event number: %d",(int)m_adc_evt_counter);                                      //Print the event number on UART
-
-
-        vcc = (p_event->data.done.p_buffer[0] * 3600) / 4096;
-        ldr = (p_event->data.done.p_buffer[1] * vcc) / 4096;
-        NRF_LOG_INFO("VCC: %d, %d mV LDR: %04X, %d mV", p_event->data.done.p_buffer[0], vcc, (uint16_t) p_event->data.done.p_buffer[1], ldr);    //Print the SAADC result on UART
-
-//        m_adc_evt_counter++;
-    #endif //UART_PRINTING_ENABLED				
-				                                                                 //Unintialize SAADC to disable EasyDMA and save power
-        NRF_SAADC->INTENCLR = (SAADC_INTENCLR_END_Clear << SAADC_INTENCLR_END_Pos);               //Disable the SAADC interrupt
-        NVIC_ClearPendingIRQ(SAADC_IRQn);                                                         //Clear the SAADC interrupt if set
-    }
-}
-
-void saadc_init(void)
+void saadc_init(void (*saadc_cb)(nrf_drv_saadc_evt_t const *))
 {
     ret_code_t err_code;
     nrf_drv_saadc_config_t saadc_config;
@@ -72,7 +63,7 @@ void saadc_init(void)
     saadc_config.low_power_mode     = true;
 	
     //Initialize SAADC
-    err_code = nrf_drv_saadc_init(&saadc_config, saadc_callback);                         //Initialize the SAADC with configuration and callback function. The application must then implement the saadc_callback function, which will be called when SAADC interrupt is triggered
+    err_code = nrf_drv_saadc_init(&saadc_config, *saadc_cb);                              //Initialize the SAADC with configuration and callback function. The application must then implement the saadc_callback function, which will be called when SAADC interrupt is triggered
     APP_ERROR_CHECK(err_code);
 		
     //Configure SAADC channel

@@ -61,7 +61,7 @@ void th06_init(void)
 }
 
 
-void read_temperature(void)
+void read_temperature(TH06_s * result)
 {
     ret_code_t err_code;
     uint16_t regVal;
@@ -70,6 +70,9 @@ void read_temperature(void)
     /* Read the User register 1 with a repeated start. */
     uint8_t reg[3];
 
+    if(result == NULL){
+        return;
+    }
 
     reg[0] = TH06_MEASURE_HUMIDITY_HOLD_MASTER;
     err_code = nrf_drv_twi_tx(&m_twi, THO6_I2C_ADDRESS, reg, 1, true);
@@ -83,11 +86,11 @@ void read_temperature(void)
     // Calculate the humidity
     if(regVal == 0)
     {
-        humidity = 0.0;
+        result->humidity = 0.0;
     }
     else
     {
-        humidity = ((125.0 * ((float) regVal)) / 65536.0) - 6.0;
+        result->humidity = ((125.0 * ((float) regVal)) / 65536.0) - 6.0;
     }
 
     //  Read the temperature result
@@ -103,13 +106,11 @@ void read_temperature(void)
     // Calculate the temperature
     if(regVal == 0)
     {
-        temperature = 0.0;
+        result->temperature = 0.0;
     }
     else
     {
-        temperature = ((175.72 * ((double) regVal)) / 65536.0) - 46.85;
+        result->temperature = ((175.72 * ((double) regVal)) / 65536.0) - 46.85;
     }
-
-    NRF_LOG_INFO("TH06 measure humidity: %i, Temperature: %i", (int16_t) (humidity * 10.0), (int16_t) (temperature * 10.0));
 }
 

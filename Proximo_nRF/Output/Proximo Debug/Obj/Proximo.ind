@@ -4,6 +4,7 @@
 "Output/Proximo Debug/Obj/buzzer.o"
 "Output/Proximo Debug/Obj/th06.o"
 "Output/Proximo Debug/Obj/adc.o"
+"Output/Proximo Debug/Obj/system.o"
 "Output/Proximo Debug/Obj/nrf_log_backend_rtt.o"
 "Output/Proximo Debug/Obj/nrf_log_backend_serial.o"
 "Output/Proximo Debug/Obj/nrf_log_backend_uart.o"

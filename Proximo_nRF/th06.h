@@ -55,6 +55,12 @@
         HEATER_OFF = 0x00U
     }HEATERe;
 
+    typedef struct
+    {
+        float temperature;
+        float humidity;
+    }TH06_s;
+
 
 
     /*
@@ -62,6 +68,6 @@
      */
      void twi_init          (void);
      void th06_init         (void);
-     void read_temperature  (void);
+     void read_temperature  (TH06_s * result);
     
 #endif

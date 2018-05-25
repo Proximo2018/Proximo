@@ -75,20 +75,19 @@
 #include "nrf_ble_gatt.h"
 #include "nrf_ble_qwr.h"
 #include "ble_conn_state.h"
-#include "nrf_pwr_mgmt.h"
+
 
 #include "nrf_log.h"
 #include "nrf_log_ctrl.h"
 #include "nrf_log_default_backends.h"
 
 #include "proximo_board.h"
-
-#include "nrf_drv_i2s.h"
 #include "nrf_delay.h"
 #include "sk6812.h"
 #include "buzzer.h"
 #include "th06.h"
 #include "adc.h" 
+#include "system.h"
 
 
 
@@ -140,27 +139,12 @@
 
 
 
-/*
- * I2S example code
- */
 
 
-// Delay time between consecutive I2S transfers performed in the main loop
-// (in milliseconds).
-#define PAUSE_TIME          500
-// Number of blocks of data to be contained in each transfer.
-#define BLOCKS_TO_TRANSFER  20
-
-static uint8_t volatile m_blocks_transferred     = 0;
-static uint8_t          m_zero_samples_to_ignore = 0;
-static uint16_t         m_sample_value_to_send;
-static uint16_t         m_sample_value_expected;
-static bool             m_error_encountered;
-static volatile bool    measureTemperature = false;
-
-static uint32_t       * volatile mp_block_to_fill  = NULL;
-static uint32_t const * volatile mp_block_to_check = NULL;
-
+//#define PRINT_MEASUREMENT_RESULTS                       // Definition to enable priting all the measurement results on the debug itnerface RTT or UART
+static volatile bool    measureTemperature = false;     //  Flag used to sample the th06 in the main loop
+static TH06_s           th06;                           //  Temperature and humidity result
+static int16_t          vcc, ldr;                       // ADC result
 
 
 BLE_HRS_DEF(m_hrs);                                                 /**< Heart rate service instance. */
@@ -191,21 +175,39 @@ static ble_uuid_t m_adv_uuids[] =                                   /**< Univers
 };
 
 
-#define COMPARE_COUNTERTIME  (1UL)                                        /**< Get Compare event COMPARE_TIME seconds after the counter starts from 0. */
-const nrf_drv_rtc_t rtc = NRF_DRV_RTC_INSTANCE(2); /**< Declaring an instance of nrf_drv_rtc for RTC1. Note that RTC0 is used by the soft device */
+
 uint32_t movementCount = 0;
-
-
-
 
 
 void movement_event_handler(nrf_lpcomp_event_t event)
 {
-  if (event == NRF_LPCOMP_EVENT_UP && movementCount != UINT32_MAX)
-  {
-      // Check if the next increment will cause an overflow if not, increment the pulse count value.
-      movementCount++;
-  }
+    if (event == NRF_LPCOMP_EVENT_UP && movementCount != UINT32_MAX)
+    {
+        // Check if the next increment will cause an overflow if not, increment the pulse count value.
+        movementCount++;
+    }
+}
+
+
+void saadc_callback(nrf_drv_saadc_evt_t const * p_event)
+{
+    if (p_event->type == NRF_DRV_SAADC_EVT_DONE)                                                        //Capture offset calibration complete event
+    {
+        ret_code_t err_code;
+			     
+        err_code = nrf_drv_saadc_buffer_convert(p_event->data.done.p_buffer, SAADC_SAMPLES_IN_BUFFER);  //Set buffer so the SAADC can write to it again. This is either "buffer 1" or "buffer 2"
+        APP_ERROR_CHECK(err_code);
+
+        vcc = (p_event->data.done.p_buffer[0] * 3600) / 4096;
+        ldr = (p_event->data.done.p_buffer[1] *  vcc) / 4096;
+        
+        #ifdef PRINT_MEASUREMENT_RESULTS                                     //Print the event number on UART
+            NRF_LOG_INFO("VCC: %d, %d mV LDR: %d, %d mV", p_event->data.done.p_buffer[0], vcc, (uint16_t) p_event->data.done.p_buffer[1], ldr);    //Print the SAADC result on UART
+        #endif //UART_PRINTING_ENABLED				
+
+        NRF_SAADC->INTENCLR = (SAADC_INTENCLR_END_Clear << SAADC_INTENCLR_END_Pos);               //Disable the SAADC interrupt
+        NVIC_ClearPendingIRQ(SAADC_IRQn);                                                         //Clear the SAADC interrupt if set
+    }
 }
 
 /** @brief: Function for handling the RTC0 interrupts.
@@ -213,23 +215,25 @@ void movement_event_handler(nrf_lpcomp_event_t event)
  */
 static void rtc_handler(nrf_drv_rtc_int_type_t int_type)
 {
-  uint32_t err_code;
-  if (int_type == NRF_DRV_RTC_INT_COMPARE0)
-  {
-      err_code = nrf_drv_rtc_cc_set(&rtc, 0, COMPARE_COUNTERTIME * 8, true);
-      APP_ERROR_CHECK(err_code);
-      nrf_drv_rtc_counter_clear(&rtc);
-      nrf_gpio_pin_toggle(ALARM_OUT_PIN);
-      measureTemperature = true;
-      measure_vcc();
+    uint32_t err_code;
+    if (int_type == NRF_DRV_RTC_INT_COMPARE0)
+    {
+        // Reset the compare counter of the RTC
+        rtc_reload_compare();
 
-      // print and the clear the number of movement pulses counted
-      NRF_LOG_INFO("Movement count: %u", movementCount);
-      movementCount = 0;
-  }
-  else if (int_type == NRF_DRV_RTC_INT_TICK)
-  {
-  }
+        nrf_gpio_pin_toggle(ALARM_OUT_PIN);
+        measureTemperature = true;
+        measure_vcc();
+
+        // print and the clear the number of movement pulses counted
+        #ifdef PRINT_MEASUREMENT_RESULTS
+            NRF_LOG_INFO("Movement count: %u", movementCount);
+        #endif
+        movementCount = 0;
+    }
+    else if (int_type == NRF_DRV_RTC_INT_TICK)
+    {
+    }
 }
 
 
@@ -802,22 +806,7 @@ static void conn_params_init(void)
 }
 
 
-/**@brief Function for putting the chip into sleep mode.
- *
- * @note This function will not return.
- */
-static void sleep_mode_enter(void)
-{
-    ret_code_t err_code;
 
-    // Prepare wakeup buttons.
-    err_code = bsp_btn_ble_sleep_mode_prepare();
-    APP_ERROR_CHECK(err_code);
-
-    // Sleep until the next event wakes the device up
-    err_code = sd_app_evt_wait();
-    APP_ERROR_CHECK(err_code);
-}
 
 
 /**@brief Function for handling advertising events.
@@ -942,29 +931,45 @@ static void ble_stack_init(void)
 void bsp_event_handler(bsp_event_t event)
 {
     ret_code_t err_code;
+    static uint8_t index = 0;
+    uint8_t palet[7][3] = 
+    {
+        {SK6812_OFF},     //0
+        {SK6812_GREEN},   //1
+        {SK6812_RED},     //2
+        {SK6812_BLUE},    //3  
+        {SK6812_YELLOW},  //4
+        {SK6812_PURPLE},  //5
+        {SK6812_WHITE}    //6
+    }; 
 
     switch (event)
     {
         //  Button 1 - RED
-        case BSP_EVENT_KEY_0:
+        case BSP_EVENT_KEY_1:
             NRF_LOG_INFO("Button 1");
-            sk6812(SK6812_RED);
+
+            if(index < 6){
+              index += 1;
+            }
             Buzz(75);
             measureTemperature = true;
             break;
 
         //  Button 2 - Blue.
-        case BSP_EVENT_KEY_1:
+        case BSP_EVENT_KEY_2:
+
             NRF_LOG_INFO("Button 2");
-            sk6812(SK6812_BLUE);
+            if(index > 0){
+              index -= 1;
+            }
             Buzz(50);
             measureTemperature = true;
             break;
 
         //  Button 3 - Green
-        case BSP_EVENT_KEY_2:
+        case BSP_EVENT_KEY_0:
             NRF_LOG_INFO("Button 3");
-            sk6812(SK6812_GREEN);
             Buzz(25);
             measureTemperature = true;
             break;
@@ -996,6 +1001,21 @@ void bsp_event_handler(bsp_event_t event)
         default:
             break;
     }
+
+    sk6812_single_colour(palet[index][0], palet[index][1], palet[index][2]);
+    NRF_LOG_INFO("Index: %d", index);
+}
+
+
+static void buttons_init(bool * p_erase_bonds)
+{
+    ret_code_t err_code;
+    bsp_event_t startup_event;
+
+    err_code = bsp_init(BSP_INIT_BUTTONS, bsp_event_handler);
+    APP_ERROR_CHECK(err_code);
+
+    *p_erase_bonds = (startup_event == BSP_EVENT_CLEAR_BONDING_DATA);
 }
 
 
@@ -1062,20 +1082,7 @@ static void advertising_init(void)
 }
 
 
-/**@brief Function for initializing buttons and leds.
- *
- * @param[out] p_erase_bonds  Will be true if the clear bonding button was pressed to wake the application up.
- */
-static void buttons_init(bool * p_erase_bonds)
-{
-    ret_code_t err_code;
-    bsp_event_t startup_event;
 
-    err_code = bsp_init(BSP_INIT_BUTTONS, bsp_event_handler);
-    APP_ERROR_CHECK(err_code);
-
-    *p_erase_bonds = (startup_event == BSP_EVENT_CLEAR_BONDING_DATA);
-}
 
 
 /**@brief Function for initializing the nrf log module.
@@ -1089,60 +1096,10 @@ static void log_init(void)
 }
 
 
-/**@brief Function for initializing power management.
- */
-static void power_management_init(void)
-{
-    ret_code_t err_code;
-    err_code = nrf_pwr_mgmt_init();
-    APP_ERROR_CHECK(err_code);
-}
 
 
-/**@brief Function for handling the idle state (main loop).
- *
- * @details If there is no pending log operation, then sleep until next the next event occurs.
- */
-static void idle_state_handle(void)
-{
-    if (NRF_LOG_PROCESS() == false)
-    {
-        nrf_pwr_mgmt_run();
-    }
-}
 
-/** @brief Function starting the internal LFCLK XTAL oscillator.
- */
-static void lfclk_config(void)
-{
-    ret_code_t err_code = nrf_drv_clock_init();
-    APP_ERROR_CHECK(err_code);
 
-    nrf_drv_clock_lfclk_request(NULL);
-}
-
-/** @brief Function initialization and configuration of RTC driver instance.
- */
-static void rtc_config(void)
-{
-    uint32_t err_code;
-
-    //Initialize RTC instance
-    nrf_drv_rtc_config_t config = NRF_DRV_RTC_DEFAULT_CONFIG;
-    config.prescaler = 4095;
-    err_code = nrf_drv_rtc_init(&rtc, &config, rtc_handler);
-    APP_ERROR_CHECK(err_code);
-
-    //Enable tick event & interrupt
-    nrf_drv_rtc_tick_enable(&rtc,true);
-
-    //Set compare channel to trigger interrupt after COMPARE_COUNTERTIME seconds
-    err_code = nrf_drv_rtc_cc_set(&rtc,0,COMPARE_COUNTERTIME * 8,true);
-    APP_ERROR_CHECK(err_code);
-
-    //Power on RTC instance
-    nrf_drv_rtc_enable(&rtc);
-}
 
 
 
@@ -1162,6 +1119,15 @@ void app_error_fault_handler(uint32_t id, uint32_t pc, uint32_t info)
  */
 int main(void)
 {
+    SK6812_WR_BUFFERs GRB = 
+    {
+        {                                                     \
+            SK6812_OFF,     SK6812_GREEN,   SK6812_RED,       \
+            SK6812_BLUE,    SK6812_YELLOW,  SK6812_PURPLE,    \
+            SK6812_WHITE,   SK6812_RED,     SK6812_GREEN      \
+        }                                                     \
+    };
+
     uint32_t err_code;
     bool erase_bonds;
 
@@ -1171,9 +1137,8 @@ int main(void)
     timers_init();
     buttons_init(&erase_bonds);
     proximo_io_init();
-    saadc_init();
-    
-    rtc_config();
+    saadc_init(&saadc_callback);
+    rtc_config(&rtc_handler);
     movement_init(&movement_event_handler);
     power_management_init();
     ble_stack_init();
@@ -1191,13 +1156,13 @@ int main(void)
     twi_init();
     th06_init();
     application_timers_start();
-    advertising_start(true);
+    advertising_start(erase_bonds);
 
     proximo_tps_on();
     proximo_ldr_on();
     nrf_delay_ms(100);
-    sk6812(SK6812_BLUE);
-    read_temperature();
+
+    sk6812_colour_string(&GRB);
 
     // Enter main loop.
     for (;;)
@@ -1206,9 +1171,12 @@ int main(void)
         if(measureTemperature == true)
         {
             measureTemperature = false;
-            read_temperature();
+            read_temperature(&th06);
+            #ifdef PRINT_MEASUREMENT_RESULTS
+                NRF_LOG_INFO("Temperature: %d, Humidity: %d", th06.temperature, th06.humidity);
+            #endif
         }
-        power_management_init();
+        NRF_LOG_PROCESS();
     }
 }
 

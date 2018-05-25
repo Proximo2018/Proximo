@@ -11,8 +11,19 @@
 extern "C" {
 #endif
 
+#include <stdint.h>
+#include <stdbool.h>
+#include "sdk_config.h"
+#include "bsp.h"
+//#include "bsp_btn_ble.h"
 #include "nrf_gpio.h"
 #include "nrf_drv_lpcomp.h"
+#include "nrf_gpio.h"
+#include "nrf_delay.h"
+#include "nrf_drv_lpcomp.h"
+#include "nrf_log.h"
+
+
 
 // LEDs definitions for Proximo
 #define LEDS_NUMBER    0
@@ -56,9 +67,10 @@ extern "C" {
 
 
 
-void proximo_io_init  (void);
+
 
 void movement_init    (void (*movement_event_handler)(nrf_lpcomp_event_t));
+void proximo_io_init  (void);
 void movement_deinit  (void);
 
 
