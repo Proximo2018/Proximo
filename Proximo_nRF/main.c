@@ -136,7 +136,7 @@
 #define SEC_PARAM_MAX_KEY_SIZE              16                                      /**< Maximum encryption key size. */
 
 #define DEAD_BEEF                           0xDEADBEEF                              /**< Value used as error code on stack dump, can be used to identify stack location on stack unwind. */
-
+#define BRIGHTNESS_REDUCTION    4
 
 
 
@@ -1002,7 +1002,7 @@ void bsp_event_handler(bsp_event_t event)
             break;
     }
 
-    sk6812_single_colour(palet[index][0], palet[index][1], palet[index][2]);
+    sk6812_single_colour(palet[index][0], palet[index][1], palet[index][2], BRIGHTNESS_REDUCTION);
     NRF_LOG_INFO("Index: %d", index);
 }
 
@@ -1071,7 +1071,7 @@ static void advertising_init(void)
 
     init.config.ble_adv_fast_enabled  = true;
     init.config.ble_adv_fast_interval = APP_ADV_INTERVAL;
-    init.config.ble_adv_fast_timeout  = APP_ADV_DURATION;
+    init.config.ble_adv_fast_timeout  = 0; // APP_ADV_DURATION; disable timeout
 
     init.evt_handler = on_adv_evt;
 
@@ -1098,19 +1098,39 @@ static void log_init(void)
 
 
 
-
-
-
-
-
-
-
 void app_error_fault_handler(uint32_t id, uint32_t pc, uint32_t info)
 {
 //    bsp_board_leds_on();
 //    app_error_save_and_stop(id, pc, info);
 }
 
+
+void CE_test_funcitonality (void)
+{
+    static uint8_t index = 0;
+    uint8_t palet[7][3] = 
+    {
+        {SK6812_OFF},     //0
+        {SK6812_GREEN},   //1
+        {SK6812_RED},     //2
+        {SK6812_BLUE},    //3  
+        {SK6812_YELLOW},  //4
+        {SK6812_PURPLE},  //5
+        {SK6812_WHITE}    //6
+    }; 
+
+    if(index < 6)
+    {
+        index += 1;
+    }
+    else
+    {
+        index = 0;
+    }
+
+    Buzz(50);
+    sk6812_single_colour(palet[index][0], palet[index][1], palet[index][2], BRIGHTNESS_REDUCTION);
+}
 
 
 
@@ -1172,9 +1192,12 @@ int main(void)
         {
             measureTemperature = false;
             read_temperature(&th06);
+            
             #ifdef PRINT_MEASUREMENT_RESULTS
                 NRF_LOG_INFO("Temperature: %d, Humidity: %d", th06.temperature, th06.humidity);
             #endif
+
+            CE_test_funcitonality();
         }
         NRF_LOG_PROCESS();
     }

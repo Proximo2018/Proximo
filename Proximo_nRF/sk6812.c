@@ -19,7 +19,7 @@ static void sk6812_handler(nrf_drv_pwm_evt_type_t event_type)
 }
 
 
-void sk6812_single_colour(uint8_t Green, uint8_t Red, uint8_t Blue)
+void sk6812_single_colour(uint8_t Green, uint8_t Red, uint8_t Blue, uint8_t brightnessReduction)
 {
     uint32_t err;
     uint8_t offset, i;
@@ -61,7 +61,7 @@ void sk6812_single_colour(uint8_t Green, uint8_t Red, uint8_t Blue)
     //  Set the bits for the Green byte
     for(i = 0 ; i < 8 ; i++)
     {
-        if(Green & (1<<(7-i)))
+        if((Green >> brightnessReduction) & (1<<(7-i)))
         {
             seq_values[offset+i] = PWM_COUNT_BIT1;
         }
@@ -75,7 +75,7 @@ void sk6812_single_colour(uint8_t Green, uint8_t Red, uint8_t Blue)
     //  Set the bits for the Red byte
     for(i = 0 ; i < 8 ; i++)
     {
-        if(Red & (1<<(7-i)))
+        if((Red >> brightnessReduction) & (1<<(7-i)))
         {
             seq_values[offset+i] = PWM_COUNT_BIT1;
         }
@@ -89,7 +89,7 @@ void sk6812_single_colour(uint8_t Green, uint8_t Red, uint8_t Blue)
     //  Set the bits for the Blue byte 
     for(i = 0 ; i < 8 ; i++)
     {
-        if(Blue & (1<<(7-i)))
+        if((Blue >> brightnessReduction) & (1<<(7-i)))
         {
             seq_values[offset+i] = PWM_COUNT_BIT1;
         }

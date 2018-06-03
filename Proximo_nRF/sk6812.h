@@ -38,7 +38,7 @@ typedef struct
 
 
 
-void sk6812_single_colour       (uint8_t Green, uint8_t Red, uint8_t Blue);
+void sk6812_single_colour       (uint8_t Green, uint8_t Red, uint8_t Blue, uint8_t brightnessReduction);
 void sk6812_colour_string       (SK6812_WR_BUFFERs * GRB);
 
 
