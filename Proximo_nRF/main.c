@@ -157,6 +157,9 @@ APP_TIMER_DEF(m_heart_rate_timer_id);                               /**< Heart r
 APP_TIMER_DEF(m_rr_interval_timer_id);                              /**< RR interval timer. */
 APP_TIMER_DEF(m_sensor_contact_timer_id);                           /**< Sensor contact detected timer. */
 
+volatile bool LED_time_on = false;
+APP_TIMER_DEF(m_LED_id);                                            /**< Debug LED timer. */
+
 static uint16_t m_conn_handle         = BLE_CONN_HANDLE_INVALID;    /**< Handle of the current connection. */
 static bool     m_rr_interval_enabled = true;                       /**< Flag for enabling and disabling the registration of new RR interval measurements (the purpose of disabling this is just to test sending HRM without RR interval data. */
 
@@ -221,7 +224,7 @@ static void rtc_handler(nrf_drv_rtc_int_type_t int_type)
         // Reset the compare counter of the RTC
         rtc_reload_compare();
 
-        nrf_gpio_pin_toggle(ALARM_OUT_PIN);
+        //nrf_gpio_pin_toggle(ALARM_OUT_PIN);
         measureTemperature = true;
         measure_vcc();
 
@@ -488,23 +491,22 @@ static void rr_interval_timeout_handler(void * p_context)
     {
         uint16_t rr_interval;
 
-        rr_interval = (uint16_t)sensorsim_measure(&m_rr_interval_sim_state,
-                                                  &m_rr_interval_sim_cfg);
+        rr_interval = (uint16_t)sensorsim_measure(&m_rr_interval_sim_state, &m_rr_interval_sim_cfg);
         ble_hrs_rr_interval_add(&m_hrs, rr_interval);
-        rr_interval = (uint16_t)sensorsim_measure(&m_rr_interval_sim_state,
-                                                  &m_rr_interval_sim_cfg);
+
+        rr_interval = (uint16_t)sensorsim_measure(&m_rr_interval_sim_state, &m_rr_interval_sim_cfg);
         ble_hrs_rr_interval_add(&m_hrs, rr_interval);
-        rr_interval = (uint16_t)sensorsim_measure(&m_rr_interval_sim_state,
-                                                  &m_rr_interval_sim_cfg);
+
+        rr_interval = (uint16_t)sensorsim_measure(&m_rr_interval_sim_state, &m_rr_interval_sim_cfg);
         ble_hrs_rr_interval_add(&m_hrs, rr_interval);
-        rr_interval = (uint16_t)sensorsim_measure(&m_rr_interval_sim_state,
-                                                  &m_rr_interval_sim_cfg);
+
+        rr_interval = (uint16_t)sensorsim_measure(&m_rr_interval_sim_state, &m_rr_interval_sim_cfg);
         ble_hrs_rr_interval_add(&m_hrs, rr_interval);
-        rr_interval = (uint16_t)sensorsim_measure(&m_rr_interval_sim_state,
-                                                  &m_rr_interval_sim_cfg);
+
+        rr_interval = (uint16_t)sensorsim_measure(&m_rr_interval_sim_state, &m_rr_interval_sim_cfg);
         ble_hrs_rr_interval_add(&m_hrs, rr_interval);
-        rr_interval = (uint16_t)sensorsim_measure(&m_rr_interval_sim_state,
-                                                  &m_rr_interval_sim_cfg);
+
+        rr_interval = (uint16_t)sensorsim_measure(&m_rr_interval_sim_state, &m_rr_interval_sim_cfg);
         ble_hrs_rr_interval_add(&m_hrs, rr_interval);
     }
 }
@@ -541,25 +543,20 @@ static void timers_init(void)
     APP_ERROR_CHECK(err_code);
 
     // Create timers.
-    err_code = app_timer_create(&m_battery_timer_id,
-                                APP_TIMER_MODE_REPEATED,
-                                battery_level_meas_timeout_handler);
+    err_code = app_timer_create(&m_battery_timer_id, APP_TIMER_MODE_REPEATED, battery_level_meas_timeout_handler);
     APP_ERROR_CHECK(err_code);
 
-    err_code = app_timer_create(&m_heart_rate_timer_id,
-                                APP_TIMER_MODE_REPEATED,
-                                heart_rate_meas_timeout_handler);
+    err_code = app_timer_create(&m_heart_rate_timer_id, APP_TIMER_MODE_REPEATED, heart_rate_meas_timeout_handler);
     APP_ERROR_CHECK(err_code);
 
-    err_code = app_timer_create(&m_rr_interval_timer_id,
-                                APP_TIMER_MODE_REPEATED,
-                                rr_interval_timeout_handler);
+    err_code = app_timer_create(&m_rr_interval_timer_id, APP_TIMER_MODE_REPEATED, rr_interval_timeout_handler);
     APP_ERROR_CHECK(err_code);
 
-    err_code = app_timer_create(&m_sensor_contact_timer_id,
-                                APP_TIMER_MODE_REPEATED,
-                                sensor_contact_detected_timeout_handler);
+    err_code = app_timer_create(&m_sensor_contact_timer_id, APP_TIMER_MODE_REPEATED, sensor_contact_detected_timeout_handler);
     APP_ERROR_CHECK(err_code);
+
+    err_code = app_timer_create(&m_LED_id, APP_TIMER_MODE_REPEATED, timer_led_blink_handler);
+    APP_ERROR_CHECK(err_code);    
 }
 
 
@@ -744,9 +741,6 @@ static void application_timers_start(void)
     APP_ERROR_CHECK(err_code);
 
     err_code = app_timer_start(m_rr_interval_timer_id, RR_INTERVAL_INTERVAL, NULL);
-    APP_ERROR_CHECK(err_code);
-
-    err_code = app_timer_start(m_sensor_contact_timer_id, SENSOR_CONTACT_DETECTED_INTERVAL, NULL);
     APP_ERROR_CHECK(err_code);
 }
 
@@ -954,6 +948,13 @@ void bsp_event_handler(bsp_event_t event)
             }
             Buzz(75);
             measureTemperature = true;
+
+            if(LED_time_on == false)
+            {
+                LED_time_on = true;
+                err_code = app_timer_start(m_LED_id, APP_TIMER_TICKS(200), NULL);
+                APP_ERROR_CHECK(err_code);
+            }
             break;
 
         //  Button 2 - Blue.
@@ -965,6 +966,13 @@ void bsp_event_handler(bsp_event_t event)
             }
             Buzz(50);
             measureTemperature = true;
+
+            if(LED_time_on == true)
+            {
+                LED_time_on = false;
+                err_code = app_timer_stop(m_LED_id);
+                APP_ERROR_CHECK(err_code);
+            }
             break;
 
         //  Button 3 - Green
@@ -1105,32 +1113,7 @@ void app_error_fault_handler(uint32_t id, uint32_t pc, uint32_t info)
 }
 
 
-void CE_test_funcitonality (void)
-{
-    static uint8_t index = 0;
-    uint8_t palet[7][3] = 
-    {
-        {SK6812_OFF},     //0
-        {SK6812_GREEN},   //1
-        {SK6812_RED},     //2
-        {SK6812_BLUE},    //3  
-        {SK6812_YELLOW},  //4
-        {SK6812_PURPLE},  //5
-        {SK6812_WHITE}    //6
-    }; 
 
-    if(index < 6)
-    {
-        index += 1;
-    }
-    else
-    {
-        index = 0;
-    }
-
-    Buzz(50);
-    sk6812_single_colour(palet[index][0], palet[index][1], palet[index][2], BRIGHTNESS_REDUCTION);
-}
 
 
 
@@ -1176,7 +1159,7 @@ int main(void)
     twi_init();
     th06_init();
     application_timers_start();
-    advertising_start(erase_bonds);
+//    advertising_start(erase_bonds);
 
     proximo_tps_on();
     proximo_ldr_on();
@@ -1196,8 +1179,6 @@ int main(void)
             #ifdef PRINT_MEASUREMENT_RESULTS
                 NRF_LOG_INFO("Temperature: %d, Humidity: %d", th06.temperature, th06.humidity);
             #endif
-
-            CE_test_funcitonality();
         }
         NRF_LOG_PROCESS();
     }

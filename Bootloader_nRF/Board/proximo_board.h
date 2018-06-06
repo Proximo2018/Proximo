@@ -15,7 +15,6 @@ extern "C" {
 #include <stdbool.h>
 #include "sdk_config.h"
 #include "bsp.h"
-//#include "bsp_btn_ble.h"
 #include "nrf_gpio.h"
 #include "nrf_drv_lpcomp.h"
 #include "nrf_gpio.h"
@@ -23,15 +22,6 @@ extern "C" {
 #include "nrf_drv_lpcomp.h"
 #include "nrf_log.h"
 
-
-
-// LEDs definitions for Proximo
-#define LEDS_NUMBER    0
-#define LED_START      0
-#define LED_STOP       0
-#define LEDS_ACTIVE_STATE 0
-#define LEDS_INV_MASK  LEDS_MASK
-#define LEDS_LIST { 0 }
 
 #define HWFC           true
 
@@ -53,20 +43,28 @@ extern "C" {
 #define BUTTON_3         19 //  Pushbutton 3
 #define TPS_EN_PIN       24 //  Boost converter enable pin
   
-#define BUTTONS_NUMBER   3
-#define BUTTON_START    13
-#define BUTTON_STOP     19
-#define BUTTON_PULL     NRF_GPIO_PIN_PULLUP
+// Button definitions for the Proximo hardware
+#define BUTTONS_NUMBER      3
+#define BUTTON_START        13
+#define BUTTON_STOP         19
+#define BUTTON_PULL         NRF_GPIO_PIN_PULLUP
 
 #define BUTTONS_ACTIVE_STATE 0
-#define BUTTONS_LIST { BUTTON_1, BUTTON_2, BUTTON_3 }
+#define BUTTONS_LIST        { BUTTON_1, BUTTON_2, BUTTON_3 }
 
-#define BSP_BUTTON_0   BUTTON_1
-#define BSP_BUTTON_1   BUTTON_2
-#define BSP_BUTTON_2   BUTTON_3
+#define BSP_BUTTON_0        BUTTON_1
+#define BSP_BUTTON_1        BUTTON_2
+#define BSP_BUTTON_2        BUTTON_3
 
-
-
+// LEDs definitions for the Proximo hardware
+#define LEDS_NUMBER         1
+#define LED_START           ALARM_OUT_PIN
+#define LED_1               ALARM_OUT_PIN
+#define LED_STOP            ALARM_OUT_PIN
+#define LEDS_ACTIVE_STATE   1
+#define LEDS_INV_MASK       LEDS_MASK
+#define LEDS_LIST           { ALARM_OUT_PIN }
+#define BSP_LED_0           LED_1
 
 
 void movement_init    (void (*movement_event_handler)(nrf_lpcomp_event_t));

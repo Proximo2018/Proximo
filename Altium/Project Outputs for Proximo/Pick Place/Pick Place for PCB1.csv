@@ -1,19 +1,21 @@
 Altium Designer Pick and Place Locations
-D:\localrep\WoTs_Proximo_hardware\Altium\Project Outputs for Proximo\Pick Place\Pick Place for PCB1.csv
+D:\localrep\Proximo\Altium\Project Outputs for Proximo\Pick Place\Pick Place for PCB1.csv
 
 ========================================================================================================================
 File Design Information:
 
-Date:       24-04-18
-Time:       09:51
+Date:       05-06-18
+Time:       15:59
 Revision:   Not in VersionControl
 Variant:    No variations
 Units used: mil
 
 "Designator","Comment","Layer","Footprint","Center-X(mil)","Center-Y(mil)","Rotation","Description"
-"SW3","KSC621JLFS","TopLayer","KSC621JLFS","1141.732","-472.441","180","SMT ZIF connector 4"
-"SW2","KSC621JLFS","TopLayer","KSC621JLFS","1299.213","540.354","90","SMT ZIF connector 4"
-"SW1","KSC621JLFS","TopLayer","KSC621JLFS","984.252","540.354","90","SMT ZIF connector 4"
+"R11","4k99","TopLayer","RES0603VISHAY","767.716","-659.281","180","SMD Resistor 4k99 0603"
+"C35","10nF","TopLayer","CAP0603_GCx18_MURATA","787.402","-208.661","360","Capacitor 0603 10nF"
+"SW3","KSC621JLFS","TopLayer","KSC621JLFS","1141.732","-472.441","180","Tactile switch SMT"
+"SW2","KSC621JLFS","TopLayer","KSC621JLFS","1299.213","540.354","90","Tactile switch SMT"
+"SW1","KSC621JLFS","TopLayer","KSC621JLFS","984.252","540.354","90","Tactile switch SMT"
 "C34","","TopLayer","CAP0603_GCx18_MURATA","1357.498","-521.654","270","Capacitor 100pF 0603 NP0"
 "C33","","TopLayer","CAP0603_GCx18_MURATA","1250.000","757.301","180","Capacitor 100pF 0603 NP0"
 "C32","","TopLayer","CAP0603_GCx18_MURATA","875.000","756.120","360","Capacitor 100pF 0603 NP0"
@@ -26,7 +28,6 @@ Units used: mil
 "U2","nRF52832-QFAA","TopLayer","QFN40P600X600X90-48N","-1161.417","240.157","90","Multi-protocol Bluetooth Low Energy, ANT and 2.4GHz proprietary system-on-chip"
 "U1","TPS61025","TopLayer","DRC10-2400X1650TP","167.480","970.905","360","Boost Voltage Converter with 0.9 to 6.5 V Input, -40 to 85 degC, 10-Pin SON (DRC), Green (RoHS & no Sb/Br)"
 "S1","SQ-MIN-200","TopLayer","SQ-SEN-200","0.000","-157.480","180","Nano Power Tilt and Vibration sensor"
-"R11","4k99","TopLayer","RES0603VISHAY","769.685","-669.291","180","SMD Resistor 4k99 0603"
 "R10","3M3","TopLayer","RES0603VISHAY","-472.441","-905.512","270","SMD Resistor 3M3 0603"
 "R9","10k","TopLayer","RES0603VISHAY","-718.504","-723.622","360","SMD Resistor 10k 0603"
 "R8","10k","TopLayer","RES0603VISHAY","-883.858","-723.228","180","SMD Resistor 10k 0603"
@@ -36,21 +37,21 @@ Units used: mil
 "R4","3M3","TopLayer","RES0603VISHAY","-262.807","-905.512","90","SMD Resistor 3M3 0603"
 "R3","4k99","TopLayer","RES0603VISHAY","-505.906","-460.630","180","SMD Resistor 4k99 0603"
 "R2","10k","TopLayer","RES0603VISHAY","-976.210","347.244","90","SMD Resistor 10k 0603"
-"R1","4k99","TopLayer","RES0603VISHAY","796.260","-218.504","360","SMD Resistor 4k99 0603"
+"R1","4k99","TopLayer","RES0603VISHAY","787.402","-279.528","360","SMD Resistor 4k99 0603"
 "Q1","BC850CLT1G","TopLayer","SOT23","800.197","-106.299","270","NPN general purpose transistor"
 "LDR1","NSL-19M51","TopLayer","LDR","-301.644","-594.488","180","Light Dependant Resistor Phot"
-"L4","TBD","TopLayer","INDC1005X04L","-1153.543","534.449","90","High frequency chip inductor"
+"L4","4.7nH","TopLayer","IND_RF_0402HP-4N7XJLU","-1153.543","534.449","90","High frequency chip inductor 0402 Coil Craft"
 "L1","1.1 A, 6.8 uH","TopLayer","WE-MAPI_3015","364.331","962.323","90","WE-MAPI SMD Shielded Power Inductor, size 3015, 1.1 A, 6.8 uH"
 "J4","M40-310054R","TopLayer","HARWIN_CONNECTOR","-1232.284","-602.362","270","Harwin connector 2Rows x 6 contacts M40-3100545R"
 "D14","CRS08","TopLayer","SOD-123F","779.528","-882.874","180","CRS08 Schottky Diode"
 "D13","SK6812mini","TopLayer","SK6812MINI","590.551","590.551","180","RGB LED with integrated controller"
-"D12","SK6812mini","TopLayer","SK6812MINI","-18.268","590.551","180","RGB LED with integrated controller"
+"D12","SK6812mini","TopLayer","SK6812MINI","0.000","590.551","180","RGB LED with integrated controller"
 "D11","SK6812mini","TopLayer","SK6812MINI","-590.551","590.551","180","RGB LED with integrated controller"
 "D10","SK6812mini","TopLayer","SK6812MINI","590.551","0.000","180","RGB LED with integrated controller"
 "D9","SK6812mini","TopLayer","SK6812MINI","0.000","0.000","180","RGB LED with integrated controller"
 "D8","SK6812mini","TopLayer","SK6812MINI","-590.551","0.000","180","RGB LED with integrated controller"
 "D7","SK6812mini","TopLayer","SK6812MINI","590.551","-590.551","180","RGB LED with integrated controller"
-"D6","SK6812mini","TopLayer","SK6812MINI","-11.102","-590.551","180","RGB LED with integrated controller"
+"D6","SK6812mini","TopLayer","SK6812MINI","0.000","-590.551","180","RGB LED with integrated controller"
 "D5","SK6812mini","TopLayer","SK6812MINI","-590.551","-590.551","180","RGB LED with integrated controller"
 "D4","CRS08","TopLayer","SOD-123F","-314.961","968.583","180","CRS08 Schottky Diode"
 "D3","CRS08","TopLayer","SOD-123F","-314.961","823.268","180","CRS08 Schottky Diode"
@@ -66,8 +67,8 @@ Units used: mil
 "C21","100nF","TopLayer","CAP0603_GCx18_MURATA","-149.803","-649.606","90","Capacitor 0603 100nF"
 "C20","100nF","TopLayer","CAP0603_GCx18_MURATA","-725.394","-597.441","270","Capacitor 0603 100nF"
 "C19","100nF","TopLayer","CAP0603_GCx18_MURATA","-971.063","144.095","180","Capacitor 0603 100nF"
-"C18","TBD","TopLayer","CAPC1005X04L","-1173.228","594.488","360","Capacitor, 0402"
-"C17","TBD","TopLayer","CAPC1005X04L","-1173.228","476.378","360","Capacitor, 0402"
+"C18","0.7pF","TopLayer","CAP0402_Johansen_Technology","-1173.228","594.488","360","Capacitor 0.7pF 0402"
+"C17","0.7pF","TopLayer","CAP0402_Johansen_Technology","-1173.228","476.378","360","Capacitor 0.7pF 0402"
 "C16","6pF","TopLayer","CAP0603_GCx18_MURATA","-1049.213","-76.330","90","Capacitor NP0 0603 50V"
 "C15","100pF","TopLayer","CAP0603_GCx18_MURATA","-1236.220","519.685","90","Capacitor 100pF 0603 NP0"
 "C14","100pF","TopLayer","CAP0603_GCx18_MURATA","-1283.465","519.685","90","Capacitor 100pF 0603 NP0"
@@ -87,7 +88,7 @@ Units used: mil
 "J1","1848642","BottomLayer","PHOENIX_1848642","1141.732","0.000","270","Plug component, Push-in spring connection"
 "L2","15nH","TopLayer","WE-MK_0402A","-1471.656","137.358","180","WE-MK Multilayer Ceramic SMD Inductor, size 0402A, 15nH"
 "L3","10µH","TopLayer","74479777XXX_0805","-1371.063","137.795","180","WE-PMI Power Multilayer Inductor, L= 10.0µH"
-"Q2","BC850CLT1G","TopLayer","SOT23","759.842","-767.716","90","NPN general purpose transistor"
+"Q2","BC850CLT1G","TopLayer","SOT23","779.528","-767.716","270","NPN general purpose transistor"
 "X1","EXS00A-CS02368","TopLayer","NDK-32MHZ-XTAL","-1437.008","515.748","180","NDK  NX3225SA 32MHz Oscillator"
 "X2","NX3215SA","TopLayer","XTAL_3215","-1155.118","-47.244","180","XTAL SMD 3215, 32.768kHz, Cl=9pF, Total Tol: ±50ppm"
 "U4","TH06","TopLayer","TH06_MODULE","-801.181","-842.520","180","I2C Humidity and Temperature Sensor module"

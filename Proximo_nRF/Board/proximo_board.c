@@ -103,3 +103,9 @@ void buttons_init(bool * p_erase_bonds, void (*handler)(bsp_event_t))
 
     *p_erase_bonds = (startup_event == BSP_EVENT_CLEAR_BONDING_DATA);
 }
+
+// Timeout handler for the repeated timer
+void timer_led_blink_handler(void * p_context)
+{
+    nrf_gpio_pin_toggle(ALARM_OUT_PIN);
+}

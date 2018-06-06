@@ -80,6 +80,8 @@ void proximo_tps_off  (void);
 void proximo_ldr_on   (void);
 void proximo_ldr_off  (void);
 
+void timer_led_blink_handler(void * p_context);
+
 #ifdef __cplusplus
 }
 #endif
