@@ -144,7 +144,7 @@
 //#define PRINT_MEASUREMENT_RESULTS                       // Definition to enable priting all the measurement results on the debug itnerface RTT or UART
 static volatile bool    measureTemperature = false;     //  Flag used to sample the th06 in the main loop
 static TH06_s           th06;                           //  Temperature and humidity result
-static int16_t          vcc, ldr;                       // ADC result
+static int16_t          vcc, vldr;                       // ADC result
 
 
 BLE_HRS_DEF(m_hrs);                                                 /**< Heart rate service instance. */
@@ -202,7 +202,7 @@ void saadc_callback(nrf_drv_saadc_evt_t const * p_event)
         APP_ERROR_CHECK(err_code);
 
         vcc = (p_event->data.done.p_buffer[0] * 3600) / 4096;
-        ldr = (p_event->data.done.p_buffer[1] *  vcc) / 4096;
+        vldr = (p_event->data.done.p_buffer[1] *  vcc) / 4096;
         
         #ifdef PRINT_MEASUREMENT_RESULTS                                     //Print the event number on UART
             NRF_LOG_INFO("VCC: %d, %d mV LDR: %d, %d mV", p_event->data.done.p_buffer[0], vcc, (uint16_t) p_event->data.done.p_buffer[1], ldr);    //Print the SAADC result on UART
@@ -232,7 +232,6 @@ static void rtc_handler(nrf_drv_rtc_int_type_t int_type)
         #ifdef PRINT_MEASUREMENT_RESULTS
             NRF_LOG_INFO("Movement count: %u", movementCount);
         #endif
-        movementCount = 0;
     }
     else if (int_type == NRF_DRV_RTC_INT_TICK)
     {
@@ -485,29 +484,25 @@ static void heart_rate_meas_timeout_handler(void * p_context)
  */
 static void rr_interval_timeout_handler(void * p_context)
 {
+    int16_t rr_temperature  = (int16_t)  (th06.temperature * 10.0);  // The temperature is first cast to an unsigned int and for transportation it will be cast to an uint16_t. Upon receiving the data, cast the uint16_t to int16_t first to restore the signedness of the data. Or otherwise you'll see large invalid numbers when the temperature goes negative. 
+    uint16_t rr_humidity    = (uint16_t) (th06.humidity * 10.0);
+    uint16_t rr_ldr         = vldr;
+    uint16_t rr_pulse_count = movementCount;
+    uint16_t rr_vcc         = vcc;
+
+    // Clear the movement count
+    movementCount = 0;
+
     UNUSED_PARAMETER(p_context);
 
     if (m_rr_interval_enabled)
     {
-        uint16_t rr_interval;
-
-        rr_interval = (uint16_t)sensorsim_measure(&m_rr_interval_sim_state, &m_rr_interval_sim_cfg);
-        ble_hrs_rr_interval_add(&m_hrs, rr_interval);
-
-        rr_interval = (uint16_t)sensorsim_measure(&m_rr_interval_sim_state, &m_rr_interval_sim_cfg);
-        ble_hrs_rr_interval_add(&m_hrs, rr_interval);
-
-        rr_interval = (uint16_t)sensorsim_measure(&m_rr_interval_sim_state, &m_rr_interval_sim_cfg);
-        ble_hrs_rr_interval_add(&m_hrs, rr_interval);
-
-        rr_interval = (uint16_t)sensorsim_measure(&m_rr_interval_sim_state, &m_rr_interval_sim_cfg);
-        ble_hrs_rr_interval_add(&m_hrs, rr_interval);
-
-        rr_interval = (uint16_t)sensorsim_measure(&m_rr_interval_sim_state, &m_rr_interval_sim_cfg);
-        ble_hrs_rr_interval_add(&m_hrs, rr_interval);
-
-        rr_interval = (uint16_t)sensorsim_measure(&m_rr_interval_sim_state, &m_rr_interval_sim_cfg);
-        ble_hrs_rr_interval_add(&m_hrs, rr_interval);
+        ble_hrs_rr_interval_add(&m_hrs, rr_temperature);
+        ble_hrs_rr_interval_add(&m_hrs, rr_humidity);
+        ble_hrs_rr_interval_add(&m_hrs, rr_ldr);
+        ble_hrs_rr_interval_add(&m_hrs, rr_vcc);
+        ble_hrs_rr_interval_add(&m_hrs, rr_pulse_count);
+        ble_hrs_rr_interval_add(&m_hrs, 0);
     }
 }
 
@@ -1159,13 +1154,13 @@ int main(void)
     twi_init();
     th06_init();
     application_timers_start();
-//    advertising_start(erase_bonds);
+    advertising_start(erase_bonds);
 
-    proximo_tps_on();
+//    proximo_tps_on();
     proximo_ldr_on();
     nrf_delay_ms(100);
 
-    sk6812_colour_string(&GRB);
+//    sk6812_colour_string(&GRB);
 
     // Enter main loop.
     for (;;)
