@@ -6,7 +6,7 @@
 #include "nrf_log.h"
 
 
-
+static TH06_s th06;                           //  Temperature and humidity result
 
 
 /* TWI instance. */
@@ -61,7 +61,7 @@ void th06_init(void)
 }
 
 
-void read_temperature(TH06_s * result)
+void th06_sample_temperature_and_humidity(TH06_s * result)
 {
     ret_code_t err_code;
     uint16_t regVal;
@@ -114,3 +114,17 @@ void read_temperature(TH06_s * result)
     }
 }
 
+void th06_sample (void)
+{
+  th06_sample_temperature_and_humidity(&th06);
+}
+
+double th06_get_last_measured_temperature(void)
+{
+  return th06.temperature;
+}
+
+double th06_get_last_measured_humidity(void)
+{
+  return th06.humidity;
+}

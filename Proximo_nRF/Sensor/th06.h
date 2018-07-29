@@ -14,11 +14,11 @@
     #define THO6_I2C_ADDRESS (0x80U>>1)
     #define TH06_RSVD_MASK   0b00111010 // bit mask for the temperature user register 1
 
-    extern uint8_t NRF_TWI_MNGR_BUFFER_LOC_IND th06_write_user_reg1;
+//    extern uint8_t NRF_TWI_MNGR_BUFFER_LOC_IND th06_write_user_reg1;
 
-    #define TH06_READ(p_reg_addr, p_buffer, byte_cnt)                                   \
-      NRF_TWI_MNGR_WRITE(THO6_I2C_ADDRESS, p_reg_addr, 1,        NRF_TWI_MNGR_NO_STOP), \
-      NRF_TWI_MNGR_READ (THO6_I2C_ADDRESS, p_buffer,   byte_cnt, 0)
+//    #define TH06_READ(p_reg_addr, p_buffer, byte_cnt)                                   \
+//    NRF_TWI_MNGR_WRITE(THO6_I2C_ADDRESS, p_reg_addr, 1,        NRF_TWI_MNGR_NO_STOP), \
+//    NRF_TWI_MNGR_READ (THO6_I2C_ADDRESS, p_buffer,   byte_cnt, 0)
 
     /******************************************************************************************
                                         TYPE DEFINITIONs
@@ -66,8 +66,11 @@
     /*
      *  FUNCTION PROTOTYPES
      */
-     void twi_init          (void);
-     void th06_init         (void);
-     void read_temperature  (TH06_s * result);
+     void   twi_init          (void);
+     void   th06_init         (void);
+     void   read_temperature  (TH06_s * result);
+     void   th06_sample       (void);
+     double th06_get_last_measured_temperature  (void);
+     double th06_get_last_measured_humidity     (void);
     
 #endif

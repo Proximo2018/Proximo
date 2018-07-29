@@ -59,7 +59,8 @@
 #include "app_error_weak.h"
 #include "nrf_bootloader_info.h"
 #include "app_timer.h"
-#include "nrf_delay.h"
+//#include "nrf_delay.h"
+//#include "io.h"
 
 static void on_error(void)
 {
@@ -107,10 +108,10 @@ static void dfu_observer(nrf_dfu_evt_type_t evt_type)
         case NRF_DFU_EVT_DFU_ABORTED:
         case NRF_DFU_EVT_DFU_INITIALIZED:
             bsp_board_init(BSP_INIT_LEDS);
-            bsp_board_led_on(BSP_BOARD_LED_0);
+//            bsp_board_led_on(BSP_BOARD_LED_0);
             break;
         case NRF_DFU_EVT_TRANSPORT_ACTIVATED:
-            bsp_board_led_off(BSP_BOARD_LED_0);
+//            bsp_board_led_off(BSP_BOARD_LED_0);
             break;
         case NRF_DFU_EVT_DFU_STARTED:
             break;
@@ -124,6 +125,58 @@ static void dfu_observer(nrf_dfu_evt_type_t evt_type)
 int main(void)
 {
     uint32_t ret_val;
+
+    //  Input pin for the vibration sensor SQ-MIN-200
+    nrf_gpio_cfg_input(VIBRATION_PIN, NRF_GPIO_PIN_NOPULL);
+
+    //  LDR Supply Pin
+    nrf_gpio_cfg_output(LDR_VCC_PIN);
+    nrf_gpio_pin_write(LDR_VCC_PIN, 0);
+
+    //  LDR input pin
+    nrf_gpio_cfg_input(LDR_OUT_PIN, NRF_GPIO_PIN_NOPULL);
+
+    //  DATA IN pin for the SK6812 mini RGB LED
+    nrf_gpio_cfg_output(SK6812_DIN_PIN);
+    nrf_gpio_pin_write(SK6812_DIN_PIN, 0);
+
+    //  Buzzer pin
+    nrf_gpio_cfg_output(BUZZER_PIN);
+    nrf_gpio_pin_write(BUZZER_PIN, 0);
+
+    //  Alarm output pin
+    nrf_gpio_cfg_output(ALARM_OUT_PIN);
+    nrf_gpio_pin_write(ALARM_OUT_PIN, 0);
+
+    //  Boost converter enable pin
+    nrf_gpio_cfg_output(TPS_EN_PIN);
+    nrf_gpio_pin_write(TPS_EN_PIN, 0);
+
+    //  Input pin for the vibration sensor SQ-MIN-200
+    nrf_gpio_cfg_input(VIBRATION_PIN, NRF_GPIO_PIN_NOPULL);
+
+    //  LDR Supply Pin
+    nrf_gpio_cfg_output(LDR_VCC_PIN);
+    nrf_gpio_pin_write(LDR_VCC_PIN, 0);
+
+    //  LDR input pin
+    nrf_gpio_cfg_input(LDR_OUT_PIN, NRF_GPIO_PIN_NOPULL);
+
+    //  DATA IN pin for the SK6812 mini RGB LED
+    nrf_gpio_cfg_output(SK6812_DIN_PIN);
+    nrf_gpio_pin_write(SK6812_DIN_PIN, 0);
+
+    //  Buzzer pin
+    nrf_gpio_cfg_output(BUZZER_PIN);
+    nrf_gpio_pin_write(BUZZER_PIN, 0);
+
+    //  Alarm output pin
+    nrf_gpio_cfg_output(ALARM_OUT_PIN);
+    nrf_gpio_pin_write(ALARM_OUT_PIN, 0);
+
+    //  Boost converter enable pin
+    nrf_gpio_cfg_output(TPS_EN_PIN);
+    nrf_gpio_pin_write(TPS_EN_PIN, 0);
 
     // Protect MBR and bootloader code from being overwritten.
     ret_val = nrf_bootloader_flash_protect(0, MBR_SIZE, false);

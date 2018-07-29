@@ -16,7 +16,7 @@
       arm_target_device_name="nRF52832_xxAA"
       arm_target_interface_type="SWD"
       c_preprocessor_definitions="APP_TIMER_V2;APP_TIMER_V2_RTC1_ENABLED;BLE_STACK_SUPPORT_REQD;CUSTOM_BOARD_INC=proximo_board;CONFIG_GPIO_AS_PINRESET;FLOAT_ABI_HARD;INITIALIZE_USER_SECTIONS;NO_VTOR_CONFIG;NRF52;NRF52832_XXAA;NRF52_PAN_74;NRF_DFU_SETTINGS_VERSION=1;NRF_DFU_SVCI_ENABLED;NRF_SD_BLE_API_VERSION=6;S132;SOFTDEVICE_PRESENT;SVC_INTERFACE_CALL_AS_NORMAL_FUNCTION;uECC_ENABLE_VLI_API=0;uECC_OPTIMIZATION_LEVEL=3;uECC_SQUARE_FUNC=0;uECC_SUPPORT_COMPRESSED_POINT=0;uECC_VLI_NATIVE_LITTLE_ENDIAN=1"
-      c_user_include_directories="config;Board;/config/secure_bootloader_ble_s132_pca10040;../nRF5_SDK_15.0.0/components/ble/common;../nRF5_SDK_15.0.0/components/boards;../nRF5_SDK_15.0.0/components/libraries/atomic;../nRF5_SDK_15.0.0/components/libraries/atomic_fifo;../nRF5_SDK_15.0.0/components/libraries/balloc;../nRF5_SDK_15.0.0/components/libraries/bootloader;../nRF5_SDK_15.0.0/components/libraries/bootloader/ble_dfu;../nRF5_SDK_15.0.0/components/libraries/bootloader/dfu;../nRF5_SDK_15.0.0/components/libraries/crc32;../nRF5_SDK_15.0.0/components/libraries/crypto;../nRF5_SDK_15.0.0/components/libraries/crypto/backend/cc310;../nRF5_SDK_15.0.0/components/libraries/crypto/backend/cc310_bl;../nRF5_SDK_15.0.0/components/libraries/crypto/backend/cifra;../nRF5_SDK_15.0.0/components/libraries/crypto/backend/mbedtls;../nRF5_SDK_15.0.0/components/libraries/crypto/backend/micro_ecc;../nRF5_SDK_15.0.0/components/libraries/crypto/backend/nrf_hw;../nRF5_SDK_15.0.0/components/libraries/crypto/backend/nrf_sw;../nRF5_SDK_15.0.0/components/libraries/crypto/backend/oberon;../nRF5_SDK_15.0.0/components/libraries/delay;../nRF5_SDK_15.0.0/components/libraries/experimental_log;../nRF5_SDK_15.0.0/components/libraries/experimental_log/src;../nRF5_SDK_15.0.0/components/libraries/experimental_memobj;../nRF5_SDK_15.0.0/components/libraries/experimental_section_vars;../nRF5_SDK_15.0.0/components/libraries/fstorage;../nRF5_SDK_15.0.0/components/libraries/mem_manager;../nRF5_SDK_15.0.0/components/libraries/queue;../nRF5_SDK_15.0.0/components/libraries/scheduler;../nRF5_SDK_15.0.0/components/libraries/sha256;../nRF5_SDK_15.0.0/components/libraries/sortlist;../nRF5_SDK_15.0.0/components/libraries/stack_info;../nRF5_SDK_15.0.0/components/libraries/strerror;../nRF5_SDK_15.0.0/components/libraries/svc;../nRF5_SDK_15.0.0/components/libraries/timer;../nRF5_SDK_15.0.0/components/libraries/timer/experimental;../nRF5_SDK_15.0.0/components/libraries/util;../nRF5_SDK_15.0.0/components/softdevice/common;../nRF5_SDK_15.0.0/components/softdevice/s132/headers;../nRF5_SDK_15.0.0/components/softdevice/s132/headers/nrf52;../nRF5_SDK_15.0.0/components/toolchain/cmsis/include;../..;../nRF5_SDK_15.0.0/external/micro-ecc/micro-ecc;../nRF5_SDK_15.0.0/external/nano-pb;../nRF5_SDK_15.0.0/integration/nrfx;../nRF5_SDK_15.0.0/modules/nrfx;../nRF5_SDK_15.0.0/modules/nrfx/hal;../nRF5_SDK_15.0.0/modules/nrfx/mdk;"
+      c_user_include_directories="config;../Proximo_nRF/Peripheral;../Proximo_nRF/Board;/config/secure_bootloader_ble_s132_pca10040;../nRF5_SDK_15.0.0/components/ble/common;../nRF5_SDK_15.0.0/components/boards;../nRF5_SDK_15.0.0/components/libraries/atomic;../nRF5_SDK_15.0.0/components/libraries/atomic_fifo;../nRF5_SDK_15.0.0/components/libraries/balloc;../nRF5_SDK_15.0.0/components/libraries/bootloader;../nRF5_SDK_15.0.0/components/libraries/bootloader/ble_dfu;../nRF5_SDK_15.0.0/components/libraries/bootloader/dfu;../nRF5_SDK_15.0.0/components/libraries/crc32;../nRF5_SDK_15.0.0/components/libraries/crypto;../nRF5_SDK_15.0.0/components/libraries/crypto/backend/cc310;../nRF5_SDK_15.0.0/components/libraries/crypto/backend/cc310_bl;../nRF5_SDK_15.0.0/components/libraries/crypto/backend/cifra;../nRF5_SDK_15.0.0/components/libraries/crypto/backend/mbedtls;../nRF5_SDK_15.0.0/components/libraries/crypto/backend/micro_ecc;../nRF5_SDK_15.0.0/components/libraries/crypto/backend/nrf_hw;../nRF5_SDK_15.0.0/components/libraries/crypto/backend/nrf_sw;../nRF5_SDK_15.0.0/components/libraries/crypto/backend/oberon;../nRF5_SDK_15.0.0/components/libraries/delay;../nRF5_SDK_15.0.0/components/libraries/experimental_log;../nRF5_SDK_15.0.0/components/libraries/experimental_log/src;../nRF5_SDK_15.0.0/components/libraries/experimental_memobj;../nRF5_SDK_15.0.0/components/libraries/experimental_section_vars;../nRF5_SDK_15.0.0/components/libraries/fstorage;../nRF5_SDK_15.0.0/components/libraries/mem_manager;../nRF5_SDK_15.0.0/components/libraries/queue;../nRF5_SDK_15.0.0/components/libraries/scheduler;../nRF5_SDK_15.0.0/components/libraries/sha256;../nRF5_SDK_15.0.0/components/libraries/sortlist;../nRF5_SDK_15.0.0/components/libraries/stack_info;../nRF5_SDK_15.0.0/components/libraries/strerror;../nRF5_SDK_15.0.0/components/libraries/svc;../nRF5_SDK_15.0.0/components/libraries/timer;../nRF5_SDK_15.0.0/components/libraries/timer/experimental;../nRF5_SDK_15.0.0/components/libraries/util;../nRF5_SDK_15.0.0/components/softdevice/common;../nRF5_SDK_15.0.0/components/softdevice/s132/headers;../nRF5_SDK_15.0.0/components/softdevice/s132/headers/nrf52;../nRF5_SDK_15.0.0/components/toolchain/cmsis/include;../..;../nRF5_SDK_15.0.0/external/micro-ecc/micro-ecc;../nRF5_SDK_15.0.0/external/nano-pb;../nRF5_SDK_15.0.0/integration/nrfx;../nRF5_SDK_15.0.0/modules/nrfx;../nRF5_SDK_15.0.0/modules/nrfx/hal;../nRF5_SDK_15.0.0/modules/nrfx/mdk;"
       debug_additional_load_file="../nRF5_SDK_15.0.0/components/softdevice/s132/hex/s132_nrf52_6.0.0_softdevice.hex"
       debug_register_definition_file="../nRF5_SDK_15.0.0/modules/nrfx/mdk/nrf52.svd"
       debug_start_from_entry_point_symbol="No"
@@ -67,6 +67,7 @@
     </folder>
     <folder Name="Board Definition">
       <file file_name="../nRF5_SDK_15.0.0/components/boards/boards.c" />
+      <file file_name="../Proximo_nRF/Board/proximo_board.h" />
     </folder>
     <folder Name="nRF_Drivers">
       <file file_name="../nRF5_SDK_15.0.0/modules/nrfx/hal/nrf_nvmc.c" />
@@ -82,8 +83,6 @@
       <file file_name="main.c" />
       <file file_name="public_key.c" />
       <file file_name="config/sdk_config.h" />
-      <file file_name="Board/proximo_board.c" />
-      <file file_name="Board/proximo_board.h" />
     </folder>
     <folder Name="nRF_micro-ecc">
       <file file_name="../nRF5_SDK_15.0.0/external/micro-ecc/nrf52hf_armgcc/armgcc/micro_ecc_lib_nrf52.a" />
@@ -137,5 +136,9 @@
   <configuration
     Name="Release"
     c_preprocessor_definitions="NDEBUG"
+    gcc_debugging_level="None"
     gcc_optimization_level="Optimize For Size" />
+  <configuration
+    Name="Common"
+    debug_additional_load_file="E:/Proximo/nRF5_SDK_15.0.0/components/softdevice/s132/hex/s132_nrf52_6.0.0_softdevice.hex" />
 </solution>

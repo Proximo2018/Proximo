@@ -13,7 +13,10 @@
 
 
     void measure_vcc    (void);
+    void measure_vcc_ldr(void);
     void saadc_callback (nrf_drv_saadc_evt_t const * p_event);
-    void saadc_init     (void (*saadc_cb)(nrf_drv_saadc_evt_t const *));
+    void saadc_init     (void);
+    int16_t get_vcc     (void);
+    int16_t get_vldr    (void);
 
 #endif

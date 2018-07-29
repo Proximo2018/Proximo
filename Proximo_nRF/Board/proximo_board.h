@@ -1,7 +1,6 @@
 /*
  *	Proximo board definitions
- *	The Proximo board is selected by the CUSTOM_BOARD_INC=proximo_board.h definition in the Preprocessor Definitions 
- *	Project options under "Common".
+ *	The Proximo board is selected by the CUSTOM_BOARD_INC=proximo_board.h definition in the Preprocessor Definitions found in the Project options under "Common".
  */
 #ifndef PROXIMO_BOARD_H
 #define PROXIMO_BOARD_H
@@ -11,17 +10,7 @@
 extern "C" {
 #endif
 
-#include <stdint.h>
-#include <stdbool.h>
-#include "sdk_config.h"
-#include "bsp.h"
-//#include "bsp_btn_ble.h"
-#include "nrf_gpio.h"
-#include "nrf_drv_lpcomp.h"
-#include "nrf_gpio.h"
-#include "nrf_delay.h"
-#include "nrf_drv_lpcomp.h"
-#include "nrf_log.h"
+
 
 
 
@@ -48,9 +37,9 @@ extern "C" {
 #define SK6812_DIN_PIN   13 //  DATA IN pin for the SK6812 mini RGB LED
 #define BUZZER_PIN       14 //  Buzzer pin
 #define ALARM_OUT_PIN    15 //  Alarm output pin
-#define BUTTON_1         16 //  Pushbutton 1
-#define BUTTON_2         17 //  Pushbutton 2
-#define BUTTON_3         19 //  Pushbutton 3
+#define BUTTON_1         16 //  Pushbutton 1: Right
+#define BUTTON_2         17 //  Pushbutton 2: Left
+#define BUTTON_3         19 //  Pushbutton 3: Down/Enter
 #define TPS_EN_PIN       24 //  Boost converter enable pin
   
 #define BUTTONS_NUMBER   3
@@ -69,18 +58,6 @@ extern "C" {
 
 
 
-void movement_init    (void (*movement_event_handler)(nrf_lpcomp_event_t));
-void proximo_io_init  (void);
-void movement_deinit  (void);
-
-
-void proximo_tps_on   (void);
-void proximo_tps_off  (void);
-
-void proximo_ldr_on   (void);
-void proximo_ldr_off  (void);
-
-void timer_led_blink_handler(void * p_context);
 
 #ifdef __cplusplus
 }

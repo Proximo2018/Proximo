@@ -1,7 +1,5 @@
-/*
-*/
+#include "io.h"
 
-#include "proximo_board.h"
 
 void proximo_io_init(void)
 {
@@ -58,35 +56,6 @@ __inline void proximo_ldr_off(void)
 
 
 
-/*
- * @brief Initialize LPCOMP driver.
- */
-void movement_init(void (*movement_event_handler)(nrf_lpcomp_event_t))
-{
-    uint32_t err_code;
-	
-    /*
-    * Configures the LPCOMP to VCC4/8, UP with hysteresis enabled
-    */
-
-    nrf_drv_lpcomp_config_t config = NRF_DRV_LPCOMP_DEFAULT_CONFIG;
-	
-    // Initialize LPCOMP driver, from this point LPCOMP will be active and provided event handler will be executed when defined action is detected
-    err_code = nrf_drv_lpcomp_init(&config, *(movement_event_handler));
-    APP_ERROR_CHECK(err_code);
-    nrf_drv_lpcomp_enable();
-}
-
-
-/*
- * @brief De-initialize LPCOMP driver for shutdown.
- */
-void movement_deinit(void)
-{
-  //  Disable the Low Power Comperator.
-  nrf_drv_lpcomp_disable();
-  nrf_drv_lpcomp_uninit();
-}
 
 
 /**@brief Function for initializing buttons and leds.

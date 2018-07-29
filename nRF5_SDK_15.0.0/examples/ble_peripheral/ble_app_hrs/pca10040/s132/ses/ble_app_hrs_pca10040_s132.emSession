@@ -39,7 +39,7 @@
   <Watches active="0" update="Never"/>
  </Watch4>
  <Files>
-  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="961" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../main.c" debugPath="../../../main.c" selected="1" top="913" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="55" y="82" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../main.c" debugPath="../../../main.c" selected="1" top="58" codecName="Default"/>
   <SessionOpenFile windowGroup="DockEditLeft" x="0" y="0" useTextEdit="1" useBinaryEdit="0" left="0" path="../config/sdk_config.h" debugPath="../config/sdk_config.h" selected="0" top="0" codecName="Default"/>
   <SessionOpenFile windowGroup="DockEditLeft" x="0" y="157" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../../../../components/libraries/util/sdk_errors.h" debugPath="../../../../../../components/libraries/util/sdk_errors.h" selected="0" top="74" codecName="Default"/>
   <SessionOpenFile windowGroup="DockEditLeft" x="0" y="491" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../../../../components/libraries/bsp/bsp.c" debugPath="../../../../../../components/libraries/bsp/bsp.c" selected="0" top="477" codecName="Default"/>

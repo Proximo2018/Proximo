@@ -1,9 +1,36 @@
-
 #include "adc.h"
+#include "app_timer.h"
+#include "io.h"
 
+APP_TIMER_DEF(m_LDR_id);                                            /**< LDR timer. */
 
 static nrf_saadc_value_t  m_buffer_pool[2][SAADC_SAMPLES_IN_BUFFER];
-static volatile bool      m_saadc_initialized = false; 
+static volatile bool      m_saadc_initialized = false, LDR_timer_on = false; 
+static volatile int16_t   vcc, vldr;
+
+
+void saadc_callback(nrf_drv_saadc_evt_t const * p_event)
+{
+    if (p_event->type == NRF_DRV_SAADC_EVT_DONE)                                                        //Capture offset calibration complete event
+    {
+        ret_code_t err_code;
+			     
+        err_code = nrf_drv_saadc_buffer_convert(p_event->data.done.p_buffer, SAADC_SAMPLES_IN_BUFFER);  //Set buffer so the SAADC can write to it again. This is either "buffer 1" or "buffer 2"
+        APP_ERROR_CHECK(err_code);
+
+        vcc  = (p_event->data.done.p_buffer[0] * 3600) / 4096;
+        vldr = (p_event->data.done.p_buffer[1] *  vcc) / 4096;
+        
+        #if 0                                   //Print the event number on UART
+            NRF_LOG_INFO("VCC: %d, %d mV LDR: %d, %d mV", p_event->data.done.p_buffer[0], vcc, (uint16_t) p_event->data.done.p_buffer[1], vldr);    //Print the SAADC result on UART
+        #endif //UART_PRINTING_ENABLED				
+
+        NRF_SAADC->INTENCLR = (SAADC_INTENCLR_END_Clear << SAADC_INTENCLR_END_Pos);               //Disable the SAADC interrupt
+        NVIC_ClearPendingIRQ(SAADC_IRQn);                                                         //Clear the SAADC interrupt if set
+    
+        //proximo_ldr_off();
+    }
+}
 
 
 void measure_vcc(void)
@@ -18,37 +45,35 @@ void measure_vcc(void)
     }
 }
 
+void measure_vcc_ldr(void)
+{
+    ret_code_t err_code;
 
-//void saadc_callback(nrf_drv_saadc_evt_t const * p_event)
-//{
-//#ifdef UART_PRINTING_ENABLED
-//    int16_t  vcc, ldr;
-//#endif
-//
-//    if (p_event->type == NRF_DRV_SAADC_EVT_DONE)                                                        //Capture offset calibration complete event
-//    {
-//        ret_code_t err_code;
-//			     
-//        err_code = nrf_drv_saadc_buffer_convert(p_event->data.done.p_buffer, SAADC_SAMPLES_IN_BUFFER);  //Set buffer so the SAADC can write to it again. This is either "buffer 1" or "buffer 2"
-//        APP_ERROR_CHECK(err_code);
-//
-//    #ifdef UART_PRINTING_ENABLED
-////        NRF_LOG_INFO("ADC event number: %d",(int)m_adc_evt_counter);                                      //Print the event number on UART
-//
-//
-//        vcc = (p_event->data.done.p_buffer[0] * 3600) / 4096;
-//        ldr = (p_event->data.done.p_buffer[1] * vcc) / 4096;
-//        NRF_LOG_INFO("VCC: %d, %d mV LDR: %04X, %d mV", p_event->data.done.p_buffer[0], vcc, (uint16_t) p_event->data.done.p_buffer[1], ldr);    //Print the SAADC result on UART
-//
-////        m_adc_evt_counter++;
-//    #endif //UART_PRINTING_ENABLED				
-//				                                                                 //Unintialize SAADC to disable EasyDMA and save power
-//        NRF_SAADC->INTENCLR = (SAADC_INTENCLR_END_Clear << SAADC_INTENCLR_END_Pos);               //Disable the SAADC interrupt
-//        NVIC_ClearPendingIRQ(SAADC_IRQn);                                                         //Clear the SAADC interrupt if set
-//    }
-//}
+    // Use a boolean to prevent multiple timers to be started 
+    if(LDR_timer_on == false)
+    {
+        // Set the LDR pin high and wait a few milliseconds to allow the LDR output voltage to settle.
+        proximo_ldr_on();
 
-void saadc_init(void (*saadc_cb)(nrf_drv_saadc_evt_t const *))
+        LDR_timer_on = true;
+        err_code = app_timer_start(m_LDR_id, APP_TIMER_TICKS(300), NULL);
+        APP_ERROR_CHECK(err_code);
+    }
+}
+
+
+// Timeout handler for the LDR timer
+void ldr_handler(void * p_context)
+{
+    LDR_timer_on = false;
+
+    // Start the SAADC measurement
+    measure_vcc();
+}
+
+
+
+void saadc_init(void)
 {
     ret_code_t err_code;
     nrf_drv_saadc_config_t saadc_config;
@@ -63,7 +88,7 @@ void saadc_init(void (*saadc_cb)(nrf_drv_saadc_evt_t const *))
     saadc_config.low_power_mode     = true;
 	
     //Initialize SAADC
-    err_code = nrf_drv_saadc_init(&saadc_config, *saadc_cb);                              //Initialize the SAADC with configuration and callback function. The application must then implement the saadc_callback function, which will be called when SAADC interrupt is triggered
+    err_code = nrf_drv_saadc_init(&saadc_config, saadc_callback);                              //Initialize the SAADC with configuration and callback function. The application must then implement the saadc_callback function, which will be called when SAADC interrupt is triggered
     APP_ERROR_CHECK(err_code);
 		
     //Configure SAADC channel
@@ -103,4 +128,19 @@ void saadc_init(void (*saadc_cb)(nrf_drv_saadc_evt_t const *))
     APP_ERROR_CHECK(err_code);
 
     m_saadc_initialized = true;  
+
+    // Configure an app timer for starting the ADC after setting the LDR supply voltage pin to high and waiting for a few milliseconds
+    err_code = app_timer_create(&m_LDR_id, APP_TIMER_MODE_SINGLE_SHOT, ldr_handler);
+    APP_ERROR_CHECK(err_code);   
+}
+
+
+int16_t get_vcc(void)
+{
+    return vcc;
+}
+
+int16_t get_vldr(void)
+{
+    return vldr;
 }
