@@ -56,7 +56,10 @@ void th06_init(void)
     /* Write User register 1 with the new setting configuration. */
     reg[0] = TH06_WRITE_USER_REG1;
     err_code = nrf_drv_twi_tx(&m_twi, THO6_I2C_ADDRESS, reg, 2, false);
-    NRF_LOG_INFO("Init error code: %X, %d, User Register1: %02X", err_code, err_code, statusRegVal);
+
+    #if 0
+      NRF_LOG_INFO("Init error code: %X, %d, User Register1: %02X", err_code, err_code, statusRegVal);
+    #endif
     APP_ERROR_CHECK(err_code);
 }
 

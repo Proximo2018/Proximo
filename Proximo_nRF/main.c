@@ -74,7 +74,7 @@
 
 
 
-
+#define MANUAL_LED_TIMEOUT_COUNT (5 * 8)
 
 
 
@@ -83,37 +83,15 @@
 static volatile bool    measureTemperature = false;     //  Flag used to sample the th06 in the main loop
 
 static volatile int16_t          vcc, vldr;                       // ADC result
-
+static volatile uint32_t count = 0;
 
 APP_TIMER_DEF(m_LED_id);                                            /**< Debug LED timer. */
 
+double temperature = 0.0, humidity = 0.0;
+uint32_t movement_count = 0;
+static volatile uint32_t manual_LED_timeout = 0;
 
 
-
-
-
-
-
-//void saadc_callback(nrf_drv_saadc_evt_t const * p_event)
-//{
-//    if (p_event->type == NRF_DRV_SAADC_EVT_DONE)                                                        //Capture offset calibration complete event
-//    {
-//        ret_code_t err_code;
-//			     
-//        err_code = nrf_drv_saadc_buffer_convert(p_event->data.done.p_buffer, SAADC_SAMPLES_IN_BUFFER);  //Set buffer so the SAADC can write to it again. This is either "buffer 1" or "buffer 2"
-//        APP_ERROR_CHECK(err_code);
-//
-//        vcc = (p_event->data.done.p_buffer[0] * 3600) / 4096;
-//        vldr = (p_event->data.done.p_buffer[1] *  vcc) / 4096;
-//        
-//        #if 1                                   //Print the event number on UART
-//            NRF_LOG_INFO("VCC: %d, %d mV LDR: %d, %d mV", p_event->data.done.p_buffer[0], vcc, (uint16_t) p_event->data.done.p_buffer[1], vldr);    //Print the SAADC result on UART
-//        #endif //UART_PRINTING_ENABLED				
-//
-//        NRF_SAADC->INTENCLR = (SAADC_INTENCLR_END_Clear << SAADC_INTENCLR_END_Pos);               //Disable the SAADC interrupt
-//        NVIC_ClearPendingIRQ(SAADC_IRQn);                                                         //Clear the SAADC interrupt if set
-//    }
-//}
 
 /** @brief: Function for handling the RTC0 interrupts.
  * Triggered on TICK and COMPARE0 match.
@@ -126,10 +104,9 @@ static void rtc_handler(nrf_drv_rtc_int_type_t int_type)
         // Reset the compare counter of the RTC
         rtc_reload_compare();
 
-        //nrf_gpio_pin_toggle(ALARM_OUT_PIN);
+        nrf_gpio_pin_toggle(ALARM_OUT_PIN);
         measureTemperature = true;
-//        measure_vcc();
-        measure_vcc_ldr();
+        
 
         // print and the clear the number of movement pulses counted
         #ifdef PRINT_MEASUREMENT_RESULTS
@@ -139,6 +116,10 @@ static void rtc_handler(nrf_drv_rtc_int_type_t int_type)
     else if (int_type == NRF_DRV_RTC_INT_TICK)
     {
         bootloader_enter_timeout();
+
+        if(manual_LED_timeout != 0){
+          manual_LED_timeout -= 1;
+        }
     }
 }
 
@@ -193,7 +174,7 @@ static void application_timers_start(void)
 {
     ret_code_t err_code;
 
-    err_code = app_timer_start(m_LED_id, APP_TIMER_TICKS(200), NULL);
+//    err_code = app_timer_start(m_LED_id, APP_TIMER_TICKS(200), NULL);
     APP_ERROR_CHECK(err_code);
 }
 
@@ -223,31 +204,31 @@ void bsp_event_handler(bsp_event_t event)
     {
         //  Button 1 - RED
         case BSP_EVENT_KEY_1:
-//            NRF_LOG_INFO("Button 1: Right");
+            NRF_LOG_INFO("Button 1: Right");
 
             if(index < 6){
               index += 1;
             }
             Buzz(75);
-            measureTemperature = true;
+            manual_LED_timeout = MANUAL_LED_TIMEOUT_COUNT;
             break;
 
         //  Button 2 - Blue.
         case BSP_EVENT_KEY_2:
 
-//            NRF_LOG_INFO("Button 2: Left");
+            NRF_LOG_INFO("Button 2: Left");
             if(index > 0){
               index -= 1;
             }
             Buzz(50);
-            measureTemperature = true;
+            manual_LED_timeout = MANUAL_LED_TIMEOUT_COUNT;
             break;
 
         //  Button 3 - Green
         case BSP_EVENT_KEY_0:
             NRF_LOG_INFO("Button 3: Down");
             Buzz(25);
-            measureTemperature = true;
+            manual_LED_timeout = MANUAL_LED_TIMEOUT_COUNT;
             bootloader_enter_check();
             break;
 
@@ -325,16 +306,16 @@ int main(void)
 {
     SK6812_WR_BUFFERs GRB = 
     {
-        {                                                     \
-            SK6812_OFF,     SK6812_GREEN,   SK6812_RED,       \
-            SK6812_BLUE,    SK6812_YELLOW,  SK6812_PURPLE,    \
-            SK6812_WHITE,   SK6812_RED,     SK6812_GREEN      \
-        }                                                     \
+        {                                             \
+            SK6812_OFF,   SK6812_OFF,  SK6812_OFF,    \
+            SK6812_OFF,   SK6812_OFF,  SK6812_OFF,    \
+            SK6812_RED,   SK6812_WHITE,  SK6812_BLUE     \
+        }
     };
 
     uint32_t err_code;
     bool erase_bonds;
-
+    
     // Initialize.
     log_init();
     lfclk_config();
@@ -368,7 +349,7 @@ int main(void)
     proximo_ldr_on();
     nrf_delay_ms(100);
 
-//    sk6812_colour_string(&GRB);
+    sk6812_colour_string(&GRB, BRIGHTNESS_REDUCTION); //
 
     // Enter main loop.
     for (;;)
@@ -378,9 +359,100 @@ int main(void)
         {
             measureTemperature = false;
             th06_sample();
+            measure_vcc_ldr();
+
+            temperature = th06_get_last_measured_temperature();
+            humidity    = th06_get_last_measured_humidity();
+            movement_count = get_movement_count();
+            vldr           = get_vldr();
+            vcc            = get_vcc();
             
-            #if 0
-                NRF_LOG_INFO("Temperature: %d, Humidity: %d", th06_get_last_measured_temperature(), th06_get_last_measured_humidity());
+            #if 1
+                NRF_LOG_INFO("%u - Temperature: %d, Humidity: %d, MovementCount: %u, Vldr: %u mV, Vcc: %u",
+                            count++,
+                            temperature, 
+                            humidity, 
+                            movement_count,
+                            vldr,
+                            vcc
+                          );
+            #endif
+
+            #if 1
+
+            if(manual_LED_timeout == 0)
+            {
+
+              /* Time Ticks */
+              if(count == 0)
+              {
+                  sk6812_write_buffer(&GRB, 0, SK6812_RED);
+              }
+              else
+              {
+                  sk6812_write_buffer(&GRB, 0, SK6812_GREEN);
+              }
+
+              /* Temperature */
+              if(temperature > 10.0)
+              {
+                  sk6812_write_buffer(&GRB, 1, SK6812_GREEN);
+              }
+              else
+              {
+                  sk6812_write_buffer(&GRB, 1, SK6812_RED);
+              }
+
+              /* Humidity */
+              if(humidity > 25.0)
+              {
+                  sk6812_write_buffer(&GRB, 2, SK6812_GREEN);
+              }
+              else
+              {
+                  sk6812_write_buffer(&GRB, 2, SK6812_RED);
+              }
+
+              /* Movement count */
+              if(movement_count > 100)
+              {
+                  sk6812_write_buffer(&GRB, 3, SK6812_GREEN);
+              }
+              else
+              {
+                  sk6812_write_buffer(&GRB, 3, SK6812_RED);
+              }
+
+              /* LDR voltage */
+              if(vldr < 600)
+              {
+                  sk6812_write_buffer(&GRB, 4, SK6812_PURPLE);
+              }
+              else if (vldr >= 600 && vldr <= 2500)
+              {
+                  sk6812_write_buffer(&GRB, 4, SK6812_GREEN);
+              }
+              else
+              {
+                  sk6812_write_buffer(&GRB, 4, SK6812_RED);
+              }
+
+              /* Supply voltage */
+              if(vcc < 2800)
+              {
+                  sk6812_write_buffer(&GRB, 5, SK6812_PURPLE);
+              }
+              else if (vcc >= 2800 && vcc <= 3400)
+              {
+                  sk6812_write_buffer(&GRB, 5, SK6812_GREEN);
+              }
+              else
+              {
+                  sk6812_write_buffer(&GRB, 5, SK6812_RED);
+              }
+
+              sk6812_colour_string(&GRB, BRIGHTNESS_REDUCTION);
+            }
             #endif
         }
         NRF_LOG_PROCESS();

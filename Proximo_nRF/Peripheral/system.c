@@ -1,7 +1,7 @@
 #include "system.h"
 //#include "bsp.h"
 
-#define COMPARE_COUNTERTIME  (5UL)                      /**< Get Compare event COMPARE_TIME seconds after the counter starts from 0. */
+#define COMPARE_COUNTERTIME  (1UL)                      /**< Get Compare event COMPARE_TIME seconds after the counter starts from 0. */
 const nrf_drv_rtc_t rtc = NRF_DRV_RTC_INSTANCE(2);      /**< Declaring an instance of nrf_drv_rtc for RTC1. Note that RTC0 is used by the soft device */
 
 /** @brief Function initialization and configuration of RTC driver instance.

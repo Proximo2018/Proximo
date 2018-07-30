@@ -10,6 +10,8 @@ extern "C" {
 
 #include <stdint.h>
 
+#define BRIGHTNESS_REDUCTION 4
+
 // Buffer definitions
 #define NUMBER_OF_SK6812  9
 #define SK6812_NUMBER_OF_BITS_DATA    (3* 8)                      //  The number of bits in a data message for the SK6812: three bytes with the following format: Green, Red, Blue
@@ -39,7 +41,8 @@ typedef struct
 
 
 void sk6812_single_colour       (uint8_t Green, uint8_t Red, uint8_t Blue, uint8_t brightnessReduction);
-void sk6812_colour_string       (SK6812_WR_BUFFERs * GRB);
+void sk6812_colour_string       (SK6812_WR_BUFFERs * GRB, uint8_t brightnessReduction);
+void sk6812_write_buffer        (SK6812_WR_BUFFERs * GRB, uint8_t index, uint8_t Green, uint8_t Red, uint8_t Blue);
 
 
 

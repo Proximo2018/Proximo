@@ -112,7 +112,7 @@ void sk6812_single_colour(uint8_t Green, uint8_t Red, uint8_t Blue, uint8_t brig
 }
 
 
-void sk6812_colour_string(SK6812_WR_BUFFERs * GRB)
+void sk6812_colour_string(SK6812_WR_BUFFERs * GRB, uint8_t brightnessReduction)
 {
     // This array cannot be allocated on stack (hence "static") and it must
     // be in RAM (hence no "const", though its content is not changed).
@@ -156,9 +156,9 @@ void sk6812_colour_string(SK6812_WR_BUFFERs * GRB)
     offset = 0;
     for(n = 0 ; n < NUMBER_OF_SK6812 ; n++)
     {
-        G = GRB->data[(n * 3U) + 0U];
-        R = GRB->data[(n * 3U) + 1U];
-        B = GRB->data[(n * 3U) + 2U];
+        G = GRB->data[(n * 3U) + 0U] >> brightnessReduction;
+        R = GRB->data[(n * 3U) + 1U] >> brightnessReduction;
+        B = GRB->data[(n * 3U) + 2U] >> brightnessReduction;
 
         //  Set the bits for the Green byte
         for(i = 0 ; i < 8 ; i++)
@@ -213,6 +213,22 @@ void sk6812_colour_string(SK6812_WR_BUFFERs * GRB)
     };
 
     (void)nrf_drv_pwm_simple_playback(&m_pwm1, &seq, 1, NRF_DRV_PWM_FLAG_STOP);
+}
+
+
+void sk6812_write_buffer(SK6812_WR_BUFFERs * GRB, uint8_t index, uint8_t Green, uint8_t Red, uint8_t Blue)
+{
+  uint8_t offset;
+
+  if(GRB == NULL || index > SK6812_WR_BUFFER_LENGHT)
+  {
+      return;
+  }
+
+  offset = index * 3;
+  GRB->data[offset + 0] = Green;
+  GRB->data[offset + 1] = Red;
+  GRB->data[offset + 2] = Blue;
 }
 
 

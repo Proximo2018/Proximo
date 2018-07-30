@@ -510,7 +510,7 @@ void rr_interval_timeout_handler(void * p_context)
     uint16_t rr_vcc         = 2000;
 
     // Clear the movement count
-    clear_movement_count();
+//    clear_movement_count();
 
     UNUSED_PARAMETER(p_context);
 
