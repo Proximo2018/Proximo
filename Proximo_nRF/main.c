@@ -309,7 +309,7 @@ int main(void)
         {                                             \
             SK6812_OFF,   SK6812_OFF,  SK6812_OFF,    \
             SK6812_OFF,   SK6812_OFF,  SK6812_OFF,    \
-            SK6812_RED,   SK6812_WHITE,  SK6812_BLUE     \
+            SK6812_OFF,   SK6812_OFF,  SK6812_OFF     \
         }
     };
 
