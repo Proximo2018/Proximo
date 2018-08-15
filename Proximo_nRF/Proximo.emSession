@@ -3,9 +3,7 @@
  <Bookmarks>
   <BookmarkItem objectName="" line="39" column="-1" path="D:/localrep/Proximo/nRF5_SDK_15.0.0/components/boards/boards.c" number="1" extra="#include &quot;boards.h&quot;" color="5"/>
  </Bookmarks>
- <Breakpoints groups="Breakpoints" active_group="Breakpoints">
-  <Exceptions set="MemManage;UsageFault_Coprocessor;UsageFault_CheckingError;UsageFault_StateError;BusFault;ExceptionEntryReturnFault;HardFault"/>
- </Breakpoints>
+ <Breakpoints groups="Breakpoints" active_group="Breakpoints"/>
  <ExecutionProfileWindow/>
  <FrameBufferWindow>
   <FrameBufferWindow bufferHeight="-1" addressSpace="" addressText="" bufferWidth="-1"/>
@@ -66,26 +64,26 @@
  </Watch4>
  <Files>
   <SessionOpenFile windowGroup="DockEditLeft" x="0" y="49" useTextEdit="1" useBinaryEdit="0" left="0" path="Board/proximo_board.h" debugPath="Board/proximo_board.h" selected="0" top="27" codecName="Default"/>
-  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="305" useTextEdit="1" useBinaryEdit="0" left="0" path="main.c" debugPath="main.c" selected="1" top="291" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="4" y="317" useTextEdit="1" useBinaryEdit="0" left="0" path="main.c" debugPath="main.c" selected="1" top="425" codecName="Default"/>
   <SessionOpenFile windowGroup="DockEditLeft" x="0" y="4" useTextEdit="1" useBinaryEdit="0" left="0" path="Peripheral/io.c" debugPath="Peripheral/io.c" selected="0" top="21" codecName="Default"/>
   <SessionOpenFile windowGroup="DockEditLeft" x="0" y="1221" useTextEdit="1" useBinaryEdit="0" left="0" path="config/sdk_config.h" debugPath="config/sdk_config.h" selected="0" top="1194" codecName="Default"/>
   <SessionOpenFile windowGroup="DockEditLeft" x="0" y="1009" useTextEdit="1" useBinaryEdit="0" left="0" path="../nRF5_SDK_15.0.0/components/libraries/timer/app_timer.c" debugPath="../nRF5_SDK_15.0.0/components/libraries/timer/app_timer.c" selected="0" top="1009" codecName="Default"/>
   <SessionOpenFile windowGroup="DockEditLeft" x="0" y="188" useTextEdit="1" useBinaryEdit="0" left="0" path="../nRF5_SDK_15.0.0/components/libraries/timer/app_timer.h" debugPath="../nRF5_SDK_15.0.0/components/libraries/timer/app_timer.h" selected="0" top="162" codecName="Default"/>
-  <SessionOpenFile windowGroup="DockEditLeft" x="3" y="7" useTextEdit="1" useBinaryEdit="0" left="0" path="Peripheral/system.c" debugPath="Peripheral/system.c" selected="0" top="12" codecName="Default"/>
-  <SessionOpenFile windowGroup="DockEditLeft" x="32" y="514" useTextEdit="1" useBinaryEdit="0" left="0" path="BLE/ble_setup.c" debugPath="BLE/ble_setup.c" selected="0" top="499" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="7" useTextEdit="1" useBinaryEdit="0" left="0" path="Peripheral/system.c" debugPath="Peripheral/system.c" selected="0" top="7" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="514" useTextEdit="1" useBinaryEdit="0" left="0" path="BLE/ble_setup.c" debugPath="BLE/ble_setup.c" selected="0" top="499" codecName="Default"/>
   <SessionOpenFile windowGroup="DockEditLeft" x="0" y="80" useTextEdit="1" useBinaryEdit="0" left="0" path="BLE/ble_setup.h" debugPath="BLE/ble_setup.h" selected="0" top="73" codecName="Default"/>
   <SessionOpenFile windowGroup="DockEditLeft" x="0" y="44" useTextEdit="1" useBinaryEdit="0" left="0" path="../nRF5_SDK_15.0.0/components/boards/boards.c" debugPath="../nRF5_SDK_15.0.0/components/boards/boards.c" selected="0" top="27" codecName="Default"/>
   <SessionOpenFile windowGroup="DockEditLeft" x="0" y="10" useTextEdit="1" useBinaryEdit="0" left="0" path="Peripheral/io.h" debugPath="Peripheral/io.h" selected="0" top="0" codecName="Default"/>
   <SessionOpenFile windowGroup="DockEditLeft" x="0" y="13" useTextEdit="1" useBinaryEdit="0" left="0" path="../nRF5_SDK_15.0.0/components/libraries/bsp/bsp.h" debugPath="../nRF5_SDK_15.0.0/components/libraries/bsp/bsp.h" selected="0" top="0" codecName="Default"/>
   <SessionOpenFile windowGroup="DockEditLeft" x="0" y="651" useTextEdit="1" useBinaryEdit="0" left="0" path="../nRF5_SDK_15.0.0/modules/nrfx/hal/nrf_gpio.h" debugPath="../nRF5_SDK_15.0.0/modules/nrfx/hal/nrf_gpio.h" selected="0" top="639" codecName="Default"/>
-  <SessionOpenFile windowGroup="DockEditLeft" x="7" y="124" useTextEdit="1" useBinaryEdit="0" left="0" path="Sensor/th06.c" debugPath="Sensor/th06.c" selected="0" top="108" codecName="Default"/>
-  <SessionOpenFile windowGroup="DockEditLeft" x="20" y="14" useTextEdit="1" useBinaryEdit="0" left="0" path="Peripheral/adc.h" debugPath="Peripheral/adc.h" selected="0" top="0" codecName="Default"/>
-  <SessionOpenFile windowGroup="DockEditLeft" x="32" y="12" useTextEdit="1" useBinaryEdit="0" left="0" path="Sensor/sq_min_200.h" debugPath="Sensor/sq_min_200.h" selected="0" top="0" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="124" useTextEdit="1" useBinaryEdit="0" left="0" path="Sensor/th06.c" debugPath="Sensor/th06.c" selected="0" top="108" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="14" useTextEdit="1" useBinaryEdit="0" left="0" path="Peripheral/adc.h" debugPath="Peripheral/adc.h" selected="0" top="0" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="12" useTextEdit="1" useBinaryEdit="0" left="0" path="Sensor/sq_min_200.h" debugPath="Sensor/sq_min_200.h" selected="0" top="0" codecName="Default"/>
   <SessionOpenFile windowGroup="DockEditLeft" x="0" y="50" useTextEdit="1" useBinaryEdit="0" left="0" path="Sensor/sq_min_200.c" debugPath="Sensor/sq_min_200.c" selected="0" top="27" codecName="Default"/>
-  <SessionOpenFile windowGroup="DockEditLeft" x="7" y="142" useTextEdit="1" useBinaryEdit="0" left="0" path="Peripheral/adc.c" debugPath="Peripheral/adc.c" selected="0" top="126" codecName="Default"/>
-  <SessionOpenFile windowGroup="DockEditLeft" x="21" y="227" useTextEdit="1" useBinaryEdit="0" left="0" path="Sensor/sk6812.c" debugPath="Sensor/sk6812.c" selected="0" top="201" codecName="Default"/>
-  <SessionOpenFile windowGroup="DockEditLeft" x="19" y="34" useTextEdit="1" useBinaryEdit="0" left="0" path="Sensor/sk6812.h" debugPath="Sensor/sk6812.h" selected="0" top="24" codecName="Default"/>
-  <SessionOpenFile windowGroup="DockEditLeft" x="77" y="387" useTextEdit="1" useBinaryEdit="0" left="0" path="../nRF5_SDK_15.0.0/modules/nrfx/hal/nrf_twim.h" debugPath="../nRF5_SDK_15.0.0/modules/nrfx/hal/nrf_twim.h" selected="0" top="367" codecName=""/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="142" useTextEdit="1" useBinaryEdit="0" left="0" path="Peripheral/adc.c" debugPath="Peripheral/adc.c" selected="0" top="126" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="227" useTextEdit="1" useBinaryEdit="0" left="0" path="Sensor/sk6812.c" debugPath="Sensor/sk6812.c" selected="0" top="201" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="34" useTextEdit="1" useBinaryEdit="0" left="0" path="Sensor/sk6812.h" debugPath="Sensor/sk6812.h" selected="0" top="24" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="387" useTextEdit="1" useBinaryEdit="0" left="0" path="../nRF5_SDK_15.0.0/modules/nrfx/hal/nrf_twim.h" debugPath="../nRF5_SDK_15.0.0/modules/nrfx/hal/nrf_twim.h" selected="0" top="367" codecName="Default"/>
  </Files>
  <ARMCrossStudioWindow activeProject="Proximo" fileDialogDefaultFilter="*.c" autoConnectTarget="J-Link" buildConfiguration="Debug" debugSearchFileMap="" fileDialogInitialDirectory="E:/Proximo/nRF5_SDK_15.0.0/components/ble/ble_services/ble_dfu" debugSearchPath="" autoConnectCapabilities="3711"/>
 </session>
