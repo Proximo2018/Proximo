@@ -15,12 +15,7 @@ SECTIONS
   __FLASH_segment_size__ = 0x00080000;
 
   __HEAPSIZE__ = 8192;
-  __STACKSIZE_ABT__ = 0;
-  __STACKSIZE_FIQ__ = 0;
-  __STACKSIZE_IRQ__ = 0;
   __STACKSIZE_PROCESS__ = 0;
-  __STACKSIZE_SVC__ = 0;
-  __STACKSIZE_UND__ = 0;
   __STACKSIZE__ = 8192;
 
   __reserved_ram_load_start__ = 0x20000000;

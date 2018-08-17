@@ -394,21 +394,29 @@ int main(void)
               }
 
               /* Temperature */
-              if(temperature > 10.0)
+              if(temperature > 10.0 && temperature < 35.0)
               {
                   sk6812_write_buffer(&GRB, 1, SK6812_GREEN);
               }
+	      else if(temperature >= 35.0)
+	      {
+		  sk6812_write_buffer(&GRB, 1, SK6812_PURPLE);
+	      }
               else
               {
                   sk6812_write_buffer(&GRB, 1, SK6812_RED);
               }
 
               /* Humidity */
-              if(humidity > 25.0)
+              if(humidity > 25.0 && humidity < 90.0)
               {
                   sk6812_write_buffer(&GRB, 2, SK6812_GREEN);
               }
-              else
+              else if(humidity >= 100.0)
+	      {
+		  sk6812_write_buffer(&GRB, 2, SK6812_PURPLE);
+	      }
+	      else
               {
                   sk6812_write_buffer(&GRB, 2, SK6812_RED);
               }
@@ -438,11 +446,11 @@ int main(void)
               }
 
               /* Supply voltage */
-              if(vcc < 2800)
+              if(vcc < 3000)
               {
                   sk6812_write_buffer(&GRB, 5, SK6812_PURPLE);
               }
-              else if (vcc >= 2800 && vcc <= 3400)
+              else if (vcc >= 3000 && vcc <= 3400)
               {
                   sk6812_write_buffer(&GRB, 5, SK6812_GREEN);
               }
