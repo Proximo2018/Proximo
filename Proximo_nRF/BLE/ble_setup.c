@@ -32,6 +32,41 @@ static ble_uuid_t m_adv_uuids[] =                                   /**< Univers
     {BLE_UUID_DEVICE_INFORMATION_SERVICE,   BLE_UUID_TYPE_BLE}
 };
 
+static ble_gap_adv_params_t m_adv_params;                                  /**< Parameters to be passed to the stack when starting advertising. */
+static uint8_t              m_adv_handle = BLE_GAP_ADV_SET_HANDLE_NOT_SET; /**< Advertising handle used to identify an advertising set. */
+static uint8_t              m_enc_advdata[BLE_GAP_ADV_SET_DATA_SIZE_MAX];  /**< Buffer for storing an encoded advertising set. */
+
+
+/**@brief Struct that contains pointers to the encoded advertising data. */
+static ble_gap_adv_data_t m_adv_data_beacon =
+{
+    .adv_data =
+    {
+        .p_data = m_enc_advdata,
+        .len    = BLE_GAP_ADV_SET_DATA_SIZE_MAX
+    },
+    .scan_rsp_data =
+    {
+        .p_data = NULL,
+        .len    = 0
+
+    }
+};
+
+
+static uint8_t m_beacon_info[APP_BEACON_INFO_LENGTH] =                    /**< Information advertised by the Beacon. */
+{
+    APP_DEVICE_TYPE,     // Manufacturer specific information. Specifies the device type in this
+                         // implementation.
+    APP_ADV_DATA_LENGTH, // Manufacturer specific information. Specifies the length of the
+                         // manufacturer specific data in this implementation.
+    APP_BEACON_UUID,     // 128 bit UUID value.
+    APP_MAJOR_VALUE,     // Major arbitrary value that can be used to distinguish between Beacons.
+    APP_MINOR_VALUE,     // Minor arbitrary value that can be used to distinguish between Beacons.
+    APP_MEASURED_RSSI    // Manufacturer specific information. The Beacon's measured TX power in
+                         // this implementation.
+};
+
 static uint8_t bootloader_timeout = 0;
 static uint8_t bootloader_enter_press_count = 0;
 
@@ -133,21 +168,12 @@ static void delete_bonds(void)
 
 /**@brief Function for starting advertising.
  */
-void advertising_start(bool erase_bonds)
+void advertising_start(void)
 {
-    if (erase_bonds == true)
-    {
-        delete_bonds();
-        // Advertising is started by PM_EVT_PEERS_DELETE_SUCCEEDED event.
-//        PM_EVT_PEERS_DELETE_SUCCEEDED
-    }
-    else
-    {
-        ret_code_t err_code;
+    ret_code_t err_code;
 
-        err_code = ble_advertising_start(&m_advertising, BLE_ADV_MODE_FAST);
-        APP_ERROR_CHECK(err_code);
-    }
+    err_code = ble_advertising_start(&m_advertising, BLE_ADV_MODE_FAST);
+    APP_ERROR_CHECK(err_code);
 }
 
 
@@ -222,7 +248,7 @@ static void pm_evt_handler(pm_evt_t const * p_evt)
         case PM_EVT_PEERS_DELETE_SUCCEEDED:
         {
             NRF_LOG_DEBUG("PM_EVT_PEERS_DELETE_SUCCEEDED");
-            advertising_start(false);
+            advertising_start();
         } break;
 
         case PM_EVT_PEER_DATA_UPDATE_FAILED:
@@ -809,12 +835,82 @@ void advertising_init(void)
     ble_advertising_conn_cfg_tag_set(&m_advertising, APP_BLE_CONN_CFG_TAG);
 }
 
+void advertising_beacon_init(void)
+{
+    uint32_t                err_code;
+    ble_advdata_t           advdata;
+    ble_advertising_init_t  init;
+    uint8_t                 flags = BLE_GAP_ADV_FLAG_BR_EDR_NOT_SUPPORTED;
+    ble_advdata_manuf_data_t manuf_specific_data;
+
+    memset(&init, 0, sizeof(init));
+
+    manuf_specific_data.company_identifier = APP_COMPANY_IDENTIFIER;
+    manuf_specific_data.data.p_data = (uint8_t *) m_beacon_info;
+    manuf_specific_data.data.size   = APP_BEACON_INFO_LENGTH;
+
+    // Build and set advertising data.
+    memset(&advdata, 0, sizeof(ble_advdata_t));
+
+    init.evt_handler = on_adv_evt;
+    init.advdata.p_manuf_specific_data = &manuf_specific_data;
+    init.advdata.name_type             = BLE_ADVDATA_NO_NAME;
+    init.advdata.flags                 = flags;
+
+    // Initialize advertising parameters (used when starting advertising).
+    memset(&m_adv_params, 0, sizeof(m_adv_params));
+
+    init.advdata.flags                = BLE_GAP_ADV_FLAGS_LE_ONLY_GENERAL_DISC_MODE;
+    init.config.ble_adv_fast_enabled  = true;
+    init.config.ble_adv_fast_interval = APP_ADV_INTERVAL;
+    init.config.ble_adv_fast_timeout  = 0; // APP_ADV_DURATION; disable timeout
+//    m_adv_params.p_peer_addr     = NULL;    // Undirected advertisement.
+//    m_adv_params.filter_policy   = BLE_GAP_ADV_FP_ANY;
+//    m_adv_params.interval        = NON_CONNECTABLE_ADV_INTERVAL;
+//    m_adv_params.duration        = 0;       // Never time out.
+
+    err_code = ble_advertising_init(&m_advertising, &init);
+    APP_ERROR_CHECK(err_code);
+
+    ble_advertising_conn_cfg_tag_set(&m_advertising, APP_BLE_CONN_CFG_TAG);  
+
+
+//    err_code = ble_advdata_encode(&advdata, m_adv_data_beacon.adv_data.p_data, &m_adv_data_beacon.adv_data.len);
+//    APP_ERROR_CHECK(err_code);
+//
+//    err_code = sd_ble_gap_adv_set_configure(&m_adv_handle, &m_adv_data_beacon, &m_adv_params);
+//    APP_ERROR_CHECK(err_code);
+}
+
+/*
+#if defined(USE_UICR_FOR_MAJ_MIN_VALUES)
+    // If USE_UICR_FOR_MAJ_MIN_VALUES is defined, the major and minor values will be read from the
+    // UICR instead of using the default values. The major and minor values obtained from the UICR
+    // are encoded into advertising data in big endian order (MSB First).
+    // To set the UICR used by this example to a desired value, write to the address 0x10001080
+    // using the nrfjprog tool. The command to be used is as follows.
+    // nrfjprog --snr <Segger-chip-Serial-Number> --memwr 0x10001080 --val <your major/minor value>
+    // For example, for a major value and minor value of 0xabcd and 0x0102 respectively, the
+    // the following command should be used.
+    // nrfjprog --snr <Segger-chip-Serial-Number> --memwr 0x10001080 --val 0xabcd0102
+    uint16_t major_value = ((*(uint32_t *)UICR_ADDRESS) & 0xFFFF0000) >> 16;
+    uint16_t minor_value = ((*(uint32_t *)UICR_ADDRESS) & 0x0000FFFF);
+
+    uint8_t index = MAJ_VAL_OFFSET_IN_BEACON_INFO;
+
+    m_beacon_info[index++] = MSB_16(major_value);
+    m_beacon_info[index++] = LSB_16(major_value);
+
+    m_beacon_info[index++] = MSB_16(minor_value);
+    m_beacon_info[index++] = LSB_16(minor_value);
+#endif
+*/
+
 void bsp_ble_gap_disconnect(void)
 {
   ret_code_t  err_code;
 
-  err_code = sd_ble_gap_disconnect(m_conn_handle,
-                                   BLE_HCI_REMOTE_USER_TERMINATED_CONNECTION);
+  err_code = sd_ble_gap_disconnect(m_conn_handle, BLE_HCI_REMOTE_USER_TERMINATED_CONNECTION);
   if (err_code != NRF_ERROR_INVALID_STATE)
   {
       APP_ERROR_CHECK(err_code);

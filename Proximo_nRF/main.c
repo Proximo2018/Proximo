@@ -329,7 +329,8 @@ int main(void)
     ble_stack_init();
     gap_params_init();
     gatt_init();
-    advertising_init();
+//    advertising_init();
+    advertising_beacon_init();
     services_init();
     sensor_simulator_init();
     conn_params_init();
@@ -343,7 +344,7 @@ int main(void)
     th06_init();
     
     application_timers_start();
-    advertising_start(erase_bonds);
+    advertising_start();
 
     proximo_tps_on();
     proximo_ldr_on();
