@@ -111,7 +111,5 @@
     Name="Debug"
     c_preprocessor_definitions="DEBUG; DEBUG_NRF"
     gcc_optimization_level="None" />
-  <configuration
-    Name="Common"
-    external_build_file_name="E:/Proximo/nRF5_SDK_15.0.0/components/softdevice/s132/hex/s132_nrf52_6.0.0_softdevice.hex" />
+  <configuration Name="Common" external_build_file_name="" />
 </solution>

@@ -1,11 +1,12 @@
 #include "ble_setup.h"
-#include "th06.h"
-#include "sq_min_200.h"
 #include "ble_dfu.h"
 #include "nrf_bootloader_info.h"
 #include "io.h"
+#include "ble_prox.h"
+
 
 BLE_BAS_DEF(m_bas);                                                 /**< Structure used to identify the battery service. */
+BLE_PROX_DEF(m_prox);                                               /**< Structure used to identify the Proximo Configuration service. */      
 NRF_BLE_GATT_DEF(m_gatt);                                           /**< GATT module instance. */
 NRF_BLE_QWR_DEF(m_qwr);                                             /**< Context for the Queued Write module.*/
 BLE_ADVERTISING_DEF(m_advertising);                                 /**< Advertising module instance. */
@@ -156,6 +157,39 @@ static void delete_bonds(void)
 
     err_code = pm_peers_delete();
     APP_ERROR_CHECK(err_code);
+}
+
+/**@brief Function for handling the Custom Service Service events.
+ *
+ * @details This function will be called for all Custom Service events which are passed to
+ *          the application.
+ *
+ * @param[in]   p_cus_service  Custom Service structure.
+ * @param[in]   p_evt          Event received from the Custom Service.
+ *
+ */
+static void on_prox_evt(ble_prox_t * p_prox_service, ble_prox_evt_t * p_evt)
+{
+    ret_code_t err_code;
+    
+    switch(p_evt->evt_type)
+    {
+        case BLE_PROX_EVT_NOTIFICATION_ENABLED:
+          break;
+
+        case BLE_PROX_EVT_NOTIFICATION_DISABLED:
+            break;
+
+        case BLE_PROX_EVT_CONNECTED:
+            break;
+
+        case BLE_PROX_EVT_DISCONNECTED:
+              break;
+
+        default:
+              // No implementation needed.
+              break;
+    }
 }
 
 
@@ -397,6 +431,7 @@ void services_init(void)
     ret_code_t         err_code;
     ble_bas_init_t     bas_init;
     ble_dis_init_t     dis_init;
+    ble_prox_init_t     prox_init;
     nrf_ble_qwr_init_t qwr_init = {0};
 
     // Initialize Queued Write Module.
@@ -434,6 +469,16 @@ void services_init(void)
 
     err_code = ble_dis_init(&dis_init);
     APP_ERROR_CHECK(err_code);
+
+    /* Initializing Proximo Service */
+    memset(&prox_init, 0, sizeof(prox_init));
+    prox_init.evt_handler = on_prox_evt;
+
+    BLE_GAP_CONN_SEC_MODE_SET_OPEN(&prox_init.custom_value_char_attr_md.cccd_write_perm);
+    BLE_GAP_CONN_SEC_MODE_SET_OPEN(&prox_init.custom_value_char_attr_md.write_perm);
+
+    err_code = ble_prox_init(&m_prox, &prox_init);
+    APP_ERROR_CHECK(err_code);  
 }
 
 
