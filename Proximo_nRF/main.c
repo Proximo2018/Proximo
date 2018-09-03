@@ -329,7 +329,6 @@ int main(void)
     ble_stack_init();
     gap_params_init();
     gatt_init();
-//    advertising_init();
     advertising_beacon_init();
     services_init();
     sensor_simulator_init();

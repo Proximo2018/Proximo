@@ -745,6 +745,31 @@ void advertising_beacon_init(void)
     uint8_t                 flags = BLE_GAP_ADV_FLAG_BR_EDR_NOT_SUPPORTED;
     ble_advdata_manuf_data_t manuf_specific_data;
 
+
+  #if defined(USE_UICR_FOR_MAJ_MIN_VALUES)
+      // If USE_UICR_FOR_MAJ_MIN_VALUES is defined, the major and minor values will be read from the
+      // UICR instead of using the default values. The major and minor values obtained from the UICR
+      // are encoded into advertising data in big endian order (MSB First).
+      // To set the UICR used by this example to a desired value, write to the address 0x10001080
+      // using the nrfjprog tool. The command to be used is as follows.
+      // nrfjprog --snr <Segger-chip-Serial-Number> --memwr 0x10001080 --val <your major/minor value>
+      // For example, for a major value and minor value of 0xabcd and 0x0102 respectively, the
+      // the following command should be used.
+      // nrfjprog --snr <Segger-chip-Serial-Number> --memwr 0x10001080 --val 0xabcd0102
+      uint16_t major_value = ((*(uint32_t *)UICR_ADDRESS) & 0xFFFF0000) >> 16;
+      uint16_t minor_value = ((*(uint32_t *)UICR_ADDRESS) & 0x0000FFFF);
+
+      uint8_t index = MAJ_VAL_OFFSET_IN_BEACON_INFO;
+
+      m_beacon_info[index++] = MSB_16(major_value);
+      m_beacon_info[index++] = LSB_16(major_value);
+
+      m_beacon_info[index++] = MSB_16(minor_value);
+      m_beacon_info[index++] = LSB_16(minor_value);
+
+      NRF_LOG_INFO("Beacon Major: %u/0x%04X, Minor: %u/0x%04X", major_value, major_value, minor_value, minor_value);
+  #endif
+
     memset(&init, 0, sizeof(init));
 
     manuf_specific_data.company_identifier = APP_COMPANY_IDENTIFIER;
@@ -773,29 +798,7 @@ void advertising_beacon_init(void)
     ble_advertising_conn_cfg_tag_set(&m_advertising, APP_BLE_CONN_CFG_TAG);  
 }
 
-/*
-#if defined(USE_UICR_FOR_MAJ_MIN_VALUES)
-    // If USE_UICR_FOR_MAJ_MIN_VALUES is defined, the major and minor values will be read from the
-    // UICR instead of using the default values. The major and minor values obtained from the UICR
-    // are encoded into advertising data in big endian order (MSB First).
-    // To set the UICR used by this example to a desired value, write to the address 0x10001080
-    // using the nrfjprog tool. The command to be used is as follows.
-    // nrfjprog --snr <Segger-chip-Serial-Number> --memwr 0x10001080 --val <your major/minor value>
-    // For example, for a major value and minor value of 0xabcd and 0x0102 respectively, the
-    // the following command should be used.
-    // nrfjprog --snr <Segger-chip-Serial-Number> --memwr 0x10001080 --val 0xabcd0102
-    uint16_t major_value = ((*(uint32_t *)UICR_ADDRESS) & 0xFFFF0000) >> 16;
-    uint16_t minor_value = ((*(uint32_t *)UICR_ADDRESS) & 0x0000FFFF);
 
-    uint8_t index = MAJ_VAL_OFFSET_IN_BEACON_INFO;
-
-    m_beacon_info[index++] = MSB_16(major_value);
-    m_beacon_info[index++] = LSB_16(major_value);
-
-    m_beacon_info[index++] = MSB_16(minor_value);
-    m_beacon_info[index++] = LSB_16(minor_value);
-#endif
-*/
 
 void bsp_ble_gap_disconnect(void)
 {
