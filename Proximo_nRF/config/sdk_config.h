@@ -7195,7 +7195,7 @@
 //==========================================================
 #ifndef NRF_LOG_BACKEND_UART_ENABLED
 #ifdef DEBUG
-  #define NRF_LOG_BACKEND_UART_ENABLED 1
+  #define NRF_LOG_BACKEND_UART_ENABLED 0
 #else
   #define NRF_LOG_BACKEND_UART_ENABLED 0
 #endif

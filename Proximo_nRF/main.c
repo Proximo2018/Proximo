@@ -74,9 +74,8 @@
 
 
 
-#define MANUAL_LED_TIMEOUT_COUNT (5 * 8)
 
-
+APP_TIMER_DEF(m_LED_id);                                            /**< Debug LED timer. */
 
 
 //#define PRINT_MEASUREMENT_RESULTS                       // Definition to enable priting all the measurement results on the debug itnerface RTT or UART
@@ -85,9 +84,10 @@ static volatile bool    measureTemperature = false;     //  Flag used to sample 
 static volatile int16_t          vcc, vldr;                       // ADC result
 static volatile uint32_t count = 0;
 
-APP_TIMER_DEF(m_LED_id);                                            /**< Debug LED timer. */
 
-double temperature = 0.0, humidity = 0.0;
+
+double temperature  = 0.0;
+double humidity	    = 0.0;
 uint32_t movement_count = 0;
 static volatile uint32_t manual_LED_timeout = 0;
 
@@ -104,7 +104,6 @@ static void rtc_handler(nrf_drv_rtc_int_type_t int_type)
         // Reset the compare counter of the RTC
         rtc_reload_compare();
 
-        nrf_gpio_pin_toggle(ALARM_OUT_PIN);
         measureTemperature = true;
         
 
@@ -159,15 +158,6 @@ static void app_timers_init(void)
     APP_ERROR_CHECK(err_code);    
 }
 
-
-
-
-
-
-
-
-
-
 /**@brief Function for starting application timers.
  */
 static void application_timers_start(void)
@@ -210,7 +200,6 @@ void bsp_event_handler(bsp_event_t event)
               index += 1;
             }
             Buzz(75);
-            manual_LED_timeout = MANUAL_LED_TIMEOUT_COUNT;
             break;
 
         //  Button 2 - Blue.
@@ -221,14 +210,12 @@ void bsp_event_handler(bsp_event_t event)
               index -= 1;
             }
             Buzz(50);
-            manual_LED_timeout = MANUAL_LED_TIMEOUT_COUNT;
             break;
 
         //  Button 3 - Green
         case BSP_EVENT_KEY_0:
             NRF_LOG_INFO("Button 3: Down");
             Buzz(25);
-            manual_LED_timeout = MANUAL_LED_TIMEOUT_COUNT;
             bootloader_enter_check();
             break;
 
@@ -248,8 +235,8 @@ void bsp_event_handler(bsp_event_t event)
             break;
     }
 
-    sk6812_single_colour(palet[index][0], palet[index][1], palet[index][2], BRIGHTNESS_REDUCTION);
-//    NRF_LOG_INFO("Index: %d", index);
+//    sk6812_single_colour(palet[index][0], palet[index][1], palet[index][2]);
+  sk6812_single_colour_blink(palet[index][0], palet[index][1], palet[index][2], 50, 50, 10);
 }
 
 
@@ -265,11 +252,6 @@ static void buttons_init(bool * p_erase_bonds)
 }
 
 
-
-
-
-
-
 /**@brief Function for initializing the nrf log module.
  */
 static void log_init(void)
@@ -279,8 +261,6 @@ static void log_init(void)
 
     NRF_LOG_DEFAULT_BACKENDS_INIT();
 }
-
-
 
 
 void app_error_fault_handler(uint32_t id, uint32_t pc, uint32_t info)
@@ -293,13 +273,6 @@ void app_error_fault_handler(uint32_t id, uint32_t pc, uint32_t info)
 
 
 
-
-
-
-
-
-
-
 /**@brief Function for application main entry.
  */
 int main(void)
@@ -307,9 +280,9 @@ int main(void)
     SK6812_WR_BUFFERs GRB = 
     {
         {						  \
-            SK6812_PURPLE,   SK6812_BLUE,    SK6812_RED,    \
+            SK6812_PURPLE,  SK6812_BLUE,    SK6812_RED,    \
             SK6812_BLUE,    SK6812_GREEN,   SK6812_BLUE,    \
-            SK6812_YELLOW,	    SK6812_BLUE,    SK6812_GREEN     \
+            SK6812_YELLOW,  SK6812_BLUE,    SK6812_GREEN     \
         }
     };
 
@@ -335,6 +308,8 @@ int main(void)
     conn_params_init();
     peer_manager_init();
 
+    sk6812_init();
+
     // Start execution.
     NRF_LOG_INFO("Proximo Application started.");
     NRF_LOG_FLUSH();
@@ -345,29 +320,33 @@ int main(void)
     application_timers_start();
     advertising_start();
 
-    proximo_tps_on();
-    proximo_ldr_on();
-    nrf_delay_ms(100);
+//    proximo_tps_on();
+//    proximo_ldr_on();
+//    nrf_delay_ms(100);
 
-    sk6812_colour_string(&GRB, BRIGHTNESS_REDUCTION); //
+//    sk6812_colour_string(&GRB, BRIGHTNESS_REDUCTION); 
 
     // Enter main loop.
     for (;;)
     {
-        NRF_LOG_FLUSH();
         if(measureTemperature == true)
         {
-            measureTemperature = false;
-            th06_sample();
-            measure_vcc_ldr();
-
-            temperature = th06_get_last_measured_temperature();
-            humidity    = th06_get_last_measured_humidity();
-            movement_count = get_movement_count();
-            vldr           = get_vldr();
-            vcc            = get_vcc();
+//            measureTemperature = false;
+//            th06_sample();
+//            measure_vcc_ldr();
+//
+//            temperature = th06_get_last_measured_temperature();
+//            humidity    = th06_get_last_measured_humidity();
+//            movement_count = get_movement_count();
+//            vldr           = get_vldr();
+//            vcc            = get_vcc();
         }
-        NRF_LOG_PROCESS();
+
+
+        if (NRF_LOG_PROCESS() == false)
+        {
+	  nrf_pwr_mgmt_run();
+	}
     }
 }
 

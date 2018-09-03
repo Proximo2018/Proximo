@@ -6,15 +6,17 @@
 #include "nrf_drv_pwm.h"
 #include "nrf_delay.h"
 #include "proximo_board.h"
+#include "io.h"
 
 static volatile bool init = false;
 static nrf_drv_pwm_t m_pwm1 = NRF_DRV_PWM_INSTANCE(1);
+APP_TIMER_DEF(m_event_id);                                            /**< Event LED timer. */
 
 // This array cannot be allocated on stack (hence "static") and it must
 // be in RAM (hence no "const", though its content is not changed).
 static uint16_t pwm_bit_buffer[SK6812_PWM_BUFFER_LENGHT];
 
-
+RGB_event event;
 
 
 static void sk6812_handler(nrf_drv_pwm_evt_type_t event_type)
@@ -81,7 +83,7 @@ static void sk6812_write_byte_to_pwm_buffer(uint8_t colour, uint16_t * offset)
 
 
 
-void sk6812_single_colour(uint8_t Green, uint8_t Red, uint8_t Blue, uint8_t brightnessReduction)
+void sk6812_single_colour(uint8_t Green, uint8_t Red, uint8_t Blue)
 {
     uint32_t err;
     uint16_t offset, i;
@@ -93,9 +95,9 @@ void sk6812_single_colour(uint8_t Green, uint8_t Red, uint8_t Blue, uint8_t brig
     offset = 0;
 
     //  Set the bits for the GRB bytes
-    sk6812_write_byte_to_pwm_buffer(Green >> brightnessReduction, &offset);
-    sk6812_write_byte_to_pwm_buffer(Red   >> brightnessReduction, &offset);
-    sk6812_write_byte_to_pwm_buffer(Blue  >> brightnessReduction, &offset);
+    sk6812_write_byte_to_pwm_buffer(Green >> BRIGHTNESS_REDUCTION, &offset);
+    sk6812_write_byte_to_pwm_buffer(Red   >> BRIGHTNESS_REDUCTION, &offset);
+    sk6812_write_byte_to_pwm_buffer(Blue  >> BRIGHTNESS_REDUCTION, &offset);
 
     nrf_pwm_sequence_t const seq =
     {
@@ -110,7 +112,64 @@ void sk6812_single_colour(uint8_t Green, uint8_t Red, uint8_t Blue, uint8_t brig
 }
 
 
-void sk6812_colour_string(SK6812_WR_BUFFERs * GRB, uint8_t brightnessReduction)
+
+void sk6812_timer_event(void * p_context)
+{
+  UNUSED_PARAMETER(p_context);
+  uint32_t err_code;
+
+  if(event.flag)
+  {
+    event.count += 1;
+
+    if(event.count >= event.threshold)
+    {
+      proximo_tps_off();
+    }
+    else
+    {
+      sk6812_single_colour(SK6812_OFF);
+      err_code = app_timer_start(m_event_id, APP_TIMER_TICKS(event.time_off), NULL);
+      APP_ERROR_CHECK(err_code);
+    }
+
+    event.flag = false;
+  }
+  else
+  {
+    sk6812_single_colour(event.event_colour.G, event.event_colour.R, event.event_colour.B);
+
+    err_code = app_timer_start(m_event_id, APP_TIMER_TICKS(event.time_on), NULL);
+    APP_ERROR_CHECK(err_code);
+
+    event.flag = true;
+  }
+}
+
+void sk6812_single_colour_blink(uint8_t Green, uint8_t Red, uint8_t Blue, uint16_t on_time, uint16_t off_time, uint8_t blink_count)
+{
+  uint32_t err_code;
+
+  proximo_tps_on();
+  nrf_delay_ms(100);
+
+  event.count		= 0;
+  event.threshold	= blink_count;
+  event.time_on		= on_time;
+  event.time_off	= off_time;
+  event.event_colour.R	= Red;
+  event.event_colour.G	= Green;
+  event.event_colour.B	= Blue;
+  event.flag		= true;
+
+  sk6812_single_colour(event.event_colour.G, event.event_colour.R, event.event_colour.B);
+
+  err_code = app_timer_start(m_event_id, APP_TIMER_TICKS(event.time_on), NULL);
+  APP_ERROR_CHECK(err_code);
+}
+
+
+void sk6812_colour_string(SK6812_WR_BUFFERs * GRB)
 {
     uint16_t  offset;
     uint8_t   n, G, R, B, LED_index, row, column;
@@ -132,9 +191,9 @@ void sk6812_colour_string(SK6812_WR_BUFFERs * GRB, uint8_t brightnessReduction)
 	for(column = 0 ; column < NUMBER_OF_COLUMNS ; column++)
 	{
 	    LED_index = (column * NUMBER_OF_COLUMNS) + ((NUMBER_OF_ROWS - row - 1) * NUMBER_OF_COLUMNS * NUMBER_OF_ROWS);
-	    G = GRB->data[LED_index + 0U] >> brightnessReduction;
-	    R = GRB->data[LED_index + 1U] >> brightnessReduction;
-	    B = GRB->data[LED_index + 2U] >> brightnessReduction;
+	    G = GRB->data[LED_index + 0U] >> BRIGHTNESS_REDUCTION;
+	    R = GRB->data[LED_index + 1U] >> BRIGHTNESS_REDUCTION;
+	    B = GRB->data[LED_index + 2U] >> BRIGHTNESS_REDUCTION;
 
 	    sk6812_write_byte_to_pwm_buffer(G, &offset);
 	    sk6812_write_byte_to_pwm_buffer(R, &offset);
@@ -170,4 +229,15 @@ void sk6812_write_buffer(SK6812_WR_BUFFERs * GRB, uint8_t index, uint8_t Green, 
 }
 
 
+void sk6812_init(void)
+{
+    ret_code_t	err_code;
 
+    // Create application timer.
+    err_code = app_timer_create(&m_event_id, APP_TIMER_MODE_SINGLE_SHOT, sk6812_timer_event);
+    APP_ERROR_CHECK(err_code);
+
+//    // Start application timers.
+//    err_code = app_timer_start(m_app_timer_id, APP_TIMER_TICKS(5), NULL);
+//    APP_ERROR_CHECK(err_code);
+}

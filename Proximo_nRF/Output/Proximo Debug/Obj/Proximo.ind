@@ -88,6 +88,7 @@
 "Output/Proximo Debug/Obj/adc.o"
 "Output/Proximo Debug/Obj/io.o"
 "Output/Proximo Debug/Obj/system.o"
+"Output/Proximo Debug/Obj/event.o"
 "Output/Proximo Debug/Obj/ble_dfu.o"
 "Output/Proximo Debug/Obj/ble_dfu_bonded.o"
 "Output/Proximo Debug/Obj/ble_dfu_unbonded.o"

@@ -9,6 +9,7 @@ extern "C" {
 #endif
 
 #include <stdint.h>
+#include <stdbool.h>
 
 #define BRIGHTNESS_REDUCTION 4
 
@@ -31,6 +32,23 @@ typedef struct
     uint8_t data[SK6812_WR_BUFFER_LENGHT];
 }SK6812_WR_BUFFERs;
 
+typedef struct
+{
+  uint8_t R;
+  uint8_t G;
+  uint8_t B;
+}RGB_s;
+
+typedef struct
+{
+  uint32_t  time_on;
+  uint32_t  time_off;
+  uint32_t  count;
+  uint32_t  threshold;  
+  RGB_s	    event_colour;
+  bool	    flag;
+}RGB_event;
+
 #define SK6812_OFF      0x00, 0x00, 0x00
 #define SK6812_GREEN    0xFF, 0x00, 0x00
 #define SK6812_RED      0x00, 0xFF, 0x00
@@ -41,10 +59,11 @@ typedef struct
 
 
 
-
-void sk6812_single_colour       (uint8_t Green, uint8_t Red, uint8_t Blue, uint8_t brightnessReduction);
-void sk6812_colour_string       (SK6812_WR_BUFFERs * GRB, uint8_t brightnessReduction);
+void sk6812_init		(void);
+void sk6812_single_colour       (uint8_t Green, uint8_t Red, uint8_t Blue);
+void sk6812_colour_string       (SK6812_WR_BUFFERs * GRB);
 void sk6812_write_buffer        (SK6812_WR_BUFFERs * GRB, uint8_t index, uint8_t Green, uint8_t Red, uint8_t Blue);
+void sk6812_single_colour_blink	(uint8_t Green, uint8_t Red, uint8_t Blue, uint16_t on_time, uint16_t off_time, uint8_t blink_count);
 
 
 
