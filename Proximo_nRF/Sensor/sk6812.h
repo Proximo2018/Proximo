@@ -13,7 +13,9 @@ extern "C" {
 #define BRIGHTNESS_REDUCTION 4
 
 // Buffer definitions
-#define NUMBER_OF_SK6812  9
+#define NUMBER_OF_SK6812  9U
+#define NUMBER_OF_COLUMNS 3U
+#define NUMBER_OF_ROWS	  3U
 #define SK6812_NUMBER_OF_BITS_DATA    (3* 8)                      //  The number of bits in a data message for the SK6812: three bytes with the following format: Green, Red, Blue
 #define SK6812_WR_BUFFER_LENGHT       (3 * NUMBER_OF_SK6812)      // Lenght of the data array for writing the SK6812
 #define SK6812_PWM_BUFFER_LENGHT      (3 * 8 * NUMBER_OF_SK6812)  // 3 * 8 * 9 = 216  The buffer size for the PWM peripheral

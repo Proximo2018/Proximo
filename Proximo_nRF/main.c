@@ -306,10 +306,10 @@ int main(void)
 {
     SK6812_WR_BUFFERs GRB = 
     {
-        {                                             \
-            SK6812_OFF,   SK6812_OFF,  SK6812_OFF,    \
-            SK6812_OFF,   SK6812_OFF,  SK6812_OFF,    \
-            SK6812_OFF,   SK6812_OFF,  SK6812_OFF     \
+        {						  \
+            SK6812_PURPLE,   SK6812_BLUE,    SK6812_RED,    \
+            SK6812_BLUE,    SK6812_GREEN,   SK6812_BLUE,    \
+            SK6812_YELLOW,	    SK6812_BLUE,    SK6812_GREEN     \
         }
     };
 
@@ -366,102 +366,6 @@ int main(void)
             movement_count = get_movement_count();
             vldr           = get_vldr();
             vcc            = get_vcc();
-            
-            #if 1
-                NRF_LOG_INFO("%u - Temperature: %d, Humidity: %d, MovementCount: %u, Vldr: %u mV, Vcc: %u",
-                            count++,
-                            temperature, 
-                            humidity, 
-                            movement_count,
-                            vldr,
-                            vcc
-                          );
-            #endif
-
-            #if 1
-
-            if(manual_LED_timeout == 0)
-            {
-
-              /* Time Ticks */
-              if(count == 0)
-              {
-                  sk6812_write_buffer(&GRB, 0, SK6812_RED);
-              }
-              else
-              {
-                  sk6812_write_buffer(&GRB, 0, SK6812_GREEN);
-              }
-
-              /* Temperature */
-              if(temperature > 10.0 && temperature < 35.0)
-              {
-                  sk6812_write_buffer(&GRB, 1, SK6812_GREEN);
-              }
-	      else if(temperature >= 35.0)
-	      {
-		  sk6812_write_buffer(&GRB, 1, SK6812_PURPLE);
-	      }
-              else
-              {
-                  sk6812_write_buffer(&GRB, 1, SK6812_RED);
-              }
-
-              /* Humidity */
-              if(humidity > 25.0 && humidity < 90.0)
-              {
-                  sk6812_write_buffer(&GRB, 2, SK6812_GREEN);
-              }
-              else if(humidity >= 100.0)
-	      {
-		  sk6812_write_buffer(&GRB, 2, SK6812_PURPLE);
-	      }
-	      else
-              {
-                  sk6812_write_buffer(&GRB, 2, SK6812_RED);
-              }
-
-              /* Movement count */
-              if(movement_count > 100)
-              {
-                  sk6812_write_buffer(&GRB, 3, SK6812_GREEN);
-              }
-              else
-              {
-                  sk6812_write_buffer(&GRB, 3, SK6812_RED);
-              }
-
-              /* LDR voltage */
-              if(vldr < 600)
-              {
-                  sk6812_write_buffer(&GRB, 4, SK6812_PURPLE);
-              }
-              else if (vldr >= 600 && vldr <= 2500)
-              {
-                  sk6812_write_buffer(&GRB, 4, SK6812_GREEN);
-              }
-              else
-              {
-                  sk6812_write_buffer(&GRB, 4, SK6812_RED);
-              }
-
-              /* Supply voltage */
-              if(vcc < 3000)
-              {
-                  sk6812_write_buffer(&GRB, 5, SK6812_PURPLE);
-              }
-              else if (vcc >= 3000 && vcc <= 3400)
-              {
-                  sk6812_write_buffer(&GRB, 5, SK6812_GREEN);
-              }
-              else
-              {
-                  sk6812_write_buffer(&GRB, 5, SK6812_RED);
-              }
-
-              sk6812_colour_string(&GRB, BRIGHTNESS_REDUCTION);
-            }
-            #endif
         }
         NRF_LOG_PROCESS();
     }
