@@ -39,15 +39,7 @@ typedef struct
   uint8_t B;
 }RGB_s;
 
-typedef struct
-{
-  uint32_t  time_on;
-  uint32_t  time_off;
-  uint32_t  count;
-  uint32_t  threshold;  
-  RGB_s	    event_colour;
-  bool	    flag;
-}RGB_event;
+
 
 #define SK6812_OFF      0x00, 0x00, 0x00
 #define SK6812_GREEN    0xFF, 0x00, 0x00

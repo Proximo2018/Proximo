@@ -10,13 +10,13 @@
 
 static volatile bool init = false;
 static nrf_drv_pwm_t m_pwm1 = NRF_DRV_PWM_INSTANCE(1);
-APP_TIMER_DEF(m_event_id);                                            /**< Event LED timer. */
+                                          /**< Event LED timer. */
 
 // This array cannot be allocated on stack (hence "static") and it must
 // be in RAM (hence no "const", though its content is not changed).
 static uint16_t pwm_bit_buffer[SK6812_PWM_BUFFER_LENGHT];
 
-RGB_event event;
+
 
 
 static void sk6812_handler(nrf_drv_pwm_evt_type_t event_type)
@@ -113,60 +113,7 @@ void sk6812_single_colour(uint8_t Green, uint8_t Red, uint8_t Blue)
 
 
 
-void sk6812_timer_event(void * p_context)
-{
-  UNUSED_PARAMETER(p_context);
-  uint32_t err_code;
 
-  if(event.flag)
-  {
-    event.count += 1;
-
-    if(event.count >= event.threshold)
-    {
-      proximo_tps_off();
-    }
-    else
-    {
-      sk6812_single_colour(SK6812_OFF);
-      err_code = app_timer_start(m_event_id, APP_TIMER_TICKS(event.time_off), NULL);
-      APP_ERROR_CHECK(err_code);
-    }
-
-    event.flag = false;
-  }
-  else
-  {
-    sk6812_single_colour(event.event_colour.G, event.event_colour.R, event.event_colour.B);
-
-    err_code = app_timer_start(m_event_id, APP_TIMER_TICKS(event.time_on), NULL);
-    APP_ERROR_CHECK(err_code);
-
-    event.flag = true;
-  }
-}
-
-void sk6812_single_colour_blink(uint8_t Green, uint8_t Red, uint8_t Blue, uint16_t on_time, uint16_t off_time, uint8_t blink_count)
-{
-  uint32_t err_code;
-
-  proximo_tps_on();
-  nrf_delay_ms(100);
-
-  event.count		= 0;
-  event.threshold	= blink_count;
-  event.time_on		= on_time;
-  event.time_off	= off_time;
-  event.event_colour.R	= Red;
-  event.event_colour.G	= Green;
-  event.event_colour.B	= Blue;
-  event.flag		= true;
-
-  sk6812_single_colour(event.event_colour.G, event.event_colour.R, event.event_colour.B);
-
-  err_code = app_timer_start(m_event_id, APP_TIMER_TICKS(event.time_on), NULL);
-  APP_ERROR_CHECK(err_code);
-}
 
 
 void sk6812_colour_string(SK6812_WR_BUFFERs * GRB)
@@ -229,15 +176,4 @@ void sk6812_write_buffer(SK6812_WR_BUFFERs * GRB, uint8_t index, uint8_t Green, 
 }
 
 
-void sk6812_init(void)
-{
-    ret_code_t	err_code;
 
-    // Create application timer.
-    err_code = app_timer_create(&m_event_id, APP_TIMER_MODE_SINGLE_SHOT, sk6812_timer_event);
-    APP_ERROR_CHECK(err_code);
-
-//    // Start application timers.
-//    err_code = app_timer_start(m_app_timer_id, APP_TIMER_TICKS(5), NULL);
-//    APP_ERROR_CHECK(err_code);
-}

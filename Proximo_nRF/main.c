@@ -70,9 +70,7 @@
 #include "th06.h"
 #include "adc.h" 
 #include "system.h"
-
-
-
+#include "event.h"
 
 
 APP_TIMER_DEF(m_LED_id);                                            /**< Debug LED timer. */
@@ -308,7 +306,7 @@ int main(void)
     conn_params_init();
     peer_manager_init();
 
-    sk6812_init();
+    event_init();
 
     // Start execution.
     NRF_LOG_INFO("Proximo Application started.");
