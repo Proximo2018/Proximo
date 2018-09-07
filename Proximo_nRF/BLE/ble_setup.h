@@ -61,7 +61,7 @@
   #define DEVICE_NAME                         "Proximo   "                            /**< Name of device. Will be included in the advertising data. */
 //  #define DEVICE_NAME                         "Proximo"				      /**< Name of device. Will be included in the advertising data. */
   #define MANUFACTURER_NAME                   "FHI"                                   /**< Manufacturer. Will be passed to Device Information Service. */
-  #define APP_ADV_INTERVAL                    MSEC_TO_UNITS(190, UNIT_0_625_MS)	      /**< The advertising interval (in units of 0.625 ms. This value corresponds to 187.5 ms). */
+  #define APP_ADV_INTERVAL                    MSEC_TO_UNITS(1000, UNIT_0_625_MS)	      /**< The advertising interval (in units of 0.625 ms. This value corresponds to 1000 ms). */
 
   #define APP_ADV_DURATION                    18000                                   /**< The advertising duration (180 seconds) in units of 10 milliseconds. */
 

@@ -2,6 +2,7 @@
 <solution Name="Proximo" target="8" version="2">
   <project Name="Proximo">
     <configuration
+      Connection="USB 682613435"
       Name="Common"
       arm_architecture="v7EM"
       arm_core_type="Cortex-M4"

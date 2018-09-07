@@ -19,11 +19,15 @@ static void buzzer_handler(nrf_drv_pwm_evt_type_t event_type)
 }
 
 
-void Buzz(uint32_t dutycycle)
+void Buzz(uint8_t dutycycle, uint16_t frequency)
 {
     uint32_t err; 
     static uint32_t regVal, topvalue;
-    topvalue = 125000 / 240;
+    topvalue = 1250000 / frequency;
+
+    if(dutycycle > 100){
+      dutycycle = 100;
+    }
 
     // Calculate the PWM register value from the maximum top value and the given duty Cycle.
     regVal = (topvalue * dutycycle) / 1000;

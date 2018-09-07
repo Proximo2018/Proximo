@@ -197,7 +197,7 @@ void bsp_event_handler(bsp_event_t event)
             if(index < 6){
               index += 1;
             }
-            Buzz(75);
+//            Buzz(75);
             break;
 
         //  Button 2 - Blue.
@@ -207,13 +207,13 @@ void bsp_event_handler(bsp_event_t event)
             if(index > 0){
               index -= 1;
             }
-            Buzz(50);
+//            Buzz(50);
             break;
 
         //  Button 3 - Green
         case BSP_EVENT_KEY_0:
             NRF_LOG_INFO("Button 3: Down");
-            Buzz(25);
+//            Buzz(25);
             bootloader_enter_check();
             break;
 
@@ -233,8 +233,9 @@ void bsp_event_handler(bsp_event_t event)
             break;
     }
 
-//    sk6812_single_colour(palet[index][0], palet[index][1], palet[index][2]);
-  sk6812_single_colour_blink(palet[index][0], palet[index][1], palet[index][2], 50, 50, 10);
+  alarm_blink(100, 100, 10);
+  sk6812_single_colour_blink(palet[index][0], palet[index][1], palet[index][2], 500, 500, 3);
+  buzz_event(1000, 50, 100, 1000, 4);
 }
 
 

@@ -17,6 +17,9 @@
   void proximo_ldr_on   (void);
   void proximo_ldr_off  (void);
 
+  void proximo_alarm_high(void);
+  void proximo_alarm_low (void);
+
   void timer_led_blink_handler(void * p_context);
 
 #endif

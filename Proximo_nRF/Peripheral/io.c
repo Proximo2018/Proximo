@@ -52,7 +52,15 @@ __inline void proximo_ldr_off(void)
   nrf_gpio_pin_write(LDR_VCC_PIN, 0);
 }
 
+__inline void proximo_alarm_low(void)
+{
+  nrf_gpio_pin_write(ALARM_OUT_PIN, 1);
+}
 
+__inline void proximo_alarm_high(void)
+{
+  nrf_gpio_pin_write(ALARM_OUT_PIN, 0);
+}
 
 
 
