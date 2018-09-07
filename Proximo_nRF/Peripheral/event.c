@@ -114,11 +114,11 @@ void sk6812_timer_event(void * p_context)
 }
 
 
-void alarm_blink(uint16_t on_time, uint16_t off_time, uint8_t repeat)
+bool alarm_blink(uint16_t on_time, uint16_t off_time, uint8_t repeat)
 {
     if(ALARM.event.on)
     {
-      return;
+      return false;
     }
 
     ALARM.event.count_threshold = repeat;
@@ -130,15 +130,16 @@ void alarm_blink(uint16_t on_time, uint16_t off_time, uint8_t repeat)
 
     proximo_alarm_low();
     start_timer(m_ALARM_id, ALARM.event.time_on);
+    return true;
 }
 
 
-void sk6812_single_colour_blink(uint8_t Green, uint8_t Red, uint8_t Blue, uint16_t on_time, uint16_t off_time, uint8_t blink_count)
+bool sk6812_blink_event(uint8_t Green, uint8_t Red, uint8_t Blue, uint16_t on_time, uint16_t off_time, uint8_t blink_count)
 {
     uint32_t err_code;
 
     if(LED.event.on){
-      return;
+      return false;
     }
 
     LED.event.on = true;
@@ -156,6 +157,7 @@ void sk6812_single_colour_blink(uint8_t Green, uint8_t Red, uint8_t Blue, uint16
 
     sk6812_single_colour(LED.colour.G, LED.colour.R, LED.colour.B);
     start_timer(m_LED_id, LED.event.time_on);
+    return true;
 }
 
 
@@ -189,11 +191,11 @@ void buzz_timer_event(void * p_context)
 }
 
 
-void buzz_event(uint16_t frequency, uint8_t dutycycle, uint16_t on_time, uint16_t off_time, uint8_t repeat)
+bool buzz_event(uint16_t frequency, uint8_t dutycycle, uint16_t on_time, uint16_t off_time, uint8_t repeat)
 {
     if(BUZZ.event.on)
     {
-      return;
+      return false;
     }
 
     BUZZ.event.count_threshold = repeat;
@@ -209,6 +211,7 @@ void buzz_event(uint16_t frequency, uint8_t dutycycle, uint16_t on_time, uint16_
 
     start_timer(m_BUZZER_id, BUZZ.event.time_on);
     Buzz(BUZZ.dutycycle, BUZZ.frequency);
+    return true;
 }
 
 

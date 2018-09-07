@@ -25,10 +25,6 @@ NRF_SDH_BLE_OBSERVER(_name ## _obs, BLE_HRS_BLE_OBSERVER_PRIO, ble_prox_on_ble_e
 #define BUZZER_CONFIG_UUID		0xC724
 #define ALARM_CONFIG_UUID		0xC725
 
-#define LED_CONFIG_LENGHT       6
-#define BUZZER_CONFIG_LENGHT    2
-#define ALARM_CONFIG_LENGHT     5
-
 /**@brief Custom Service event type. */
 typedef enum
 {

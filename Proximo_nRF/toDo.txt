@@ -1,0 +1,32 @@
+Proximo:
+X	TUV test data ophalen -> Patrick Noordhoek
+	TDR example voor bereiden/bestuderen
+-	Felix overleggen
+-	Proximo firmware: 
+	X 1.	Lezen/schrijven major/minor ID in UCIR. wachten met init BLE totdat ID is gelezen. Zat al verwerkt in het voorbeeld
+		X iBeacon van maken
+		X UUID controleren
+	2.	BLE read/write authorize van characteristics
+	2.	LED functies
+		X code opgeschoond en beter leesbaar gemaakt.
+		X knipperen
+		X enkele kleur
+		X LED kleur patronen / licht effecten
+	3.	Buzzer functies
+		X geluid fragement
+	4.	Alarm output functionaliteit
+		X Done
+	5.	Low power consumptie
+		X Advertising interval nog lager zetten, staat nu 180ms -> 1000ms
+		- Optioneel hoger advertising interval bij connectie
+		-	
+	6.	BLE
+		-	R/W implementeren in BLE_setup
+	6.	Applicatie functionaliteit
+		-	Uit wanneer ongekoppeld en geen beweging/user activatie. Activatie na drukknop toets en beweging. -> BLE advertising aan
+		-	Bonding / Enkele App mee verbinden.
+		-	Drukknoppen functies?
+		-	Drukknoppen combinatie om bootloader te activeren.
+		-	BAS. Batterij percentage -> disable LEDs and other functionality under certain voltage treshold
+
+	

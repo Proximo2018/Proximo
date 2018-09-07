@@ -197,7 +197,6 @@ void bsp_event_handler(bsp_event_t event)
             if(index < 6){
               index += 1;
             }
-//            Buzz(75);
             break;
 
         //  Button 2 - Blue.
@@ -207,13 +206,11 @@ void bsp_event_handler(bsp_event_t event)
             if(index > 0){
               index -= 1;
             }
-//            Buzz(50);
             break;
 
         //  Button 3 - Green
         case BSP_EVENT_KEY_0:
             NRF_LOG_INFO("Button 3: Down");
-//            Buzz(25);
             bootloader_enter_check();
             break;
 
@@ -234,7 +231,7 @@ void bsp_event_handler(bsp_event_t event)
     }
 
   alarm_blink(100, 100, 10);
-  sk6812_single_colour_blink(palet[index][0], palet[index][1], palet[index][2], 500, 500, 3);
+  sk6812_blink_event(palet[index][0], palet[index][1], palet[index][2], 500, 500, 3);
   buzz_event(1000, 50, 100, 1000, 4);
 }
 
@@ -276,15 +273,6 @@ void app_error_fault_handler(uint32_t id, uint32_t pc, uint32_t info)
  */
 int main(void)
 {
-    SK6812_WR_BUFFERs GRB = 
-    {
-        {						  \
-            SK6812_PURPLE,  SK6812_BLUE,    SK6812_RED,    \
-            SK6812_BLUE,    SK6812_GREEN,   SK6812_BLUE,    \
-            SK6812_YELLOW,  SK6812_BLUE,    SK6812_GREEN     \
-        }
-    };
-
     uint32_t err_code;
     bool erase_bonds;
     
@@ -319,26 +307,12 @@ int main(void)
     application_timers_start();
     advertising_start();
 
-//    proximo_tps_on();
-//    proximo_ldr_on();
-//    nrf_delay_ms(100);
-
-//    sk6812_colour_string(&GRB, BRIGHTNESS_REDUCTION); 
 
     // Enter main loop.
     for (;;)
     {
         if(measureTemperature == true)
         {
-//            measureTemperature = false;
-//            th06_sample();
-//            measure_vcc_ldr();
-//
-//            temperature = th06_get_last_measured_temperature();
-//            humidity    = th06_get_last_measured_humidity();
-//            movement_count = get_movement_count();
-//            vldr           = get_vldr();
-//            vcc            = get_vcc();
         }
 
 

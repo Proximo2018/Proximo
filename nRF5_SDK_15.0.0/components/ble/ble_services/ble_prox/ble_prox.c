@@ -6,6 +6,8 @@
 #include "nrf_gpio.h"
 #include "boards.h"
 #include "nrf_log.h"
+#include "event.h"
+#include "app_util.h"
 
 
 
@@ -97,43 +99,59 @@ static void on_write_authorize_request(ble_prox_t * p_prox, ble_gatts_evt_t cons
     auth_reply.params.write.gatt_status = BLE_GATT_STATUS_ATTERR_WRITE_NOT_PERMITTED;
     switch(p_evt_write->uuid.uuid)
     {
-//      /* MASTER_SLAVE_CONFIG_UUID */
-//      case MASTER_SLAVE_CONFIG_UUID:
-//
-//        // Check if only a single byte is received
-//        if(p_evt_write->len == 1 && p_evt_write->handle == p_prox->led_charr.value_handle)
-//        {
-//          if(1)
-//          {
-//            auth_reply.params.write.gatt_status = BLE_GATT_STATUS_SUCCESS;
-//
-//            gatts_value.len     = sizeof(uint8_t);
-//            gatts_value.offset  = 0;
-//            gatts_value.p_value = (uint8_t *) &p_evt_write->data[0];
-//
-//                err_code = sd_ble_gatts_value_set(p_prox->conn_handle, p_prox->led_charr.value_handle, &gatts_value);
-//          }
-//        }
-//      break;
-//
-//      /* PAIRING_SN_CONFIG_UUID */ 
-//      case PAIRING_SN_CONFIG_UUID:
-//        if(p_evt_write->len == SERIAL_NUMBER_STRING_LENGHT && p_evt_write->handle == p_prox->buzzer_charr.value_handle)
-//        {
-//          // Check if the given serial number consists of 8 numbers and an 'L' or a 'R' in order to authorize the write operation.
-//          if(check_serial_number_validity(p_evt_write->data))
-//          {
-//            auth_reply.params.write.gatt_status = BLE_GATT_STATUS_SUCCESS;
-//
-//            gatts_value.len     = SERIAL_NUMBER_STRING_LENGHT;
-//            gatts_value.offset  = 0;
-//            gatts_value.p_value = (uint8_t *) &p_evt_write->data[0];
-//
-//            err_code = sd_ble_gatts_value_set(p_prox->conn_handle, p_prox->buzzer_charr.value_handle, &gatts_value); 
-//          }
-//        }
-//        break;
+	case LED_CONFIG_UUID:
+	{
+	  if(p_evt_write->len == LED_PARAM_LENGHT && p_evt_write->handle == p_prox->led_charr.value_handle)
+	  {
+	    uint8_t   Green	  = p_evt_write->data[0];
+	    uint8_t   Red	  = p_evt_write->data[1];
+	    uint8_t   Blue	  = p_evt_write->data[2];
+	    uint16_t  on_time	  = uint16_decode(&p_evt_write->data[3]);
+	    uint16_t  off_time	  = uint16_decode(&p_evt_write->data[5]);
+	    uint16_t  blink_count = uint16_decode(&p_evt_write->data[7]);;
 
+
+	    if(sk6812_blink_event(Green, Red, Blue, on_time, off_time, blink_count))
+	    {
+	      auth_reply.params.write.gatt_status = BLE_GATT_STATUS_SUCCESS;
+	    }
+	  }
+	}
+	  break;
+	case BUZZER_CONFIG_UUID:
+	{
+	  if(p_evt_write->len == BUZZ_PARAM_LENGHT && p_evt_write->handle == p_prox->buzzer_charr.value_handle)
+	  {
+	    uint16_t  frequency	  = uint16_decode(&p_evt_write->data[0]);
+            uint8_t   dutycycle	  = p_evt_write->data[2];
+	    uint16_t  on_time	  = uint16_decode(&p_evt_write->data[3]);
+	    uint16_t  off_time	  = uint16_decode(&p_evt_write->data[5]);
+	    uint8_t   repeat	  = p_evt_write->data[7];
+
+	    if(buzz_event(frequency, dutycycle, on_time, off_time, repeat))
+	    {
+	      auth_reply.params.write.gatt_status = BLE_GATT_STATUS_SUCCESS;
+	    }
+	  }
+	}
+	  break;
+
+	case ALARM_CONFIG_UUID:
+	{
+	  if(p_evt_write->len == ALARM_PARAM_LENGHT && p_evt_write->handle == p_prox->alarm_charr.value_handle)
+	  {
+	    uint16_t on_time  = uint16_decode(&p_evt_write->data[0]);
+	    uint16_t off_time = uint16_decode(&p_evt_write->data[2]);
+	    uint8_t repeat    = p_evt_write->data[4];
+
+	    if(alarm_blink(on_time, off_time, repeat))
+	    {
+	      auth_reply.params.write.gatt_status = BLE_GATT_STATUS_SUCCESS;
+	    }
+	  }
+	}
+	  break;
+      case PROX_SERVICE_UUID:
       default:
         return;
         break;
@@ -144,14 +162,6 @@ static void on_write_authorize_request(ble_prox_t * p_prox, ble_gatts_evt_t cons
       err_code = sd_ble_gatts_rw_authorize_reply(p_prox->conn_handle, &auth_reply);
 
     #else
-      if(err_code == NRF_SUCCESS)
-      {
-        NRF_LOG_INFO("Storing variable succeeded");
-      }
-      else
-      {
-        NRF_LOG_INFO("Storing variable failed: %u", err_code);
-      }
 
       // Print unsuccessfull writes
       if(auth_reply.params.write.gatt_status == BLE_GATT_STATUS_SUCCESS)
@@ -260,10 +270,8 @@ static uint32_t led_charr_add(ble_prox_t * p_prox, const ble_prox_init_t * p_pro
 
     attr_char_value.p_uuid    = &ble_uuid;
     attr_char_value.p_attr_md = &attr_md;
-//    attr_char_value.init_len  = sizeof(ms_config);
     attr_char_value.init_offs = 0;
-    attr_char_value.max_len   = LED_CONFIG_LENGHT;
-//    attr_char_value.p_value   = &ms_config;
+    attr_char_value.max_len   = LED_PARAM_LENGHT;
 
     err_code = sd_ble_gatts_characteristic_add(p_prox->service_handle, &char_md, &attr_char_value, &p_prox->led_charr);
     if (err_code != NRF_SUCCESS)
@@ -327,10 +335,8 @@ static uint32_t alarm_charr_add(ble_prox_t * p_prox, const ble_prox_init_t * p_p
 
     attr_char_value.p_uuid    = &ble_uuid;
     attr_char_value.p_attr_md = &attr_md;
-//    attr_char_value.init_len  = sizeof(pedal_offset);
     attr_char_value.init_offs = 0;
-    attr_char_value.max_len   = ALARM_CONFIG_LENGHT;
-//    attr_char_value.p_value   = &pedal_offset;
+    attr_char_value.max_len   = ALARM_PARAM_LENGHT;
 
     err_code = sd_ble_gatts_characteristic_add(p_prox->service_handle, &char_md, &attr_char_value, &p_prox->alarm_charr);
     if (err_code != NRF_SUCCESS)
@@ -397,9 +403,8 @@ static uint32_t buzzer_charr_add(ble_prox_t * p_prox, const ble_prox_init_t * p_
 
     attr_char_value.p_uuid    = &ble_uuid;
     attr_char_value.p_attr_md = &attr_md;
-    attr_char_value.init_len  = BUZZER_CONFIG_LENGHT;
     attr_char_value.init_offs = 0;
-    attr_char_value.max_len   = BUZZER_CONFIG_LENGHT;
+    attr_char_value.max_len   = BUZZ_PARAM_LENGHT;
 
     err_code = sd_ble_gatts_characteristic_add(p_prox->service_handle, &char_md, &attr_char_value, &p_prox->buzzer_charr);
     if (err_code != NRF_SUCCESS)
