@@ -141,6 +141,7 @@
       <file file_name="../nRF5_SDK_15.0.0/components/ble/ble_services/ble_hrs/ble_hrs.c" />
       <file file_name="../nRF5_SDK_15.0.0/components/ble/ble_services/ble_prox/ble_prox.c" />
       <file file_name="../nRF5_SDK_15.0.0/components/ble/ble_services/ble_prox/ble_prox.h" />
+      <file file_name="../nRF5_SDK_15.0.0/components/ble/ble_services/ble_bas/ble_bas.h" />
     </folder>
     <folder Name="nRF_SoftDevice">
       <file file_name="../nRF5_SDK_15.0.0/components/softdevice/common/nrf_sdh.c" />

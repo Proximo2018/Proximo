@@ -10,9 +10,6 @@ void proximo_io_init(void)
     nrf_gpio_cfg_output(LDR_VCC_PIN);
     nrf_gpio_pin_write(LDR_VCC_PIN, 0);
 
-    //  LDR input pin
-    nrf_gpio_cfg_input(LDR_OUT_PIN, NRF_GPIO_PIN_NOPULL);
-
     //  DATA IN pin for the SK6812 mini RGB LED
     nrf_gpio_cfg_output(SK6812_DIN_PIN);
     nrf_gpio_pin_write(SK6812_DIN_PIN, 0);

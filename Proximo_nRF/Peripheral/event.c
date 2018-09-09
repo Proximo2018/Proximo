@@ -28,7 +28,7 @@ static void enable_tps (void)
   if(!nrf_gpio_pin_out_read(TPS_EN_PIN))
   {
     proximo_tps_on();
-    nrf_delay_ms(100);
+    nrf_delay_ms(10);
   }
 }
 
@@ -60,26 +60,26 @@ void alarm_timer_event(void * p_context)
 
     if(ALARM.event.flag)
     {
-	ALARM.event.flag = false;
-	proximo_alarm_low();
+      ALARM.event.flag = false;
+      proximo_alarm_low();
 
-	start_timer(m_ALARM_id, ALARM.event.time_on);
+      start_timer(m_ALARM_id, ALARM.event.time_on);
     }
     else
     {
-	ALARM.event.flag = true;
-	proximo_alarm_high();
+        ALARM.event.flag = true;
+        proximo_alarm_high();
 
         ALARM.event.count += 1;
 
-	if(ALARM.event.count >= ALARM.event.count_threshold)
-	{
-	    ALARM.event.on = false;
-	}
-	else
-	{
-	    start_timer(m_ALARM_id, ALARM.event.time_off);
-	}
+        if(ALARM.event.count >= ALARM.event.count_threshold)
+        {
+            ALARM.event.on = false;
+        }
+        else
+        {
+            start_timer(m_ALARM_id, ALARM.event.time_off);
+        }
     }
 }
 
@@ -90,26 +90,26 @@ void sk6812_timer_event(void * p_context)
 
     if(LED.event.flag)
     {
-	LED.event.count += 1;
+      LED.event.count += 1;
 
-	if(LED.event.count >= LED.event.count_threshold)
-	{
-	  LED.event.on = false;
-          disable_tps();
-	}
-	else
-	{
-	  sk6812_single_colour(SK6812_OFF);
-          start_timer(m_LED_id, LED.event.time_off);
-	}
+      if(LED.event.count >= LED.event.count_threshold)
+      {
+        LED.event.on = false;
+        disable_tps();
+      }
+      else
+      {
+        sk6812_single_colour(SK6812_OFF);
+        start_timer(m_LED_id, LED.event.time_off);
+      }
 
-	LED.event.flag = false;
+      LED.event.flag = false;
     }
     else
     {
-	sk6812_single_colour(LED.colour.G, LED.colour.R, LED.colour.B);
-	start_timer(m_LED_id, LED.event.time_on);
-	LED.event.flag = true;
+      sk6812_single_colour(LED.colour.G, LED.colour.R, LED.colour.B);
+      start_timer(m_LED_id, LED.event.time_on);
+      LED.event.flag = true;
     }
 }
 
@@ -168,25 +168,25 @@ void buzz_timer_event(void * p_context)
 
     if(BUZZ.event.flag)
     {
-	BUZZ.event.count += 1;
+      BUZZ.event.count += 1;
 
-	if(BUZZ.event.count >= BUZZ.event.count_threshold)
-	{
-	  BUZZ.event.on = false;
-          disable_tps();
-	}
-	else
-	{
-	  sk6812_single_colour(SK6812_OFF);
-          start_timer(m_BUZZER_id, BUZZ.event.time_off);
-	}
-	BUZZ.event.flag = false;
+      if(BUZZ.event.count >= BUZZ.event.count_threshold)
+      {
+        BUZZ.event.on = false;
+        disable_tps();
+      }
+      else
+      {
+        sk6812_single_colour(SK6812_OFF);
+        start_timer(m_BUZZER_id, BUZZ.event.time_off);
+      }
+      BUZZ.event.flag = false;
     }
     else
     {
-	Buzz(BUZZ.dutycycle, BUZZ.frequency);
-	start_timer(m_BUZZER_id, BUZZ.event.time_on);
-	BUZZ.event.flag = true;
+      Buzz(BUZZ.dutycycle, BUZZ.frequency);
+      start_timer(m_BUZZER_id, BUZZ.event.time_on);
+      BUZZ.event.flag = true;
     }
 }
 
@@ -199,11 +199,11 @@ bool buzz_event(uint16_t frequency, uint8_t dutycycle, uint16_t on_time, uint16_
     }
 
     BUZZ.event.count_threshold = repeat;
-    BUZZ.frequency	  = frequency;
-    BUZZ.dutycycle	  = dutycycle;
-    BUZZ.event.on	  = true;
+    BUZZ.frequency        = frequency;
+    BUZZ.dutycycle        = dutycycle;
+    BUZZ.event.on         = true;
     BUZZ.event.count	  = 0;
-    BUZZ.event.flag	  = false;
+    BUZZ.event.flag       = false;
     BUZZ.event.time_on	  = on_time;
     BUZZ.event.time_off	  = off_time;
 

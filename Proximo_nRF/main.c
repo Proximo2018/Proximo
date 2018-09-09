@@ -80,7 +80,7 @@ APP_TIMER_DEF(m_LED_id);                                            /**< Debug L
 static volatile bool    measureTemperature = false;     //  Flag used to sample the th06 in the main loop
 
 static volatile int16_t          vcc, vldr;                       // ADC result
-static volatile uint32_t count = 0;
+
 
 
 
@@ -230,9 +230,9 @@ void bsp_event_handler(bsp_event_t event)
             break;
     }
 
-  alarm_blink(100, 100, 10);
+//  alarm_blink(100, 100, 10);
   sk6812_blink_event(palet[index][0], palet[index][1], palet[index][2], 500, 500, 3);
-  buzz_event(1000, 50, 100, 1000, 4);
+//  buzz_event(1000, 50, 100, 1000, 4);
 }
 
 
@@ -291,7 +291,6 @@ int main(void)
     gatt_init();
     advertising_beacon_init();
     services_init();
-    sensor_simulator_init();
     conn_params_init();
     peer_manager_init();
 
@@ -318,8 +317,8 @@ int main(void)
 
         if (NRF_LOG_PROCESS() == false)
         {
-	  nrf_pwr_mgmt_run();
-	}
+          nrf_pwr_mgmt_run();
+        }
     }
 }
 

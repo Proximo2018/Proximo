@@ -60,7 +60,7 @@
   /* BLE HRS */
   #define DEVICE_NAME                         "Proximo   "                            /**< Name of device. Will be included in the advertising data. */
   #define MANUFACTURER_NAME                   "FHI"                                   /**< Manufacturer. Will be passed to Device Information Service. */
-  #define APP_ADV_INTERVAL                    MSEC_TO_UNITS(1000, UNIT_0_625_MS)	      /**< The advertising interval (in units of 0.625 ms. This value corresponds to 1000 ms). */
+  #define APP_ADV_INTERVAL                    MSEC_TO_UNITS(100, UNIT_0_625_MS)	      /**< The advertising interval (in units of 0.625 ms. This value corresponds to 1000 ms). */
 
   #define APP_ADV_DURATION                    18000                                   /**< The advertising duration (180 seconds) in units of 10 milliseconds. */
 
@@ -97,26 +97,27 @@
   #define BOOTLOADER_TIMEOUT_TIME             (10 * 8)                                /**< The number of seconds the bootloader timeout counter has to receive the next button press before the presscount value is cleared*/  
 
   /* Bootloader functions */
-  void bootloader_enter_check(void);
+  void bootloader_enter_check   (void);
   void bootloader_enter_timeout (void);
-  void enter_bootloader (void);
+  void enter_bootloader         (void);
 
   /* BLE */
-  void advertising_start(void);
-  void sensorsim_app_timers_init (void);
-  void gap_params_init(void);
-  void gatt_init(void);
-  void services_init(void);
-  void sensor_simulator_init(void);
-  void conn_params_init(void);
-  void on_adv_evt(ble_adv_evt_t ble_adv_evt);
-  void ble_evt_handler(ble_evt_t const * p_ble_evt, void * p_context);
-  void ble_stack_init(void);
-  void peer_manager_init(void);
-  void advertising_init(void);
-  void bsp_ble_gap_disconnect(void);
-  void bsp_ble_whitelist_off(void);
+  void advertising_start        (void);
+  void sensorsim_app_timers_init(void);
+  void gap_params_init          (void);
+  void gatt_init                (void);
+  void services_init            (void);
+  void sensor_simulator_init    (void);
+  void conn_params_init         (void);
+  void on_adv_evt               (ble_adv_evt_t ble_adv_evt);
+  void ble_evt_handler          (ble_evt_t const * p_ble_evt, void * p_context);
+  void ble_stack_init           (void);
+  void peer_manager_init        (void);
+  void advertising_init         (void);
+  void bsp_ble_gap_disconnect   (void);
+  void bsp_ble_whitelist_off    (void);
 
-  void advertising_beacon_init(void);
+  void advertising_beacon_init  (void);
+  void battery_level_update     (uint8_t battery_level);
 
 #endif

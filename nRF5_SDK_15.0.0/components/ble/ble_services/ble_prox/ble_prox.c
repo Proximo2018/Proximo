@@ -45,22 +45,22 @@ static void on_disconnect(ble_prox_t * p_prox, ble_evt_t const * p_ble_evt)
     p_prox->evt_handler(p_prox, &evt);
 }
 
-/**@brief Function for handling the Write event.
- *
- * @param[in]   p_prox       Proximo Service structure.
- * @param[in]   p_ble_evt   Event received from the BLE stack.
- */
-static void on_write(ble_prox_t * p_prox, ble_evt_t const * p_ble_evt)
-{
-    ble_gatts_evt_write_t const * p_evt_write = &p_ble_evt->evt.gatts_evt.params.write;
-    NRF_LOG_INFO("Proximo Event");
-    
-    // Proximo Value Characteristic Written to.
-    if (p_evt_write->handle == p_prox->buzzer_charr.value_handle || p_evt_write->handle == p_prox->led_charr.value_handle)
-    {
-	NRF_LOG_INFO("Proximo Write");
-    }
-}
+///**@brief Function for handling the Write event.
+// *
+// * @param[in]   p_prox       Proximo Service structure.
+// * @param[in]   p_ble_evt   Event received from the BLE stack.
+// */
+//static void on_write(ble_prox_t * p_prox, ble_evt_t const * p_ble_evt)
+//{
+//    ble_gatts_evt_write_t const * p_evt_write = &p_ble_evt->evt.gatts_evt.params.write;
+//    NRF_LOG_INFO("Proximo Event");
+//    
+//    // Proximo Value Characteristic Written to.
+//    if (p_evt_write->handle == p_prox->buzzer_charr.value_handle || p_evt_write->handle == p_prox->led_charr.value_handle)
+//    {
+//	NRF_LOG_INFO("Proximo Write");
+//    }
+//}
 
 
 
@@ -99,58 +99,76 @@ static void on_write_authorize_request(ble_prox_t * p_prox, ble_gatts_evt_t cons
     auth_reply.params.write.gatt_status = BLE_GATT_STATUS_ATTERR_WRITE_NOT_PERMITTED;
     switch(p_evt_write->uuid.uuid)
     {
-	case LED_CONFIG_UUID:
-	{
-	  if(p_evt_write->len == LED_PARAM_LENGHT && p_evt_write->handle == p_prox->led_charr.value_handle)
-	  {
-	    uint8_t   Green	  = p_evt_write->data[0];
-	    uint8_t   Red	  = p_evt_write->data[1];
-	    uint8_t   Blue	  = p_evt_write->data[2];
-	    uint16_t  on_time	  = uint16_decode(&p_evt_write->data[3]);
-	    uint16_t  off_time	  = uint16_decode(&p_evt_write->data[5]);
-	    uint16_t  blink_count = uint16_decode(&p_evt_write->data[7]);;
+      case LED_CONFIG_UUID:
+      {
+        if(p_evt_write->len == LED_PARAM_LENGHT && p_evt_write->handle == p_prox->led_charr.value_handle)
+        {
+          uint8_t   Green       = p_evt_write->data[0];
+          uint8_t   Red         = p_evt_write->data[1];
+          uint8_t   Blue        = p_evt_write->data[2];
+          uint16_t  on_time     = uint16_big_decode(&p_evt_write->data[3]);
+          uint16_t  off_time    = uint16_big_decode(&p_evt_write->data[5]);
+          uint16_t  blink_count = p_evt_write->data[7];
+
+          NRF_LOG_INFO("Led Colour: G%02X R%02X B%02X, On:%u, Off:%u, Repeat: %u",
+              Green, Red, Blue,
+              on_time,
+              off_time,
+              blink_count);
 
 
-	    if(sk6812_blink_event(Green, Red, Blue, on_time, off_time, blink_count))
-	    {
-	      auth_reply.params.write.gatt_status = BLE_GATT_STATUS_SUCCESS;
-	    }
-	  }
-	}
-	  break;
-	case BUZZER_CONFIG_UUID:
-	{
-	  if(p_evt_write->len == BUZZ_PARAM_LENGHT && p_evt_write->handle == p_prox->buzzer_charr.value_handle)
-	  {
-	    uint16_t  frequency	  = uint16_decode(&p_evt_write->data[0]);
-            uint8_t   dutycycle	  = p_evt_write->data[2];
-	    uint16_t  on_time	  = uint16_decode(&p_evt_write->data[3]);
-	    uint16_t  off_time	  = uint16_decode(&p_evt_write->data[5]);
-	    uint8_t   repeat	  = p_evt_write->data[7];
+          if(sk6812_blink_event(Green, Red, Blue, on_time, off_time, blink_count))
+          {
+            auth_reply.params.write.gatt_status = BLE_GATT_STATUS_SUCCESS;
+          }
+        }
+      }
+        break;
+      case BUZZER_CONFIG_UUID:
+      {
+        if(p_evt_write->len == BUZZ_PARAM_LENGHT && p_evt_write->handle == p_prox->buzzer_charr.value_handle)
+        {
+          uint16_t  frequency	  = uint16_big_decode(&p_evt_write->data[0]);
+          uint8_t   dutycycle	  = p_evt_write->data[2];
+          uint16_t  on_time       = uint16_big_decode(&p_evt_write->data[3]);
+          uint16_t  off_time	  = uint16_big_decode(&p_evt_write->data[5]);
+          uint8_t   repeat        = p_evt_write->data[7];
 
-	    if(buzz_event(frequency, dutycycle, on_time, off_time, repeat))
-	    {
-	      auth_reply.params.write.gatt_status = BLE_GATT_STATUS_SUCCESS;
-	    }
-	  }
-	}
-	  break;
+          NRF_LOG_INFO("Buzz Freq: %u, D:%u, On:%u, Off:%u, Repeat: %u",
+              frequency,
+              dutycycle,
+              on_time,
+              off_time,
+              repeat);
 
-	case ALARM_CONFIG_UUID:
-	{
-	  if(p_evt_write->len == ALARM_PARAM_LENGHT && p_evt_write->handle == p_prox->alarm_charr.value_handle)
-	  {
-	    uint16_t on_time  = uint16_decode(&p_evt_write->data[0]);
-	    uint16_t off_time = uint16_decode(&p_evt_write->data[2]);
-	    uint8_t repeat    = p_evt_write->data[4];
+          if(buzz_event(frequency, dutycycle, on_time, off_time, repeat))
+          {
+            auth_reply.params.write.gatt_status = BLE_GATT_STATUS_SUCCESS;
+          }
+        }
+      }
+        break;
 
-	    if(alarm_blink(on_time, off_time, repeat))
-	    {
-	      auth_reply.params.write.gatt_status = BLE_GATT_STATUS_SUCCESS;
-	    }
-	  }
-	}
-	  break;
+      case ALARM_CONFIG_UUID:
+      {
+        if(p_evt_write->len == ALARM_PARAM_LENGHT && p_evt_write->handle == p_prox->alarm_charr.value_handle)
+        {
+          uint16_t on_time  = uint16_big_decode(&p_evt_write->data[0]);
+          uint16_t off_time = uint16_big_decode(&p_evt_write->data[2]);
+          uint8_t repeat    = p_evt_write->data[4];
+
+          NRF_LOG_INFO("Alarm On:%u, Off:%u, Repeat: %u",
+              on_time,
+              off_time,
+              repeat);
+
+          if(alarm_blink(on_time, off_time, repeat))
+          {
+            auth_reply.params.write.gatt_status = BLE_GATT_STATUS_SUCCESS;
+          }
+        }
+      }
+        break;
       case PROX_SERVICE_UUID:
       default:
         return;
@@ -189,6 +207,8 @@ static void on_write_authorize_request(ble_prox_t * p_prox, ble_gatts_evt_t cons
 void ble_prox_on_ble_evt(ble_evt_t const * p_ble_evt, void * p_context)
 {
     ble_prox_t * p_prox = (ble_prox_t *) p_context;
+
+    NRF_LOG_INFO("Prox BLE Event");
     
     if (p_prox == NULL || p_ble_evt == NULL)
     {
@@ -259,7 +279,7 @@ static uint32_t led_charr_add(ble_prox_t * p_prox, const ble_prox_init_t * p_pro
 
     memset(&attr_md, 0, sizeof(attr_md));
 
-    attr_md.read_perm  = p_prox_init->custom_value_char_attr_md.read_perm;
+//    attr_md.read_perm  = p_prox_init->custom_value_char_attr_md.read_perm;
     attr_md.write_perm = p_prox_init->custom_value_char_attr_md.write_perm;
     attr_md.vloc       = BLE_GATTS_VLOC_STACK;
     attr_md.rd_auth    = 0;
@@ -324,11 +344,11 @@ static uint32_t alarm_charr_add(ble_prox_t * p_prox, const ble_prox_init_t * p_p
 
     memset(&attr_md, 0, sizeof(attr_md));
 
-    attr_md.read_perm  = p_prox_init->custom_value_char_attr_md.read_perm;
+//    attr_md.read_perm  = p_prox_init->custom_value_char_attr_md.read_perm;
     attr_md.write_perm = p_prox_init->custom_value_char_attr_md.write_perm;
     attr_md.vloc       = BLE_GATTS_VLOC_STACK;
     attr_md.rd_auth    = 0;
-    attr_md.wr_auth    = 0;
+    attr_md.wr_auth    = 1;
     attr_md.vlen       = 0;
 
     memset(&attr_char_value, 0, sizeof(attr_char_value));
@@ -392,7 +412,7 @@ static uint32_t buzzer_charr_add(ble_prox_t * p_prox, const ble_prox_init_t * p_
 
     memset(&attr_md, 0, sizeof(attr_md));
 
-    attr_md.read_perm  = p_prox_init->custom_value_char_attr_md.read_perm;
+//    attr_md.read_perm  = p_prox_init->custom_value_char_attr_md.read_perm;
     attr_md.write_perm = p_prox_init->custom_value_char_attr_md.write_perm;
     attr_md.vloc       = BLE_GATTS_VLOC_STACK;
     attr_md.rd_auth    = 0;

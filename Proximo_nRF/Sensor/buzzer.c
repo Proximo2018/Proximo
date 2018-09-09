@@ -23,10 +23,19 @@ void Buzz(uint8_t dutycycle, uint16_t frequency)
 {
     uint32_t err; 
     static uint32_t regVal, topvalue;
+
+    if(frequency > 10000){
+       frequency = 10000;
+    }
+
+    if(frequency < 1000){
+       frequency = 1000;
+    }
+
     topvalue = 1250000 / frequency;
 
     if(dutycycle > 100){
-      dutycycle = 100;
+      dutycycle = 50;
     }
 
     // Calculate the PWM register value from the maximum top value and the given duty Cycle.

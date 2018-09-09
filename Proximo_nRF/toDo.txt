@@ -21,7 +21,7 @@ X	TUV test data ophalen -> Patrick Noordhoek
 		- Optioneel hoger advertising interval bij connectie
 		-	
 	6.	BLE
-		-	R/W implementeren in BLE_setup
+		X	R/W implementeren in BLE_setup
 	6.	Applicatie functionaliteit
 		-	Uit wanneer ongekoppeld en geen beweging/user activatie. Activatie na drukknop toets en beweging. -> BLE advertising aan
 		-	Bonding / Enkele App mee verbinden.

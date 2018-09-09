@@ -10,11 +10,9 @@ BLE_PROX_DEF(m_prox);                                               /**< Structu
 NRF_BLE_GATT_DEF(m_gatt);                                           /**< GATT module instance. */
 NRF_BLE_QWR_DEF(m_qwr);                                             /**< Context for the Queued Write module.*/
 BLE_ADVERTISING_DEF(m_advertising);                                 /**< Advertising module instance. */
-APP_TIMER_DEF(m_battery_timer_id);                                  /**< Battery timer. */
 
 
 static uint16_t m_conn_handle         = BLE_CONN_HANDLE_INVALID;    /**< Handle of the current connection. */
-static bool     m_rr_interval_enabled = true;                       /**< Flag for enabling and disabling the registration of new RR interval measurements (the purpose of disabling this is just to test sending HRM without RR interval data. */
 
 static sensorsim_cfg_t   m_battery_sim_cfg;                         /**< Battery Level sensor simulator configuration. */
 static sensorsim_state_t m_battery_sim_state;                       /**< Battery Level sensor simulator state. */
@@ -171,6 +169,8 @@ static void delete_bonds(void)
 static void on_prox_evt(ble_prox_t * p_prox_service, ble_prox_evt_t * p_evt)
 {
     ret_code_t err_code;
+
+    NRF_LOG_INFO("on_prox_event");
     
     switch(p_evt->evt_type)
     {
@@ -319,12 +319,9 @@ static void pm_evt_handler(pm_evt_t const * p_evt)
 /**@brief Function for performing battery measurement and updating the Battery Level characteristic
  *        in Battery Service.
  */
-static void battery_level_update(void)
+void battery_level_update(uint8_t battery_level)
 {
     ret_code_t err_code;
-    uint8_t  battery_level;
-
-    battery_level = (uint8_t)sensorsim_measure(&m_battery_sim_state, &m_battery_sim_cfg);
 
     err_code = ble_bas_battery_level_update(&m_bas, battery_level, BLE_CONN_HANDLE_ALL);
     if ((err_code != NRF_SUCCESS) &&
@@ -337,23 +334,6 @@ static void battery_level_update(void)
         APP_ERROR_HANDLER(err_code);
     }
 }
-
-
-/**@brief Function for handling the Battery measurement timer timeout.
- *
- * @details This function will be called each time the battery level measurement timer expires.
- *
- * @param[in] p_context  Pointer used for passing some arbitrary information (context) from the
- *                       app_start_timer() call to the timeout handler.
- */
-static void battery_level_meas_timeout_handler(void * p_context)
-{
-    UNUSED_PARAMETER(p_context);
-    battery_level_update();
-}
-
-
-
 
 
 
@@ -473,6 +453,7 @@ void services_init(void)
 
     BLE_GAP_CONN_SEC_MODE_SET_OPEN(&prox_init.custom_value_char_attr_md.cccd_write_perm);
     BLE_GAP_CONN_SEC_MODE_SET_OPEN(&prox_init.custom_value_char_attr_md.write_perm);
+    BLE_GAP_CONN_SEC_MODE_SET_NO_ACCESS(&prox_init.custom_value_char_attr_md.read_perm);
 
     err_code = ble_prox_init(&m_prox, &prox_init);
     APP_ERROR_CHECK(err_code);  
@@ -480,24 +461,6 @@ void services_init(void)
 
 
 
-/**@brief Function for initializing the sensor simulators.
- */
-void sensor_simulator_init(void)
-{
-    ret_code_t err_code;
-    err_code = app_timer_create(&m_battery_timer_id, APP_TIMER_MODE_REPEATED, battery_level_meas_timeout_handler);
-    APP_ERROR_CHECK(err_code);
-
-    m_battery_sim_cfg.min          = MIN_BATTERY_LEVEL;
-    m_battery_sim_cfg.max          = MAX_BATTERY_LEVEL;
-    m_battery_sim_cfg.incr         = BATTERY_LEVEL_INCREMENT;
-    m_battery_sim_cfg.start_at_max = true;
-
-    sensorsim_init(&m_battery_sim_state, &m_battery_sim_cfg);
-
-    err_code = app_timer_start(m_battery_timer_id, BATTERY_LEVEL_MEAS_INTERVAL, NULL);
-    APP_ERROR_CHECK(err_code);
-}
 
 /**@brief Function for handling the Connection Parameters Module.
  *
@@ -544,7 +507,6 @@ void conn_params_init(void)
     cp_init.first_conn_params_update_delay = FIRST_CONN_PARAMS_UPDATE_DELAY;
     cp_init.next_conn_params_update_delay  = NEXT_CONN_PARAMS_UPDATE_DELAY;
     cp_init.max_conn_params_update_count   = MAX_CONN_PARAMS_UPDATE_COUNT;
-//    cp_init.start_on_notify_cccd_handle    = m_hrs.hrm_handles.cccd_handle;
     cp_init.disconnect_on_fail             = false;
     cp_init.evt_handler                    = on_conn_params_evt;
     cp_init.error_handler                  = conn_params_error_handler;
