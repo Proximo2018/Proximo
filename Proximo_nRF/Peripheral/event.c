@@ -211,6 +211,12 @@ bool buzz_event(uint16_t frequency, uint8_t dutycycle, uint16_t on_time, uint16_
 
     start_timer(m_BUZZER_id, BUZZ.event.time_on);
     Buzz(BUZZ.dutycycle, BUZZ.frequency);
+
+    // Set the LED off, as they randomly lightup when the boost converter is started
+    if(!LED.event.on)
+    {
+	sk6812_single_colour(SK6812_OFF);
+    }
     return true;
 }
 

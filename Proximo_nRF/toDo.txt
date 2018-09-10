@@ -31,5 +31,6 @@ X	TUV test data ophalen -> Patrick Noordhoek
                         X calculate battery percentage
                         - disable LEDs and other functionality under certain voltage treshold
         8.      Code better commentarierien
+        9.      programma/batch file schrijven voor programmeren Proximo' definitieve firmware
 
 	

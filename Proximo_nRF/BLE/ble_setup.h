@@ -101,6 +101,9 @@
   void bootloader_enter_timeout (void);
   void enter_bootloader         (void);
 
+  void whitelist_load		(void);
+  void peer_list_get		(pm_peer_id_t * p_peers, uint32_t * p_size);
+
   /* BLE */
   void advertising_start        (void);
   void sensorsim_app_timers_init(void);

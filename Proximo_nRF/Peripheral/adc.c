@@ -52,7 +52,7 @@ void saadc_callback(nrf_drv_saadc_evt_t const * p_event)
 	}
         
         
-        #if 1
+        #if 0
 	    //Print the event number on UART
             NRF_LOG_INFO("VCC: #%d, %d mV, batt %u, pin%u",
                 p_event->data.done.p_buffer[0], 

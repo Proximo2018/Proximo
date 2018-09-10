@@ -289,6 +289,7 @@ int main(void)
     ble_stack_init();
     gap_params_init();
     gatt_init();
+    whitelist_load();
     advertising_beacon_init();
     services_init();
     conn_params_init();
