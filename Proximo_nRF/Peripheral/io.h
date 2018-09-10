@@ -13,6 +13,7 @@
 
   void proximo_tps_on   (void);
   void proximo_tps_off  (void);
+  uint32_t proximo_tps_read_output(void);
 
   void proximo_ldr_on   (void);
   void proximo_ldr_off  (void);

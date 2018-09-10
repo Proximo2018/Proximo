@@ -25,7 +25,7 @@ struct BUZZ_EVENT
 
 static void enable_tps (void)
 {
-  if(!nrf_gpio_pin_out_read(TPS_EN_PIN))
+  if(!proximo_tps_read_output())
   {
     proximo_tps_on();
     nrf_delay_ms(10);
@@ -34,7 +34,7 @@ static void enable_tps (void)
 
 static void disable_tps (void)
 {
-  if(nrf_gpio_pin_out_read(TPS_EN_PIN) && (!BUZZ.event.on) && (!LED.event.on))
+  if(proximo_tps_read_output() && (!BUZZ.event.on) && (!LED.event.on))
   {
     proximo_tps_off();  
   }

@@ -22,11 +22,14 @@ X	TUV test data ophalen -> Patrick Noordhoek
 		-	
 	6.	BLE
 		X	R/W implementeren in BLE_setup
-	6.	Applicatie functionaliteit
+	7.	Applicatie functionaliteit
 		-	Uit wanneer ongekoppeld en geen beweging/user activatie. Activatie na drukknop toets en beweging. -> BLE advertising aan
 		-	Bonding / Enkele App mee verbinden.
 		-	Drukknoppen functies?
 		-	Drukknoppen combinatie om bootloader te activeren.
-		-	BAS. Batterij percentage -> disable LEDs and other functionality under certain voltage treshold
+		-	BAS. Batterij percentage
+                        X calculate battery percentage
+                        - disable LEDs and other functionality under certain voltage treshold
+        8.      Code better commentarierien
 
 	

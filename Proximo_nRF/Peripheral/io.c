@@ -59,6 +59,11 @@ __inline void proximo_alarm_high(void)
   nrf_gpio_pin_write(ALARM_OUT_PIN, 0);
 }
 
+__inline uint32_t proximo_tps_read_output(void)
+{
+  return nrf_gpio_pin_out_read(TPS_EN_PIN);
+}
+
 
 
 

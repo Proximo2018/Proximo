@@ -282,7 +282,7 @@ int main(void)
     app_timers_init();
     buttons_init(&erase_bonds);
     proximo_io_init();
-    saadc_init();
+    start_saadc_timer();
     rtc_config(&rtc_handler);
     movement_init();
     power_management_init();
