@@ -14,8 +14,7 @@
     #define CUTT_OF_VOLTAGE             2000
     #define OPEN_CIRCUIT_VOLTAGE        3100
 
-    void measure_vcc    (void);
-    void measure_vcc_ldr(void * p_context);
+    void measure_vcc    (void * p_context);
     void saadc_callback (nrf_drv_saadc_evt_t const * p_event);
     void start_saadc_timer(void);
     void saadc_init     (void);

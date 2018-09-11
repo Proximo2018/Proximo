@@ -30,6 +30,7 @@
   <ProjectSessionItem path="Proximo;Proximo;Board Support"/>
   <ProjectSessionItem path="Proximo;Proximo;nRF_BLE"/>
   <ProjectSessionItem path="Proximo;Proximo;nRF_BLE_Services"/>
+  <ProjectSessionItem path="Proximo;Proximo;nRF_Libraries"/>
   <ProjectSessionItem path="Proximo;Proximo;nRF_Log"/>
   <ProjectSessionItem path="Proximo;Proximo;Peripheral"/>
   <ProjectSessionItem path="Proximo;Proximo;Sensor"/>
@@ -68,19 +69,33 @@
   <Watches active="0" update="Never"/>
  </Watch4>
  <Files>
-  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="32" useTextEdit="1" useBinaryEdit="0" left="0" path="Board/proximo_board.h" selected="0" top="6" codecName="Default"/>
-  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="223" useTextEdit="1" useBinaryEdit="0" left="0" path="main.c" selected="0" top="193" codecName="Default"/>
-  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="38" useTextEdit="1" useBinaryEdit="0" left="0" path="../nRF5_SDK_15.0.0/components/boards/boards.c" selected="0" top="27" codecName="Default"/>
-  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="7199" useTextEdit="1" useBinaryEdit="0" left="0" path="config/sdk_config.h" selected="0" top="7169" codecName="Default"/>
-  <SessionOpenFile windowGroup="DockEditLeft" x="50" y="224" useTextEdit="1" useBinaryEdit="0" left="0" path="BLE/ble_setup.c" selected="0" top="199" codecName="Default"/>
-  <SessionOpenFile windowGroup="DockEditLeft" x="151" y="60" useTextEdit="1" useBinaryEdit="0" left="0" path="BLE/ble_setup.h" selected="0" top="48" codecName="Default"/>
-  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="136" useTextEdit="1" useBinaryEdit="0" left="0" path="Peripheral/event.c" selected="0" top="120" codecName="Default"/>
-  <SessionOpenFile windowGroup="DockEditLeft" x="30" y="23" useTextEdit="1" useBinaryEdit="0" left="0" path="Peripheral/event.h" selected="0" top="0" codecName="Default"/>
-  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="20" useTextEdit="1" useBinaryEdit="0" left="0" path="Peripheral/io.h" selected="0" top="0" codecName="Default"/>
-  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="14" useTextEdit="1" useBinaryEdit="0" left="0" path="Sensor/buzzer.h" selected="0" top="0" codecName="Default"/>
-  <SessionOpenFile windowGroup="DockEditLeft" x="6" y="149" useTextEdit="1" useBinaryEdit="0" left="0" path="../nRF5_SDK_15.0.0/components/ble/ble_services/ble_prox/ble_prox.c" selected="1" top="130" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="5" y="100" useTextEdit="1" useBinaryEdit="0" left="0" path="main.c" selected="0" top="78" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="38" useTextEdit="1" useBinaryEdit="0" left="0" path="../nRF5_SDK_15.0.0/components/boards/boards.c" selected="0" top="45" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="11448" useTextEdit="1" useBinaryEdit="0" left="0" path="config/sdk_config.h" selected="0" top="11413" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="342" useTextEdit="1" useBinaryEdit="0" left="0" path="BLE/ble_setup.c" selected="0" top="325" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="121" useTextEdit="1" useBinaryEdit="0" left="0" path="BLE/ble_setup.h" selected="0" top="80" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="215" useTextEdit="1" useBinaryEdit="0" left="0" path="Peripheral/event.c" selected="0" top="188" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="32" useTextEdit="1" useBinaryEdit="0" left="0" path="Peripheral/event.h" selected="0" top="0" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="15" useTextEdit="1" useBinaryEdit="0" left="0" path="Peripheral/io.h" selected="0" top="0" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="116" useTextEdit="1" useBinaryEdit="0" left="0" path="../nRF5_SDK_15.0.0/components/ble/ble_services/ble_prox/ble_prox.c" selected="0" top="90" codecName="Default"/>
   <SessionOpenFile windowGroup="DockEditLeft" x="0" y="26" useTextEdit="1" useBinaryEdit="0" left="0" path="../nRF5_SDK_15.0.0/components/ble/ble_services/ble_prox/ble_prox.h" selected="0" top="21" codecName="Default"/>
-  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="15" useTextEdit="1" useBinaryEdit="0" left="0" path="toDo.txt" selected="0" top="0" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="29" useTextEdit="1" useBinaryEdit="0" left="0" path="toDo.txt" selected="0" top="0" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="21" useTextEdit="1" useBinaryEdit="0" left="0" path="Peripheral/adc.h" selected="0" top="0" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="86" useTextEdit="1" useBinaryEdit="0" left="0" path="Peripheral/adc.c" selected="0" top="61" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="188" useTextEdit="1" useBinaryEdit="0" left="0" path="../nRF5_SDK_15.0.0/components/libraries/timer/app_timer.h" selected="0" top="172" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="61" useTextEdit="1" useBinaryEdit="0" left="0" path="Peripheral/io.c" selected="0" top="39" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="297" useTextEdit="1" useBinaryEdit="0" left="0" path="../nRF5_SDK_15.0.0/components/ble/peer_manager/peer_manager.c" selected="0" top="277" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="336" useTextEdit="1" useBinaryEdit="0" left="0" path="../nRF5_SDK_15.0.0/components/ble/peer_manager/peer_manager.h" selected="1" top="568" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="185" useTextEdit="1" useBinaryEdit="0" left="0" path="../nRF5_SDK_15.0.0/components/ble/ble_advertising/ble_advertising.h" selected="0" top="155" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="43" useTextEdit="1" useBinaryEdit="0" left="0" path="Sensor/sk6812.h" selected="0" top="36" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="1608" useTextEdit="1" useBinaryEdit="0" left="0" path="../nRF5_SDK_15.0.0/components/libraries/fds/fds.c" selected="0" top="1591" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="67" useTextEdit="1" useBinaryEdit="0" left="0" path="../nRF5_SDK_15.0.0/components/ble/peer_manager/peer_manager_types.h" selected="0" top="50" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="264" useTextEdit="1" useBinaryEdit="0" left="0" path="../nRF5_SDK_15.0.0/components/softdevice/s132/headers/ble_gatts.h" selected="0" top="250" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="218" useTextEdit="1" useBinaryEdit="0" left="0" path="../nRF5_SDK_15.0.0/components/softdevice/s132/headers/ble_gatt.h" selected="0" top="191" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="607" useTextEdit="1" useBinaryEdit="0" left="0" path="../nRF5_SDK_15.0.0/components/softdevice/s132/headers/ble_gap.h" selected="0" top="587" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="73" useTextEdit="1" useBinaryEdit="0" left="0" path="../nRF5_SDK_15.0.0/components/softdevice/s132/headers/ble_hci.h" selected="0" top="54" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="45" y="230" useTextEdit="1" useBinaryEdit="0" left="0" path="../nRF5_SDK_15.0.0/components/ble/common/ble_conn_state.h" selected="0" top="195" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="19" useTextEdit="1" useBinaryEdit="0" left="0" path="Proximo.emProject" selected="0" top="0" codecName="Default"/>
  </Files>
- <ARMCrossStudioWindow activeProject="Proximo" fileDialogDefaultFilter="" autoConnectTarget="J-Link" buildConfiguration="Debug" debugSearchFileMap="" fileDialogInitialDirectory="D:/localrep/Proximo/Proximo_nRF/BLE" debugSearchPath="" autoConnectCapabilities="3199"/>
+ <ARMCrossStudioWindow activeProject="Proximo" fileDialogDefaultFilter="*.c" autoConnectTarget="J-Link" buildConfiguration="Debug" debugSearchFileMap="" fileDialogInitialDirectory="D:/localrep/Proximo/Proximo_nRF/BLE" debugSearchPath="" autoConnectCapabilities="3711"/>
 </session>

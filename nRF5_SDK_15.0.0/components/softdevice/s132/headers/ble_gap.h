@@ -602,7 +602,7 @@ enum BLE_GAP_TX_POWER_ROLES
 
 
 /**@brief Maximum amount of addresses in the whitelist. */
-#define BLE_GAP_WHITELIST_ADDR_MAX_COUNT (8)
+#define BLE_GAP_WHITELIST_ADDR_MAX_COUNT (1)
 
 
 /**@brief Maximum amount of identities in the device identities list. */

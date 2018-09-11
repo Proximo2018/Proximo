@@ -71,7 +71,7 @@ void saadc_callback(nrf_drv_saadc_evt_t const * p_event)
 }
 
 
-void measure_vcc(void)
+void measure_vcc(void * p_context)
 {
     uint32_t err_code;
 
@@ -85,19 +85,12 @@ void measure_vcc(void)
     APP_ERROR_CHECK(err_code);
 }
 
-void measure_vcc_ldr(void * p_context)
-{
-    ret_code_t err_code;
-    NRF_LOG_INFO("LDR on");
-
-    measure_vcc();
-}
 
 
 void start_saadc_timer(void)
 {
     ret_code_t err_code;
-    err_code = app_timer_create(&m_ADC_id, APP_TIMER_MODE_REPEATED, measure_vcc_ldr);
+    err_code = app_timer_create(&m_ADC_id, APP_TIMER_MODE_REPEATED, measure_vcc);
     APP_ERROR_CHECK(err_code);
 
     err_code = app_timer_start(m_ADC_id, ADC_INTERVAL, NULL);

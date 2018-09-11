@@ -44,7 +44,7 @@
   #define APP_DEVICE_TYPE                 0x02                               /**< 0x02 refers to Beacon. */
   #define APP_MEASURED_RSSI               0xC3                               /**< The Beacon's measured RSSI at 1 meter distance in dBm. */
 
-  #if 0	
+  #if 1	
     #define APP_COMPANY_IDENTIFIER	    0x004C			      /**< Company identifier for Apple Inc. as per www.bluetooth.org. */  
   #else
     #define APP_COMPANY_IDENTIFIER          0x0059                           /**< Company identifier for Nordic Semiconductor ASA. as per www.bluetooth.org. */
@@ -101,6 +101,7 @@
   void bootloader_enter_timeout (void);
   void enter_bootloader         (void);
 
+  void delete_bonds		(void);
   void whitelist_load		(void);
   void peer_list_get		(pm_peer_id_t * p_peers, uint32_t * p_size);
 

@@ -366,6 +366,8 @@ static void pm_evt_handler(pm_evt_t const * p_evt)
 {
     ret_code_t err_code;
 
+    NRF_LOG_INFO("pm event %u", (uint32_t) p_evt->evt_id);
+
     switch (p_evt->evt_id)
     {
         case PM_EVT_BONDED_PEER_CONNECTED:

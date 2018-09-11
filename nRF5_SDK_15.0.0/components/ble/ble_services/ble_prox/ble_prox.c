@@ -110,7 +110,7 @@ static void on_write_authorize_request(ble_prox_t * p_prox, ble_gatts_evt_t cons
           uint16_t  off_time    = uint16_big_decode(&p_evt_write->data[5]);
           uint16_t  blink_count = p_evt_write->data[7];
 
-          NRF_LOG_INFO("Led Colour: G%02X R%02X B%02X, On:%u, Off:%u, Repeat: %u",
+          NRF_LOG_INFO("Led Colour: G:0x%02X R:0x%02X B:0x%02X, On:%u, Off:%u, Repeat: %u",
               Green, Red, Blue,
               on_time,
               off_time,
@@ -208,7 +208,7 @@ void ble_prox_on_ble_evt(ble_evt_t const * p_ble_evt, void * p_context)
 {
     ble_prox_t * p_prox = (ble_prox_t *) p_context;
 
-    NRF_LOG_INFO("Prox BLE Event");
+    NRF_LOG_INFO("Prox BLE Event %u", (uint32_t) p_ble_evt->header.evt_id);
     
     if (p_prox == NULL || p_ble_evt == NULL)
     {

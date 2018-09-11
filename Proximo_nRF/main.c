@@ -219,16 +219,17 @@ void bsp_event_handler(bsp_event_t event)
             break;
 
         case BSP_EVENT_DISCONNECT:
-            bsp_ble_gap_disconnect();
+//            bsp_ble_gap_disconnect();
             break;
 
         case BSP_EVENT_WHITELIST_OFF:
-            bsp_ble_whitelist_off();
+//            bsp_ble_whitelist_off();
             break;
 
         default:
             break;
     }
+    delete_bonds();
 
 //  alarm_blink(100, 100, 10);
   sk6812_blink_event(palet[index][0], palet[index][1], palet[index][2], 500, 500, 3);
@@ -289,7 +290,6 @@ int main(void)
     ble_stack_init();
     gap_params_init();
     gatt_init();
-    whitelist_load();
     advertising_beacon_init();
     services_init();
     conn_params_init();

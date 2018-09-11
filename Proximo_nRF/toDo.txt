@@ -27,7 +27,8 @@ X	TUV test data ophalen -> Patrick Noordhoek
 		-	Bonding / Enkele App mee verbinden.
 		-	Drukknoppen functies?
 		-	Drukknoppen combinatie om bootloader te activeren.
-		-	BAS. Batterij percentage
+                X       Link count verhogen.
+		/	BAS. Batterij percentage
                         X calculate battery percentage
                         - disable LEDs and other functionality under certain voltage treshold
         8.      Code better commentarierien
