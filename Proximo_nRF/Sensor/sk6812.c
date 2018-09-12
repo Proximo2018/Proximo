@@ -164,7 +164,7 @@ void sk6812_write_buffer(SK6812_WR_BUFFERs * GRB, uint8_t index, uint8_t Green, 
 {
   uint8_t offset;
 
-  if(GRB == NULL || index > SK6812_WR_BUFFER_LENGHT)
+  if(GRB == NULL || index > NUMBER_OF_SK6812)
   {
       return;
   }

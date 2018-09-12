@@ -66,10 +66,6 @@ void sleep_mode_enter(void)
 {
     ret_code_t err_code;
 
-    // Prepare wakeup buttons.
-//    err_code = bsp_btn_ble_sleep_mode_prepare();
-    APP_ERROR_CHECK(err_code);
-
     // Sleep until the next event wakes the device up
     err_code = sd_app_evt_wait();
     APP_ERROR_CHECK(err_code);

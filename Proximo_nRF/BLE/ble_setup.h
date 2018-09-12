@@ -60,9 +60,9 @@
   /* BLE HRS */
   #define DEVICE_NAME                         "Proximo   "                            /**< Name of device. Will be included in the advertising data. */
   #define MANUFACTURER_NAME                   "FHI"                                   /**< Manufacturer. Will be passed to Device Information Service. */
-  #define APP_ADV_INTERVAL                    MSEC_TO_UNITS(100, UNIT_0_625_MS)	      /**< The advertising interval (in units of 0.625 ms. This value corresponds to 1000 ms). */
-
-  #define APP_ADV_DURATION                    18000                                   /**< The advertising duration (180 seconds) in units of 10 milliseconds. */
+  #define APP_FAST_ADV_INTERVAL               MSEC_TO_UNITS(100, UNIT_0_625_MS)	      /**< The advertising interval (in units of 0.625 ms.). */
+  #define APP_SLOW_ADV_INTERVAL               MSEC_TO_UNITS(300, UNIT_0_625_MS)	      /**< The advertising interval (in units of 0.625 ms.). */
+  #define APP_ADV_DURATION                    3000				      /**< The advertising duration (30 seconds) in 10 milliseconde resolutie. */
 
   #define APP_BLE_CONN_CFG_TAG                1                                       /**< A tag identifying the SoftDevice BLE configuration. */
   #define APP_BLE_OBSERVER_PRIO               3                                       /**< Application's BLE observer priority. You shouldn't need to modify this value. */
@@ -106,7 +106,10 @@
   void peer_list_get		(pm_peer_id_t * p_peers, uint32_t * p_size);
 
   /* BLE */
+  void advertising_stop		(void);
   void advertising_start        (void);
+  void peer_list_load		(void);
+
   void sensorsim_app_timers_init(void);
   void gap_params_init          (void);
   void gatt_init                (void);

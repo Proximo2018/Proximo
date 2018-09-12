@@ -73,12 +73,6 @@
 #include "event.h"
 
 
-APP_TIMER_DEF(m_LED_id);                                            /**< Debug LED timer. */
-
-
-//#define PRINT_MEASUREMENT_RESULTS                       // Definition to enable priting all the measurement results on the debug itnerface RTT or UART
-static volatile bool    measureTemperature = false;     //  Flag used to sample the th06 in the main loop
-
 static volatile int16_t          vcc, vldr;                       // ADC result
 
 
@@ -88,6 +82,64 @@ double temperature  = 0.0;
 double humidity	    = 0.0;
 uint32_t movement_count = 0;
 static volatile uint32_t manual_LED_timeout = 0;
+static uint8_t count = 0;
+
+
+static void check_button_press_animation (uint32_t pin, uint8_t * count, uint8_t Green, uint8_t Red, uint8_t Blue)
+{
+    uint8_t i;
+    static SK6812_WR_BUFFERs GRB;
+
+    
+
+    if(!nrf_gpio_pin_read(pin))
+    {
+
+	if(*count < NUMBER_OF_SK6812)
+	{
+	  *count += 1;
+	}
+
+	if(!proximo_tps_read_output())
+	{
+	    proximo_tps_on();
+	    nrf_delay_ms(10);
+	}
+
+
+	memset(&GRB, 0, sizeof(GRB));
+
+	for( uint8_t i = 0 ; i < (*count) ; i++)
+	{
+	  sk6812_write_buffer(&GRB, i, Green, Red, Blue);
+	}
+
+	sk6812_colour_string(&GRB);
+    }
+    else
+    {
+      if(*count != 0)
+      {
+	*count -= 1;
+
+        memset(&GRB, 0, sizeof(GRB));
+
+	for( uint8_t i = 0 ; i < (*count) ; i++)
+	{
+	  sk6812_write_buffer(&GRB, i, Green, Red, Blue);
+	}
+
+	sk6812_colour_string(&GRB);
+      }
+      else
+      {
+	if(proximo_tps_read_output())
+	{
+	    proximo_tps_off();
+	}
+      }
+    }
+}
 
 
 
@@ -100,10 +152,9 @@ static void rtc_handler(nrf_drv_rtc_int_type_t int_type)
     if (int_type == NRF_DRV_RTC_INT_COMPARE0)
     {
         // Reset the compare counter of the RTC
-        rtc_reload_compare();
-
-        measureTemperature = true;
-        
+        rtc_reload_compare();   
+	     
+       check_button_press_animation(BUTTON_1, &count, SK6812_BLUE);
 
         // print and the clear the number of movement pulses counted
         #ifdef PRINT_MEASUREMENT_RESULTS
@@ -150,19 +201,6 @@ static void app_timers_init(void)
 
     // Initialize timer module.
     err_code = app_timer_init();
-    APP_ERROR_CHECK(err_code);
-
-    err_code = app_timer_create(&m_LED_id, APP_TIMER_MODE_REPEATED, timer_led_blink_handler);
-    APP_ERROR_CHECK(err_code);    
-}
-
-/**@brief Function for starting application timers.
- */
-static void application_timers_start(void)
-{
-    ret_code_t err_code;
-
-//    err_code = app_timer_start(m_LED_id, APP_TIMER_TICKS(200), NULL);
     APP_ERROR_CHECK(err_code);
 }
 
@@ -219,22 +257,20 @@ void bsp_event_handler(bsp_event_t event)
             break;
 
         case BSP_EVENT_DISCONNECT:
-//            bsp_ble_gap_disconnect();
             break;
 
         case BSP_EVENT_WHITELIST_OFF:
-//            bsp_ble_whitelist_off();
             break;
 
         default:
             break;
     }
-    delete_bonds();
+//    delete_bonds();
 
-//  alarm_blink(100, 100, 10);
-  sk6812_blink_event(palet[index][0], palet[index][1], palet[index][2], 500, 500, 3);
-//  buzz_event(1000, 50, 100, 1000, 4);
+  //sk6812_blink_event(palet[index][0], palet[index][1], palet[index][2], 500, 500, 3);
 }
+
+
 
 
 static void buttons_init(bool * p_erase_bonds)
@@ -303,19 +339,14 @@ int main(void)
 
     twi_init();
     th06_init();
-    
-    application_timers_start();
+
+    peer_list_load();
     advertising_start();
 
 
     // Enter main loop.
     for (;;)
     {
-        if(measureTemperature == true)
-        {
-        }
-
-
         if (NRF_LOG_PROCESS() == false)
         {
           nrf_pwr_mgmt_run();

@@ -606,7 +606,7 @@ enum BLE_GAP_TX_POWER_ROLES
 
 
 /**@brief Maximum amount of identities in the device identities list. */
-#define BLE_GAP_DEVICE_IDENTITIES_MAX_COUNT (8)
+#define BLE_GAP_DEVICE_IDENTITIES_MAX_COUNT (1)
 
 
 /**@brief Default connection count for a configuration. */

@@ -18,20 +18,23 @@ X	TUV test data ophalen -> Patrick Noordhoek
 		X Done
 	5.	Low power consumptie
 		X Advertising interval nog lager zetten, staat nu 180ms -> 1000ms
-		- Optioneel hoger advertising interval bij connectie
+		X Optioneel hoger advertising interval bij connectie
 		-	
 	6.	BLE
 		X	R/W implementeren in BLE_setup
 	7.	Applicatie functionaliteit
-		-	Uit wanneer ongekoppeld en geen beweging/user activatie. Activatie na drukknop toets en beweging. -> BLE advertising aan
-		-	Bonding / Enkele App mee verbinden.
-		-	Drukknoppen functies?
+		X	Uit wanneer ongekoppeld en geen beweging/user activatie. Activatie na drukknop toets en beweging. -> BLE advertising aan: Niet nodig, aangezien de 
+                        gebruikers op de beurs de batterijen in de proximo stoppen.
+		X	Bonding / Enkele App mee verbinden.
+		-	Drukknoppen functies: whitelisten / whitelist verwijderen met animatie voor 
 		-	Drukknoppen combinatie om bootloader te activeren.
                 X       Link count verhogen.
-		/	BAS. Batterij percentage
-                        X calculate battery percentage
-                        - disable LEDs and other functionality under certain voltage treshold
+		X	BAS. Batterij percentage
+                X       calculate battery percentage
+                -       Release met bootloader testen
+                -       disable LEDs and other functionality under certain voltage treshold
+                -       Testen met batterijen
         8.      Code better commentarierien
-        9.      programma/batch file schrijven voor programmeren Proximo' definitieve firmware
+        9.      programma/batch file schrijven voor programmeren Proximo' definitieve firmware + beschrijven UICR register
 
 	

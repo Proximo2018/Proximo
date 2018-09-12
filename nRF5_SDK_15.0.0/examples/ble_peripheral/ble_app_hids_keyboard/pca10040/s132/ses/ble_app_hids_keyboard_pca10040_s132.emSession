@@ -24,6 +24,7 @@
   <ProjectSessionItem path="ble_app_hids_keyboard_pca10040_s132"/>
   <ProjectSessionItem path="ble_app_hids_keyboard_pca10040_s132;ble_app_hids_keyboard_pca10040_s132"/>
   <ProjectSessionItem path="ble_app_hids_keyboard_pca10040_s132;ble_app_hids_keyboard_pca10040_s132;Application"/>
+  <ProjectSessionItem path="ble_app_hids_keyboard_pca10040_s132;ble_app_hids_keyboard_pca10040_s132;nRF_BLE"/>
   <ProjectSessionItem path="ble_app_hids_keyboard_pca10040_s132;ble_app_hids_keyboard_pca10040_s132;nRF_BLE_Services"/>
  </Project>
  <Register1>
@@ -57,9 +58,13 @@
   <Watches active="0" update="Never"/>
  </Watch4>
  <Files>
-  <SessionOpenFile windowGroup="DockEditLeft" x="28" y="807" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../main.c" selected="1" top="755" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="58" y="1574" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../main.c" selected="0" top="1560" codecName="Default"/>
   <SessionOpenFile windowGroup="DockEditLeft" x="0" y="7208" useTextEdit="1" useBinaryEdit="0" left="0" path="../config/sdk_config.h" selected="0" top="7186" codecName="Default"/>
   <SessionOpenFile windowGroup="DockEditLeft" x="0" y="1384" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../../../../components/ble/ble_services/ble_hids/ble_hids.c" selected="0" top="1364" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="829" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../../../../components/softdevice/s132/headers/ble_gap.h" selected="0" top="797" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="88" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../../../../components/ble/peer_manager/id_manager.c" selected="0" top="73" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="131" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../../../../components/ble/ble_advertising/ble_advertising.c" selected="0" top="117" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="168" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../../../../components/ble/ble_advertising/ble_advertising.h" selected="1" top="139" codecName="Default"/>
  </Files>
- <ARMCrossStudioWindow activeProject="ble_app_hids_keyboard_pca10040_s132" fileDialogDefaultFilter="*.c" autoConnectTarget="J-Link" buildConfiguration="Release" debugSearchFileMap="" fileDialogInitialDirectory="" debugSearchPath="" autoConnectCapabilities="3711"/>
+ <ARMCrossStudioWindow activeProject="ble_app_hids_keyboard_pca10040_s132" fileDialogDefaultFilter="*.c" autoConnectTarget="J-Link" buildConfiguration="Release" debugSearchFileMap="" fileDialogInitialDirectory="" debugSearchPath="" autoConnectCapabilities="3199"/>
 </session>
