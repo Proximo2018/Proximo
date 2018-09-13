@@ -1,26 +1,26 @@
 #include "system.h"
 //#include "bsp.h"
 
-#define COMPARE_COUNTERTIME  (1UL)                      /**< Get Compare event COMPARE_TIME seconds after the counter starts from 0. */
+#define COMPARE_COUNTERTIME  (4UL)                      /**< Get Compare event COMPARE_TIME seconds after the counter starts from 0. */
 const nrf_drv_rtc_t rtc = NRF_DRV_RTC_INSTANCE(2);      /**< Declaring an instance of nrf_drv_rtc for RTC1. Note that RTC0 is used by the soft device */
 
 /** @brief Function initialization and configuration of RTC driver instance.
  */
-void rtc_config(void (*rtc_handler)(nrf_drv_rtc_int_type_t))
+void rtc_config(nrfx_rtc_handler_t rtc_handler)
 {
     uint32_t err_code;
 
     //Initialize RTC instance
     nrf_drv_rtc_config_t config = NRF_DRV_RTC_DEFAULT_CONFIG;
     config.prescaler = 4095;
-    err_code = nrf_drv_rtc_init(&rtc, &config, *rtc_handler);
+    err_code = nrf_drv_rtc_init(&rtc, &config, rtc_handler);
     APP_ERROR_CHECK(err_code);
 
     //Enable tick event & interrupt
     nrf_drv_rtc_tick_enable(&rtc, true);
 
     //Set compare channel to trigger interrupt after COMPARE_COUNTERTIME seconds
-    err_code = nrf_drv_rtc_cc_set(&rtc, 0, COMPARE_COUNTERTIME * 8, true);
+    err_code = nrf_drv_rtc_cc_set(&rtc, 0, COMPARE_COUNTERTIME, true);
     APP_ERROR_CHECK(err_code);
 
     //Power on RTC instance
@@ -31,7 +31,7 @@ void rtc_config(void (*rtc_handler)(nrf_drv_rtc_int_type_t))
 void rtc_reload_compare (void)
 {
     uint32_t err_code;  
-    err_code = nrf_drv_rtc_cc_set(&rtc, 0, COMPARE_COUNTERTIME * 8, true);
+    err_code = nrf_drv_rtc_cc_set(&rtc, 0, COMPARE_COUNTERTIME, true);
     APP_ERROR_CHECK(err_code);
     nrf_drv_rtc_counter_clear(&rtc);
 }

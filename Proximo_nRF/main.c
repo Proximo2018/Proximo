@@ -73,73 +73,22 @@
 #include "event.h"
 
 
-static volatile int16_t          vcc, vldr;                       // ADC result
 
 
+/*
+    uint32_t	pin;
+    uint32_t	pin_last_input;
+    uint32_t	count;
+    uint32_t	hysteresis;
+    uint8_t	G;
+    uint8_t	R;
+    uint8_t	B;
+    callback_fp	callback;
+*/
+PIN_EVENT button1_event = {BUTTON_1, 1, 0, 0, SK6812_RED,   &delete_bonds};
+PIN_EVENT button2_event = {BUTTON_2, 1, 0, 0, SK6812_BLUE,  &enter_bootloader};
+PIN_EVENT button3_event = {BUTTON_3, 1, 0, 0, SK6812_GREEN, &delete_bonds};
 
-
-double temperature  = 0.0;
-double humidity	    = 0.0;
-uint32_t movement_count = 0;
-static volatile uint32_t manual_LED_timeout = 0;
-static uint8_t count = 0;
-
-
-static void check_button_press_animation (uint32_t pin, uint8_t * count, uint8_t Green, uint8_t Red, uint8_t Blue)
-{
-    uint8_t i;
-    static SK6812_WR_BUFFERs GRB;
-
-    
-
-    if(!nrf_gpio_pin_read(pin))
-    {
-
-	if(*count < NUMBER_OF_SK6812)
-	{
-	  *count += 1;
-	}
-
-	if(!proximo_tps_read_output())
-	{
-	    proximo_tps_on();
-	    nrf_delay_ms(10);
-	}
-
-
-	memset(&GRB, 0, sizeof(GRB));
-
-	for( uint8_t i = 0 ; i < (*count) ; i++)
-	{
-	  sk6812_write_buffer(&GRB, i, Green, Red, Blue);
-	}
-
-	sk6812_colour_string(&GRB);
-    }
-    else
-    {
-      if(*count != 0)
-      {
-	*count -= 1;
-
-        memset(&GRB, 0, sizeof(GRB));
-
-	for( uint8_t i = 0 ; i < (*count) ; i++)
-	{
-	  sk6812_write_buffer(&GRB, i, Green, Red, Blue);
-	}
-
-	sk6812_colour_string(&GRB);
-      }
-      else
-      {
-	if(proximo_tps_read_output())
-	{
-	    proximo_tps_off();
-	}
-      }
-    }
-}
 
 
 
@@ -154,7 +103,9 @@ static void rtc_handler(nrf_drv_rtc_int_type_t int_type)
         // Reset the compare counter of the RTC
         rtc_reload_compare();   
 	     
-       check_button_press_animation(BUTTON_1, &count, SK6812_BLUE);
+        check_button_press_animation(&button1_event);
+        check_button_press_animation(&button2_event);
+        check_button_press_animation(&button3_event);
 
         // print and the clear the number of movement pulses counted
         #ifdef PRINT_MEASUREMENT_RESULTS
@@ -163,11 +114,6 @@ static void rtc_handler(nrf_drv_rtc_int_type_t int_type)
     }
     else if (int_type == NRF_DRV_RTC_INT_TICK)
     {
-        bootloader_enter_timeout();
-
-        if(manual_LED_timeout != 0){
-          manual_LED_timeout -= 1;
-        }
     }
 }
 
@@ -214,42 +160,26 @@ static void app_timers_init(void)
 void bsp_event_handler(bsp_event_t event)
 {
     ret_code_t err_code;
-    static uint8_t index = 0;
-    uint8_t palet[7][3] = 
-    {
-        {SK6812_OFF},     //0
-        {SK6812_GREEN},   //1
-        {SK6812_RED},     //2
-        {SK6812_BLUE},    //3  
-        {SK6812_YELLOW},  //4
-        {SK6812_PURPLE},  //5
-        {SK6812_WHITE}    //6
-    }; 
+
 
     switch (event)
     {
         //  Button 1 - RED
         case BSP_EVENT_KEY_1:
             NRF_LOG_INFO("Button 1: Right");
-
-            if(index < 6){
-              index += 1;
-            }
             break;
 
         //  Button 2 - Blue.
         case BSP_EVENT_KEY_2:
 
             NRF_LOG_INFO("Button 2: Left");
-            if(index > 0){
-              index -= 1;
-            }
+
             break;
 
         //  Button 3 - Green
         case BSP_EVENT_KEY_0:
             NRF_LOG_INFO("Button 3: Down");
-            bootloader_enter_check();
+//            bootloader_enter_check();
             break;
 
         case BSP_EVENT_SLEEP:
@@ -265,9 +195,6 @@ void bsp_event_handler(bsp_event_t event)
         default:
             break;
     }
-//    delete_bonds();
-
-  //sk6812_blink_event(palet[index][0], palet[index][1], palet[index][2], 500, 500, 3);
 }
 
 
@@ -310,7 +237,6 @@ void app_error_fault_handler(uint32_t id, uint32_t pc, uint32_t info)
  */
 int main(void)
 {
-    uint32_t err_code;
     bool erase_bonds;
     
     // Initialize.
@@ -331,7 +257,7 @@ int main(void)
     conn_params_init();
     peer_manager_init();
 
-    event_init();
+    events_init();
 
     // Start execution.
     NRF_LOG_INFO("Proximo Application started.");
@@ -340,8 +266,17 @@ int main(void)
     twi_init();
     th06_init();
 
-    peer_list_load();
+    if(erase_bonds)
+    {
+	delete_bonds();
+    }
+    else
+    {
+	peer_list_load();
+    }
     advertising_start();
+
+//    sk6812_blink_event(SK6812_GREEN, 100, 100, 10);
 
 
     // Enter main loop.
@@ -349,7 +284,7 @@ int main(void)
     {
         if (NRF_LOG_PROCESS() == false)
         {
-          nrf_pwr_mgmt_run();
+	    nrf_pwr_mgmt_run();
         }
     }
 }

@@ -23,16 +23,16 @@ struct BUZZ_EVENT
 }BUZZ;
 
 
-static void enable_tps (void)
+static void enable_tps (uint8_t ms_delay)
 {
   if(!proximo_tps_read_output())
   {
     proximo_tps_on();
-    nrf_delay_ms(10);
+    nrf_delay_ms(ms_delay);
   }
 }
 
-static void disable_tps (void)
+void disable_tps_on_event_done (void)
 {
   if(proximo_tps_read_output() && (!BUZZ.event.on) && (!LED.event.on))
   {
@@ -90,26 +90,26 @@ void sk6812_timer_event(void * p_context)
 
     if(LED.event.flag)
     {
-      LED.event.count += 1;
+	LED.event.count += 1;
 
-      if(LED.event.count >= LED.event.count_threshold)
-      {
-        LED.event.on = false;
-        disable_tps();
-      }
-      else
-      {
-        sk6812_single_colour(SK6812_OFF);
-        start_timer(m_LED_id, LED.event.time_off);
-      }
+	if(LED.event.count >= LED.event.count_threshold)
+	{
+	  LED.event.on = false;
+	  disable_tps_on_event_done();
+	}
+	else
+	{
+	  sk6812_single_colour(SK6812_OFF);
+	  start_timer(m_LED_id, LED.event.time_off);
+	}
 
-      LED.event.flag = false;
+	LED.event.flag = false;
     }
     else
     {
-      sk6812_single_colour(LED.colour.G, LED.colour.R, LED.colour.B);
-      start_timer(m_LED_id, LED.event.time_on);
-      LED.event.flag = true;
+	sk6812_single_colour(LED.colour.G, LED.colour.R, LED.colour.B);
+	start_timer(m_LED_id, LED.event.time_on);
+	LED.event.flag = true;
     }
 }
 
@@ -144,7 +144,7 @@ bool sk6812_blink_event(uint8_t Green, uint8_t Red, uint8_t Blue, uint16_t on_ti
 
     LED.event.on = true;
 
-    enable_tps();
+    enable_tps(POWER_ON_DELAY);
 
     LED.event.count_threshold = blink_count;
     LED.event.count	= 0;
@@ -173,7 +173,7 @@ void buzz_timer_event(void * p_context)
       if(BUZZ.event.count >= BUZZ.event.count_threshold)
       {
         BUZZ.event.on = false;
-        disable_tps();
+        disable_tps_on_event_done();
       }
       else
       {
@@ -207,7 +207,7 @@ bool buzz_event(uint16_t frequency, uint8_t dutycycle, uint16_t on_time, uint16_
     BUZZ.event.time_on	  = on_time;
     BUZZ.event.time_off	  = off_time;
 
-    enable_tps();
+    enable_tps(POWER_ON_DELAY);
 
     start_timer(m_BUZZER_id, BUZZ.event.time_on);
     Buzz(BUZZ.dutycycle, BUZZ.frequency);
@@ -220,8 +220,116 @@ bool buzz_event(uint16_t frequency, uint8_t dutycycle, uint16_t on_time, uint16_
     return true;
 }
 
+static uint8_t button_press_animiation_pin_active = UINT8_MAX;
+static SK6812_WR_BUFFERs GRB;
 
-void event_init(void)
+void check_button_press_animation (PIN_EVENT * config_p)
+{
+    uint32_t current_pin_input;
+    
+
+    if(config_p == NULL)
+    {
+      return;
+    }
+
+    if(button_press_animiation_pin_active != UINT8_MAX && button_press_animiation_pin_active != config_p->pin)
+    {
+      return;
+    }
+
+    // Read the current state of the GPIO pin input.
+    current_pin_input = nrf_gpio_pin_read(config_p->pin);
+
+    if(config_p->hysteresis != 0)
+    {
+	if(current_pin_input != BUTTONS_ACTIVE_STATE)
+	{
+	    config_p->hysteresis -= 1;
+	}
+      
+	config_p->pin_last_input = current_pin_input;
+        disable_tps_on_event_done();
+	return;
+    }
+
+    // Check whether the current and last pin input do not match, then return
+    if(config_p->pin_last_input != current_pin_input)
+    {
+	config_p->pin_last_input = current_pin_input;
+	return;
+    }
+
+    if(current_pin_input == BUTTONS_ACTIVE_STATE)
+    {
+	if(config_p->count < NUMBER_OF_SK6812)
+	{
+	    button_press_animiation_pin_active = config_p->pin;
+	    // Clear the SK6812 buffer and then place the event's colour in the buffer for count times
+	    memset(&GRB, 0, sizeof(GRB));
+
+	    for(uint8_t i = 0 ; i < config_p->count ; i++)
+	    {
+	      sk6812_write_buffer(&GRB, i, config_p->G, config_p->R, config_p->B);
+	    }
+
+	    // Enable the boost converter when not already on.    
+	    if(config_p->count == 0)
+	    {
+	      sk6812_single_colour(SK6812_OFF);
+              enable_tps(1);
+	    }
+	    else
+	    {
+	      sk6812_colour_string(&GRB);
+	    }
+	    config_p->count += 1;
+	}
+	else
+	{
+	    // The maximum count is reached, set the hysteresis counter and call the function referenced by the function pointer if set.
+	    config_p->hysteresis  = PIN_HYSTERESIS;
+	    config_p->count	  = 0;
+
+            sk6812_blink_event(config_p->G, config_p->R, config_p->B, BUTTON_EVENT_BLINK);
+
+	    if(config_p->callback != NULL)
+	    {
+		config_p->callback();
+	    }
+	}
+    }
+    else
+    {
+	if(config_p->count != 0)
+	{
+	    config_p->count -= 1;
+
+	    // Clear the SK6812 buffer and then place the event's colour in the buffer for count times
+	    memset(&GRB, 0, sizeof(GRB));
+
+	    for(uint8_t i = 0 ; i < config_p->count ; i++)
+	    {
+		sk6812_write_buffer(&GRB, i, config_p->G, config_p->R, config_p->B);
+	    }
+
+	    // Enable the boost converter when not already on.
+  //          nrf_gpio_pin_write(SK6812_DIN_PIN, 1);
+	    enable_tps(10);
+	    sk6812_colour_string(&GRB);
+	}
+	else
+	{
+	    disable_tps_on_event_done();
+            button_press_animiation_pin_active = UINT8_MAX;
+	}
+    }
+
+    config_p->pin_last_input = current_pin_input;
+}
+
+
+void events_init(void)
 {
     ret_code_t	err_code;
 

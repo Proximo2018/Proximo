@@ -4,6 +4,7 @@
 #include "io.h"
 #include "ble_prox.h"
 #include "ble_conn_state.h" 
+#include "event.h"
 
 
 BLE_BAS_DEF(m_bas);                                                 /**< Structure used to identify the battery service. */
@@ -305,7 +306,9 @@ static void pm_evt_handler(pm_evt_t const * p_evt)
 {
     ret_code_t err_code;
 
-    NRF_LOG_INFO("PM event: %u", (uint32_t) p_evt->evt_id);
+    #if 0
+      NRF_LOG_INFO("PM event: %u", (uint32_t) p_evt->evt_id);
+    #endif
 
     switch (p_evt->evt_id)
     {
@@ -316,11 +319,13 @@ static void pm_evt_handler(pm_evt_t const * p_evt)
 
         case PM_EVT_CONN_SEC_SUCCEEDED:
         {
+	  #if 0
             NRF_LOG_INFO("Connection secured: role: %d, conn_handle: 0x%x, procedure: %d.",
                          ble_conn_state_role(p_evt->conn_handle),
                          p_evt->conn_handle,
                          p_evt->params.conn_sec_succeeded.procedure);
 	    m_peer_id = p_evt->peer_id;
+	  #endif
         } break;
 
         case PM_EVT_CONN_SEC_FAILED:
@@ -672,7 +677,6 @@ void on_adv_evt(ble_adv_evt_t ble_adv_evt)
 
             err_code = pm_whitelist_get(whitelist_addrs, &addr_cnt,
                                         whitelist_irks,  &irk_cnt);
-	    NRF_LOG_INFO("BLE_ADV_EVT_WHITELIST_REQUEST err_code: %u/%04X", err_code, err_code);
             APP_ERROR_CHECK(err_code);
             NRF_LOG_DEBUG("pm_whitelist_get returns %d addr in whitelist and %d irk whitelist",
                           addr_cnt, irk_cnt);
@@ -703,7 +707,7 @@ void ble_evt_handler(ble_evt_t const * p_ble_evt, void * p_context)
 {
     ret_code_t err_code;
 
-    #if 1
+    #if 0
       NRF_LOG_INFO("ble event: %u", (uint32_t)p_ble_evt->header.evt_id);
     #endif
 
@@ -865,9 +869,9 @@ void advertising_beacon_init(void)
     init.evt_handler = on_adv_evt;
     init.advdata.p_manuf_specific_data	  = &manuf_specific_data;
     init.advdata.name_type		  = BLE_ADVDATA_NO_NAME;
-    init.advdata.flags			  = flags;
-    
+    init.advdata.flags			  = flags;    
     init.advdata.flags			  = BLE_GAP_ADV_FLAGS_LE_ONLY_GENERAL_DISC_MODE;
+
     init.config.ble_adv_whitelist_enabled = true;
     init.config.ble_adv_fast_enabled	  = true;
     init.config.ble_adv_fast_interval	  = APP_FAST_ADV_INTERVAL;

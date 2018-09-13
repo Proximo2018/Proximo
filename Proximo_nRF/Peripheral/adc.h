@@ -19,6 +19,5 @@
     void start_saadc_timer(void);
     void saadc_init     (void);
     int16_t get_vcc     (void);
-    int16_t get_vldr    (void);
 
 #endif

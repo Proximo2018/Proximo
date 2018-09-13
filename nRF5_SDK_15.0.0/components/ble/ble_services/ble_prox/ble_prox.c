@@ -208,7 +208,9 @@ void ble_prox_on_ble_evt(ble_evt_t const * p_ble_evt, void * p_context)
 {
     ble_prox_t * p_prox = (ble_prox_t *) p_context;
 
-    NRF_LOG_INFO("Prox BLE Event %u", (uint32_t) p_ble_evt->header.evt_id);
+    #if 0
+      NRF_LOG_INFO("Prox BLE Event %u", (uint32_t) p_ble_evt->header.evt_id);
+    #endif
     
     if (p_prox == NULL || p_ble_evt == NULL)
     {
