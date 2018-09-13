@@ -23,6 +23,10 @@ struct BUZZ_EVENT
 }BUZZ;
 
 
+static uint8_t button_press_animiation_pin_active = UINT8_MAX;
+static SK6812_WR_BUFFERs GRB;
+
+
 static void enable_tps (uint8_t ms_delay)
 {
   if(!proximo_tps_read_output())
@@ -138,7 +142,8 @@ bool sk6812_blink_event(uint8_t Green, uint8_t Red, uint8_t Blue, uint16_t on_ti
 {
     uint32_t err_code;
 
-    if(LED.event.on){
+    // Do not restart a LED event or an button animation is already in progress. 
+    if(LED.event.on || button_press_animiation_pin_active == UINT8_MAX){
       return false;
     }
 
@@ -220,8 +225,7 @@ bool buzz_event(uint16_t frequency, uint8_t dutycycle, uint16_t on_time, uint16_
     return true;
 }
 
-static uint8_t button_press_animiation_pin_active = UINT8_MAX;
-static SK6812_WR_BUFFERs GRB;
+
 
 void check_button_press_animation (PIN_EVENT * config_p)
 {
@@ -314,8 +318,7 @@ void check_button_press_animation (PIN_EVENT * config_p)
 	    }
 
 	    // Enable the boost converter when not already on.
-  //          nrf_gpio_pin_write(SK6812_DIN_PIN, 1);
-	    enable_tps(10);
+	    enable_tps(POWER_ON_DELAY);
 	    sk6812_colour_string(&GRB);
 	}
 	else

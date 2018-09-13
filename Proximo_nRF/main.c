@@ -256,7 +256,6 @@ int main(void)
     services_init();
     conn_params_init();
     peer_manager_init();
-
     events_init();
 
     // Start execution.
@@ -275,9 +274,6 @@ int main(void)
 	peer_list_load();
     }
     advertising_start();
-
-//    sk6812_blink_event(SK6812_GREEN, 100, 100, 10);
-
 
     // Enter main loop.
     for (;;)

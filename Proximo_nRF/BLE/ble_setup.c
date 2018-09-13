@@ -13,7 +13,7 @@ NRF_BLE_GATT_DEF(m_gatt);                                           /**< GATT mo
 NRF_BLE_QWR_DEF(m_qwr);                                             /**< Context for the Queued Write module.*/
 BLE_ADVERTISING_DEF(m_advertising);                                 /**< Advertising module instance. */
 
-
+static ble_gap_adv_params_t m_adv_params; 
 static pm_peer_id_t  m_peer_id;                                             /**< Device reference handle to the current bonded central. */
 static pm_peer_id_t  m_whitelist_peers[BLE_GAP_WHITELIST_ADDR_MAX_COUNT];   /**< List of peers currently in the whitelist. */
 static uint32_t      m_whitelist_peer_cnt;                                  /**< Number of peers currently in the whitelist. */
@@ -62,8 +62,8 @@ static uint8_t m_beacon_info[APP_BEACON_INFO_LENGTH] =                    /**< I
                          // this implementation.
 };
 
-static uint8_t bootloader_timeout = 0;
-static uint8_t bootloader_enter_press_count = 0;
+//static uint8_t bootloader_timeout = 0;
+//static uint8_t bootloader_enter_press_count = 0;
 
 /**@brief Function for starting advertising.
  */
@@ -82,72 +82,6 @@ void advertising_stop(void)
     APP_ERROR_CHECK(err_code);
 }
 
-void bootloader_enter_timeout (void)
-{
-    // decrement the value of the timeout counter when the 
-    if(bootloader_timeout != 0)
-    {
-	bootloader_timeout -= 1;
-
-	#ifdef BUTTON_DEBUG  
-	  if((bootloader_timeout % 8) == 0){
-	    NRF_LOG_INFO("Bootloader Timeout: %u, Count: %u", bootloader_timeout, bootloader_enter_press_count);
-	  }
-	#endif
-    }
-    else
-    {
-	bootloader_timeout            = 0;
-	bootloader_enter_press_count  = 0;
-    }
-}
-
-void bootloader_enter_check(void)
-{
-  uint32_t button1, button2, button3;
-
-  button1 = nrf_gpio_pin_read(BUTTON_1);
-  button2 = nrf_gpio_pin_read(BUTTON_2);
-  button3 = nrf_gpio_pin_read(BUTTON_3);
-
-  /*
-  * When the left button is pressed down and the enter button is pressed three times, within BOOTLOADER_TIMEOUT_TIME number of seconds. The bootloader will be activated.
-  */
-  if((button2 == BUTTONS_ACTIVE_STATE) && (button3 == BUTTONS_ACTIVE_STATE))
-  {
-    if(bootloader_enter_press_count < BOOTLOADER_ENTER_PRESS_COUNT)
-    {
-      bootloader_timeout      = BOOTLOADER_TIMEOUT_TIME;
-      bootloader_enter_press_count += 1;
-      #ifdef BUTTON_DEBUG
-        NRF_LOG_INFO("Press Count: %u", bootloader_enter_press_count);
-      #endif
-    }
-    else
-    {
-      #ifdef BUTTON_DEBUG
-        NRF_LOG_INFO("Entering bootloader");
-      #endif
-      enter_bootloader();
-      
-    }
-  }
-  else
-  {
-    #ifdef BUTTON_DEBUG
-      NRF_LOG_INFO("Bootloader count reset, button1 %u, button2 %u, button3 %u", button1, button2, button3);
-    #endif
-
-    if((button2 != BUTTONS_ACTIVE_STATE) && (button3 != BUTTONS_ACTIVE_STATE))
-    {
-      #ifdef BUTTON_DEBUG
-        NRF_LOG_INFO("Bootloader count reset");
-      #endif
-      bootloader_timeout            = 0;
-      bootloader_enter_press_count  = 0;
-    }
-  }
-}
 
 void enter_bootloader (void)
 {
