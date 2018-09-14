@@ -93,8 +93,6 @@
   #define SEC_PARAM_MAX_KEY_SIZE              16                                      /**< Maximum encryption key size. */
 
   #define DEAD_BEEF                           0xDEADBEEF                              /**< Value used as error code on stack dump, can be used to identify stack location on stack unwind. */
-  #define BOOTLOADER_ENTER_PRESS_COUNT        3                                       /**< The number of button presses must be detected to enable the bootloader. */
-  #define BOOTLOADER_TIMEOUT_TIME             (10 * 8)                                /**< The number of seconds the bootloader timeout counter has to receive the next button press before the presscount value is cleared*/  
 
   /* Bootloader functions */
   void bootloader_enter_check   (void);

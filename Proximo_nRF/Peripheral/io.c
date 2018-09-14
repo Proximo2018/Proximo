@@ -1,5 +1,5 @@
 #include "io.h"
-
+#include "nrf_delay.h"
 
 void proximo_io_init(void)
 {
@@ -64,6 +64,15 @@ __inline uint32_t proximo_tps_read_output(void)
   return nrf_gpio_pin_out_read(TPS_EN_PIN);
 }
 
+
+void enable_tps (uint8_t ms_delay)
+{
+  if(!proximo_tps_read_output())
+  {
+    proximo_tps_on();
+    nrf_delay_ms(ms_delay);
+  }
+}
 
 
 

@@ -45,25 +45,6 @@ static void on_disconnect(ble_prox_t * p_prox, ble_evt_t const * p_ble_evt)
     p_prox->evt_handler(p_prox, &evt);
 }
 
-///**@brief Function for handling the Write event.
-// *
-// * @param[in]   p_prox       Proximo Service structure.
-// * @param[in]   p_ble_evt   Event received from the BLE stack.
-// */
-//static void on_write(ble_prox_t * p_prox, ble_evt_t const * p_ble_evt)
-//{
-//    ble_gatts_evt_write_t const * p_evt_write = &p_ble_evt->evt.gatts_evt.params.write;
-//    NRF_LOG_INFO("Proximo Event");
-//    
-//    // Proximo Value Characteristic Written to.
-//    if (p_evt_write->handle == p_prox->buzzer_charr.value_handle || p_evt_write->handle == p_prox->led_charr.value_handle)
-//    {
-//	NRF_LOG_INFO("Proximo Write");
-//    }
-//}
-
-
-
 
 
 static void on_write_authorize_request(ble_prox_t * p_prox, ble_gatts_evt_t const * p_gatts_evt)
@@ -116,7 +97,11 @@ static void on_write_authorize_request(ble_prox_t * p_prox, ble_gatts_evt_t cons
               off_time,
               blink_count);
 
-
+	  /*
+	  * Green FF0000006400640A
+	  * Red	  00FF00006400640A
+	  * Blue  0000FF006400640A
+	  */
           if(sk6812_blink_event(Green, Red, Blue, on_time, off_time, blink_count))
           {
             auth_reply.params.write.gatt_status = BLE_GATT_STATUS_SUCCESS;

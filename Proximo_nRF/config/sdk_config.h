@@ -216,7 +216,7 @@
 // <4=> Debug 
 
 #ifndef BLE_BAS_CONFIG_LOG_LEVEL
-#define BLE_BAS_CONFIG_LOG_LEVEL 3
+#define BLE_BAS_CONFIG_LOG_LEVEL 1
 #endif
 
 // <o> BLE_BAS_CONFIG_INFO_COLOR  - ANSI escape code prefix.

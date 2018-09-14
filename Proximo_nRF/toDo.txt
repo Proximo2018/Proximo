@@ -30,9 +30,8 @@ X	TUV test data ophalen -> Patrick Noordhoek
                 X       Link count verhogen.
 		X	BAS. Batterij percentage
                 X       calculate battery percentage
-                -       Connectable voor X seconden na druk knop
                 -       Release met bootloader testen
-                -       disable LEDs and other functionality under certain voltage treshold
+                X       disable LEDs and other functionality under certain voltage treshold
                 -       Testen met batterijen
         8.      Code better commentarierien
         9.      programma/batch file schrijven voor programmeren Proximo' definitieve firmware + beschrijven UICR register

@@ -7,6 +7,7 @@
 #include "nrf_delay.h"
 #include "proximo_board.h"
 #include "io.h"
+#include "adc.h"
 
 static volatile bool init = false;
 static nrf_drv_pwm_t m_pwm1 = NRF_DRV_PWM_INSTANCE(1);
@@ -79,14 +80,52 @@ static void sk6812_write_byte_to_pwm_buffer(uint8_t colour, uint16_t * offset)
 }
 
 
+uint8_t determine_brightness_reduction(void)
+{
+    const uint8_t threshold_1 = 80;
+    const uint8_t threshold_2 = 60;
+    const uint8_t threshold_3 = 40;
+    const uint8_t threshold_4 = 20;
+    uint8_t battery_percentage;
+
+    battery_percentage = get_bat_percentage();
+
+    if(battery_percentage > threshold_1)
+    {
+      return BRIGHTNESS_REDUCTION_MAX -4;
+    }
+    else if(battery_percentage <= threshold_1 && battery_percentage < threshold_2)
+    {
+      return BRIGHTNESS_REDUCTION_MAX - 3;
+    }
+    else if(battery_percentage <= threshold_2 && battery_percentage < threshold_3)
+    {
+      return BRIGHTNESS_REDUCTION_MAX - 2;
+    }
+    else if(battery_percentage <= threshold_3 && battery_percentage < threshold_4)
+    {
+      return BRIGHTNESS_REDUCTION_MAX - 1;
+    }
+    else
+    {
+      return BRIGHTNESS_REDUCTION_MAX;
+    }
+}
 
 
 
 
-void sk6812_single_colour(uint8_t Green, uint8_t Red, uint8_t Blue)
+
+
+void sk6812_single_colour(uint8_t Green, uint8_t Red, uint8_t Blue, uint8_t brightness_reduction)
 {
     uint32_t err;
     uint16_t offset, i;
+
+    if(brightness_reduction >= BRIGHTNESS_REDUCTION_MAX)
+    {
+      return;
+    }
 
     if(!init){
       sk6812_pwm_init();
@@ -95,9 +134,9 @@ void sk6812_single_colour(uint8_t Green, uint8_t Red, uint8_t Blue)
     offset = 0;
 
     //  Set the bits for the GRB bytes
-    sk6812_write_byte_to_pwm_buffer(Green >> BRIGHTNESS_REDUCTION, &offset);
-    sk6812_write_byte_to_pwm_buffer(Red   >> BRIGHTNESS_REDUCTION, &offset);
-    sk6812_write_byte_to_pwm_buffer(Blue  >> BRIGHTNESS_REDUCTION, &offset);
+    sk6812_write_byte_to_pwm_buffer(Green >> brightness_reduction, &offset);
+    sk6812_write_byte_to_pwm_buffer(Red   >> brightness_reduction, &offset);
+    sk6812_write_byte_to_pwm_buffer(Blue  >> brightness_reduction, &offset);
 
     nrf_pwm_sequence_t const seq =
     {
@@ -116,15 +155,16 @@ void sk6812_single_colour(uint8_t Green, uint8_t Red, uint8_t Blue)
 
 
 
-void sk6812_colour_string(SK6812_WR_BUFFERs * GRB)
+void sk6812_colour_string(SK6812_WR_BUFFERs * GRB, uint8_t brightness_reduction)
 {
     uint16_t  offset;
     uint8_t   n, G, R, B, LED_index, row, column;
     uint32_t  err;
 
-    if(GRB == NULL){
+    if(GRB == NULL || brightness_reduction >= BRIGHTNESS_REDUCTION_MAX){
         return;
     }
+
 
     if(!init){
       sk6812_pwm_init();
@@ -138,9 +178,9 @@ void sk6812_colour_string(SK6812_WR_BUFFERs * GRB)
 	for(column = 0 ; column < NUMBER_OF_COLUMNS ; column++)
 	{
 	    LED_index = (column * NUMBER_OF_COLUMNS) + ((NUMBER_OF_ROWS - row - 1) * NUMBER_OF_COLUMNS * NUMBER_OF_ROWS);
-	    G = GRB->data[LED_index + 0U] >> BRIGHTNESS_REDUCTION;
-	    R = GRB->data[LED_index + 1U] >> BRIGHTNESS_REDUCTION;
-	    B = GRB->data[LED_index + 2U] >> BRIGHTNESS_REDUCTION;
+	    G = GRB->data[LED_index + 0U] >> brightness_reduction;
+	    R = GRB->data[LED_index + 1U] >> brightness_reduction;
+	    B = GRB->data[LED_index + 2U] >> brightness_reduction;
 
 	    sk6812_write_byte_to_pwm_buffer(G, &offset);
 	    sk6812_write_byte_to_pwm_buffer(R, &offset);

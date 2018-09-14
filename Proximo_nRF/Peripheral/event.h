@@ -42,7 +42,7 @@
   }PIN_EVENT;
 
 
-
+  bool lED_event_complete	    (void);
   void disable_tps_on_event_done    (void);
   void sk6812_timer_event	    (void * p_context);
   bool alarm_blink		    (uint16_t on_time, uint16_t off_time, uint8_t repeat);
@@ -50,6 +50,7 @@
   bool buzz_event		    (uint16_t frequency, uint8_t dutycycle, uint16_t on_time, uint16_t off_time, uint8_t repeat);
   void events_init		    (void);
   void check_button_press_animation (PIN_EVENT * config_p);
+  uint8_t get_bat_percentage	    (void);
 
 
 #endif

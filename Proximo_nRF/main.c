@@ -72,8 +72,9 @@
 #include "system.h"
 #include "event.h"
 
-
-
+static volatile bool bootloader_en = false;
+static void enable_enter_bootloader (void);
+APP_TIMER_DEF(m_BUTTONS_id);
 
 /*
     uint32_t	pin;
@@ -85,36 +86,20 @@
     uint8_t	B;
     callback_fp	callback;
 */
-PIN_EVENT button1_event = {BUTTON_1, 1, 0, 0, SK6812_RED,   &delete_bonds};
-PIN_EVENT button2_event = {BUTTON_2, 1, 0, 0, SK6812_BLUE,  &enter_bootloader};
-PIN_EVENT button3_event = {BUTTON_3, 1, 0, 0, SK6812_GREEN, &delete_bonds};
+PIN_EVENT button1_event = {BUTTON_1, 1, 0, 0, SK6812_RED,   &enable_enter_bootloader};
+PIN_EVENT button2_event = {BUTTON_2, 1, 0, 0, SK6812_BLUE,  &delete_bonds};
+PIN_EVENT button3_event = {BUTTON_3, 1, 0, 0, SK6812_GREEN, &advertising_start};
 
 
 
 
-/** @brief: Function for handling the RTC0 interrupts.
- * Triggered on TICK and COMPARE0 match.
+/** @brief: Function for handling the button animations.
  */
-static void rtc_handler(nrf_drv_rtc_int_type_t int_type)
+void button_timer_event(void * p_context)
 {
-    uint32_t err_code;
-    if (int_type == NRF_DRV_RTC_INT_COMPARE0)
-    {
-        // Reset the compare counter of the RTC
-        rtc_reload_compare();   
-	     
-        check_button_press_animation(&button1_event);
-        check_button_press_animation(&button2_event);
-        check_button_press_animation(&button3_event);
-
-        // print and the clear the number of movement pulses counted
-        #ifdef PRINT_MEASUREMENT_RESULTS
-            NRF_LOG_INFO("Movement count: %u", movementCount);
-        #endif
-    }
-    else if (int_type == NRF_DRV_RTC_INT_TICK)
-    {
-    }
+    check_button_press_animation(&button1_event);
+    check_button_press_animation(&button2_event);
+    check_button_press_animation(&button3_event);
 }
 
 
@@ -147,6 +132,16 @@ static void app_timers_init(void)
 
     // Initialize timer module.
     err_code = app_timer_init();
+    APP_ERROR_CHECK(err_code);
+
+    err_code = app_timer_create(&m_BUTTONS_id, APP_TIMER_MODE_REPEATED, button_timer_event);
+    APP_ERROR_CHECK(err_code);    
+}
+
+static void app_timers_start(void)
+{
+    ret_code_t err_code;
+    err_code = app_timer_start(m_BUTTONS_id, APP_TIMER_TICKS(500), NULL);
     APP_ERROR_CHECK(err_code);
 }
 
@@ -200,15 +195,13 @@ void bsp_event_handler(bsp_event_t event)
 
 
 
-static void buttons_init(bool * p_erase_bonds)
+static void buttons_init(void)
 {
     ret_code_t err_code;
     bsp_event_t startup_event;
 
     err_code = bsp_init(BSP_INIT_BUTTONS, bsp_event_handler);
     APP_ERROR_CHECK(err_code);
-
-    *p_erase_bonds = (startup_event == BSP_EVENT_CLEAR_BONDING_DATA);
 }
 
 
@@ -225,10 +218,25 @@ static void log_init(void)
 
 void app_error_fault_handler(uint32_t id, uint32_t pc, uint32_t info)
 {
-  #if 0
-    bsp_board_leds_on();
     app_error_save_and_stop(id, pc, info);
-  #endif
+}
+
+static void enable_enter_bootloader (void)
+{
+  bootloader_en = true;
+}
+
+static void check_enter_bootloader (void)
+{
+  if(!bootloader_en)
+  {
+    return;
+  }
+
+  if(lED_event_complete())
+  {
+      enter_bootloader();
+  }
 }
 
 
@@ -236,17 +244,14 @@ void app_error_fault_handler(uint32_t id, uint32_t pc, uint32_t info)
 /**@brief Function for application main entry.
  */
 int main(void)
-{
-    bool erase_bonds;
-    
+{  
     // Initialize.
     log_init();
     lfclk_config();
     app_timers_init();
-    buttons_init(&erase_bonds);
+    buttons_init();
     proximo_io_init();
     start_saadc_timer();
-    rtc_config(&rtc_handler);
     movement_init();
     power_management_init();
     ble_stack_init();
@@ -258,26 +263,21 @@ int main(void)
     peer_manager_init();
     events_init();
 
+    twi_init();
+    th06_init();
+    peer_list_load();
+    advertising_start();
+    app_timers_start();
+
     // Start execution.
     NRF_LOG_INFO("Proximo Application started.");
     NRF_LOG_FLUSH();
 
-    twi_init();
-    th06_init();
-
-    if(erase_bonds)
-    {
-	delete_bonds();
-    }
-    else
-    {
-	peer_list_load();
-    }
-    advertising_start();
-
     // Enter main loop.
     for (;;)
     {
+	//check_enter_bootloader();
+
         if (NRF_LOG_PROCESS() == false)
         {
 	    nrf_pwr_mgmt_run();

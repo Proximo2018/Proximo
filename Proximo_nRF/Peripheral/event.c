@@ -1,4 +1,5 @@
 #include "event.h"
+#include "adc.h" 
 
 APP_TIMER_DEF(m_LED_id);
 APP_TIMER_DEF(m_ALARM_id);
@@ -26,15 +27,11 @@ struct BUZZ_EVENT
 static uint8_t button_press_animiation_pin_active = UINT8_MAX;
 static SK6812_WR_BUFFERs GRB;
 
-
-static void enable_tps (uint8_t ms_delay)
+bool lED_event_complete (void)
 {
-  if(!proximo_tps_read_output())
-  {
-    proximo_tps_on();
-    nrf_delay_ms(ms_delay);
-  }
+  return !LED.event.on;
 }
+
 
 void disable_tps_on_event_done (void)
 {
@@ -103,7 +100,7 @@ void sk6812_timer_event(void * p_context)
 	}
 	else
 	{
-	  sk6812_single_colour(SK6812_OFF);
+	  sk6812_single_colour(SK6812_OFF, determine_brightness_reduction());
 	  start_timer(m_LED_id, LED.event.time_off);
 	}
 
@@ -111,7 +108,7 @@ void sk6812_timer_event(void * p_context)
     }
     else
     {
-	sk6812_single_colour(LED.colour.G, LED.colour.R, LED.colour.B);
+	sk6812_single_colour(LED.colour.G, LED.colour.R, LED.colour.B, determine_brightness_reduction());
 	start_timer(m_LED_id, LED.event.time_on);
 	LED.event.flag = true;
     }
@@ -143,7 +140,7 @@ bool sk6812_blink_event(uint8_t Green, uint8_t Red, uint8_t Blue, uint16_t on_ti
     uint32_t err_code;
 
     // Do not restart a LED event or an button animation is already in progress. 
-    if(LED.event.on || button_press_animiation_pin_active == UINT8_MAX){
+    if(LED.event.on /*|| button_press_animiation_pin_active != UINT8_MAX*/){
       return false;
     }
 
@@ -160,7 +157,7 @@ bool sk6812_blink_event(uint8_t Green, uint8_t Red, uint8_t Blue, uint16_t on_ti
     LED.colour.B	= Blue;
     LED.event.flag	= true;
 
-    sk6812_single_colour(LED.colour.G, LED.colour.R, LED.colour.B);
+    sk6812_single_colour(LED.colour.G, LED.colour.R, LED.colour.B, determine_brightness_reduction());
     start_timer(m_LED_id, LED.event.time_on);
     return true;
 }
@@ -182,7 +179,7 @@ void buzz_timer_event(void * p_context)
       }
       else
       {
-        sk6812_single_colour(SK6812_OFF);
+        sk6812_single_colour(SK6812_OFF, determine_brightness_reduction());
         start_timer(m_BUZZER_id, BUZZ.event.time_off);
       }
       BUZZ.event.flag = false;
@@ -220,7 +217,7 @@ bool buzz_event(uint16_t frequency, uint8_t dutycycle, uint16_t on_time, uint16_
     // Set the LED off, as they randomly lightup when the boost converter is started
     if(!LED.event.on)
     {
-	sk6812_single_colour(SK6812_OFF);
+	sk6812_single_colour(SK6812_OFF, determine_brightness_reduction());
     }
     return true;
 }
@@ -269,6 +266,7 @@ void check_button_press_animation (PIN_EVENT * config_p)
 	if(config_p->count < NUMBER_OF_SK6812)
 	{
 	    button_press_animiation_pin_active = config_p->pin;
+	    
 	    // Clear the SK6812 buffer and then place the event's colour in the buffer for count times
 	    memset(&GRB, 0, sizeof(GRB));
 
@@ -280,12 +278,14 @@ void check_button_press_animation (PIN_EVENT * config_p)
 	    // Enable the boost converter when not already on.    
 	    if(config_p->count == 0)
 	    {
-	      sk6812_single_colour(SK6812_OFF);
+	      
+	      sk6812_single_colour(SK6812_OFF, determine_brightness_reduction());
               enable_tps(1);
 	    }
 	    else
 	    {
-	      sk6812_colour_string(&GRB);
+	      
+	      sk6812_colour_string(&GRB, determine_brightness_reduction());
 	    }
 	    config_p->count += 1;
 	}
@@ -295,6 +295,7 @@ void check_button_press_animation (PIN_EVENT * config_p)
 	    config_p->hysteresis  = PIN_HYSTERESIS;
 	    config_p->count	  = 0;
 
+	    button_press_animiation_pin_active = UINT8_MAX;
             sk6812_blink_event(config_p->G, config_p->R, config_p->B, BUTTON_EVENT_BLINK);
 
 	    if(config_p->callback != NULL)
@@ -319,7 +320,7 @@ void check_button_press_animation (PIN_EVENT * config_p)
 
 	    // Enable the boost converter when not already on.
 	    enable_tps(POWER_ON_DELAY);
-	    sk6812_colour_string(&GRB);
+	    sk6812_colour_string(&GRB, determine_brightness_reduction());
 	}
 	else
 	{

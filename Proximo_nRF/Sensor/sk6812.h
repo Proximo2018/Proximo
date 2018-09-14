@@ -3,15 +3,10 @@
 #ifndef SK6812_H
 #define SK6812_H
 
-
-#ifdef __cplusplus
-extern "C" {
-#endif
-
   #include <stdint.h>
   #include <stdbool.h>
 
-  #define BRIGHTNESS_REDUCTION 4
+  #define BRIGHTNESS_REDUCTION_MAX 8
 
   // Buffer definitions
   #define NUMBER_OF_SK6812  9U
@@ -51,15 +46,10 @@ extern "C" {
 
 
 
-  void sk6812_init		    (void);
-  void sk6812_single_colour	    (uint8_t Green, uint8_t Red, uint8_t Blue);
-  void sk6812_colour_string	    (SK6812_WR_BUFFERs * GRB);
-  void sk6812_write_buffer	    (SK6812_WR_BUFFERs * GRB, uint8_t index, uint8_t Green, uint8_t Red, uint8_t Blue);
-  void sk6812_single_colour_blink   (uint8_t Green, uint8_t Red, uint8_t Blue, uint16_t on_time, uint16_t off_time, uint8_t blink_count);
-
-#ifdef __cplusplus
-}
-#endif
-
+  void	sk6812_init			  (void);
+  void	sk6812_single_colour		  (uint8_t Green, uint8_t Red, uint8_t Blue, uint8_t brightness_reduction);
+  void	sk6812_colour_string		  (SK6812_WR_BUFFERs * GRB, uint8_t brightness_reduction);
+  void	sk6812_write_buffer		  (SK6812_WR_BUFFERs * GRB, uint8_t index, uint8_t Green, uint8_t Red, uint8_t Blue);
+  uint8_t determine_brightness_reduction  (void);
 
 #endif
