@@ -97,7 +97,7 @@ static void on_write_authorize_request(ble_prox_t * p_prox, ble_gatts_evt_t cons
               off_time,
               blink_count);
 
-	  /*
+	  /* BLE test commands
 	  * Green FF0000006400640A
 	  * Red	  00FF00006400640A
 	  * Blue  0000FF006400640A

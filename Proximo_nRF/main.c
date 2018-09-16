@@ -87,9 +87,11 @@ APP_TIMER_DEF(m_BUTTONS_id);
     callback_fp	callback;
 */
 PIN_EVENT button1_event = {BUTTON_1, 1, 0, 0, SK6812_RED,   &enable_enter_bootloader};
-PIN_EVENT button2_event = {BUTTON_2, 1, 0, 0, SK6812_BLUE,  &delete_bonds};
-PIN_EVENT button3_event = {BUTTON_3, 1, 0, 0, SK6812_GREEN, &advertising_start};
-
+PIN_EVENT button2_event = {BUTTON_3, 1, 0, 0, SK6812_BLUE,  &delete_bonds};
+PIN_EVENT button3_event = {BUTTON_2, 1, 0, 0, SK6812_GREEN, &button_adv_start};
+//PIN_EVENT button1_event = {BUTTON_1, 1, 0, 0, SK6812_RED,   NULL};
+//PIN_EVENT button2_event = {BUTTON_3, 1, 0, 0, SK6812_BLUE,  NULL};
+//PIN_EVENT button3_event = {BUTTON_2, 1, 0, 0, SK6812_GREEN, NULL};
 
 
 
@@ -116,7 +118,12 @@ void button_timer_event(void * p_context)
  */
 void assert_nrf_callback(uint16_t line_num, const uint8_t * p_file_name)
 {
-    app_error_handler(DEAD_BEEF, line_num, p_file_name);
+    #ifdef DEBUG
+      NRF_LOG_ERROR("Fatal Error on line %u, file: %s", line_num, p_file_name);
+      NRF_LOG_INFO("Fatal Error on line %u, file: %s", line_num, p_file_name);
+      NRF_LOG_FLUSH();
+      app_error_handler(DEAD_BEEF, line_num, p_file_name);
+    #endif
 }
 
 
@@ -166,19 +173,15 @@ void bsp_event_handler(bsp_event_t event)
 
         //  Button 2 - Blue.
         case BSP_EVENT_KEY_2:
-
             NRF_LOG_INFO("Button 2: Left");
-
             break;
 
         //  Button 3 - Green
         case BSP_EVENT_KEY_0:
             NRF_LOG_INFO("Button 3: Down");
-//            bootloader_enter_check();
             break;
 
         case BSP_EVENT_SLEEP:
-            sleep_mode_enter();
             break;
 
         case BSP_EVENT_DISCONNECT:
@@ -218,7 +221,12 @@ static void log_init(void)
 
 void app_error_fault_handler(uint32_t id, uint32_t pc, uint32_t info)
 {
+  #ifdef DEBUG
+    NRF_LOG_ERROR("Fatal Error id: %u on pc %u, info: %u", id, pc, info);
+    NRF_LOG_INFO("Fatal Error id: %u on pc %u, info: %u", id, pc, info);
+    NRF_LOG_FLUSH();
     app_error_save_and_stop(id, pc, info);
+  #endif
 }
 
 static void enable_enter_bootloader (void)
@@ -228,15 +236,15 @@ static void enable_enter_bootloader (void)
 
 static void check_enter_bootloader (void)
 {
-  if(!bootloader_en)
-  {
-    return;
-  }
+    if(!bootloader_en)
+    {
+      return;
+    }
 
-  if(lED_event_complete())
-  {
-      enter_bootloader();
-  }
+    if(lED_event_complete())
+    {
+        enter_bootloader();
+    }
 }
 
 
@@ -272,15 +280,17 @@ int main(void)
     // Start execution.
     NRF_LOG_INFO("Proximo Application started.");
     NRF_LOG_FLUSH();
+    measure_vcc(NULL);
 
     // Enter main loop.
     for (;;)
     {
-	//check_enter_bootloader();
+        // Reset the SK6812
+        check_enter_bootloader();
 
         if (NRF_LOG_PROCESS() == false)
         {
-	    nrf_pwr_mgmt_run();
+          nrf_pwr_mgmt_run();
         }
     }
 }

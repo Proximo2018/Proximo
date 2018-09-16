@@ -30,7 +30,7 @@ static ble_uuid_t m_adv_uuids[] =                                   /**< Univers
 
 static uint8_t              m_adv_handle = BLE_GAP_ADV_SET_HANDLE_NOT_SET; /**< Advertising handle used to identify an advertising set. */
 static uint8_t              m_enc_advdata[BLE_GAP_ADV_SET_DATA_SIZE_MAX];  /**< Buffer for storing an encoded advertising set. */
-
+static volatile bool advertising_on = false;
 
 
 static uint8_t m_beacon_info[APP_BEACON_INFO_LENGTH] =                    /**< Information advertised by the Beacon. */
@@ -46,24 +46,56 @@ static uint8_t m_beacon_info[APP_BEACON_INFO_LENGTH] =                    /**< I
                          // this implementation.
 };
 
+void button_adv_start(void)
+{
+//  advertising_stop();
+  advertising_start();
+}
 
 /**@brief Function for starting advertising.
  */
 void advertising_start(void)
 {
     ret_code_t err_code;
+
+    if(advertising_on)
+    {
+      err_code = sd_ble_gap_adv_stop(m_advertising.adv_handle);
+      if(err_code == NRF_SUCCESS)
+      {
+        advertising_on = false;
+      }
+    }
+
     err_code = ble_advertising_start(&m_advertising, BLE_ADV_MODE_FAST);
+//    NRF_LOG_INFO("Advertising Error_code: %u/%04X", err_code, err_code);
+    if(err_code == NRF_SUCCESS)
+    {
+      advertising_on = true;
+    }
     APP_ERROR_CHECK(err_code);
 
-    NRF_LOG_INFO("Advertising started")
+    NRF_LOG_INFO("Advertising started");
 }
 
 void advertising_stop(void)
 {
     ret_code_t err_code;
-    err_code = sd_ble_gap_adv_stop(m_advertising.adv_handle);
-    APP_ERROR_CHECK(err_code);
-    NRF_LOG_INFO("Advertising stopped")
+
+    if(advertising_on)
+    {
+      err_code = sd_ble_gap_adv_stop(m_advertising.adv_handle);
+      if(err_code == NRF_SUCCESS)
+      {
+        advertising_on = false;
+      }
+      APP_ERROR_CHECK(err_code);
+      NRF_LOG_INFO("Advertising stopped");
+    }
+    else
+    {
+      NRF_LOG_INFO("Device isn't advertising");
+    }
 }
 
 static void advertising_restart (void)
@@ -74,8 +106,7 @@ static void advertising_restart (void)
 
   if(per_count < NRF_SDH_BLE_PERIPHERAL_LINK_COUNT)
   {
-      err_code = ble_advertising_start(&m_advertising,BLE_ADV_MODE_FAST);
-      APP_ERROR_CHECK(err_code);
+      advertising_start();
       NRF_LOG_INFO("Advertising Restarted, current count %u", per_count);
   }
   else
@@ -181,14 +212,19 @@ void delete_bonds(void)
 {
     ret_code_t err_code;
 
+    advertising_stop();
+
     NRF_LOG_INFO("Erase bonds!");
 
     err_code = pm_peers_delete();
+    NRF_LOG_INFO("Delete bonds Error_code: %u/%04X", err_code, err_code);
     APP_ERROR_CHECK(err_code);
 
     // Retrieve the cleared whitelist
     m_whitelist_peer_cnt = (sizeof(m_whitelist_peers) / sizeof(pm_peer_id_t));
     peer_list_get(m_whitelist_peers, &m_whitelist_peer_cnt);
+
+    advertising_start();
 }
 
 /**@brief Function for handling the Custom Service Service events.

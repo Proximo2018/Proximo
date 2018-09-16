@@ -64,8 +64,14 @@ __inline uint32_t proximo_tps_read_output(void)
   return nrf_gpio_pin_out_read(TPS_EN_PIN);
 }
 
-
-void enable_tps (uint8_t ms_delay)
+/*
+  nrf_gpio_pin_write(SK6812_DIN_PIN, 1);
+  nrf_delay_ms(1);
+  nrf_gpio_pin_write(SK6812_DIN_PIN, 0);
+  nrf_delay_ms(1);
+  nrf_gpio_pin_write(SK6812_DIN_PIN, 1);
+*/
+void enable_tps (uint16_t ms_delay)
 {
   if(!proximo_tps_read_output())
   {
@@ -73,6 +79,7 @@ void enable_tps (uint8_t ms_delay)
     nrf_delay_ms(ms_delay);
   }
 }
+
 
 
 

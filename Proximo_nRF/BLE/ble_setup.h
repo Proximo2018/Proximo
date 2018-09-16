@@ -94,6 +94,8 @@
 
   #define DEAD_BEEF                           0xDEADBEEF                              /**< Value used as error code on stack dump, can be used to identify stack location on stack unwind. */
 
+void button_adv_start(void);
+
   /* Bootloader functions */
   void bootloader_enter_check   (void);
   void bootloader_enter_timeout (void);

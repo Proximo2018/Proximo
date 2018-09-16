@@ -36,4 +36,24 @@ X	TUV test data ophalen -> Patrick Noordhoek
         8.      Code better commentarierien
         9.      programma/batch file schrijven voor programmeren Proximo' definitieve firmware + beschrijven UICR register
 
-	
+na het activeren van de error_handler werkt de code niet meer zoals bedacht. De functionaliteit die gekoppeld is aan de 
+LED animatie creeren errors. Al kan ik dit niet goed controleren, aangezien DEADBEEF wordt aangeroepen, maar breakpoints niet 
+worden geactiveerd tijdens debugging.
+
+observaties:
+- Geldt voor alle functies. Ligt dit aan de functie pointers of aan de functies zelf + softdevice?
+- Alle function pointers op null gaat goed.
+- commenting ble_advertising_start() lost het probleem op voor die enkele pin.     
+
+- met app_error_save_and_stop functie werkt pin 2 niet.
+void app_error_fault_handler(uint32_t id, uint32_t pc, uint32_t info)
+{
+    app_error_save_and_stop(id, pc, info);
+}  
+observaties:
+- button press voor start_advertising start de bootloader direct.
+- Het verwissen van functionaliteit met een andere pin werkt de originele functionaliteit wel en de functionaliteit onder pin2 (p0.17) niet.
+-   #define BUTTON_2         17 //  Pushbutton 2: Left
+- Start_adv button werkt niet wanneer de advertising uit is. 
+
+- Alle functionaliteit werkt normaal wanneer toegevoegd aan de bsp_event handler, maar niet met 

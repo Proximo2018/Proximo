@@ -73,6 +73,7 @@ void saadc_callback(nrf_drv_saadc_evt_t const * p_event)
 
 void measure_vcc(void * p_context)
 {
+    UNUSED_PARAMETER(p_context);
     uint32_t err_code;
 
     //Set SAADC as initialized

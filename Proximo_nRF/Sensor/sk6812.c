@@ -87,6 +87,7 @@ uint8_t determine_brightness_reduction(void)
     const uint8_t threshold_3 = 40;
     const uint8_t threshold_4 = 20;
     uint8_t battery_percentage;
+    uint8_t retval = 0;
 
     battery_percentage = get_bat_percentage();
 
@@ -94,22 +95,25 @@ uint8_t determine_brightness_reduction(void)
     {
       return BRIGHTNESS_REDUCTION_MAX -4;
     }
-    else if(battery_percentage <= threshold_1 && battery_percentage < threshold_2)
+    else if(battery_percentage <= threshold_1 && battery_percentage > threshold_2)
     {
-      return BRIGHTNESS_REDUCTION_MAX - 3;
+      retval = BRIGHTNESS_REDUCTION_MAX - 3;
     }
-    else if(battery_percentage <= threshold_2 && battery_percentage < threshold_3)
+    else if(battery_percentage <= threshold_2 && battery_percentage > threshold_3)
     {
-      return BRIGHTNESS_REDUCTION_MAX - 2;
+      retval = BRIGHTNESS_REDUCTION_MAX - 2;
     }
-    else if(battery_percentage <= threshold_3 && battery_percentage < threshold_4)
+    else if(battery_percentage <= threshold_3 && battery_percentage > threshold_4)
     {
-      return BRIGHTNESS_REDUCTION_MAX - 1;
+      retval = BRIGHTNESS_REDUCTION_MAX - 1;
     }
     else
     {
-      return BRIGHTNESS_REDUCTION_MAX;
+      retval = BRIGHTNESS_REDUCTION_MAX;
     }
+
+    NRF_LOG_INFO("Battery percentage: %u, Brightness Reduction: %u", battery_percentage, retval);
+    return retval;
 }
 
 
