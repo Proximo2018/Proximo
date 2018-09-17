@@ -175,8 +175,8 @@ Discarded input sections
  .debug_macro   0x0000000000000000       0x1c Output/secure_bootloader_ble_s132_pca10040 Release/Obj/app_error_weak.o
  .debug_macro   0x0000000000000000       0x1c Output/secure_bootloader_ble_s132_pca10040 Release/Obj/app_error_weak.o
  .debug_macro   0x0000000000000000      0x10d Output/secure_bootloader_ble_s132_pca10040 Release/Obj/app_error_weak.o
- .debug_line    0x0000000000000000      0x652 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/app_error_weak.o
- .debug_str     0x0000000000000000    0x69a67 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/app_error_weak.o
+ .debug_line    0x0000000000000000      0x65b Output/secure_bootloader_ble_s132_pca10040 Release/Obj/app_error_weak.o
+ .debug_str     0x0000000000000000    0x69a79 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/app_error_weak.o
  .comment       0x0000000000000000       0x4d Output/secure_bootloader_ble_s132_pca10040 Release/Obj/app_error_weak.o
  .ARM.attributes
                 0x0000000000000000       0x39 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/app_error_weak.o
@@ -671,8 +671,8 @@ Discarded input sections
  .debug_macro   0x0000000000000000       0x49 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/mem_manager.o
  .debug_macro   0x0000000000000000      0x177 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/mem_manager.o
  .debug_macro   0x0000000000000000       0x9a Output/secure_bootloader_ble_s132_pca10040 Release/Obj/mem_manager.o
- .debug_line    0x0000000000000000      0x51f Output/secure_bootloader_ble_s132_pca10040 Release/Obj/mem_manager.o
- .debug_str     0x0000000000000000    0x67f35 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/mem_manager.o
+ .debug_line    0x0000000000000000      0x528 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/mem_manager.o
+ .debug_str     0x0000000000000000    0x67f47 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/mem_manager.o
  .comment       0x0000000000000000       0x4d Output/secure_bootloader_ble_s132_pca10040 Release/Obj/mem_manager.o
  .ARM.attributes
                 0x0000000000000000       0x39 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/mem_manager.o
@@ -733,8 +733,8 @@ Discarded input sections
  .debug_macro   0x0000000000000000       0xa7 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_assert.o
  .debug_macro   0x0000000000000000      0x16d Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_assert.o
  .debug_macro   0x0000000000000000       0x49 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_assert.o
- .debug_line    0x0000000000000000      0x2b5 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_assert.o
- .debug_str     0x0000000000000000    0x5cc9d Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_assert.o
+ .debug_line    0x0000000000000000      0x2be Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_assert.o
+ .debug_str     0x0000000000000000    0x5ccaf Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_assert.o
  .comment       0x0000000000000000       0x4d Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_assert.o
  .ARM.attributes
                 0x0000000000000000       0x39 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_assert.o
@@ -1257,8 +1257,8 @@ Discarded input sections
  .debug_macro   0x0000000000000000      0x4f2 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_queue.o
  .debug_macro   0x0000000000000000       0x16 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_queue.o
  .debug_macro   0x0000000000000000       0x4e Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_queue.o
- .debug_line    0x0000000000000000      0x30b Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_queue.o
- .debug_str     0x0000000000000000    0x64a00 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_queue.o
+ .debug_line    0x0000000000000000      0x314 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_queue.o
+ .debug_str     0x0000000000000000    0x64a12 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_queue.o
  .comment       0x0000000000000000       0x4d Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_queue.o
  .ARM.attributes
                 0x0000000000000000       0x39 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_queue.o
@@ -1453,8 +1453,8 @@ Discarded input sections
  .debug_macro   0x0000000000000000      0x4f2 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_strerror.o
  .debug_macro   0x0000000000000000       0x16 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_strerror.o
  .debug_macro   0x0000000000000000       0x4e Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_strerror.o
- .debug_line    0x0000000000000000      0x356 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_strerror.o
- .debug_str     0x0000000000000000    0x64ae4 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_strerror.o
+ .debug_line    0x0000000000000000      0x35f Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_strerror.o
+ .debug_str     0x0000000000000000    0x64af6 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_strerror.o
  .comment       0x0000000000000000       0x4d Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_strerror.o
  .ARM.attributes
                 0x0000000000000000       0x39 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_strerror.o
@@ -1675,8 +1675,8 @@ Discarded input sections
  .debug_macro   0x0000000000000000       0x40 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/micro_ecc_backend_ecdh.o
  .debug_macro   0x0000000000000000       0x10 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/micro_ecc_backend_ecdh.o
  .debug_macro   0x0000000000000000       0x10 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/micro_ecc_backend_ecdh.o
- .debug_line    0x0000000000000000      0x724 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/micro_ecc_backend_ecdh.o
- .debug_str     0x0000000000000000    0x676f4 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/micro_ecc_backend_ecdh.o
+ .debug_line    0x0000000000000000      0x72d Output/secure_bootloader_ble_s132_pca10040 Release/Obj/micro_ecc_backend_ecdh.o
+ .debug_str     0x0000000000000000    0x67706 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/micro_ecc_backend_ecdh.o
  .comment       0x0000000000000000       0x4d Output/secure_bootloader_ble_s132_pca10040 Release/Obj/micro_ecc_backend_ecdh.o
  .ARM.attributes
                 0x0000000000000000       0x39 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/micro_ecc_backend_ecdh.o
@@ -2340,8 +2340,8 @@ Discarded input sections
  .debug_macro   0x0000000000000000       0x16 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_crypto_shared.o
  .debug_macro   0x0000000000000000       0x40 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_crypto_shared.o
  .debug_macro   0x0000000000000000       0x10 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_crypto_shared.o
- .debug_line    0x0000000000000000      0x3ba Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_crypto_shared.o
- .debug_str     0x0000000000000000    0x64ee2 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_crypto_shared.o
+ .debug_line    0x0000000000000000      0x3c3 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_crypto_shared.o
+ .debug_str     0x0000000000000000    0x64ef4 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_crypto_shared.o
  .comment       0x0000000000000000       0x4d Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_crypto_shared.o
  .ARM.attributes
                 0x0000000000000000       0x39 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_crypto_shared.o
@@ -4184,8 +4184,8 @@ Discarded input sections
  .debug_macro   0x0000000000000000       0x46 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_dfu_svci.o
  .debug_macro   0x0000000000000000       0x70 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_dfu_svci.o
  .debug_macro   0x0000000000000000      0x10d Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_dfu_svci.o
- .debug_line    0x0000000000000000      0x4b3 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_dfu_svci.o
- .debug_str     0x0000000000000000    0x680e8 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_dfu_svci.o
+ .debug_line    0x0000000000000000      0x4bc Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_dfu_svci.o
+ .debug_str     0x0000000000000000    0x680fa Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_dfu_svci.o
  .comment       0x0000000000000000       0x4d Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_dfu_svci.o
  .ARM.attributes
                 0x0000000000000000       0x39 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_dfu_svci.o
@@ -9134,125 +9134,125 @@ OUTPUT(Output/Release/Exe/secure_bootloader_ble_s132_pca10040.elf elf32-littlear
  .comment       0x00000000000000cb       0x4d Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_bootloader_wdt.o
  .comment       0x00000000000000cb       0x4d C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.34b/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
 
-.debug_line     0x0000000000000000    0x17eb9
+.debug_line     0x0000000000000000    0x18072
  .debug_line    0x0000000000000000      0x2b5 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/thumb_crt0.o
- .debug_line    0x00000000000002b5      0x488 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/app_scheduler.o
- .debug_line    0x000000000000073d      0x95e Output/secure_bootloader_ble_s132_pca10040 Release/Obj/app_timer2.o
- .debug_line    0x000000000000109b      0x3ea Output/secure_bootloader_ble_s132_pca10040 Release/Obj/app_util_platform.o
- .debug_line    0x0000000000001485      0x34a Output/secure_bootloader_ble_s132_pca10040 Release/Obj/crc32.o
- .debug_line    0x00000000000017cf      0x9d3 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/drv_rtc.o
- .debug_line    0x00000000000021a2      0x558 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_atfifo.o
- .debug_line    0x00000000000026fa      0x4ba Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_atomic.o
- .debug_line    0x0000000000002bb4      0x521 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_balloc.o
- .debug_line    0x00000000000030d5      0x500 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_fstorage.o
- .debug_line    0x00000000000035d5      0x6f6 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_fstorage_nvmc.o
- .debug_line    0x0000000000003ccb      0x754 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_fstorage_sd.o
- .debug_line    0x000000000000441f      0x37d Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_section_iter.o
- .debug_line    0x000000000000479c      0x4a4 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_sortlist.o
- .debug_line    0x0000000000004c40      0x4c3 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/sha256.o
- .debug_line    0x0000000000005103      0x7b8 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/micro_ecc_backend_ecc.o
- .debug_line    0x00000000000058bb      0x745 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/micro_ecc_backend_ecdsa.o
- .debug_line    0x0000000000006000      0x168 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/pb_common.o
- .debug_line    0x0000000000006168      0x571 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/pb_decode.o
- .debug_line    0x00000000000066d9      0x5c2 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/boards.o
- .debug_line    0x0000000000006c9b      0x602 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_nvmc.o
- .debug_line    0x000000000000729d      0x7b4 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_crypto_ecc.o
- .debug_line    0x0000000000007a51      0x73b Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_crypto_ecdsa.o
- .debug_line    0x000000000000818c      0x6cb Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_crypto_hash.o
- .debug_line    0x0000000000008857      0x40d Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_crypto_init.o
- .debug_line    0x0000000000008c64      0xade Output/secure_bootloader_ble_s132_pca10040 Release/Obj/main.o
- .debug_line    0x0000000000009742       0xed Output/secure_bootloader_ble_s132_pca10040 Release/Obj/public_key.o
- .debug_line    0x000000000000982f      0xb16 ../nRF5_SDK_15.0.0/external/micro-ecc/nrf52hf_armgcc/armgcc/micro_ecc_lib_nrf52.a(uECC.c.o)
- .debug_line    0x000000000000a345      0x4b7 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/ble_srv_common.o
- .debug_line    0x000000000000a7fc       0x97 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/ses_nRF_Startup.o
- .debug_line    0x000000000000a893       0xa0 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/ses_nrf52_Vectors.o
- .debug_line    0x000000000000a933      0x2b1 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/system_nrf52.o
- .debug_line    0x000000000000abe4      0x54f Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_sw_backend_hash.o
- .debug_line    0x000000000000b133      0x12e Output/secure_bootloader_ble_s132_pca10040 Release/Obj/dfu-cc.pb.o
- .debug_line    0x000000000000b261      0x65e Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_dfu.o
- .debug_line    0x000000000000b8bf      0xe68 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_dfu_ble.o
- .debug_line    0x000000000000c727      0x61d Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_dfu_flash.o
- .debug_line    0x000000000000cd44      0x5c5 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_dfu_handling_error.o
- .debug_line    0x000000000000d309      0x626 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_dfu_mbr.o
- .debug_line    0x000000000000d92f     0x11e3 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_dfu_req_handler.o
- .debug_line    0x000000000000eb12      0x7f1 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_dfu_settings.o
- .debug_line    0x000000000000f303      0x809 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_dfu_settings_svci.o
- .debug_line    0x000000000000fb0c      0x5b7 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_dfu_transport.o
- .debug_line    0x00000000000100c3      0x725 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_dfu_utils.o
- .debug_line    0x00000000000107e8     0x1291 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_dfu_validation.o
- .debug_line    0x0000000000011a79      0xfed Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_dfu_ver_validation.o
- .debug_line    0x0000000000012a66      0x8e7 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_dfu_svci_handler.o
- .debug_line    0x000000000001334d      0x48a Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_svc_handler.o
- .debug_line    0x00000000000137d7      0x6b0 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_sdh.o
- .debug_line    0x0000000000013e87      0x64e Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_sdh_ble.o
- .debug_line    0x00000000000144d5      0x4f2 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_sdh_soc.o
- .debug_line    0x00000000000149c7      0xc38 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_bootloader.o
- .debug_line    0x00000000000155ff      0x698 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_bootloader_app_start.o
- .debug_line    0x0000000000015c97      0x6af Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_bootloader_app_start_final.o
- .debug_line    0x0000000000016346      0x722 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_bootloader_dfu_timers.o
- .debug_line    0x0000000000016a68      0x88a Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_bootloader_fw_activation.o
- .debug_line    0x00000000000172f2      0x35a Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_bootloader_info.o
- .debug_line    0x000000000001764c      0x86d Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_bootloader_wdt.o
+ .debug_line    0x00000000000002b5      0x491 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/app_scheduler.o
+ .debug_line    0x0000000000000746      0x967 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/app_timer2.o
+ .debug_line    0x00000000000010ad      0x3f3 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/app_util_platform.o
+ .debug_line    0x00000000000014a0      0x353 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/crc32.o
+ .debug_line    0x00000000000017f3      0x9dc Output/secure_bootloader_ble_s132_pca10040 Release/Obj/drv_rtc.o
+ .debug_line    0x00000000000021cf      0x561 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_atfifo.o
+ .debug_line    0x0000000000002730      0x4c3 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_atomic.o
+ .debug_line    0x0000000000002bf3      0x52a Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_balloc.o
+ .debug_line    0x000000000000311d      0x509 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_fstorage.o
+ .debug_line    0x0000000000003626      0x6ff Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_fstorage_nvmc.o
+ .debug_line    0x0000000000003d25      0x75d Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_fstorage_sd.o
+ .debug_line    0x0000000000004482      0x386 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_section_iter.o
+ .debug_line    0x0000000000004808      0x4ad Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_sortlist.o
+ .debug_line    0x0000000000004cb5      0x4cc Output/secure_bootloader_ble_s132_pca10040 Release/Obj/sha256.o
+ .debug_line    0x0000000000005181      0x7c1 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/micro_ecc_backend_ecc.o
+ .debug_line    0x0000000000005942      0x74e Output/secure_bootloader_ble_s132_pca10040 Release/Obj/micro_ecc_backend_ecdsa.o
+ .debug_line    0x0000000000006090      0x171 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/pb_common.o
+ .debug_line    0x0000000000006201      0x57a Output/secure_bootloader_ble_s132_pca10040 Release/Obj/pb_decode.o
+ .debug_line    0x000000000000677b      0x5b6 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/boards.o
+ .debug_line    0x0000000000006d31      0x60b Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_nvmc.o
+ .debug_line    0x000000000000733c      0x7bd Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_crypto_ecc.o
+ .debug_line    0x0000000000007af9      0x744 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_crypto_ecdsa.o
+ .debug_line    0x000000000000823d      0x6d4 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_crypto_hash.o
+ .debug_line    0x0000000000008911      0x416 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_crypto_init.o
+ .debug_line    0x0000000000008d27      0xad2 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/main.o
+ .debug_line    0x00000000000097f9       0xf6 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/public_key.o
+ .debug_line    0x00000000000098ef      0xb16 ../nRF5_SDK_15.0.0/external/micro-ecc/nrf52hf_armgcc/armgcc/micro_ecc_lib_nrf52.a(uECC.c.o)
+ .debug_line    0x000000000000a405      0x4c0 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/ble_srv_common.o
+ .debug_line    0x000000000000a8c5       0xa0 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/ses_nRF_Startup.o
+ .debug_line    0x000000000000a965       0xa9 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/ses_nrf52_Vectors.o
+ .debug_line    0x000000000000aa0e      0x2ba Output/secure_bootloader_ble_s132_pca10040 Release/Obj/system_nrf52.o
+ .debug_line    0x000000000000acc8      0x558 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_sw_backend_hash.o
+ .debug_line    0x000000000000b220      0x137 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/dfu-cc.pb.o
+ .debug_line    0x000000000000b357      0x667 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_dfu.o
+ .debug_line    0x000000000000b9be      0xe71 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_dfu_ble.o
+ .debug_line    0x000000000000c82f      0x626 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_dfu_flash.o
+ .debug_line    0x000000000000ce55      0x5ce Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_dfu_handling_error.o
+ .debug_line    0x000000000000d423      0x62f Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_dfu_mbr.o
+ .debug_line    0x000000000000da52     0x11ec Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_dfu_req_handler.o
+ .debug_line    0x000000000000ec3e      0x7fa Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_dfu_settings.o
+ .debug_line    0x000000000000f438      0x812 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_dfu_settings_svci.o
+ .debug_line    0x000000000000fc4a      0x5c0 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_dfu_transport.o
+ .debug_line    0x000000000001020a      0x72e Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_dfu_utils.o
+ .debug_line    0x0000000000010938     0x129a Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_dfu_validation.o
+ .debug_line    0x0000000000011bd2      0xff6 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_dfu_ver_validation.o
+ .debug_line    0x0000000000012bc8      0x8f0 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_dfu_svci_handler.o
+ .debug_line    0x00000000000134b8      0x493 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_svc_handler.o
+ .debug_line    0x000000000001394b      0x6b9 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_sdh.o
+ .debug_line    0x0000000000014004      0x657 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_sdh_ble.o
+ .debug_line    0x000000000001465b      0x4fb Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_sdh_soc.o
+ .debug_line    0x0000000000014b56      0xc2c Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_bootloader.o
+ .debug_line    0x0000000000015782      0x6a1 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_bootloader_app_start.o
+ .debug_line    0x0000000000015e23      0x6b8 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_bootloader_app_start_final.o
+ .debug_line    0x00000000000164db      0x72b Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_bootloader_dfu_timers.o
+ .debug_line    0x0000000000016c06      0x893 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_bootloader_fw_activation.o
+ .debug_line    0x0000000000017499      0x363 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_bootloader_info.o
+ .debug_line    0x00000000000177fc      0x876 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_bootloader_wdt.o
 
-.debug_info     0x0000000000000000    0x3d7fa
- .debug_info    0x0000000000000000       0x8f Output/secure_bootloader_ble_s132_pca10040 Release/Obj/thumb_crt0.o
- .debug_info    0x000000000000008f      0xa4c Output/secure_bootloader_ble_s132_pca10040 Release/Obj/app_scheduler.o
- .debug_info    0x0000000000000adb     0x1874 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/app_timer2.o
- .debug_info    0x000000000000234f      0xe8b Output/secure_bootloader_ble_s132_pca10040 Release/Obj/app_util_platform.o
- .debug_info    0x00000000000031da      0x679 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/crc32.o
- .debug_info    0x0000000000003853     0x1deb Output/secure_bootloader_ble_s132_pca10040 Release/Obj/drv_rtc.o
- .debug_info    0x000000000000563e      0xd5b Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_atfifo.o
- .debug_info    0x0000000000006399      0xd96 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_atomic.o
- .debug_info    0x000000000000712f      0x99b Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_balloc.o
- .debug_info    0x0000000000007aca      0xd35 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_fstorage.o
- .debug_info    0x00000000000087ff      0xe6d Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_fstorage_nvmc.o
- .debug_info    0x000000000000966c     0x18d8 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_fstorage_sd.o
- .debug_info    0x000000000000af44      0x6e3 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_section_iter.o
- .debug_info    0x000000000000b627      0x850 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_sortlist.o
- .debug_info    0x000000000000be77      0x8d7 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/sha256.o
- .debug_info    0x000000000000c74e      0xbda Output/secure_bootloader_ble_s132_pca10040 Release/Obj/micro_ecc_backend_ecc.o
- .debug_info    0x000000000000d328      0x975 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/micro_ecc_backend_ecdsa.o
- .debug_info    0x000000000000dc9d      0x7ca Output/secure_bootloader_ble_s132_pca10040 Release/Obj/pb_common.o
- .debug_info    0x000000000000e467     0x22b4 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/pb_decode.o
- .debug_info    0x000000000001071b      0xb48 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/boards.o
- .debug_info    0x0000000000011263      0xa63 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_nvmc.o
- .debug_info    0x0000000000011cc6     0x1c96 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_crypto_ecc.o
- .debug_info    0x000000000001395c     0x1438 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_crypto_ecdsa.o
- .debug_info    0x0000000000014d94      0xbca Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_crypto_hash.o
- .debug_info    0x000000000001595e      0x796 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_crypto_init.o
- .debug_info    0x00000000000160f4     0x198e Output/secure_bootloader_ble_s132_pca10040 Release/Obj/main.o
- .debug_info    0x0000000000017a82       0x92 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/public_key.o
- .debug_info    0x0000000000017b14     0x4e0d ../nRF5_SDK_15.0.0/external/micro-ecc/nrf52hf_armgcc/armgcc/micro_ecc_lib_nrf52.a(uECC.c.o)
- .debug_info    0x000000000001c921     0x11a8 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/ble_srv_common.o
- .debug_info    0x000000000001dac9       0x80 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/ses_nRF_Startup.o
- .debug_info    0x000000000001db49       0x82 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/ses_nrf52_Vectors.o
- .debug_info    0x000000000001dbcb     0x10cb Output/secure_bootloader_ble_s132_pca10040 Release/Obj/system_nrf52.o
- .debug_info    0x000000000001ec96      0x9d6 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_sw_backend_hash.o
- .debug_info    0x000000000001f66c      0xa3a Output/secure_bootloader_ble_s132_pca10040 Release/Obj/dfu-cc.pb.o
- .debug_info    0x00000000000200a6      0x823 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_dfu.o
- .debug_info    0x00000000000208c9     0x5123 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_dfu_ble.o
- .debug_info    0x00000000000259ec      0xbb8 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_dfu_flash.o
- .debug_info    0x00000000000265a4      0x7c8 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_dfu_handling_error.o
- .debug_info    0x0000000000026d6c      0x9dc Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_dfu_mbr.o
- .debug_info    0x0000000000027748     0x2a9a Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_dfu_req_handler.o
- .debug_info    0x000000000002a1e2      0xdda Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_dfu_settings.o
- .debug_info    0x000000000002afbc      0xdf2 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_dfu_settings_svci.o
- .debug_info    0x000000000002bdae      0x8dc Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_dfu_transport.o
- .debug_info    0x000000000002c68a      0xd45 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_dfu_utils.o
- .debug_info    0x000000000002d3cf     0x2a1e Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_dfu_validation.o
- .debug_info    0x000000000002fded     0x18d8 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_dfu_ver_validation.o
- .debug_info    0x00000000000316c5      0xd6d Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_dfu_svci_handler.o
- .debug_info    0x0000000000032432      0x76e Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_svc_handler.o
- .debug_info    0x0000000000032ba0     0x1735 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_sdh.o
- .debug_info    0x00000000000342d5     0x2898 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_sdh_ble.o
- .debug_info    0x0000000000036b6d      0xa7a Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_sdh_soc.o
- .debug_info    0x00000000000375e7     0x1c52 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_bootloader.o
- .debug_info    0x0000000000039239      0x874 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_bootloader_app_start.o
- .debug_info    0x0000000000039aad      0xb7f Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_bootloader_app_start_final.o
- .debug_info    0x000000000003a62c      0xdae Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_bootloader_dfu_timers.o
- .debug_info    0x000000000003b3da     0x10bc Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_bootloader_fw_activation.o
- .debug_info    0x000000000003c496      0x5ea Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_bootloader_info.o
- .debug_info    0x000000000003ca80      0xd7a Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_bootloader_wdt.o
+.debug_info     0x0000000000000000    0x3d827
+ .debug_info    0x0000000000000000       0x98 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/thumb_crt0.o
+ .debug_info    0x0000000000000098      0xa4c Output/secure_bootloader_ble_s132_pca10040 Release/Obj/app_scheduler.o
+ .debug_info    0x0000000000000ae4     0x1874 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/app_timer2.o
+ .debug_info    0x0000000000002358      0xe8b Output/secure_bootloader_ble_s132_pca10040 Release/Obj/app_util_platform.o
+ .debug_info    0x00000000000031e3      0x679 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/crc32.o
+ .debug_info    0x000000000000385c     0x1deb Output/secure_bootloader_ble_s132_pca10040 Release/Obj/drv_rtc.o
+ .debug_info    0x0000000000005647      0xd5b Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_atfifo.o
+ .debug_info    0x00000000000063a2      0xd96 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_atomic.o
+ .debug_info    0x0000000000007138      0x99b Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_balloc.o
+ .debug_info    0x0000000000007ad3      0xd35 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_fstorage.o
+ .debug_info    0x0000000000008808      0xe6d Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_fstorage_nvmc.o
+ .debug_info    0x0000000000009675     0x18d8 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_fstorage_sd.o
+ .debug_info    0x000000000000af4d      0x6e3 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_section_iter.o
+ .debug_info    0x000000000000b630      0x850 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_sortlist.o
+ .debug_info    0x000000000000be80      0x8d7 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/sha256.o
+ .debug_info    0x000000000000c757      0xbda Output/secure_bootloader_ble_s132_pca10040 Release/Obj/micro_ecc_backend_ecc.o
+ .debug_info    0x000000000000d331      0x975 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/micro_ecc_backend_ecdsa.o
+ .debug_info    0x000000000000dca6      0x7ca Output/secure_bootloader_ble_s132_pca10040 Release/Obj/pb_common.o
+ .debug_info    0x000000000000e470     0x22b4 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/pb_decode.o
+ .debug_info    0x0000000000010724      0xb48 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/boards.o
+ .debug_info    0x000000000001126c      0xa63 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_nvmc.o
+ .debug_info    0x0000000000011ccf     0x1c96 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_crypto_ecc.o
+ .debug_info    0x0000000000013965     0x1438 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_crypto_ecdsa.o
+ .debug_info    0x0000000000014d9d      0xbca Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_crypto_hash.o
+ .debug_info    0x0000000000015967      0x796 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_crypto_init.o
+ .debug_info    0x00000000000160fd     0x198e Output/secure_bootloader_ble_s132_pca10040 Release/Obj/main.o
+ .debug_info    0x0000000000017a8b       0x92 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/public_key.o
+ .debug_info    0x0000000000017b1d     0x4e0d ../nRF5_SDK_15.0.0/external/micro-ecc/nrf52hf_armgcc/armgcc/micro_ecc_lib_nrf52.a(uECC.c.o)
+ .debug_info    0x000000000001c92a     0x11a8 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/ble_srv_common.o
+ .debug_info    0x000000000001dad2       0x92 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/ses_nRF_Startup.o
+ .debug_info    0x000000000001db64       0x94 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/ses_nrf52_Vectors.o
+ .debug_info    0x000000000001dbf8     0x10cb Output/secure_bootloader_ble_s132_pca10040 Release/Obj/system_nrf52.o
+ .debug_info    0x000000000001ecc3      0x9d6 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_sw_backend_hash.o
+ .debug_info    0x000000000001f699      0xa3a Output/secure_bootloader_ble_s132_pca10040 Release/Obj/dfu-cc.pb.o
+ .debug_info    0x00000000000200d3      0x823 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_dfu.o
+ .debug_info    0x00000000000208f6     0x5123 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_dfu_ble.o
+ .debug_info    0x0000000000025a19      0xbb8 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_dfu_flash.o
+ .debug_info    0x00000000000265d1      0x7c8 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_dfu_handling_error.o
+ .debug_info    0x0000000000026d99      0x9dc Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_dfu_mbr.o
+ .debug_info    0x0000000000027775     0x2a9a Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_dfu_req_handler.o
+ .debug_info    0x000000000002a20f      0xdda Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_dfu_settings.o
+ .debug_info    0x000000000002afe9      0xdf2 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_dfu_settings_svci.o
+ .debug_info    0x000000000002bddb      0x8dc Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_dfu_transport.o
+ .debug_info    0x000000000002c6b7      0xd45 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_dfu_utils.o
+ .debug_info    0x000000000002d3fc     0x2a1e Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_dfu_validation.o
+ .debug_info    0x000000000002fe1a     0x18d8 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_dfu_ver_validation.o
+ .debug_info    0x00000000000316f2      0xd6d Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_dfu_svci_handler.o
+ .debug_info    0x000000000003245f      0x76e Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_svc_handler.o
+ .debug_info    0x0000000000032bcd     0x1735 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_sdh.o
+ .debug_info    0x0000000000034302     0x2898 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_sdh_ble.o
+ .debug_info    0x0000000000036b9a      0xa7a Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_sdh_soc.o
+ .debug_info    0x0000000000037614     0x1c52 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_bootloader.o
+ .debug_info    0x0000000000039266      0x874 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_bootloader_app_start.o
+ .debug_info    0x0000000000039ada      0xb7f Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_bootloader_app_start_final.o
+ .debug_info    0x000000000003a659      0xdae Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_bootloader_dfu_timers.o
+ .debug_info    0x000000000003b407     0x10bc Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_bootloader_fw_activation.o
+ .debug_info    0x000000000003c4c3      0x5ea Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_bootloader_info.o
+ .debug_info    0x000000000003caad      0xd7a Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_bootloader_wdt.o
 
 .debug_abbrev   0x0000000000000000     0x8fd2
  .debug_abbrev  0x0000000000000000       0x12 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/thumb_crt0.o
@@ -9975,114 +9975,114 @@ OUTPUT(Output/Release/Exe/secure_bootloader_ble_s132_pca10040.elf elf32-littlear
  .debug_macro   0x000000000000bb97       0x1c Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_bootloader_wdt.o
  .debug_macro   0x000000000000bbb3       0x22 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_bootloader_wdt.o
 
-.debug_str      0x0000000000000000    0x8b43e
- .debug_str     0x0000000000000000    0x6534f Output/secure_bootloader_ble_s132_pca10040 Release/Obj/app_scheduler.o
-                                      0x65f6a (size before relaxing)
- .debug_str     0x000000000006534f     0x5b5f Output/secure_bootloader_ble_s132_pca10040 Release/Obj/app_timer2.o
-                                      0x6b794 (size before relaxing)
- .debug_str     0x000000000006aeae      0x2f7 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/app_util_platform.o
-                                      0x5de2b (size before relaxing)
- .debug_str     0x000000000006b1a5       0x5d Output/secure_bootloader_ble_s132_pca10040 Release/Obj/crc32.o
-                                      0x64a96 (size before relaxing)
- .debug_str     0x000000000006b202      0x83a Output/secure_bootloader_ble_s132_pca10040 Release/Obj/drv_rtc.o
-                                      0x6b140 (size before relaxing)
- .debug_str     0x000000000006ba3c      0x196 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_atfifo.o
-                                      0x6758d (size before relaxing)
- .debug_str     0x000000000006bbd2      0x753 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_atomic.o
-                                      0x65124 (size before relaxing)
- .debug_str     0x000000000006c325      0xeb9 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_balloc.o
-                                      0x68edf (size before relaxing)
- .debug_str     0x000000000006d1de      0x417 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_fstorage.o
-                                      0x67369 (size before relaxing)
- .debug_str     0x000000000006d5f5       0xe8 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_fstorage_nvmc.o
-                                      0x68119 (size before relaxing)
- .debug_str     0x000000000006d6dd     0x125c Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_fstorage_sd.o
-                                      0x67cd4 (size before relaxing)
- .debug_str     0x000000000006e939       0xd1 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_section_iter.o
-                                      0x64f37 (size before relaxing)
- .debug_str     0x000000000006ea0a       0x99 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_sortlist.o
-                                      0x671d7 (size before relaxing)
- .debug_str     0x000000000006eaa3      0x218 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/sha256.o
-                                      0x64c9d (size before relaxing)
- .debug_str     0x000000000006ecbb     0x2633 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/micro_ecc_backend_ecc.o
-                                      0x67185 (size before relaxing)
- .debug_str     0x00000000000712ee     0x1088 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/micro_ecc_backend_ecdsa.o
-                                      0x67f71 (size before relaxing)
- .debug_str     0x0000000000072376     0x16df Output/secure_bootloader_ble_s132_pca10040 Release/Obj/pb_common.o
-                                       0x4be0 (size before relaxing)
- .debug_str     0x0000000000073a55      0x4ff Output/secure_bootloader_ble_s132_pca10040 Release/Obj/pb_decode.o
-                                       0x517f (size before relaxing)
- .debug_str     0x0000000000073f54      0xe89 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/boards.o
-                                      0x68478 (size before relaxing)
- .debug_str     0x0000000000074ddd      0x116 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_nvmc.o
-                                      0x6772d (size before relaxing)
- .debug_str     0x0000000000074ef3     0x21d3 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_crypto_ecc.o
-                                      0x68f8e (size before relaxing)
- .debug_str     0x00000000000770c6      0xcf4 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_crypto_ecdsa.o
-                                      0x696f8 (size before relaxing)
- .debug_str     0x0000000000077dba      0x41b Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_crypto_hash.o
-                                      0x65a6b (size before relaxing)
- .debug_str     0x00000000000781d5      0x2a0 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_crypto_init.o
-                                      0x65094 (size before relaxing)
- .debug_str     0x0000000000078475     0x5279 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/main.o
-                                      0x71292 (size before relaxing)
- .debug_str     0x000000000007d6ee       0x37 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/public_key.o
-                                       0x6627 (size before relaxing)
- .debug_str     0x000000000007d725      0x7aa ../nRF5_SDK_15.0.0/external/micro-ecc/nrf52hf_armgcc/armgcc/micro_ecc_lib_nrf52.a(uECC.c.o)
+.debug_str      0x0000000000000000    0x8b62d
+ .debug_str     0x0000000000000000    0x65361 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/app_scheduler.o
+                                      0x65f7c (size before relaxing)
+ .debug_str     0x0000000000065361     0x5b68 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/app_timer2.o
+                                      0x6b7a6 (size before relaxing)
+ .debug_str     0x000000000006aec9      0x300 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/app_util_platform.o
+                                      0x5de3d (size before relaxing)
+ .debug_str     0x000000000006b1c9       0x66 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/crc32.o
+                                      0x64aa8 (size before relaxing)
+ .debug_str     0x000000000006b22f      0x843 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/drv_rtc.o
+                                      0x6b152 (size before relaxing)
+ .debug_str     0x000000000006ba72      0x19f Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_atfifo.o
+                                      0x6759f (size before relaxing)
+ .debug_str     0x000000000006bc11      0x75c Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_atomic.o
+                                      0x65136 (size before relaxing)
+ .debug_str     0x000000000006c36d      0xec2 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_balloc.o
+                                      0x68ef1 (size before relaxing)
+ .debug_str     0x000000000006d22f      0x420 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_fstorage.o
+                                      0x6737b (size before relaxing)
+ .debug_str     0x000000000006d64f       0xf1 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_fstorage_nvmc.o
+                                      0x6812b (size before relaxing)
+ .debug_str     0x000000000006d740     0x1265 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_fstorage_sd.o
+                                      0x67ce6 (size before relaxing)
+ .debug_str     0x000000000006e9a5       0xda Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_section_iter.o
+                                      0x64f49 (size before relaxing)
+ .debug_str     0x000000000006ea7f       0xa2 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_sortlist.o
+                                      0x671e9 (size before relaxing)
+ .debug_str     0x000000000006eb21      0x221 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/sha256.o
+                                      0x64caf (size before relaxing)
+ .debug_str     0x000000000006ed42     0x263c Output/secure_bootloader_ble_s132_pca10040 Release/Obj/micro_ecc_backend_ecc.o
+                                      0x67197 (size before relaxing)
+ .debug_str     0x000000000007137e     0x1091 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/micro_ecc_backend_ecdsa.o
+                                      0x67f83 (size before relaxing)
+ .debug_str     0x000000000007240f     0x16e8 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/pb_common.o
+                                       0x4bf2 (size before relaxing)
+ .debug_str     0x0000000000073af7      0x508 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/pb_decode.o
+                                       0x5191 (size before relaxing)
+ .debug_str     0x0000000000073fff      0xe92 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/boards.o
+                                      0x6848a (size before relaxing)
+ .debug_str     0x0000000000074e91      0x11f Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_nvmc.o
+                                      0x6773f (size before relaxing)
+ .debug_str     0x0000000000074fb0     0x21dc Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_crypto_ecc.o
+                                      0x68fa0 (size before relaxing)
+ .debug_str     0x000000000007718c      0xcfd Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_crypto_ecdsa.o
+                                      0x6970a (size before relaxing)
+ .debug_str     0x0000000000077e89      0x424 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_crypto_hash.o
+                                      0x65a7d (size before relaxing)
+ .debug_str     0x00000000000782ad      0x2a9 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_crypto_init.o
+                                      0x650a6 (size before relaxing)
+ .debug_str     0x0000000000078556     0x5282 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/main.o
+                                      0x712a4 (size before relaxing)
+ .debug_str     0x000000000007d7d8       0x40 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/public_key.o
+                                       0x6630 (size before relaxing)
+ .debug_str     0x000000000007d818      0x7aa ../nRF5_SDK_15.0.0/external/micro-ecc/nrf52hf_armgcc/armgcc/micro_ecc_lib_nrf52.a(uECC.c.o)
                                         0x997 (size before relaxing)
- .debug_str     0x000000000007decf     0x2fa1 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/ble_srv_common.o
-                                      0x67c9c (size before relaxing)
- .debug_str     0x0000000000080e70      0x450 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/system_nrf52.o
-                                      0x5b5a0 (size before relaxing)
- .debug_str     0x00000000000812c0       0xfb Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_sw_backend_hash.o
-                                      0x67b1e (size before relaxing)
- .debug_str     0x00000000000813bb      0xc36 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/dfu-cc.pb.o
-                                       0x585f (size before relaxing)
- .debug_str     0x0000000000081ff1      0x175 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_dfu.o
-                                      0x6c583 (size before relaxing)
- .debug_str     0x0000000000082166     0x336c Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_dfu_ble.o
-                                      0x7645a (size before relaxing)
- .debug_str     0x00000000000854d2      0x137 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_dfu_flash.o
-                                      0x6c1ed (size before relaxing)
- .debug_str     0x0000000000085609       0x7e Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_dfu_handling_error.o
-                                      0x6c158 (size before relaxing)
- .debug_str     0x0000000000085687      0x28c Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_dfu_mbr.o
-                                      0x6cef3 (size before relaxing)
- .debug_str     0x0000000000085913     0x1aa3 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_dfu_req_handler.o
-                                      0x74e9f (size before relaxing)
- .debug_str     0x00000000000873b6      0x1a1 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_dfu_settings.o
-                                      0x6e29e (size before relaxing)
- .debug_str     0x0000000000087557      0x185 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_dfu_settings_svci.o
-                                      0x6e695 (size before relaxing)
- .debug_str     0x00000000000876dc      0x131 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_dfu_transport.o
-                                      0x6c0f7 (size before relaxing)
- .debug_str     0x000000000008780d      0x1bc Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_dfu_utils.o
-                                      0x6d13b (size before relaxing)
- .debug_str     0x00000000000879c9      0x45c Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_dfu_validation.o
-                                      0x76724 (size before relaxing)
- .debug_str     0x0000000000087e25      0x16c Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_dfu_ver_validation.o
-                                      0x7422c (size before relaxing)
- .debug_str     0x0000000000087f91     0x1578 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_dfu_svci_handler.o
-                                      0x6f6c8 (size before relaxing)
- .debug_str     0x0000000000089509      0x151 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_svc_handler.o
-                                      0x67c1d (size before relaxing)
- .debug_str     0x000000000008965a      0x403 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_sdh.o
-                                      0x699b2 (size before relaxing)
- .debug_str     0x0000000000089a5d      0x613 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_sdh_ble.o
-                                      0x6e73e (size before relaxing)
- .debug_str     0x000000000008a070      0x167 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_sdh_soc.o
-                                      0x68947 (size before relaxing)
- .debug_str     0x000000000008a1d7      0x97d Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_bootloader.o
-                                      0x725ab (size before relaxing)
- .debug_str     0x000000000008ab54       0x75 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_bootloader_app_start.o
-                                      0x69fe2 (size before relaxing)
- .debug_str     0x000000000008abc9      0x1d5 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_bootloader_app_start_final.o
-                                      0x6d8ab (size before relaxing)
- .debug_str     0x000000000008ad9e      0x241 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_bootloader_dfu_timers.o
-                                      0x687f9 (size before relaxing)
- .debug_str     0x000000000008afdf      0x11b Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_bootloader_fw_activation.o
-                                      0x6e2a9 (size before relaxing)
- .debug_str     0x000000000008b0fa       0x71 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_bootloader_info.o
-                                      0x61b55 (size before relaxing)
- .debug_str     0x000000000008b16b      0x2d3 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_bootloader_wdt.o
-                                      0x6b655 (size before relaxing)
+ .debug_str     0x000000000007dfc2     0x2faa Output/secure_bootloader_ble_s132_pca10040 Release/Obj/ble_srv_common.o
+                                      0x67cae (size before relaxing)
+ .debug_str     0x0000000000080f6c      0x459 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/system_nrf52.o
+                                      0x5b5b2 (size before relaxing)
+ .debug_str     0x00000000000813c5      0x104 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_sw_backend_hash.o
+                                      0x67b30 (size before relaxing)
+ .debug_str     0x00000000000814c9      0xc3f Output/secure_bootloader_ble_s132_pca10040 Release/Obj/dfu-cc.pb.o
+                                       0x5871 (size before relaxing)
+ .debug_str     0x0000000000082108      0x17e Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_dfu.o
+                                      0x6c595 (size before relaxing)
+ .debug_str     0x0000000000082286     0x3375 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_dfu_ble.o
+                                      0x7646c (size before relaxing)
+ .debug_str     0x00000000000855fb      0x140 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_dfu_flash.o
+                                      0x6c1ff (size before relaxing)
+ .debug_str     0x000000000008573b       0x87 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_dfu_handling_error.o
+                                      0x6c16a (size before relaxing)
+ .debug_str     0x00000000000857c2      0x295 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_dfu_mbr.o
+                                      0x6cf05 (size before relaxing)
+ .debug_str     0x0000000000085a57     0x1aac Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_dfu_req_handler.o
+                                      0x74eb1 (size before relaxing)
+ .debug_str     0x0000000000087503      0x1aa Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_dfu_settings.o
+                                      0x6e2b0 (size before relaxing)
+ .debug_str     0x00000000000876ad      0x18e Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_dfu_settings_svci.o
+                                      0x6e6a7 (size before relaxing)
+ .debug_str     0x000000000008783b      0x13a Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_dfu_transport.o
+                                      0x6c109 (size before relaxing)
+ .debug_str     0x0000000000087975      0x1c5 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_dfu_utils.o
+                                      0x6d14d (size before relaxing)
+ .debug_str     0x0000000000087b3a      0x465 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_dfu_validation.o
+                                      0x76736 (size before relaxing)
+ .debug_str     0x0000000000087f9f      0x175 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_dfu_ver_validation.o
+                                      0x7423e (size before relaxing)
+ .debug_str     0x0000000000088114     0x1581 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_dfu_svci_handler.o
+                                      0x6f6da (size before relaxing)
+ .debug_str     0x0000000000089695      0x15a Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_svc_handler.o
+                                      0x67c2f (size before relaxing)
+ .debug_str     0x00000000000897ef      0x40c Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_sdh.o
+                                      0x699c4 (size before relaxing)
+ .debug_str     0x0000000000089bfb      0x61c Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_sdh_ble.o
+                                      0x6e750 (size before relaxing)
+ .debug_str     0x000000000008a217      0x170 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_sdh_soc.o
+                                      0x68959 (size before relaxing)
+ .debug_str     0x000000000008a387      0x986 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_bootloader.o
+                                      0x725bd (size before relaxing)
+ .debug_str     0x000000000008ad0d       0x7e Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_bootloader_app_start.o
+                                      0x69ff4 (size before relaxing)
+ .debug_str     0x000000000008ad8b      0x1de Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_bootloader_app_start_final.o
+                                      0x6d8bd (size before relaxing)
+ .debug_str     0x000000000008af69      0x24a Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_bootloader_dfu_timers.o
+                                      0x6880b (size before relaxing)
+ .debug_str     0x000000000008b1b3      0x124 Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_bootloader_fw_activation.o
+                                      0x6e2bb (size before relaxing)
+ .debug_str     0x000000000008b2d7       0x7a Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_bootloader_info.o
+                                      0x61b67 (size before relaxing)
+ .debug_str     0x000000000008b351      0x2dc Output/secure_bootloader_ble_s132_pca10040 Release/Obj/nrf_bootloader_wdt.o
+                                      0x6b667 (size before relaxing)

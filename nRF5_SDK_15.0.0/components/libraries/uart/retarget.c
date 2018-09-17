@@ -97,7 +97,8 @@ int __getchar(FILE * p_file)
     return input;
 }
 
-int __putchar(int ch, FILE * p_file)
+//int __putchar(int ch, FILE * p_file)
+int __putchar(int ch, __printf_tag_ptr p_file)
 {
     UNUSED_PARAMETER(p_file);
 
