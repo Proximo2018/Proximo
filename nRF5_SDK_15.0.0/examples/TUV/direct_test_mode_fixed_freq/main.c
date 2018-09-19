@@ -205,60 +205,12 @@ int main(void)
 
     dtm_set_txpower(0);
 
+    //uint32_t dtm_cmd(dtm_cmd_t cmd, dtm_freq_t freq, uint32_t length, dtm_pkt_type_t payload)
+    dtm_cmd(LE_TRANSMITTER_TEST, 0, 37, DTM_PKT_PRBS9);
+
     for (;;)
     {
-        // Will return every timeout, 625 us.
-        current_time = dtm_wait();
-
-        if (app_uart_get(&rx_byte) != NRF_SUCCESS)
-        {
-            // Nothing read from the UART.
-            continue;
-        }
-
-        if (!is_msb_read)
-        {
-            // This is first byte of two-byte command.
-            is_msb_read       = true;
-            dtm_cmd_from_uart = ((dtm_cmd_t)rx_byte) << 8;
-            msb_time          = current_time;
-
-            // Go back and wait for 2nd byte of command word.
-            continue;
-        }
-
-        // This is the second byte read; combine it with the first and process command
-        if (current_time > (msb_time + MAX_ITERATIONS_NEEDED_FOR_NEXT_BYTE))
-        {
-            // More than ~5mS after msb: Drop old byte, take the new byte as MSB.
-            // The variable is_msb_read will remains true.
-            // Go back and wait for 2nd byte of the command word.
-            dtm_cmd_from_uart = ((dtm_cmd_t)rx_byte) << 8;
-            msb_time          = current_time;
-            continue;
-        }
-
-        // 2-byte UART command received.
-        is_msb_read        = false;
-        dtm_cmd_from_uart |= (dtm_cmd_t)rx_byte;
-
-        if (dtm_cmd_put(dtm_cmd_from_uart) != DTM_SUCCESS)
-        {
-            // Extended error handling may be put here.
-            // Default behavior is to return the event on the UART (see below);
-            // the event report will reflect any lack of success.
-        }
-
-        // Retrieve result of the operation. This implementation will busy-loop
-        // for the duration of the byte transmissions on the UART.
-        if (dtm_event_get(&result))
-        {
-            // Report command status on the UART.
-            // Transmit MSB of the result.
-            while (app_uart_put((result >> 8) & 0xFF));
-            // Transmit LSB of the result.
-            while (app_uart_put(result & 0xFF));
-        }
+       
     }
 }
 

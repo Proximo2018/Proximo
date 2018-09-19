@@ -7,7 +7,7 @@ start /B /wait ../mergehex.exe --merge ../../Bootloader_nRF/Output/Release/Exe/s
 start /B /wait ../mergehex.exe --merge BL_settings.hex App_SD_BL.hex --output APP_SD_BL_BLsettings.hex
 start /B /wait ../nrfutil.exe pkg generate --hw-version 52 --application-version 1 --application ../../Proximo_nRF/Output/Release/Exe/Proximo.hex --sd-req 0xA8 --key-file ../private.key release.zip
 start /B /wait nrfjprog --snr 682613435 --eraseall
-start /B nrfjprog --memwr 0x10001080 --val 0xabcd0102
-start /B /wait nrfjprog --snr 682613435 --program APP_SD_BL_BLsettings.hex
+start /B /wait nrfjprog --memwr 0x10001080 --val 0xabcd0102
+start /B /wait nrfjprog --snr 682613435 --program APP_SD_BL_BLsettings.hex --log
 start /B /wait nrfjprog --snr 682613435 --reset
 pause

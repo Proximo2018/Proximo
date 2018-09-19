@@ -719,7 +719,7 @@ static void app_timers_init(void)
 static void app_timers_start(void)
 {
     ret_code_t err_code;
-    err_code = app_timer_start(m_APP_id, APP_TIMER_TICKS(1000), NULL);
+    err_code = app_timer_start(m_APP_id, APP_TIMER_TICKS(100), NULL);
     APP_ERROR_CHECK(err_code);
 }
 
