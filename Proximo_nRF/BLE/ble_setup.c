@@ -68,7 +68,6 @@ void advertising_start(void)
     }
 
     err_code = ble_advertising_start(&m_advertising, BLE_ADV_MODE_FAST);
-//    NRF_LOG_INFO("Advertising Error_code: %u/%04X", err_code, err_code);
     if(err_code == NRF_SUCCESS)
     {
       advertising_on = true;
@@ -352,6 +351,11 @@ static void pm_evt_handler(pm_evt_t const * p_evt)
                  && (p_evt->params.peer_data_update_succeeded.data_id == PM_PEER_DATA_ID_BONDING))
             {
 		advertising_stop();
+
+                #ifdef APP_DEVELOPMENT
+		  sk6812_blink_event(SK6812_WHITE, 200, 200, 10);
+		#endif
+
                 NRF_LOG_INFO("New Bond, add the peer to the whitelist if possible");
                 NRF_LOG_INFO("\tm_whitelist_peer_cnt %d, MAX_PEERS_WLIST %d", m_whitelist_peer_cnt, BLE_GAP_WHITELIST_ADDR_MAX_COUNT);
 
@@ -699,14 +703,22 @@ void ble_evt_handler(ble_evt_t const * p_ble_evt, void * p_context)
     {
         case BLE_GAP_EVT_CONNECTED:
             NRF_LOG_INFO("Connected.");
-            err_code = bsp_indication_set(BSP_INDICATE_CONNECTED);
-            APP_ERROR_CHECK(err_code);
+
+	    #ifdef APP_DEVELOPMENT
+	      sk6812_blink_event(SK6812_YELLOW, 200, 200, 10);
+	    #endif
+            
             err_code = nrf_ble_qwr_conn_handle_assign(&m_qwr, p_ble_evt->evt.gap_evt.conn_handle);
             APP_ERROR_CHECK(err_code);
             advertising_restart();
             break;
 
         case BLE_GAP_EVT_DISCONNECTED:
+
+	    #ifdef APP_DEVELOPMENT
+	      sk6812_blink_event(SK6812_PURPLE, 200, 200, 10);
+	    #endif
+
             NRF_LOG_INFO("Disconnected, reason %d.", p_ble_evt->evt.gap_evt.params.disconnected.reason);
             advertising_restart();
             break;
@@ -859,7 +871,12 @@ void advertising_beacon_init(void)
     init.config.ble_adv_whitelist_enabled = true;
     init.config.ble_adv_fast_enabled	  = true;
     init.config.ble_adv_fast_interval	  = APP_FAST_ADV_INTERVAL;
-    init.config.ble_adv_fast_timeout	  = APP_ADV_DURATION;
+
+    #ifdef APP_DEVELOPMENT
+      init.config.ble_adv_fast_timeout	  = 0;
+    #else
+      init.config.ble_adv_fast_timeout	  = APP_ADV_DURATION;
+    #endif
     init.config.ble_adv_slow_enabled	  = true;
     init.config.ble_adv_slow_interval	  = APP_SLOW_ADV_INTERVAL;
     init.config.ble_adv_slow_timeout	  = 0; // 0=disable timeout

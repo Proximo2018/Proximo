@@ -89,9 +89,6 @@ APP_TIMER_DEF(m_BUTTONS_id);
 PIN_EVENT button1_event = {BUTTON_1, 1, 0, 0, SK6812_RED,   &enable_enter_bootloader};
 PIN_EVENT button2_event = {BUTTON_3, 1, 0, 0, SK6812_BLUE,  &delete_bonds};
 PIN_EVENT button3_event = {BUTTON_2, 1, 0, 0, SK6812_GREEN, &button_adv_start};
-//PIN_EVENT button1_event = {BUTTON_1, 1, 0, 0, SK6812_RED,   NULL};
-//PIN_EVENT button2_event = {BUTTON_3, 1, 0, 0, SK6812_BLUE,  NULL};
-//PIN_EVENT button3_event = {BUTTON_2, 1, 0, 0, SK6812_GREEN, NULL};
 
 
 
@@ -148,7 +145,12 @@ static void app_timers_init(void)
 static void app_timers_start(void)
 {
     ret_code_t err_code;
-    err_code = app_timer_start(m_BUTTONS_id, APP_TIMER_TICKS(500), NULL);
+
+    #ifdef APP_DEVELOPMENT
+      err_code = app_timer_start(m_BUTTONS_id, APP_TIMER_TICKS(100), NULL);
+    #else
+      err_code = app_timer_start(m_BUTTONS_id, APP_TIMER_TICKS(500), NULL);
+    #endif
     APP_ERROR_CHECK(err_code);
 }
 
