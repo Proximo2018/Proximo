@@ -781,6 +781,9 @@ void ble_stack_init(void)
 
     // Register a handler for BLE events.
     NRF_SDH_BLE_OBSERVER(m_ble_observer, APP_BLE_OBSERVER_PRIO, ble_evt_handler, NULL);
+
+    // Enable the DCDC converter instead of the internal LDO
+    sd_power_dcdc_mode_set(NRF_POWER_DCDC_ENABLE);
 }
 
 
