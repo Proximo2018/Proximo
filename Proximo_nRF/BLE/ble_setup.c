@@ -204,6 +204,19 @@ void peer_list_load(void)
 }
 
 
+void disconnect_all (void)
+{
+    ble_conn_state_conn_handle_list_t list = ble_conn_state_conn_handles();
+
+    for( uint32_t i = 0 ; i < list.len ; i++)
+    {
+      sd_ble_gap_disconnect(list.conn_handles[i], BLE_HCI_REMOTE_USER_TERMINATED_CONNECTION);
+    }
+
+    NRF_LOG_INFO("Disconnected %u connections", list.len);
+}
+
+
 
 /**@brief Clear bond information from persistent storage.
  */
@@ -222,6 +235,8 @@ void delete_bonds(void)
     // Retrieve the cleared whitelist
     m_whitelist_peer_cnt = (sizeof(m_whitelist_peers) / sizeof(pm_peer_id_t));
     peer_list_get(m_whitelist_peers, &m_whitelist_peer_cnt);
+
+    disconnect_all();
 
     advertising_start();
 }
