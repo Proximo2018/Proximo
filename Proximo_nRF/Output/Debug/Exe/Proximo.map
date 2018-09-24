@@ -21343,7 +21343,7 @@ Linker script and memory map
                 0x0000000000000001                . = ASSERT (((__init_rodata_start__ == __init_rodata_end__) || ((__init_rodata_end__ >= __FLASH_segment_start__) && (__init_rodata_end__ <= __FLASH_segment_end__))), error: .init_rodata is too large to fit in FLASH memory segment)
                 0x00000000000262f4                __text_load_start__ = ALIGN (__init_rodata_end__, 0x4)
 
-.text           0x00000000000262f4    0x17af2
+.text           0x00000000000262f4    0x17b26
                 0x00000000000262f4                __text_start__ = .
  *(.text .text.* .glue_7t .glue_7 .gnu.linkonce.t.* .gcc_except_table .ARM.extab* .gnu.linkonce.armextab.*)
  .glue_7        0x00000000000262f4        0x0 linker stubs
@@ -23455,386 +23455,384 @@ Linker script and memory map
  .text.ble_dis_init
                 0x000000000003a9dc      0x228 Output/Proximo Debug/Obj/ble_dis.o
                 0x000000000003a9dc                ble_dis_init
- .text.uint16_big_decode
-                0x000000000003ac04       0x20 Output/Proximo Debug/Obj/ble_prox.o
  .text.sd_ble_gatts_service_add
-                0x000000000003ac24        0x8 Output/Proximo Debug/Obj/ble_prox.o
+                0x000000000003ac04        0x8 Output/Proximo Debug/Obj/ble_prox.o
  .text.sd_ble_gatts_characteristic_add
-                0x000000000003ac2c        0x8 Output/Proximo Debug/Obj/ble_prox.o
+                0x000000000003ac0c        0x8 Output/Proximo Debug/Obj/ble_prox.o
  .text.sd_ble_gatts_rw_authorize_reply
-                0x000000000003ac34        0x8 Output/Proximo Debug/Obj/ble_prox.o
+                0x000000000003ac14        0x8 Output/Proximo Debug/Obj/ble_prox.o
  .text.sd_ble_uuid_vs_add
-                0x000000000003ac3c        0x8 Output/Proximo Debug/Obj/ble_prox.o
+                0x000000000003ac1c        0x8 Output/Proximo Debug/Obj/ble_prox.o
  .text.on_connect
-                0x000000000003ac44       0x2a Output/Proximo Debug/Obj/ble_prox.o
+                0x000000000003ac24       0x2a Output/Proximo Debug/Obj/ble_prox.o
  .text.on_disconnect
-                0x000000000003ac6e       0x2a Output/Proximo Debug/Obj/ble_prox.o
+                0x000000000003ac4e       0x2a Output/Proximo Debug/Obj/ble_prox.o
  .text.on_write_authorize_request
-                0x000000000003ac98      0x2bc Output/Proximo Debug/Obj/ble_prox.o
+                0x000000000003ac78      0x310 Output/Proximo Debug/Obj/ble_prox.o
  .text.ble_prox_on_ble_evt
-                0x000000000003af54       0x54 Output/Proximo Debug/Obj/ble_prox.o
-                0x000000000003af54                ble_prox_on_ble_evt
+                0x000000000003af88       0x54 Output/Proximo Debug/Obj/ble_prox.o
+                0x000000000003af88                ble_prox_on_ble_evt
  .text.led_charr_add
-                0x000000000003afa8      0x144 Output/Proximo Debug/Obj/ble_prox.o
+                0x000000000003afdc      0x144 Output/Proximo Debug/Obj/ble_prox.o
  .text.alarm_charr_add
-                0x000000000003b0ec      0x144 Output/Proximo Debug/Obj/ble_prox.o
+                0x000000000003b120      0x144 Output/Proximo Debug/Obj/ble_prox.o
  .text.buzzer_charr_add
-                0x000000000003b230      0x144 Output/Proximo Debug/Obj/ble_prox.o
+                0x000000000003b264      0x144 Output/Proximo Debug/Obj/ble_prox.o
  .text.ble_prox_init
-                0x000000000003b374       0xc8 Output/Proximo Debug/Obj/ble_prox.o
-                0x000000000003b374                ble_prox_init
+                0x000000000003b3a8       0xc8 Output/Proximo Debug/Obj/ble_prox.o
+                0x000000000003b3a8                ble_prox_init
  .text.NVIC_EnableIRQ
-                0x000000000003b43c       0x2c Output/Proximo Debug/Obj/nrf_sdh.o
+                0x000000000003b470       0x2c Output/Proximo Debug/Obj/nrf_sdh.o
  .text.NVIC_DisableIRQ
-                0x000000000003b468       0x30 Output/Proximo Debug/Obj/nrf_sdh.o
+                0x000000000003b49c       0x30 Output/Proximo Debug/Obj/nrf_sdh.o
  .text.NVIC_SetPriority
-                0x000000000003b498       0x50 Output/Proximo Debug/Obj/nrf_sdh.o
+                0x000000000003b4cc       0x50 Output/Proximo Debug/Obj/nrf_sdh.o
  .text.NVIC_GetPriority
-                0x000000000003b4e8       0x48 Output/Proximo Debug/Obj/nrf_sdh.o
+                0x000000000003b51c       0x48 Output/Proximo Debug/Obj/nrf_sdh.o
  .text.nrf_section_iter_get
-                0x000000000003b530       0x24 Output/Proximo Debug/Obj/nrf_sdh.o
+                0x000000000003b564       0x24 Output/Proximo Debug/Obj/nrf_sdh.o
  .text.sd_softdevice_enable
-                0x000000000003b554        0x8 Output/Proximo Debug/Obj/nrf_sdh.o
+                0x000000000003b588        0x8 Output/Proximo Debug/Obj/nrf_sdh.o
  .text.sd_softdevice_disable
-                0x000000000003b55c        0x8 Output/Proximo Debug/Obj/nrf_sdh.o
+                0x000000000003b590        0x8 Output/Proximo Debug/Obj/nrf_sdh.o
  .text.__sd_nvic_app_accessible_irq
-                0x000000000003b564       0x58 Output/Proximo Debug/Obj/nrf_sdh.o
+                0x000000000003b598       0x58 Output/Proximo Debug/Obj/nrf_sdh.o
  .text.__sd_nvic_is_app_accessible_priority
-                0x000000000003b5bc       0x2c Output/Proximo Debug/Obj/nrf_sdh.o
+                0x000000000003b5f0       0x2c Output/Proximo Debug/Obj/nrf_sdh.o
  .text.sd_nvic_EnableIRQ
-                0x000000000003b5e8       0x8c Output/Proximo Debug/Obj/nrf_sdh.o
+                0x000000000003b61c       0x8c Output/Proximo Debug/Obj/nrf_sdh.o
  .text.sd_nvic_DisableIRQ
-                0x000000000003b674       0x6c Output/Proximo Debug/Obj/nrf_sdh.o
+                0x000000000003b6a8       0x6c Output/Proximo Debug/Obj/nrf_sdh.o
  .text.sd_nvic_SetPriority
-                0x000000000003b6e0       0x4a Output/Proximo Debug/Obj/nrf_sdh.o
- *fill*         0x000000000003b72a        0x2 
+                0x000000000003b714       0x4a Output/Proximo Debug/Obj/nrf_sdh.o
+ *fill*         0x000000000003b75e        0x2 
  .text.sdh_request_observer_notify
-                0x000000000003b72c       0x64 Output/Proximo Debug/Obj/nrf_sdh.o
+                0x000000000003b760       0x64 Output/Proximo Debug/Obj/nrf_sdh.o
  .text.sdh_state_observer_notify
-                0x000000000003b790       0x58 Output/Proximo Debug/Obj/nrf_sdh.o
+                0x000000000003b7c4       0x58 Output/Proximo Debug/Obj/nrf_sdh.o
  .text.softdevices_evt_irq_enable
-                0x000000000003b7e8       0x2c Output/Proximo Debug/Obj/nrf_sdh.o
+                0x000000000003b81c       0x2c Output/Proximo Debug/Obj/nrf_sdh.o
  .text.softdevice_evt_irq_disable
-                0x000000000003b814       0x2c Output/Proximo Debug/Obj/nrf_sdh.o
+                0x000000000003b848       0x2c Output/Proximo Debug/Obj/nrf_sdh.o
  .text.swi_interrupt_priority_workaround
-                0x000000000003b840       0x4c Output/Proximo Debug/Obj/nrf_sdh.o
+                0x000000000003b874       0x4c Output/Proximo Debug/Obj/nrf_sdh.o
  .text.nrf_sdh_enable_request
-                0x000000000003b88c       0xac Output/Proximo Debug/Obj/nrf_sdh.o
-                0x000000000003b88c                nrf_sdh_enable_request
+                0x000000000003b8c0       0xac Output/Proximo Debug/Obj/nrf_sdh.o
+                0x000000000003b8c0                nrf_sdh_enable_request
  .text.nrf_sdh_disable_request
-                0x000000000003b938       0x84 Output/Proximo Debug/Obj/nrf_sdh.o
-                0x000000000003b938                nrf_sdh_disable_request
+                0x000000000003b96c       0x84 Output/Proximo Debug/Obj/nrf_sdh.o
+                0x000000000003b96c                nrf_sdh_disable_request
  .text.nrf_sdh_request_continue
-                0x000000000003b9bc       0x38 Output/Proximo Debug/Obj/nrf_sdh.o
-                0x000000000003b9bc                nrf_sdh_request_continue
+                0x000000000003b9f0       0x38 Output/Proximo Debug/Obj/nrf_sdh.o
+                0x000000000003b9f0                nrf_sdh_request_continue
  .text.nrf_sdh_is_enabled
-                0x000000000003b9f4        0xc Output/Proximo Debug/Obj/nrf_sdh.o
-                0x000000000003b9f4                nrf_sdh_is_enabled
+                0x000000000003ba28        0xc Output/Proximo Debug/Obj/nrf_sdh.o
+                0x000000000003ba28                nrf_sdh_is_enabled
  .text.nrf_sdh_evts_poll
-                0x000000000003ba00       0x4c Output/Proximo Debug/Obj/nrf_sdh.o
-                0x000000000003ba00                nrf_sdh_evts_poll
+                0x000000000003ba34       0x4c Output/Proximo Debug/Obj/nrf_sdh.o
+                0x000000000003ba34                nrf_sdh_evts_poll
  .text.SWI2_EGU2_IRQHandler
-                0x000000000003ba4c        0xa Output/Proximo Debug/Obj/nrf_sdh.o
-                0x000000000003ba4c                SWI2_EGU2_IRQHandler
+                0x000000000003ba80        0xa Output/Proximo Debug/Obj/nrf_sdh.o
+                0x000000000003ba80                SWI2_EGU2_IRQHandler
  .text.sd_ble_enable
-                0x000000000003ba56        0x8 Output/Proximo Debug/Obj/nrf_sdh_ble.o
+                0x000000000003ba8a        0x8 Output/Proximo Debug/Obj/nrf_sdh_ble.o
  .text.sd_ble_cfg_set
-                0x000000000003ba5e        0x8 Output/Proximo Debug/Obj/nrf_sdh_ble.o
+                0x000000000003ba92        0x8 Output/Proximo Debug/Obj/nrf_sdh_ble.o
  .text.sd_ble_evt_get
-                0x000000000003ba66        0x8 Output/Proximo Debug/Obj/nrf_sdh_ble.o
- *fill*         0x000000000003ba6e        0x2 
+                0x000000000003ba9a        0x8 Output/Proximo Debug/Obj/nrf_sdh_ble.o
+ *fill*         0x000000000003baa2        0x2 
  .text.nrf_section_iter_get
-                0x000000000003ba70       0x24 Output/Proximo Debug/Obj/nrf_sdh_ble.o
+                0x000000000003baa4       0x24 Output/Proximo Debug/Obj/nrf_sdh_ble.o
  .text.nrf_sdh_ble_app_ram_start_get
-                0x000000000003ba94       0x24 Output/Proximo Debug/Obj/nrf_sdh_ble.o
-                0x000000000003ba94                nrf_sdh_ble_app_ram_start_get
+                0x000000000003bac8       0x24 Output/Proximo Debug/Obj/nrf_sdh_ble.o
+                0x000000000003bac8                nrf_sdh_ble_app_ram_start_get
  .text.nrf_sdh_ble_default_cfg_set
-                0x000000000003bab8      0x210 Output/Proximo Debug/Obj/nrf_sdh_ble.o
-                0x000000000003bab8                nrf_sdh_ble_default_cfg_set
+                0x000000000003baec      0x210 Output/Proximo Debug/Obj/nrf_sdh_ble.o
+                0x000000000003baec                nrf_sdh_ble_default_cfg_set
  .text.ram_end_address_get
-                0x000000000003bcc8       0x1a Output/Proximo Debug/Obj/nrf_sdh_ble.o
- *fill*         0x000000000003bce2        0x2 
+                0x000000000003bcfc       0x1a Output/Proximo Debug/Obj/nrf_sdh_ble.o
+ *fill*         0x000000000003bd16        0x2 
  .text.nrf_sdh_ble_enable
-                0x000000000003bce4       0xb8 Output/Proximo Debug/Obj/nrf_sdh_ble.o
-                0x000000000003bce4                nrf_sdh_ble_enable
+                0x000000000003bd18       0xb8 Output/Proximo Debug/Obj/nrf_sdh_ble.o
+                0x000000000003bd18                nrf_sdh_ble_enable
  .text.nrf_sdh_ble_evts_poll
-                0x000000000003bd9c       0xa8 Output/Proximo Debug/Obj/nrf_sdh_ble.o
+                0x000000000003bdd0       0xa8 Output/Proximo Debug/Obj/nrf_sdh_ble.o
  .text.nrf_section_iter_get
-                0x000000000003be44       0x24 Output/Proximo Debug/Obj/nrf_sdh_soc.o
+                0x000000000003be78       0x24 Output/Proximo Debug/Obj/nrf_sdh_soc.o
  .text.sd_evt_get
-                0x000000000003be68        0x8 Output/Proximo Debug/Obj/nrf_sdh_soc.o
+                0x000000000003be9c        0x8 Output/Proximo Debug/Obj/nrf_sdh_soc.o
  .text.nrf_sdh_soc_evts_poll
-                0x000000000003be70       0x78 Output/Proximo Debug/Obj/nrf_sdh_soc.o
+                0x000000000003bea4       0x78 Output/Proximo Debug/Obj/nrf_sdh_soc.o
  .text.sk6812_handler
-                0x000000000003bee8       0x30 Output/Proximo Debug/Obj/sk6812.o
+                0x000000000003bf1c       0x30 Output/Proximo Debug/Obj/sk6812.o
  .text.sk6812_pwm_init
-                0x000000000003bf18       0x54 Output/Proximo Debug/Obj/sk6812.o
+                0x000000000003bf4c       0x54 Output/Proximo Debug/Obj/sk6812.o
  .text.sk6812_write_byte_to_pwm_buffer
-                0x000000000003bf6c       0x84 Output/Proximo Debug/Obj/sk6812.o
+                0x000000000003bfa0       0x84 Output/Proximo Debug/Obj/sk6812.o
  .text.determine_brightness_reduction
-                0x000000000003bff0       0xd0 Output/Proximo Debug/Obj/sk6812.o
-                0x000000000003bff0                determine_brightness_reduction
+                0x000000000003c024       0xd0 Output/Proximo Debug/Obj/sk6812.o
+                0x000000000003c024                determine_brightness_reduction
  .text.sk6812_single_colour
-                0x000000000003c0c0       0xc8 Output/Proximo Debug/Obj/sk6812.o
-                0x000000000003c0c0                sk6812_single_colour
+                0x000000000003c0f4       0xc8 Output/Proximo Debug/Obj/sk6812.o
+                0x000000000003c0f4                sk6812_single_colour
  .text.sk6812_colour_string
-                0x000000000003c188      0x138 Output/Proximo Debug/Obj/sk6812.o
-                0x000000000003c188                sk6812_colour_string
+                0x000000000003c1bc      0x138 Output/Proximo Debug/Obj/sk6812.o
+                0x000000000003c1bc                sk6812_colour_string
  .text.sk6812_write_buffer
-                0x000000000003c2c0       0x68 Output/Proximo Debug/Obj/sk6812.o
-                0x000000000003c2c0                sk6812_write_buffer
+                0x000000000003c2f4       0x68 Output/Proximo Debug/Obj/sk6812.o
+                0x000000000003c2f4                sk6812_write_buffer
  .text.movement_event_handler
-                0x000000000003c328       0x30 Output/Proximo Debug/Obj/sq_min_200.o
-                0x000000000003c328                movement_event_handler
+                0x000000000003c35c       0x30 Output/Proximo Debug/Obj/sq_min_200.o
+                0x000000000003c35c                movement_event_handler
  .text.movement_init
-                0x000000000003c358       0x48 Output/Proximo Debug/Obj/sq_min_200.o
-                0x000000000003c358                movement_init
+                0x000000000003c38c       0x48 Output/Proximo Debug/Obj/sq_min_200.o
+                0x000000000003c38c                movement_init
  .text.nrf_drv_twi_enable
-                0x000000000003c3a0       0x18 Output/Proximo Debug/Obj/th06.o
+                0x000000000003c3d4       0x18 Output/Proximo Debug/Obj/th06.o
  .text.nrf_drv_twi_tx
-                0x000000000003c3b8       0x40 Output/Proximo Debug/Obj/th06.o
+                0x000000000003c3ec       0x40 Output/Proximo Debug/Obj/th06.o
  .text.nrf_drv_twi_rx
-                0x000000000003c3f8       0x38 Output/Proximo Debug/Obj/th06.o
+                0x000000000003c42c       0x38 Output/Proximo Debug/Obj/th06.o
  .text.twi_init
-                0x000000000003c430       0x5c Output/Proximo Debug/Obj/th06.o
-                0x000000000003c430                twi_init
+                0x000000000003c464       0x5c Output/Proximo Debug/Obj/th06.o
+                0x000000000003c464                twi_init
  .text.th06_init
-                0x000000000003c48c       0xb4 Output/Proximo Debug/Obj/th06.o
-                0x000000000003c48c                th06_init
- .text.Buzz     0x000000000003c540      0x17c Output/Proximo Debug/Obj/buzzer.o
-                0x000000000003c540                Buzz
+                0x000000000003c4c0       0xb4 Output/Proximo Debug/Obj/th06.o
+                0x000000000003c4c0                th06_init
+ .text.Buzz     0x000000000003c574      0x17c Output/Proximo Debug/Obj/buzzer.o
+                0x000000000003c574                Buzz
  .text.NVIC_ClearPendingIRQ
-                0x000000000003c6bc       0x30 Output/Proximo Debug/Obj/adc.o
+                0x000000000003c6f0       0x30 Output/Proximo Debug/Obj/adc.o
  .text.nrf_drv_saadc_init
-                0x000000000003c6ec       0x28 Output/Proximo Debug/Obj/adc.o
+                0x000000000003c720       0x28 Output/Proximo Debug/Obj/adc.o
  .text.nrf_gpio_pin_port_decode
-                0x000000000003c714       0x28 Output/Proximo Debug/Obj/adc.o
+                0x000000000003c748       0x28 Output/Proximo Debug/Obj/adc.o
  .text.nrf_gpio_pin_out_read
-                0x000000000003c73c       0x2a Output/Proximo Debug/Obj/adc.o
+                0x000000000003c770       0x2a Output/Proximo Debug/Obj/adc.o
  .text.nrf_gpio_port_out_read
-                0x000000000003c766       0x10 Output/Proximo Debug/Obj/adc.o
- *fill*         0x000000000003c776        0x2 
+                0x000000000003c79a       0x10 Output/Proximo Debug/Obj/adc.o
+ *fill*         0x000000000003c7aa        0x2 
  .text.calc_battery_capacity
-                0x000000000003c778       0x54 Output/Proximo Debug/Obj/adc.o
+                0x000000000003c7ac       0x54 Output/Proximo Debug/Obj/adc.o
  .text.saadc_callback
-                0x000000000003c7cc       0xfc Output/Proximo Debug/Obj/adc.o
-                0x000000000003c7cc                saadc_callback
+                0x000000000003c800       0xfc Output/Proximo Debug/Obj/adc.o
+                0x000000000003c800                saadc_callback
  .text.measure_vcc
-                0x000000000003c8c8       0x44 Output/Proximo Debug/Obj/adc.o
-                0x000000000003c8c8                measure_vcc
+                0x000000000003c8fc       0x44 Output/Proximo Debug/Obj/adc.o
+                0x000000000003c8fc                measure_vcc
  .text.start_saadc_timer
-                0x000000000003c90c       0x60 Output/Proximo Debug/Obj/adc.o
-                0x000000000003c90c                start_saadc_timer
+                0x000000000003c940       0x60 Output/Proximo Debug/Obj/adc.o
+                0x000000000003c940                start_saadc_timer
  .text.saadc_init
-                0x000000000003c96c      0x104 Output/Proximo Debug/Obj/adc.o
-                0x000000000003c96c                saadc_init
+                0x000000000003c9a0      0x104 Output/Proximo Debug/Obj/adc.o
+                0x000000000003c9a0                saadc_init
  .text.get_bat_percentage
-                0x000000000003ca70       0x10 Output/Proximo Debug/Obj/adc.o
-                0x000000000003ca70                get_bat_percentage
+                0x000000000003caa4       0x10 Output/Proximo Debug/Obj/adc.o
+                0x000000000003caa4                get_bat_percentage
  .text.nrfx_coredep_delay_us
-                0x000000000003ca80       0x30 Output/Proximo Debug/Obj/io.o
+                0x000000000003cab4       0x30 Output/Proximo Debug/Obj/io.o
  .text.nrf_gpio_pin_port_decode
-                0x000000000003cab0       0x28 Output/Proximo Debug/Obj/io.o
+                0x000000000003cae4       0x28 Output/Proximo Debug/Obj/io.o
  .text.nrf_gpio_cfg
-                0x000000000003cad8       0x62 Output/Proximo Debug/Obj/io.o
+                0x000000000003cb0c       0x62 Output/Proximo Debug/Obj/io.o
  .text.nrf_gpio_cfg_output
-                0x000000000003cb3a       0x22 Output/Proximo Debug/Obj/io.o
+                0x000000000003cb6e       0x22 Output/Proximo Debug/Obj/io.o
  .text.nrf_gpio_cfg_input
-                0x000000000003cb5c       0x2c Output/Proximo Debug/Obj/io.o
+                0x000000000003cb90       0x2c Output/Proximo Debug/Obj/io.o
  .text.nrf_gpio_pin_set
-                0x000000000003cb88       0x28 Output/Proximo Debug/Obj/io.o
+                0x000000000003cbbc       0x28 Output/Proximo Debug/Obj/io.o
  .text.nrf_gpio_pin_clear
-                0x000000000003cbb0       0x28 Output/Proximo Debug/Obj/io.o
+                0x000000000003cbe4       0x28 Output/Proximo Debug/Obj/io.o
  .text.nrf_gpio_pin_write
-                0x000000000003cbd8       0x24 Output/Proximo Debug/Obj/io.o
+                0x000000000003cc0c       0x24 Output/Proximo Debug/Obj/io.o
  .text.nrf_gpio_pin_out_read
-                0x000000000003cbfc       0x2a Output/Proximo Debug/Obj/io.o
+                0x000000000003cc30       0x2a Output/Proximo Debug/Obj/io.o
  .text.nrf_gpio_port_out_read
-                0x000000000003cc26       0x10 Output/Proximo Debug/Obj/io.o
+                0x000000000003cc5a       0x10 Output/Proximo Debug/Obj/io.o
  .text.nrf_gpio_port_out_set
-                0x000000000003cc36       0x14 Output/Proximo Debug/Obj/io.o
+                0x000000000003cc6a       0x14 Output/Proximo Debug/Obj/io.o
  .text.nrf_gpio_port_out_clear
-                0x000000000003cc4a       0x14 Output/Proximo Debug/Obj/io.o
+                0x000000000003cc7e       0x14 Output/Proximo Debug/Obj/io.o
  .text.nrf_delay_ms
-                0x000000000003cc5e       0x2a Output/Proximo Debug/Obj/io.o
+                0x000000000003cc92       0x2a Output/Proximo Debug/Obj/io.o
  .text.proximo_io_init
-                0x000000000003cc88       0x54 Output/Proximo Debug/Obj/io.o
-                0x000000000003cc88                proximo_io_init
+                0x000000000003ccbc       0x54 Output/Proximo Debug/Obj/io.o
+                0x000000000003ccbc                proximo_io_init
  .text.proximo_tps_on
-                0x000000000003ccdc        0xe Output/Proximo Debug/Obj/io.o
-                0x000000000003ccdc                proximo_tps_on
+                0x000000000003cd10        0xe Output/Proximo Debug/Obj/io.o
+                0x000000000003cd10                proximo_tps_on
  .text.proximo_tps_off
-                0x000000000003ccea        0xe Output/Proximo Debug/Obj/io.o
-                0x000000000003ccea                proximo_tps_off
+                0x000000000003cd1e        0xe Output/Proximo Debug/Obj/io.o
+                0x000000000003cd1e                proximo_tps_off
  .text.proximo_ldr_off
-                0x000000000003ccf8        0xe Output/Proximo Debug/Obj/io.o
-                0x000000000003ccf8                proximo_ldr_off
+                0x000000000003cd2c        0xe Output/Proximo Debug/Obj/io.o
+                0x000000000003cd2c                proximo_ldr_off
  .text.proximo_alarm_low
-                0x000000000003cd06        0xe Output/Proximo Debug/Obj/io.o
-                0x000000000003cd06                proximo_alarm_low
+                0x000000000003cd3a        0xe Output/Proximo Debug/Obj/io.o
+                0x000000000003cd3a                proximo_alarm_low
  .text.proximo_alarm_high
-                0x000000000003cd14        0xe Output/Proximo Debug/Obj/io.o
-                0x000000000003cd14                proximo_alarm_high
+                0x000000000003cd48        0xe Output/Proximo Debug/Obj/io.o
+                0x000000000003cd48                proximo_alarm_high
  .text.proximo_tps_read_output
-                0x000000000003cd22        0xe Output/Proximo Debug/Obj/io.o
-                0x000000000003cd22                proximo_tps_read_output
+                0x000000000003cd56        0xe Output/Proximo Debug/Obj/io.o
+                0x000000000003cd56                proximo_tps_read_output
  .text.enable_tps
-                0x000000000003cd30       0x2a Output/Proximo Debug/Obj/io.o
-                0x000000000003cd30                enable_tps
+                0x000000000003cd64       0x2a Output/Proximo Debug/Obj/io.o
+                0x000000000003cd64                enable_tps
  .text.sd_app_evt_wait
-                0x000000000003cd5a        0x8 Output/Proximo Debug/Obj/system.o
- *fill*         0x000000000003cd62        0x2 
+                0x000000000003cd8e        0x8 Output/Proximo Debug/Obj/system.o
+ *fill*         0x000000000003cd96        0x2 
  .text.lfclk_config
-                0x000000000003cd64       0x30 Output/Proximo Debug/Obj/system.o
-                0x000000000003cd64                lfclk_config
+                0x000000000003cd98       0x30 Output/Proximo Debug/Obj/system.o
+                0x000000000003cd98                lfclk_config
  .text.power_management_init
-                0x000000000003cd94       0x2c Output/Proximo Debug/Obj/system.o
-                0x000000000003cd94                power_management_init
+                0x000000000003cdc8       0x2c Output/Proximo Debug/Obj/system.o
+                0x000000000003cdc8                power_management_init
  .text.sleep_mode_enter
-                0x000000000003cdc0       0x2c Output/Proximo Debug/Obj/system.o
-                0x000000000003cdc0                sleep_mode_enter
+                0x000000000003cdf4       0x2c Output/Proximo Debug/Obj/system.o
+                0x000000000003cdf4                sleep_mode_enter
  .text.nrf_gpio_pin_port_decode
-                0x000000000003cdec       0x28 Output/Proximo Debug/Obj/event.o
+                0x000000000003ce20       0x28 Output/Proximo Debug/Obj/event.o
  .text.nrf_gpio_pin_read
-                0x000000000003ce14       0x2a Output/Proximo Debug/Obj/event.o
+                0x000000000003ce48       0x2a Output/Proximo Debug/Obj/event.o
  .text.nrf_gpio_port_in_read
-                0x000000000003ce3e       0x10 Output/Proximo Debug/Obj/event.o
- *fill*         0x000000000003ce4e        0x2 
+                0x000000000003ce72       0x10 Output/Proximo Debug/Obj/event.o
+ *fill*         0x000000000003ce82        0x2 
  .text.lED_event_complete
-                0x000000000003ce50       0x24 Output/Proximo Debug/Obj/event.o
-                0x000000000003ce50                lED_event_complete
+                0x000000000003ce84       0x24 Output/Proximo Debug/Obj/event.o
+                0x000000000003ce84                lED_event_complete
  .text.disable_tps_on_event_done
-                0x000000000003ce74       0x38 Output/Proximo Debug/Obj/event.o
-                0x000000000003ce74                disable_tps_on_event_done
+                0x000000000003cea8       0x38 Output/Proximo Debug/Obj/event.o
+                0x000000000003cea8                disable_tps_on_event_done
  .text.start_timer
-                0x000000000003ceac       0x64 Output/Proximo Debug/Obj/event.o
+                0x000000000003cee0       0x64 Output/Proximo Debug/Obj/event.o
  .text.alarm_timer_event
-                0x000000000003cf10       0x70 Output/Proximo Debug/Obj/event.o
-                0x000000000003cf10                alarm_timer_event
+                0x000000000003cf44       0x70 Output/Proximo Debug/Obj/event.o
+                0x000000000003cf44                alarm_timer_event
  .text.sk6812_timer_event
-                0x000000000003cf80       0x8c Output/Proximo Debug/Obj/event.o
-                0x000000000003cf80                sk6812_timer_event
+                0x000000000003cfb4       0x8c Output/Proximo Debug/Obj/event.o
+                0x000000000003cfb4                sk6812_timer_event
  .text.alarm_blink
-                0x000000000003d00c       0x70 Output/Proximo Debug/Obj/event.o
-                0x000000000003d00c                alarm_blink
+                0x000000000003d040       0x70 Output/Proximo Debug/Obj/event.o
+                0x000000000003d040                alarm_blink
  .text.sk6812_blink_event
-                0x000000000003d07c       0xb8 Output/Proximo Debug/Obj/event.o
-                0x000000000003d07c                sk6812_blink_event
+                0x000000000003d0b0       0xb8 Output/Proximo Debug/Obj/event.o
+                0x000000000003d0b0                sk6812_blink_event
  .text.buzz_timer_event
-                0x000000000003d134       0x7c Output/Proximo Debug/Obj/event.o
-                0x000000000003d134                buzz_timer_event
+                0x000000000003d168       0x7c Output/Proximo Debug/Obj/event.o
+                0x000000000003d168                buzz_timer_event
  .text.buzz_event
-                0x000000000003d1b0       0xbc Output/Proximo Debug/Obj/event.o
-                0x000000000003d1b0                buzz_event
+                0x000000000003d1e4       0xbc Output/Proximo Debug/Obj/event.o
+                0x000000000003d1e4                buzz_event
  .text.clear_and_write_rgb_buffer_n
-                0x000000000003d26c       0x70 Output/Proximo Debug/Obj/event.o
+                0x000000000003d2a0       0x70 Output/Proximo Debug/Obj/event.o
  .text.check_button_press_animation
-                0x000000000003d2dc      0x15c Output/Proximo Debug/Obj/event.o
-                0x000000000003d2dc                check_button_press_animation
+                0x000000000003d310      0x15c Output/Proximo Debug/Obj/event.o
+                0x000000000003d310                check_button_press_animation
  .text.events_init
-                0x000000000003d438       0x90 Output/Proximo Debug/Obj/event.o
-                0x000000000003d438                events_init
+                0x000000000003d46c       0x90 Output/Proximo Debug/Obj/event.o
+                0x000000000003d46c                events_init
  .text.sd_ble_gatts_hvx
-                0x000000000003d4c8        0x8 Output/Proximo Debug/Obj/ble_dfu.o
+                0x000000000003d4fc        0x8 Output/Proximo Debug/Obj/ble_dfu.o
  .text.sd_ble_gatts_rw_authorize_reply
-                0x000000000003d4d0        0x8 Output/Proximo Debug/Obj/ble_dfu.o
+                0x000000000003d504        0x8 Output/Proximo Debug/Obj/ble_dfu.o
  .text.sd_power_gpregret_set
-                0x000000000003d4d8        0x8 Output/Proximo Debug/Obj/ble_dfu.o
+                0x000000000003d50c        0x8 Output/Proximo Debug/Obj/ble_dfu.o
  .text.sd_power_gpregret_clr
-                0x000000000003d4e0        0x8 Output/Proximo Debug/Obj/ble_dfu.o
+                0x000000000003d514        0x8 Output/Proximo Debug/Obj/ble_dfu.o
  .text.on_ctrlpt_write
-                0x000000000003d4e8       0x70 Output/Proximo Debug/Obj/ble_dfu.o
+                0x000000000003d51c       0x70 Output/Proximo Debug/Obj/ble_dfu.o
  .text.on_rw_authorize_req
-                0x000000000003d558       0x5c Output/Proximo Debug/Obj/ble_dfu.o
+                0x000000000003d58c       0x5c Output/Proximo Debug/Obj/ble_dfu.o
  .text.on_connect
-                0x000000000003d5b4       0x18 Output/Proximo Debug/Obj/ble_dfu.o
+                0x000000000003d5e8       0x18 Output/Proximo Debug/Obj/ble_dfu.o
  .text.on_disconnect
-                0x000000000003d5cc       0x24 Output/Proximo Debug/Obj/ble_dfu.o
+                0x000000000003d600       0x24 Output/Proximo Debug/Obj/ble_dfu.o
  .text.on_write
-                0x000000000003d5f0       0x60 Output/Proximo Debug/Obj/ble_dfu.o
- .text.on_hvc   0x000000000003d650       0x40 Output/Proximo Debug/Obj/ble_dfu.o
+                0x000000000003d624       0x60 Output/Proximo Debug/Obj/ble_dfu.o
+ .text.on_hvc   0x000000000003d684       0x40 Output/Proximo Debug/Obj/ble_dfu.o
  .text.ble_dfu_buttonless_on_ble_evt
-                0x000000000003d690       0x5e Output/Proximo Debug/Obj/ble_dfu.o
-                0x000000000003d690                ble_dfu_buttonless_on_ble_evt
- *fill*         0x000000000003d6ee        0x2 
+                0x000000000003d6c4       0x5e Output/Proximo Debug/Obj/ble_dfu.o
+                0x000000000003d6c4                ble_dfu_buttonless_on_ble_evt
+ *fill*         0x000000000003d722        0x2 
  .text.ble_dfu_buttonless_resp_send
-                0x000000000003d6f0       0x94 Output/Proximo Debug/Obj/ble_dfu.o
-                0x000000000003d6f0                ble_dfu_buttonless_resp_send
+                0x000000000003d724       0x94 Output/Proximo Debug/Obj/ble_dfu.o
+                0x000000000003d724                ble_dfu_buttonless_resp_send
  .text.ble_dfu_buttonless_bootloader_start_finalize
-                0x000000000003d784       0x6c Output/Proximo Debug/Obj/ble_dfu.o
-                0x000000000003d784                ble_dfu_buttonless_bootloader_start_finalize
+                0x000000000003d7b8       0x6c Output/Proximo Debug/Obj/ble_dfu.o
+                0x000000000003d7b8                ble_dfu_buttonless_bootloader_start_finalize
  .text.nrf_dfu_set_adv_name
-                0x000000000003d7f0       0x24 Output/Proximo Debug/Obj/ble_dfu_unbonded.o
+                0x000000000003d824       0x24 Output/Proximo Debug/Obj/ble_dfu_unbonded.o
  .text.nrf_dfu_set_adv_name_on_sys_evt
-                0x000000000003d814       0x24 Output/Proximo Debug/Obj/ble_dfu_unbonded.o
+                0x000000000003d848       0x24 Output/Proximo Debug/Obj/ble_dfu_unbonded.o
  .text.nrf_dfu_set_adv_name_is_initialized
-                0x000000000003d838       0x20 Output/Proximo Debug/Obj/ble_dfu_unbonded.o
+                0x000000000003d86c       0x20 Output/Proximo Debug/Obj/ble_dfu_unbonded.o
  .text.set_adv_name
-                0x000000000003d858       0x5c Output/Proximo Debug/Obj/ble_dfu_unbonded.o
+                0x000000000003d88c       0x5c Output/Proximo Debug/Obj/ble_dfu_unbonded.o
  .text.enter_bootloader
-                0x000000000003d8b4       0x5c Output/Proximo Debug/Obj/ble_dfu_unbonded.o
+                0x000000000003d8e8       0x5c Output/Proximo Debug/Obj/ble_dfu_unbonded.o
  .text.ble_dfu_buttonless_on_sys_evt
-                0x000000000003d910       0x84 Output/Proximo Debug/Obj/ble_dfu_unbonded.o
-                0x000000000003d910                ble_dfu_buttonless_on_sys_evt
+                0x000000000003d944       0x84 Output/Proximo Debug/Obj/ble_dfu_unbonded.o
+                0x000000000003d944                ble_dfu_buttonless_on_sys_evt
  .text.ble_dfu_buttonless_on_ctrl_pt_write
-                0x000000000003d994       0xdc Output/Proximo Debug/Obj/ble_dfu_unbonded.o
-                0x000000000003d994                ble_dfu_buttonless_on_ctrl_pt_write
+                0x000000000003d9c8       0xdc Output/Proximo Debug/Obj/ble_dfu_unbonded.o
+                0x000000000003d9c8                ble_dfu_buttonless_on_ctrl_pt_write
  .text.ble_dfu_buttonless_bootloader_start_prepare
-                0x000000000003da70       0x24 Output/Proximo Debug/Obj/ble_dfu_unbonded.o
-                0x000000000003da70                ble_dfu_buttonless_bootloader_start_prepare
+                0x000000000003daa4       0x24 Output/Proximo Debug/Obj/ble_dfu_unbonded.o
+                0x000000000003daa4                ble_dfu_buttonless_bootloader_start_prepare
  .text.libc.__int64_udivmod
-                0x000000000003da94       0xce C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.40/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc_asm.o)
-                0x000000000003da94                __aeabi_uldivmod
-                0x000000000003da94                __int64_udiv
-                0x000000000003da94                __udivdi3
-                0x000000000003da94                __int64_udivmod
- *fill*         0x000000000003db62        0x2 
+                0x000000000003dac8       0xce C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.40/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc_asm.o)
+                0x000000000003dac8                __aeabi_uldivmod
+                0x000000000003dac8                __int64_udiv
+                0x000000000003dac8                __udivdi3
+                0x000000000003dac8                __int64_udivmod
+ *fill*         0x000000000003db96        0x2 
  .text.libc.__RAL_ascii_isctype
-                0x000000000003db64       0x1c C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.40/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
- .text.libc.__RAL_ascii_toupper
-                0x000000000003db80        0xc C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.40/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
- .text.libc.__RAL_ascii_tolower
-                0x000000000003db8c        0xc C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.40/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
- .text.libc.__RAL_ascii_iswctype
                 0x000000000003db98       0x1c C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.40/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
- .text.libc.__RAL_ascii_towupper
+ .text.libc.__RAL_ascii_toupper
                 0x000000000003dbb4        0xc C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.40/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
- .text.libc.__RAL_ascii_towlower
+ .text.libc.__RAL_ascii_tolower
                 0x000000000003dbc0        0xc C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.40/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
+ .text.libc.__RAL_ascii_iswctype
+                0x000000000003dbcc       0x1c C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.40/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
+ .text.libc.__RAL_ascii_towupper
+                0x000000000003dbe8        0xc C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.40/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
+ .text.libc.__RAL_ascii_towlower
+                0x000000000003dbf4        0xc C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.40/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
  .text.libc.__RAL_ascii_wctomb
-                0x000000000003dbcc        0xe C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.40/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
-                0x000000000003dbcc                __RAL_ascii_wctomb
+                0x000000000003dc00        0xe C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.40/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
+                0x000000000003dc00                __RAL_ascii_wctomb
  .text.libc.__RAL_ascii_mbtowc
-                0x000000000003dbda       0x24 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.40/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
-                0x000000000003dbda                __RAL_ascii_mbtowc
- *fill*         0x000000000003dbfe        0x2 
+                0x000000000003dc0e       0x24 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.40/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
+                0x000000000003dc0e                __RAL_ascii_mbtowc
+ *fill*         0x000000000003dc32        0x2 
  .text.libc.__RAL_isctype
-                0x000000000003dc00       0x14 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.40/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
-                0x000000000003dc00                __RAL_isctype
+                0x000000000003dc34       0x14 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.40/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
+                0x000000000003dc34                __RAL_isctype
  .text.libc.isprint
-                0x000000000003dc14        0xa C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.40/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
-                0x000000000003dc14                isprint
+                0x000000000003dc48        0xa C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.40/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
+                0x000000000003dc48                isprint
  .text.libc.memcmp
-                0x000000000003dc1e       0x6c C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.40/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
-                0x000000000003dc1e                memcmp
+                0x000000000003dc52       0x6c C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.40/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
+                0x000000000003dc52                memcmp
  .text.libc.memcpy
-                0x000000000003dc8a       0x52 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.40/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2_asm.o)
-                0x000000000003dc8a                __aeabi_memcpy
-                0x000000000003dc8a                memcpy
-                0x000000000003dc96                __aeabi_memcpy8
-                0x000000000003dc96                __aeabi_memcpy4
+                0x000000000003dcbe       0x52 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.40/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2_asm.o)
+                0x000000000003dcbe                __aeabi_memcpy
+                0x000000000003dcbe                memcpy
+                0x000000000003dcca                __aeabi_memcpy8
+                0x000000000003dcca                __aeabi_memcpy4
  .text.libc.memset
-                0x000000000003dcdc       0x66 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.40/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2_asm.o)
-                0x000000000003dcdc                memset
+                0x000000000003dd10       0x66 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.40/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2_asm.o)
+                0x000000000003dd10                memset
  .text.libc.strcpy
-                0x000000000003dd42       0x44 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.40/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2_asm.o)
-                0x000000000003dd42                strcpy
+                0x000000000003dd76       0x44 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.40/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2_asm.o)
+                0x000000000003dd76                strcpy
  .text.libc.strlen
-                0x000000000003dd86       0x60 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.40/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2_asm.o)
-                0x000000000003dd86                strlen
-                0x000000000003dde6                __text_end__ = (__text_start__ + SIZEOF (.text))
-                0x0000000000017af2                __text_size__ = SIZEOF (.text)
-                0x000000000003dde6                __text_load_end__ = __text_end__
+                0x000000000003ddba       0x60 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.40/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2_asm.o)
+                0x000000000003ddba                strlen
+                0x000000000003de1a                __text_end__ = (__text_start__ + SIZEOF (.text))
+                0x0000000000017b26                __text_size__ = SIZEOF (.text)
+                0x000000000003de1a                __text_load_end__ = __text_end__
 
 .vfp11_veneer   0x0000000100000000        0x0
  .vfp11_veneer  0x0000000100000000        0x0 linker stubs
@@ -23845,250 +23843,250 @@ Linker script and memory map
 .iplt           0x0000000100000000        0x0
  .iplt          0x0000000100000000        0x0 Output/Proximo Debug/Obj/thumb_crt0.o
                 0x0000000000000001                . = ASSERT (((__text_start__ == __text_end__) || ((__text_end__ >= __FLASH_segment_start__) && (__text_end__ <= __FLASH_segment_end__))), error: .text is too large to fit in FLASH memory segment)
-                0x000000000003dde8                __sdh_soc_observers_load_start__ = ALIGN (__text_end__, 0x4)
+                0x000000000003de1c                __sdh_soc_observers_load_start__ = ALIGN (__text_end__, 0x4)
 
 .sdh_soc_observers
-                0x000000000003dde8       0x20
-                0x000000000003dde8                __sdh_soc_observers_start__ = .
-                0x000000000003dde8                __start_sdh_soc_observers = __sdh_soc_observers_start__
+                0x000000000003de1c       0x20
+                0x000000000003de1c                __sdh_soc_observers_start__ = .
+                0x000000000003de1c                __start_sdh_soc_observers = __sdh_soc_observers_start__
  *(SORT_BY_NAME(.sdh_soc_observers*))
  .sdh_soc_observers0
-                0x000000000003dde8        0x8 Output/Proximo Debug/Obj/nrf_fstorage_sd.o
+                0x000000000003de1c        0x8 Output/Proximo Debug/Obj/nrf_fstorage_sd.o
  .sdh_soc_observers0
-                0x000000000003ddf0        0x8 Output/Proximo Debug/Obj/nrf_drv_clock.o
+                0x000000000003de24        0x8 Output/Proximo Debug/Obj/nrf_drv_clock.o
  .sdh_soc_observers1
-                0x000000000003ddf8        0x8 Output/Proximo Debug/Obj/ble_setup.o
+                0x000000000003de2c        0x8 Output/Proximo Debug/Obj/ble_setup.o
  .sdh_soc_observers1
-                0x000000000003de00        0x8 Output/Proximo Debug/Obj/ble_dfu_unbonded.o
-                0x000000000003de08                __sdh_soc_observers_end__ = (__sdh_soc_observers_start__ + SIZEOF (.sdh_soc_observers))
+                0x000000000003de34        0x8 Output/Proximo Debug/Obj/ble_dfu_unbonded.o
+                0x000000000003de3c                __sdh_soc_observers_end__ = (__sdh_soc_observers_start__ + SIZEOF (.sdh_soc_observers))
                 0x0000000000000020                __sdh_soc_observers_size__ = SIZEOF (.sdh_soc_observers)
-                0x000000000003de08                __stop_sdh_soc_observers = __sdh_soc_observers_end__
-                0x000000000003de08                __sdh_soc_observers_load_end__ = __sdh_soc_observers_end__
+                0x000000000003de3c                __stop_sdh_soc_observers = __sdh_soc_observers_end__
+                0x000000000003de3c                __sdh_soc_observers_load_end__ = __sdh_soc_observers_end__
                 0x0000000000000001                . = ASSERT (((__sdh_soc_observers_start__ == __sdh_soc_observers_end__) || ((__sdh_soc_observers_end__ >= __FLASH_segment_start__) && (__sdh_soc_observers_end__ <= __FLASH_segment_end__))), error: .sdh_soc_observers is too large to fit in FLASH memory segment)
-                0x000000000003de08                __sdh_ble_observers_load_start__ = ALIGN (__sdh_soc_observers_end__, 0x4)
+                0x000000000003de3c                __sdh_ble_observers_load_start__ = ALIGN (__sdh_soc_observers_end__, 0x4)
 
 .sdh_ble_observers
-                0x000000000003de08       0x58
-                0x000000000003de08                __sdh_ble_observers_start__ = .
-                0x000000000003de08                __start_sdh_ble_observers = __sdh_ble_observers_start__
+                0x000000000003de3c       0x58
+                0x000000000003de3c                __sdh_ble_observers_start__ = .
+                0x000000000003de3c                __start_sdh_ble_observers = __sdh_ble_observers_start__
  *(SORT_BY_NAME(.sdh_ble_observers*))
  .sdh_ble_observers0
-                0x000000000003de08        0x8 Output/Proximo Debug/Obj/ble_conn_state.o
+                0x000000000003de3c        0x8 Output/Proximo Debug/Obj/ble_conn_state.o
  .sdh_ble_observers1
-                0x000000000003de10        0x8 Output/Proximo Debug/Obj/bsp_btn_ble.o
+                0x000000000003de44        0x8 Output/Proximo Debug/Obj/bsp_btn_ble.o
  .sdh_ble_observers1
-                0x000000000003de18        0x8 Output/Proximo Debug/Obj/ble_conn_params.o
+                0x000000000003de4c        0x8 Output/Proximo Debug/Obj/ble_conn_params.o
  .sdh_ble_observers1
-                0x000000000003de20        0x8 Output/Proximo Debug/Obj/peer_manager.o
+                0x000000000003de54        0x8 Output/Proximo Debug/Obj/peer_manager.o
  .sdh_ble_observers1
-                0x000000000003de28       0x10 Output/Proximo Debug/Obj/ble_setup.o
+                0x000000000003de5c       0x10 Output/Proximo Debug/Obj/ble_setup.o
  .sdh_ble_observers2
-                0x000000000003de38       0x18 Output/Proximo Debug/Obj/ble_setup.o
+                0x000000000003de6c       0x18 Output/Proximo Debug/Obj/ble_setup.o
  .sdh_ble_observers2
-                0x000000000003de50        0x8 Output/Proximo Debug/Obj/ble_dfu.o
+                0x000000000003de84        0x8 Output/Proximo Debug/Obj/ble_dfu.o
  .sdh_ble_observers3
-                0x000000000003de58        0x8 Output/Proximo Debug/Obj/ble_setup.o
-                0x000000000003de60                __sdh_ble_observers_end__ = (__sdh_ble_observers_start__ + SIZEOF (.sdh_ble_observers))
+                0x000000000003de8c        0x8 Output/Proximo Debug/Obj/ble_setup.o
+                0x000000000003de94                __sdh_ble_observers_end__ = (__sdh_ble_observers_start__ + SIZEOF (.sdh_ble_observers))
                 0x0000000000000058                __sdh_ble_observers_size__ = SIZEOF (.sdh_ble_observers)
-                0x000000000003de60                __stop_sdh_ble_observers = __sdh_ble_observers_end__
-                0x000000000003de60                __sdh_ble_observers_load_end__ = __sdh_ble_observers_end__
+                0x000000000003de94                __stop_sdh_ble_observers = __sdh_ble_observers_end__
+                0x000000000003de94                __sdh_ble_observers_load_end__ = __sdh_ble_observers_end__
                 0x0000000000000001                . = ASSERT (((__sdh_ble_observers_start__ == __sdh_ble_observers_end__) || ((__sdh_ble_observers_end__ >= __FLASH_segment_start__) && (__sdh_ble_observers_end__ <= __FLASH_segment_end__))), error: .sdh_ble_observers is too large to fit in FLASH memory segment)
-                0x000000000003de60                __pwr_mgmt_data_load_start__ = ALIGN (__sdh_ble_observers_end__, 0x4)
+                0x000000000003de94                __pwr_mgmt_data_load_start__ = ALIGN (__sdh_ble_observers_end__, 0x4)
 
-.pwr_mgmt_data  0x000000000003de60        0x0
-                0x000000000003de60                __pwr_mgmt_data_start__ = .
-                0x000000000003de60                __start_pwr_mgmt_data = __pwr_mgmt_data_start__
+.pwr_mgmt_data  0x000000000003de94        0x0
+                0x000000000003de94                __pwr_mgmt_data_start__ = .
+                0x000000000003de94                __start_pwr_mgmt_data = __pwr_mgmt_data_start__
  *(SORT_BY_NAME(.pwr_mgmt_data*))
-                0x000000000003de60                __pwr_mgmt_data_end__ = (__pwr_mgmt_data_start__ + SIZEOF (.pwr_mgmt_data))
+                0x000000000003de94                __pwr_mgmt_data_end__ = (__pwr_mgmt_data_start__ + SIZEOF (.pwr_mgmt_data))
                 0x0000000000000000                __pwr_mgmt_data_size__ = SIZEOF (.pwr_mgmt_data)
-                0x000000000003de60                __stop_pwr_mgmt_data = __pwr_mgmt_data_end__
-                0x000000000003de60                __pwr_mgmt_data_load_end__ = __pwr_mgmt_data_end__
+                0x000000000003de94                __stop_pwr_mgmt_data = __pwr_mgmt_data_end__
+                0x000000000003de94                __pwr_mgmt_data_load_end__ = __pwr_mgmt_data_end__
                 0x0000000000000001                . = ASSERT (((__pwr_mgmt_data_start__ == __pwr_mgmt_data_end__) || ((__pwr_mgmt_data_end__ >= __FLASH_segment_start__) && (__pwr_mgmt_data_end__ <= __FLASH_segment_end__))), error: .pwr_mgmt_data is too large to fit in FLASH memory segment)
-                0x000000000003de60                __log_const_data_load_start__ = ALIGN (__pwr_mgmt_data_end__, 0x4)
+                0x000000000003de94                __log_const_data_load_start__ = ALIGN (__pwr_mgmt_data_end__, 0x4)
 
 .log_const_data
-                0x000000000003de60       0xb0
-                0x000000000003de60                __log_const_data_start__ = .
-                0x000000000003de60                __start_log_const_data = __log_const_data_start__
+                0x000000000003de94       0xb0
+                0x000000000003de94                __log_const_data_start__ = .
+                0x000000000003de94                __start_log_const_data = __log_const_data_start__
  *(SORT_BY_NAME(.log_const_data*))
  .log_const_data_CLOCK
-                0x000000000003de60        0x8 Output/Proximo Debug/Obj/nrfx_clock.o
-                0x000000000003de60                m_nrf_log_CLOCK_logs_data_const
+                0x000000000003de94        0x8 Output/Proximo Debug/Obj/nrfx_clock.o
+                0x000000000003de94                m_nrf_log_CLOCK_logs_data_const
  .log_const_data_GPIOTE
-                0x000000000003de68        0x8 Output/Proximo Debug/Obj/nrfx_gpiote.o
-                0x000000000003de68                m_nrf_log_GPIOTE_logs_data_const
+                0x000000000003de9c        0x8 Output/Proximo Debug/Obj/nrfx_gpiote.o
+                0x000000000003de9c                m_nrf_log_GPIOTE_logs_data_const
  .log_const_data_LPCOMP
-                0x000000000003de70        0x8 Output/Proximo Debug/Obj/nrfx_lpcomp.o
-                0x000000000003de70                m_nrf_log_LPCOMP_logs_data_const
+                0x000000000003dea4        0x8 Output/Proximo Debug/Obj/nrfx_lpcomp.o
+                0x000000000003dea4                m_nrf_log_LPCOMP_logs_data_const
  .log_const_data_PRS
-                0x000000000003de78        0x8 Output/Proximo Debug/Obj/nrfx_prs.o
-                0x000000000003de78                m_nrf_log_PRS_logs_data_const
+                0x000000000003deac        0x8 Output/Proximo Debug/Obj/nrfx_prs.o
+                0x000000000003deac                m_nrf_log_PRS_logs_data_const
  .log_const_data_PWM
-                0x000000000003de80        0x8 Output/Proximo Debug/Obj/nrfx_pwm.o
-                0x000000000003de80                m_nrf_log_PWM_logs_data_const
+                0x000000000003deb4        0x8 Output/Proximo Debug/Obj/nrfx_pwm.o
+                0x000000000003deb4                m_nrf_log_PWM_logs_data_const
  .log_const_data_RTC
-                0x000000000003de88        0x8 Output/Proximo Debug/Obj/nrfx_rtc.o
-                0x000000000003de88                m_nrf_log_RTC_logs_data_const
+                0x000000000003debc        0x8 Output/Proximo Debug/Obj/nrfx_rtc.o
+                0x000000000003debc                m_nrf_log_RTC_logs_data_const
  .log_const_data_SAADC
-                0x000000000003de90        0x8 Output/Proximo Debug/Obj/nrfx_saadc.o
-                0x000000000003de90                m_nrf_log_SAADC_logs_data_const
+                0x000000000003dec4        0x8 Output/Proximo Debug/Obj/nrfx_saadc.o
+                0x000000000003dec4                m_nrf_log_SAADC_logs_data_const
  .log_const_data_TWIM
-                0x000000000003de98        0x8 Output/Proximo Debug/Obj/nrfx_twim.o
-                0x000000000003de98                m_nrf_log_TWIM_logs_data_const
+                0x000000000003decc        0x8 Output/Proximo Debug/Obj/nrfx_twim.o
+                0x000000000003decc                m_nrf_log_TWIM_logs_data_const
  .log_const_data_UART
-                0x000000000003dea0        0x8 Output/Proximo Debug/Obj/nrfx_uart.o
-                0x000000000003dea0                m_nrf_log_UART_logs_data_const
+                0x000000000003ded4        0x8 Output/Proximo Debug/Obj/nrfx_uart.o
+                0x000000000003ded4                m_nrf_log_UART_logs_data_const
  .log_const_data_UARTE
-                0x000000000003dea8        0x8 Output/Proximo Debug/Obj/nrfx_uarte.o
-                0x000000000003dea8                m_nrf_log_UARTE_logs_data_const
+                0x000000000003dedc        0x8 Output/Proximo Debug/Obj/nrfx_uarte.o
+                0x000000000003dedc                m_nrf_log_UARTE_logs_data_const
  .log_const_data_app
-                0x000000000003deb0        0x8 Output/Proximo Debug/Obj/nrf_log_frontend.o
-                0x000000000003deb0                m_nrf_log_app_logs_data_const
+                0x000000000003dee4        0x8 Output/Proximo Debug/Obj/nrf_log_frontend.o
+                0x000000000003dee4                m_nrf_log_app_logs_data_const
  .log_const_data_atfifo_m_fifo
-                0x000000000003deb8        0x8 Output/Proximo Debug/Obj/nrf_fstorage_sd.o
-                0x000000000003deb8                m_nrf_log_atfifo_m_fifo_logs_data_const
+                0x000000000003deec        0x8 Output/Proximo Debug/Obj/nrf_fstorage_sd.o
+                0x000000000003deec                m_nrf_log_atfifo_m_fifo_logs_data_const
  .log_const_data_atfifo_m_queue
-                0x000000000003dec0        0x8 Output/Proximo Debug/Obj/fds.o
-                0x000000000003dec0                m_nrf_log_atfifo_m_queue_logs_data_const
+                0x000000000003def4        0x8 Output/Proximo Debug/Obj/fds.o
+                0x000000000003def4                m_nrf_log_atfifo_m_queue_logs_data_const
  .log_const_data_balloc_log_mempool
-                0x000000000003dec8        0x8 Output/Proximo Debug/Obj/nrf_log_frontend.o
-                0x000000000003dec8                m_nrf_log_balloc_log_mempool_logs_data_const
+                0x000000000003defc        0x8 Output/Proximo Debug/Obj/nrf_log_frontend.o
+                0x000000000003defc                m_nrf_log_balloc_log_mempool_logs_data_const
  .log_const_data_ble_bas
-                0x000000000003ded0        0x8 Output/Proximo Debug/Obj/ble_bas.o
-                0x000000000003ded0                m_nrf_log_ble_bas_logs_data_const
+                0x000000000003df04        0x8 Output/Proximo Debug/Obj/ble_bas.o
+                0x000000000003df04                m_nrf_log_ble_bas_logs_data_const
  .log_const_data_clock
-                0x000000000003ded8        0x8 Output/Proximo Debug/Obj/nrf_drv_clock.o
-                0x000000000003ded8                m_nrf_log_clock_logs_data_const
+                0x000000000003df0c        0x8 Output/Proximo Debug/Obj/nrf_drv_clock.o
+                0x000000000003df0c                m_nrf_log_clock_logs_data_const
  .log_const_data_nrf_ble_gatt
-                0x000000000003dee0        0x8 Output/Proximo Debug/Obj/nrf_ble_gatt.o
-                0x000000000003dee0                m_nrf_log_nrf_ble_gatt_logs_data_const
+                0x000000000003df14        0x8 Output/Proximo Debug/Obj/nrf_ble_gatt.o
+                0x000000000003df14                m_nrf_log_nrf_ble_gatt_logs_data_const
  .log_const_data_nrf_fstorage
-                0x000000000003dee8        0x8 Output/Proximo Debug/Obj/nrf_fstorage.o
-                0x000000000003dee8                m_nrf_log_nrf_fstorage_logs_data_const
+                0x000000000003df1c        0x8 Output/Proximo Debug/Obj/nrf_fstorage.o
+                0x000000000003df1c                m_nrf_log_nrf_fstorage_logs_data_const
  .log_const_data_nrf_sdh
-                0x000000000003def0        0x8 Output/Proximo Debug/Obj/nrf_sdh.o
-                0x000000000003def0                m_nrf_log_nrf_sdh_logs_data_const
+                0x000000000003df24        0x8 Output/Proximo Debug/Obj/nrf_sdh.o
+                0x000000000003df24                m_nrf_log_nrf_sdh_logs_data_const
  .log_const_data_nrf_sdh_ble
-                0x000000000003def8        0x8 Output/Proximo Debug/Obj/nrf_sdh_ble.o
-                0x000000000003def8                m_nrf_log_nrf_sdh_ble_logs_data_const
+                0x000000000003df2c        0x8 Output/Proximo Debug/Obj/nrf_sdh_ble.o
+                0x000000000003df2c                m_nrf_log_nrf_sdh_ble_logs_data_const
  .log_const_data_nrf_sdh_soc
-                0x000000000003df00        0x8 Output/Proximo Debug/Obj/nrf_sdh_soc.o
-                0x000000000003df00                m_nrf_log_nrf_sdh_soc_logs_data_const
+                0x000000000003df34        0x8 Output/Proximo Debug/Obj/nrf_sdh_soc.o
+                0x000000000003df34                m_nrf_log_nrf_sdh_soc_logs_data_const
  .log_const_data_pwr_mgmt
-                0x000000000003df08        0x8 Output/Proximo Debug/Obj/nrf_pwr_mgmt.o
-                0x000000000003df08                m_nrf_log_pwr_mgmt_logs_data_const
-                0x000000000003df10                __log_const_data_end__ = (__log_const_data_start__ + SIZEOF (.log_const_data))
+                0x000000000003df3c        0x8 Output/Proximo Debug/Obj/nrf_pwr_mgmt.o
+                0x000000000003df3c                m_nrf_log_pwr_mgmt_logs_data_const
+                0x000000000003df44                __log_const_data_end__ = (__log_const_data_start__ + SIZEOF (.log_const_data))
                 0x00000000000000b0                __log_const_data_size__ = SIZEOF (.log_const_data)
-                0x000000000003df10                __stop_log_const_data = __log_const_data_end__
-                0x000000000003df10                __log_const_data_load_end__ = __log_const_data_end__
+                0x000000000003df44                __stop_log_const_data = __log_const_data_end__
+                0x000000000003df44                __log_const_data_load_end__ = __log_const_data_end__
                 0x0000000000000001                . = ASSERT (((__log_const_data_start__ == __log_const_data_end__) || ((__log_const_data_end__ >= __FLASH_segment_start__) && (__log_const_data_end__ <= __FLASH_segment_end__))), error: .log_const_data is too large to fit in FLASH memory segment)
-                0x000000000003df10                __nrf_balloc_load_start__ = ALIGN (__log_const_data_end__, 0x4)
+                0x000000000003df44                __nrf_balloc_load_start__ = ALIGN (__log_const_data_end__, 0x4)
 
-.nrf_balloc     0x000000000003df10       0x18
-                0x000000000003df10                __nrf_balloc_start__ = .
-                0x000000000003df10                __start_nrf_balloc = __nrf_balloc_start__
+.nrf_balloc     0x000000000003df44       0x18
+                0x000000000003df44                __nrf_balloc_start__ = .
+                0x000000000003df44                __start_nrf_balloc = __nrf_balloc_start__
  *(.nrf_balloc*)
- .nrf_balloc    0x000000000003df10       0x18 Output/Proximo Debug/Obj/nrf_log_frontend.o
-                0x000000000003df10                log_mempool
-                0x000000000003df28                __nrf_balloc_end__ = (__nrf_balloc_start__ + SIZEOF (.nrf_balloc))
+ .nrf_balloc    0x000000000003df44       0x18 Output/Proximo Debug/Obj/nrf_log_frontend.o
+                0x000000000003df44                log_mempool
+                0x000000000003df5c                __nrf_balloc_end__ = (__nrf_balloc_start__ + SIZEOF (.nrf_balloc))
                 0x0000000000000018                __nrf_balloc_size__ = SIZEOF (.nrf_balloc)
-                0x000000000003df28                __stop_nrf_balloc = __nrf_balloc_end__
-                0x000000000003df28                __nrf_balloc_load_end__ = __nrf_balloc_end__
+                0x000000000003df5c                __stop_nrf_balloc = __nrf_balloc_end__
+                0x000000000003df5c                __nrf_balloc_load_end__ = __nrf_balloc_end__
                 0x0000000000000001                . = ASSERT (((__nrf_balloc_start__ == __nrf_balloc_end__) || ((__nrf_balloc_end__ >= __FLASH_segment_start__) && (__nrf_balloc_end__ <= __FLASH_segment_end__))), error: .nrf_balloc is too large to fit in FLASH memory segment)
-                0x000000000003df28                __sdh_state_observers_load_start__ = ALIGN (__nrf_balloc_end__, 0x4)
+                0x000000000003df5c                __sdh_state_observers_load_start__ = ALIGN (__nrf_balloc_end__, 0x4)
 
 .sdh_state_observers
-                0x000000000003df28       0x10
-                0x000000000003df28                __sdh_state_observers_start__ = .
-                0x000000000003df28                __start_sdh_state_observers = __sdh_state_observers_start__
+                0x000000000003df5c       0x10
+                0x000000000003df5c                __sdh_state_observers_start__ = .
+                0x000000000003df5c                __start_sdh_state_observers = __sdh_state_observers_start__
  *(SORT_BY_NAME(.sdh_state_observers*))
  .sdh_state_observers0
-                0x000000000003df28        0x8 Output/Proximo Debug/Obj/nrf_fstorage_sd.o
+                0x000000000003df5c        0x8 Output/Proximo Debug/Obj/nrf_fstorage_sd.o
  .sdh_state_observers0
-                0x000000000003df30        0x8 Output/Proximo Debug/Obj/nrf_drv_clock.o
-                0x000000000003df38                __sdh_state_observers_end__ = (__sdh_state_observers_start__ + SIZEOF (.sdh_state_observers))
+                0x000000000003df64        0x8 Output/Proximo Debug/Obj/nrf_drv_clock.o
+                0x000000000003df6c                __sdh_state_observers_end__ = (__sdh_state_observers_start__ + SIZEOF (.sdh_state_observers))
                 0x0000000000000010                __sdh_state_observers_size__ = SIZEOF (.sdh_state_observers)
-                0x000000000003df38                __stop_sdh_state_observers = __sdh_state_observers_end__
-                0x000000000003df38                __sdh_state_observers_load_end__ = __sdh_state_observers_end__
+                0x000000000003df6c                __stop_sdh_state_observers = __sdh_state_observers_end__
+                0x000000000003df6c                __sdh_state_observers_load_end__ = __sdh_state_observers_end__
                 0x0000000000000001                . = ASSERT (((__sdh_state_observers_start__ == __sdh_state_observers_end__) || ((__sdh_state_observers_end__ >= __FLASH_segment_start__) && (__sdh_state_observers_end__ <= __FLASH_segment_end__))), error: .sdh_state_observers is too large to fit in FLASH memory segment)
-                0x000000000003df38                __sdh_stack_observers_load_start__ = ALIGN (__sdh_state_observers_end__, 0x4)
+                0x000000000003df6c                __sdh_stack_observers_load_start__ = ALIGN (__sdh_state_observers_end__, 0x4)
 
 .sdh_stack_observers
-                0x000000000003df38       0x10
-                0x000000000003df38                __sdh_stack_observers_start__ = .
-                0x000000000003df38                __start_sdh_stack_observers = __sdh_stack_observers_start__
+                0x000000000003df6c       0x10
+                0x000000000003df6c                __sdh_stack_observers_start__ = .
+                0x000000000003df6c                __start_sdh_stack_observers = __sdh_stack_observers_start__
  *(SORT_BY_NAME(.sdh_stack_observers*))
  .sdh_stack_observers0
-                0x000000000003df38        0x8 Output/Proximo Debug/Obj/nrf_sdh_ble.o
+                0x000000000003df6c        0x8 Output/Proximo Debug/Obj/nrf_sdh_ble.o
  .sdh_stack_observers0
-                0x000000000003df40        0x8 Output/Proximo Debug/Obj/nrf_sdh_soc.o
-                0x000000000003df48                __sdh_stack_observers_end__ = (__sdh_stack_observers_start__ + SIZEOF (.sdh_stack_observers))
+                0x000000000003df74        0x8 Output/Proximo Debug/Obj/nrf_sdh_soc.o
+                0x000000000003df7c                __sdh_stack_observers_end__ = (__sdh_stack_observers_start__ + SIZEOF (.sdh_stack_observers))
                 0x0000000000000010                __sdh_stack_observers_size__ = SIZEOF (.sdh_stack_observers)
-                0x000000000003df48                __stop_sdh_stack_observers = __sdh_stack_observers_end__
-                0x000000000003df48                __sdh_stack_observers_load_end__ = __sdh_stack_observers_end__
+                0x000000000003df7c                __stop_sdh_stack_observers = __sdh_stack_observers_end__
+                0x000000000003df7c                __sdh_stack_observers_load_end__ = __sdh_stack_observers_end__
                 0x0000000000000001                . = ASSERT (((__sdh_stack_observers_start__ == __sdh_stack_observers_end__) || ((__sdh_stack_observers_end__ >= __FLASH_segment_start__) && (__sdh_stack_observers_end__ <= __FLASH_segment_end__))), error: .sdh_stack_observers is too large to fit in FLASH memory segment)
-                0x000000000003df48                __sdh_req_observers_load_start__ = ALIGN (__sdh_stack_observers_end__, 0x4)
+                0x000000000003df7c                __sdh_req_observers_load_start__ = ALIGN (__sdh_stack_observers_end__, 0x4)
 
 .sdh_req_observers
-                0x000000000003df48        0x8
-                0x000000000003df48                __sdh_req_observers_start__ = .
-                0x000000000003df48                __start_sdh_req_observers = __sdh_req_observers_start__
+                0x000000000003df7c        0x8
+                0x000000000003df7c                __sdh_req_observers_start__ = .
+                0x000000000003df7c                __start_sdh_req_observers = __sdh_req_observers_start__
  *(SORT_BY_NAME(.sdh_req_observers*))
  .sdh_req_observers0
-                0x000000000003df48        0x8 Output/Proximo Debug/Obj/nrf_fstorage_sd.o
-                0x000000000003df48                m_req_obs
-                0x000000000003df50                __sdh_req_observers_end__ = (__sdh_req_observers_start__ + SIZEOF (.sdh_req_observers))
+                0x000000000003df7c        0x8 Output/Proximo Debug/Obj/nrf_fstorage_sd.o
+                0x000000000003df7c                m_req_obs
+                0x000000000003df84                __sdh_req_observers_end__ = (__sdh_req_observers_start__ + SIZEOF (.sdh_req_observers))
                 0x0000000000000008                __sdh_req_observers_size__ = SIZEOF (.sdh_req_observers)
-                0x000000000003df50                __stop_sdh_req_observers = __sdh_req_observers_end__
-                0x000000000003df50                __sdh_req_observers_load_end__ = __sdh_req_observers_end__
+                0x000000000003df84                __stop_sdh_req_observers = __sdh_req_observers_end__
+                0x000000000003df84                __sdh_req_observers_load_end__ = __sdh_req_observers_end__
                 0x0000000000000001                . = ASSERT (((__sdh_req_observers_start__ == __sdh_req_observers_end__) || ((__sdh_req_observers_end__ >= __FLASH_segment_start__) && (__sdh_req_observers_end__ <= __FLASH_segment_end__))), error: .sdh_req_observers is too large to fit in FLASH memory segment)
-                0x000000000003df50                __nrf_queue_load_start__ = ALIGN (__sdh_req_observers_end__, 0x4)
+                0x000000000003df84                __nrf_queue_load_start__ = ALIGN (__sdh_req_observers_end__, 0x4)
 
-.nrf_queue      0x000000000003df50        0x0
-                0x000000000003df50                __nrf_queue_start__ = .
-                0x000000000003df50                __start_nrf_queue = __nrf_queue_start__
+.nrf_queue      0x000000000003df84        0x0
+                0x000000000003df84                __nrf_queue_start__ = .
+                0x000000000003df84                __start_nrf_queue = __nrf_queue_start__
  *(.nrf_queue*)
-                0x000000000003df50                __nrf_queue_end__ = (__nrf_queue_start__ + SIZEOF (.nrf_queue))
+                0x000000000003df84                __nrf_queue_end__ = (__nrf_queue_start__ + SIZEOF (.nrf_queue))
                 0x0000000000000000                __nrf_queue_size__ = SIZEOF (.nrf_queue)
-                0x000000000003df50                __stop_nrf_queue = __nrf_queue_end__
-                0x000000000003df50                __nrf_queue_load_end__ = __nrf_queue_end__
+                0x000000000003df84                __stop_nrf_queue = __nrf_queue_end__
+                0x000000000003df84                __nrf_queue_load_end__ = __nrf_queue_end__
                 0x0000000000000001                . = ASSERT (((__nrf_queue_start__ == __nrf_queue_end__) || ((__nrf_queue_end__ >= __FLASH_segment_start__) && (__nrf_queue_end__ <= __FLASH_segment_end__))), error: .nrf_queue is too large to fit in FLASH memory segment)
-                0x000000000003df50                __cli_command_load_start__ = ALIGN (__nrf_queue_end__, 0x4)
+                0x000000000003df84                __cli_command_load_start__ = ALIGN (__nrf_queue_end__, 0x4)
 
-.cli_command    0x000000000003df50        0x0
-                0x000000000003df50                __cli_command_start__ = .
-                0x000000000003df50                __start_cli_command = __cli_command_start__
+.cli_command    0x000000000003df84        0x0
+                0x000000000003df84                __cli_command_start__ = .
+                0x000000000003df84                __start_cli_command = __cli_command_start__
  *(.cli_command*)
-                0x000000000003df50                __cli_command_end__ = (__cli_command_start__ + SIZEOF (.cli_command))
+                0x000000000003df84                __cli_command_end__ = (__cli_command_start__ + SIZEOF (.cli_command))
                 0x0000000000000000                __cli_command_size__ = SIZEOF (.cli_command)
-                0x000000000003df50                __stop_cli_command = __cli_command_end__
-                0x000000000003df50                __cli_command_load_end__ = __cli_command_end__
+                0x000000000003df84                __stop_cli_command = __cli_command_end__
+                0x000000000003df84                __cli_command_load_end__ = __cli_command_end__
                 0x0000000000000001                . = ASSERT (((__cli_command_start__ == __cli_command_end__) || ((__cli_command_end__ >= __FLASH_segment_start__) && (__cli_command_end__ <= __FLASH_segment_end__))), error: .cli_command is too large to fit in FLASH memory segment)
-                0x000000000003df50                __crypto_data_load_start__ = ALIGN (__cli_command_end__, 0x4)
+                0x000000000003df84                __crypto_data_load_start__ = ALIGN (__cli_command_end__, 0x4)
 
-.crypto_data    0x000000000003df50        0x0
-                0x000000000003df50                __crypto_data_start__ = .
-                0x000000000003df50                __start_crypto_data = __crypto_data_start__
+.crypto_data    0x000000000003df84        0x0
+                0x000000000003df84                __crypto_data_start__ = .
+                0x000000000003df84                __start_crypto_data = __crypto_data_start__
  *(SORT_BY_NAME(.crypto_data*))
-                0x000000000003df50                __crypto_data_end__ = (__crypto_data_start__ + SIZEOF (.crypto_data))
+                0x000000000003df84                __crypto_data_end__ = (__crypto_data_start__ + SIZEOF (.crypto_data))
                 0x0000000000000000                __crypto_data_size__ = SIZEOF (.crypto_data)
-                0x000000000003df50                __stop_crypto_data = __crypto_data_end__
-                0x000000000003df50                __crypto_data_load_end__ = __crypto_data_end__
+                0x000000000003df84                __stop_crypto_data = __crypto_data_end__
+                0x000000000003df84                __crypto_data_load_end__ = __crypto_data_end__
                 0x0000000000000001                . = ASSERT (((__crypto_data_start__ == __crypto_data_end__) || ((__crypto_data_end__ >= __FLASH_segment_start__) && (__crypto_data_end__ <= __FLASH_segment_end__))), error: .crypto_data is too large to fit in FLASH memory segment)
-                0x000000000003df50                __nrf_sections_load_start__ = ALIGN (__crypto_data_end__, 0x4)
+                0x000000000003df84                __nrf_sections_load_start__ = ALIGN (__crypto_data_end__, 0x4)
 
-.nrf_sections   0x000000000003df50        0x0
-                0x000000000003df50                __nrf_sections_start__ = .
-                0x000000000003df50                __start_nrf_sections = __nrf_sections_start__
+.nrf_sections   0x000000000003df84        0x0
+                0x000000000003df84                __nrf_sections_start__ = .
+                0x000000000003df84                __start_nrf_sections = __nrf_sections_start__
  *(.nrf_sections .nrf_sections.*)
-                0x000000000003df50                __nrf_sections_end__ = (__nrf_sections_start__ + SIZEOF (.nrf_sections))
+                0x000000000003df84                __nrf_sections_end__ = (__nrf_sections_start__ + SIZEOF (.nrf_sections))
                 0x0000000000000000                __nrf_sections_size__ = SIZEOF (.nrf_sections)
-                0x000000000003df50                __nrf_sections_load_end__ = __nrf_sections_end__
+                0x000000000003df84                __nrf_sections_load_end__ = __nrf_sections_end__
                 0x0000000000000001                . = ASSERT (((__nrf_sections_start__ == __nrf_sections_end__) || ((__nrf_sections_end__ >= __FLASH_segment_start__) && (__nrf_sections_end__ <= __FLASH_segment_end__))), error: .nrf_sections is too large to fit in FLASH memory segment)
-                0x000000000003df50                __log_dynamic_data_load_start__ = ALIGN (__nrf_sections_end__, 0x4)
+                0x000000000003df84                __log_dynamic_data_load_start__ = ALIGN (__nrf_sections_end__, 0x4)
 
 .log_dynamic_data
-                0x0000000020004cc8       0x58 load address 0x000000000003df50
+                0x0000000020004cc8       0x58 load address 0x000000000003df84
                 0x0000000020004cc8                __log_dynamic_data_start__ = .
  *(SORT_BY_NAME(.log_dynamic_data*))
  .log_dynamic_data_CLOCK
@@ -24159,11 +24157,11 @@ Linker script and memory map
                 0x0000000020004d1c                m_nrf_log_pwr_mgmt_logs_data_dynamic
                 0x0000000020004d20                __log_dynamic_data_end__ = (__log_dynamic_data_start__ + SIZEOF (.log_dynamic_data))
                 0x0000000000000058                __log_dynamic_data_size__ = SIZEOF (.log_dynamic_data)
-                0x000000000003dfa8                __log_dynamic_data_load_end__ = (__log_dynamic_data_load_start__ + SIZEOF (.log_dynamic_data))
+                0x000000000003dfdc                __log_dynamic_data_load_end__ = (__log_dynamic_data_load_start__ + SIZEOF (.log_dynamic_data))
                 0x0000000000000001                . = ASSERT (((__log_dynamic_data_load_start__ == __log_dynamic_data_load_end__) || ((__log_dynamic_data_load_end__ >= __FLASH_segment_start__) && (__log_dynamic_data_load_end__ <= __FLASH_segment_end__))), error: .log_dynamic_data is too large to fit in FLASH memory segment)
 
 .log_dynamic_data_run
-                0x0000000020004cc8       0x58 load address 0x000000000003df50
+                0x0000000020004cc8       0x58 load address 0x000000000003df84
                 0x0000000020004cc8                __log_dynamic_data_run_start__ = .
                 0x0000000020004cc8                __start_log_dynamic_data = __log_dynamic_data_run_start__
                 0x0000000020004d20                . = MAX ((__log_dynamic_data_run_start__ + SIZEOF (.log_dynamic_data)), .)
@@ -24173,19 +24171,19 @@ Linker script and memory map
                 0x0000000020004d20                __stop_log_dynamic_data = __log_dynamic_data_run_end__
                 0x0000000020004d20                __log_dynamic_data_run_load_end__ = __log_dynamic_data_run_end__
                 0x0000000000000001                . = ASSERT (((__log_dynamic_data_run_start__ == __log_dynamic_data_run_end__) || ((__log_dynamic_data_run_end__ >= __RAM_segment_start__) && (__log_dynamic_data_run_end__ <= __RAM_segment_end__))), error: .log_dynamic_data_run is too large to fit in RAM memory segment)
-                0x000000000003dfa8                __fs_data_load_start__ = ALIGN ((__log_dynamic_data_load_start__ + SIZEOF (.log_dynamic_data)), 0x4)
+                0x000000000003dfdc                __fs_data_load_start__ = ALIGN ((__log_dynamic_data_load_start__ + SIZEOF (.log_dynamic_data)), 0x4)
 
-.fs_data        0x0000000020004d20       0x14 load address 0x000000000003dfa8
+.fs_data        0x0000000020004d20       0x14 load address 0x000000000003dfdc
                 0x0000000020004d20                __fs_data_start__ = .
  *(.fs_data*)
  .fs_data       0x0000000020004d20       0x14 Output/Proximo Debug/Obj/fds.o
                 0x0000000020004d20                m_fs
                 0x0000000020004d34                __fs_data_end__ = (__fs_data_start__ + SIZEOF (.fs_data))
                 0x0000000000000014                __fs_data_size__ = SIZEOF (.fs_data)
-                0x000000000003dfbc                __fs_data_load_end__ = (__fs_data_load_start__ + SIZEOF (.fs_data))
+                0x000000000003dff0                __fs_data_load_end__ = (__fs_data_load_start__ + SIZEOF (.fs_data))
                 0x0000000000000001                . = ASSERT (((__fs_data_load_start__ == __fs_data_load_end__) || ((__fs_data_load_end__ >= __FLASH_segment_start__) && (__fs_data_load_end__ <= __FLASH_segment_end__))), error: .fs_data is too large to fit in FLASH memory segment)
 
-.fs_data_run    0x0000000020004d20       0x14 load address 0x000000000003dfa8
+.fs_data_run    0x0000000020004d20       0x14 load address 0x000000000003dfdc
                 0x0000000020004d20                __fs_data_run_start__ = .
                 0x0000000020004d20                __start_fs_data = __fs_data_run_start__
                 0x0000000020004d34                . = MAX ((__fs_data_run_start__ + SIZEOF (.fs_data)), .)
@@ -24195,15 +24193,15 @@ Linker script and memory map
                 0x0000000020004d34                __stop_fs_data = __fs_data_run_end__
                 0x0000000020004d34                __fs_data_run_load_end__ = __fs_data_run_end__
                 0x0000000000000001                . = ASSERT (((__fs_data_run_start__ == __fs_data_run_end__) || ((__fs_data_run_end__ >= __RAM_segment_start__) && (__fs_data_run_end__ <= __RAM_segment_end__))), error: .fs_data_run is too large to fit in RAM memory segment)
-                0x000000000003dfbc                __cli_sorted_cmd_ptrs_load_start__ = ALIGN ((__fs_data_load_start__ + SIZEOF (.fs_data)), 0x4)
+                0x000000000003dff0                __cli_sorted_cmd_ptrs_load_start__ = ALIGN ((__fs_data_load_start__ + SIZEOF (.fs_data)), 0x4)
 
 .cli_sorted_cmd_ptrs
-                0x0000000020004d34        0x0 load address 0x000000000003dfbc
+                0x0000000020004d34        0x0 load address 0x000000000003dff0
                 0x0000000020004d34                __cli_sorted_cmd_ptrs_start__ = .
  *(.cli_sorted_cmd_ptrs*)
                 0x0000000020004d34                __cli_sorted_cmd_ptrs_end__ = (__cli_sorted_cmd_ptrs_start__ + SIZEOF (.cli_sorted_cmd_ptrs))
                 0x0000000000000000                __cli_sorted_cmd_ptrs_size__ = SIZEOF (.cli_sorted_cmd_ptrs)
-                0x000000000003dfbc                __cli_sorted_cmd_ptrs_load_end__ = (__cli_sorted_cmd_ptrs_load_start__ + SIZEOF (.cli_sorted_cmd_ptrs))
+                0x000000000003dff0                __cli_sorted_cmd_ptrs_load_end__ = (__cli_sorted_cmd_ptrs_load_start__ + SIZEOF (.cli_sorted_cmd_ptrs))
                 0x0000000000000001                . = ASSERT (((__cli_sorted_cmd_ptrs_load_start__ == __cli_sorted_cmd_ptrs_load_end__) || ((__cli_sorted_cmd_ptrs_load_end__ >= __FLASH_segment_start__) && (__cli_sorted_cmd_ptrs_load_end__ <= __FLASH_segment_end__))), error: .cli_sorted_cmd_ptrs is too large to fit in FLASH memory segment)
 
 .cli_sorted_cmd_ptrs_run
@@ -24227,296 +24225,297 @@ Linker script and memory map
                 0x0000000000000000                __nrf_sections_run_end_size__ = SIZEOF (.nrf_sections_run_end)
                 0x0000000020004d34                __nrf_sections_run_end_load_end__ = __nrf_sections_run_end_end__
                 0x0000000000000001                . = ASSERT (((__nrf_sections_run_end_start__ == __nrf_sections_run_end_end__) || ((__nrf_sections_run_end_end__ >= __RAM_segment_start__) && (__nrf_sections_run_end_end__ <= __RAM_segment_end__))), error: .nrf_sections_run_end is too large to fit in RAM memory segment)
-                0x000000000003dfbc                __dtors_load_start__ = ALIGN ((__cli_sorted_cmd_ptrs_load_start__ + SIZEOF (.cli_sorted_cmd_ptrs)), 0x4)
+                0x000000000003dff0                __dtors_load_start__ = ALIGN ((__cli_sorted_cmd_ptrs_load_start__ + SIZEOF (.cli_sorted_cmd_ptrs)), 0x4)
 
-.dtors          0x000000000003dfbc        0x0
-                0x000000000003dfbc                __dtors_start__ = .
+.dtors          0x000000000003dff0        0x0
+                0x000000000003dff0                __dtors_start__ = .
  *(SORT_BY_NAME(.dtors.*))
  *(.dtors)
  *(.fini_array)
  *(SORT_BY_NAME(.fini_array.*))
-                0x000000000003dfbc                __dtors_end__ = (__dtors_start__ + SIZEOF (.dtors))
+                0x000000000003dff0                __dtors_end__ = (__dtors_start__ + SIZEOF (.dtors))
                 0x0000000000000000                __dtors_size__ = SIZEOF (.dtors)
-                0x000000000003dfbc                __dtors_load_end__ = __dtors_end__
+                0x000000000003dff0                __dtors_load_end__ = __dtors_end__
                 0x0000000000000001                . = ASSERT (((__dtors_start__ == __dtors_end__) || ((__dtors_end__ >= __FLASH_segment_start__) && (__dtors_end__ <= __FLASH_segment_end__))), error: .dtors is too large to fit in FLASH memory segment)
-                0x000000000003dfbc                __ctors_load_start__ = ALIGN (__dtors_end__, 0x4)
+                0x000000000003dff0                __ctors_load_start__ = ALIGN (__dtors_end__, 0x4)
 
-.ctors          0x000000000003dfbc        0x0
-                0x000000000003dfbc                __ctors_start__ = .
+.ctors          0x000000000003dff0        0x0
+                0x000000000003dff0                __ctors_start__ = .
  *(SORT_BY_NAME(.ctors.*))
  *(.ctors)
  *(.init_array)
  *(SORT_BY_NAME(.init_array.*))
-                0x000000000003dfbc                __ctors_end__ = (__ctors_start__ + SIZEOF (.ctors))
+                0x000000000003dff0                __ctors_end__ = (__ctors_start__ + SIZEOF (.ctors))
                 0x0000000000000000                __ctors_size__ = SIZEOF (.ctors)
-                0x000000000003dfbc                __ctors_load_end__ = __ctors_end__
+                0x000000000003dff0                __ctors_load_end__ = __ctors_end__
                 0x0000000000000001                . = ASSERT (((__ctors_start__ == __ctors_end__) || ((__ctors_end__ >= __FLASH_segment_start__) && (__ctors_end__ <= __FLASH_segment_end__))), error: .ctors is too large to fit in FLASH memory segment)
-                0x000000000003dfbc                __rodata_load_start__ = ALIGN (__ctors_end__, 0x4)
+                0x000000000003dff0                __rodata_load_start__ = ALIGN (__ctors_end__, 0x4)
 
-.rodata         0x000000000003dfbc     0x297c
-                0x000000000003dfbc                __rodata_start__ = .
+.rodata         0x000000000003dff0     0x2988
+                0x000000000003dff0                __rodata_start__ = .
  *(.rodata .rodata.* .gnu.linkonce.r.*)
  .rodata.m_BUTTONS_id
-                0x000000000003dfbc        0x4 Output/Proximo Debug/Obj/main.o
- .rodata        0x000000000003dfc0       0xc1 Output/Proximo Debug/Obj/main.o
- *fill*         0x000000000003e081        0x3 
+                0x000000000003dff0        0x4 Output/Proximo Debug/Obj/main.o
+ .rodata        0x000000000003dff4       0xc1 Output/Proximo Debug/Obj/main.o
+ *fill*         0x000000000003e0b5        0x3 
  .rodata.nrf_log_backend_rtt_api
-                0x000000000003e084        0xc Output/Proximo Debug/Obj/nrf_log_backend_rtt.o
-                0x000000000003e084                nrf_log_backend_rtt_api
+                0x000000000003e0b8        0xc Output/Proximo Debug/Obj/nrf_log_backend_rtt.o
+                0x000000000003e0b8                nrf_log_backend_rtt_api
+ *fill*         0x000000000003e0c4        0xc 
  .rodata.delay_bytecode.8486
-                0x000000000003e090        0x6 Output/Proximo Debug/Obj/nrf_log_backend_rtt.o
- *fill*         0x000000000003e096        0x2 
- .rodata        0x000000000003e098       0x69 Output/Proximo Debug/Obj/nrf_log_default_backends.o
- *fill*         0x000000000003e101        0x3 
- .rodata        0x000000000003e104       0x8d Output/Proximo Debug/Obj/nrf_log_frontend.o
- *fill*         0x000000000003e191        0x3 
- .rodata        0x000000000003e194       0xaa Output/Proximo Debug/Obj/nrf_log_str_formatter.o
- *fill*         0x000000000003e23e        0x2 
+                0x000000000003e0d0        0x6 Output/Proximo Debug/Obj/nrf_log_backend_rtt.o
+ *fill*         0x000000000003e0d6        0x2 
+ .rodata        0x000000000003e0d8       0x69 Output/Proximo Debug/Obj/nrf_log_default_backends.o
+ *fill*         0x000000000003e141        0x3 
+ .rodata        0x000000000003e144       0x8d Output/Proximo Debug/Obj/nrf_log_frontend.o
+ *fill*         0x000000000003e1d1        0x3 
+ .rodata        0x000000000003e1d4       0xaa Output/Proximo Debug/Obj/nrf_log_str_formatter.o
+ *fill*         0x000000000003e27e        0x2 
  .rodata.m_detection_delay_timer_id
-                0x000000000003e240        0x4 Output/Proximo Debug/Obj/app_button.o
- .rodata        0x000000000003e244       0x4d Output/Proximo Debug/Obj/app_button.o
- *fill*         0x000000000003e291        0xf 
+                0x000000000003e280        0x4 Output/Proximo Debug/Obj/app_button.o
+ .rodata        0x000000000003e284       0x4d Output/Proximo Debug/Obj/app_button.o
+ *fill*         0x000000000003e2d1        0xf 
  .rodata.delay_bytecode.8215
-                0x000000000003e2a0        0x6 Output/Proximo Debug/Obj/app_timer.o
- *fill*         0x000000000003e2a6        0x2 
- .rodata        0x000000000003e2a8       0x52 Output/Proximo Debug/Obj/app_util_platform.o
- *fill*         0x000000000003e2fa        0x2 
- .rodata        0x000000000003e2fc       0x53 Output/Proximo Debug/Obj/fds.o
- *fill*         0x000000000003e34f        0x1 
+                0x000000000003e2e0        0x6 Output/Proximo Debug/Obj/app_timer.o
+ *fill*         0x000000000003e2e6        0x2 
+ .rodata        0x000000000003e2e8       0x52 Output/Proximo Debug/Obj/app_util_platform.o
+ *fill*         0x000000000003e33a        0x2 
+ .rodata        0x000000000003e33c       0x53 Output/Proximo Debug/Obj/fds.o
+ *fill*         0x000000000003e38f        0x1 
  .rodata.page_tag_swap.8529
-                0x000000000003e350        0x8 Output/Proximo Debug/Obj/fds.o
+                0x000000000003e390        0x8 Output/Proximo Debug/Obj/fds.o
  .rodata.page_tag_data.8533
-                0x000000000003e358        0x8 Output/Proximo Debug/Obj/fds.o
+                0x000000000003e398        0x8 Output/Proximo Debug/Obj/fds.o
  .rodata.dirty_header.8660
-                0x000000000003e360        0x4 Output/Proximo Debug/Obj/fds.o
- .rodata        0x000000000003e364       0x4d Output/Proximo Debug/Obj/nrf_balloc.o
- *fill*         0x000000000003e3b1        0x3 
- .rodata        0x000000000003e3b4       0x43 Output/Proximo Debug/Obj/nrf_fprintf.o
- *fill*         0x000000000003e3f7        0x1 
- .rodata        0x000000000003e3f8       0x4a Output/Proximo Debug/Obj/nrf_fprintf_format.o
- *fill*         0x000000000003e442        0x2 
+                0x000000000003e3a0        0x4 Output/Proximo Debug/Obj/fds.o
+ .rodata        0x000000000003e3a4       0x4d Output/Proximo Debug/Obj/nrf_balloc.o
+ *fill*         0x000000000003e3f1        0x3 
+ .rodata        0x000000000003e3f4       0x43 Output/Proximo Debug/Obj/nrf_fprintf.o
+ *fill*         0x000000000003e437        0x1 
+ .rodata        0x000000000003e438       0x4a Output/Proximo Debug/Obj/nrf_fprintf_format.o
+ *fill*         0x000000000003e482        0x2 
  .rodata._aV2C.7427
-                0x000000000003e444       0x10 Output/Proximo Debug/Obj/nrf_fprintf_format.o
- .rodata        0x000000000003e454      0x1b3 Output/Proximo Debug/Obj/nrf_fstorage.o
- *fill*         0x000000000003e607        0x1 
+                0x000000000003e484       0x10 Output/Proximo Debug/Obj/nrf_fprintf_format.o
+ .rodata        0x000000000003e494      0x1b3 Output/Proximo Debug/Obj/nrf_fstorage.o
+ *fill*         0x000000000003e647        0x1 
  .rodata.__func__.7606
-                0x000000000003e608       0x12 Output/Proximo Debug/Obj/nrf_fstorage.o
- *fill*         0x000000000003e61a        0x2 
+                0x000000000003e648       0x12 Output/Proximo Debug/Obj/nrf_fstorage.o
+ *fill*         0x000000000003e65a        0x2 
  .rodata.__func__.7627
-                0x000000000003e61c       0x13 Output/Proximo Debug/Obj/nrf_fstorage.o
- *fill*         0x000000000003e62f        0x1 
+                0x000000000003e65c       0x13 Output/Proximo Debug/Obj/nrf_fstorage.o
+ *fill*         0x000000000003e66f        0x1 
  .rodata.__func__.7634
-                0x000000000003e630       0x13 Output/Proximo Debug/Obj/nrf_fstorage.o
- *fill*         0x000000000003e643        0x1 
+                0x000000000003e670       0x13 Output/Proximo Debug/Obj/nrf_fstorage.o
+ *fill*         0x000000000003e683        0x1 
  .rodata.m_flash_info
-                0x000000000003e644        0xc Output/Proximo Debug/Obj/nrf_fstorage_sd.o
- .rodata        0x000000000003e650        0xe Output/Proximo Debug/Obj/nrf_fstorage_sd.o
- *fill*         0x000000000003e65e        0x2 
+                0x000000000003e684        0xc Output/Proximo Debug/Obj/nrf_fstorage_sd.o
+ .rodata        0x000000000003e690        0xe Output/Proximo Debug/Obj/nrf_fstorage_sd.o
+ *fill*         0x000000000003e69e        0x2 
  .rodata.nrf_fstorage_sd
-                0x000000000003e660       0x20 Output/Proximo Debug/Obj/nrf_fstorage_sd.o
-                0x000000000003e660                nrf_fstorage_sd
- .rodata        0x000000000003e680       0x5a Output/Proximo Debug/Obj/nrf_memobj.o
- *fill*         0x000000000003e6da        0x2 
- .rodata        0x000000000003e6dc       0xed Output/Proximo Debug/Obj/nrf_pwr_mgmt.o
- *fill*         0x000000000003e7c9        0x3 
+                0x000000000003e6a0       0x20 Output/Proximo Debug/Obj/nrf_fstorage_sd.o
+                0x000000000003e6a0                nrf_fstorage_sd
+ .rodata        0x000000000003e6c0       0x5a Output/Proximo Debug/Obj/nrf_memobj.o
+ *fill*         0x000000000003e71a        0x2 
+ .rodata        0x000000000003e71c       0xed Output/Proximo Debug/Obj/nrf_pwr_mgmt.o
+ *fill*         0x000000000003e809        0x3 
  .rodata.pwr_mgmt_data
-                0x000000000003e7cc        0xc Output/Proximo Debug/Obj/nrf_pwr_mgmt.o
- .rodata        0x000000000003e7d8       0x66 Output/Proximo Debug/Obj/nrf_section_iter.o
- *fill*         0x000000000003e83e        0x2 
+                0x000000000003e80c        0xc Output/Proximo Debug/Obj/nrf_pwr_mgmt.o
+ .rodata        0x000000000003e818       0x66 Output/Proximo Debug/Obj/nrf_section_iter.o
+ *fill*         0x000000000003e87e        0x2 
  .rodata.m_unknown_str
-                0x000000000003e840       0x13 Output/Proximo Debug/Obj/nrf_strerror.o
- *fill*         0x000000000003e853        0x1 
- .rodata        0x000000000003e854      0x3e9 Output/Proximo Debug/Obj/nrf_strerror.o
- *fill*         0x000000000003ec3d        0x3 
+                0x000000000003e880       0x13 Output/Proximo Debug/Obj/nrf_strerror.o
+ *fill*         0x000000000003e893        0x1 
+ .rodata        0x000000000003e894      0x3e9 Output/Proximo Debug/Obj/nrf_strerror.o
+ *fill*         0x000000000003ec7d        0x3 
  .rodata.nrf_strerror_array
-                0x000000000003ec40      0x128 Output/Proximo Debug/Obj/nrf_strerror.o
+                0x000000000003ec80      0x128 Output/Proximo Debug/Obj/nrf_strerror.o
  .rodata.m_board_btn_list
-                0x000000000003ed68        0x3 Output/Proximo Debug/Obj/boards.o
- *fill*         0x000000000003ed6b        0x1 
- .rodata        0x000000000003ed6c       0x54 Output/Proximo Debug/Obj/nrf_drv_clock.o
- .rodata        0x000000000003edc0       0x82 Output/Proximo Debug/Obj/nrfx_clock.o
- *fill*         0x000000000003ee42        0x2 
- .rodata        0x000000000003ee44       0xb3 Output/Proximo Debug/Obj/nrfx_gpiote.o
- *fill*         0x000000000003eef7        0x1 
- .rodata        0x000000000003eef8       0x50 Output/Proximo Debug/Obj/nrfx_prs.o
- .rodata        0x000000000003ef48       0xb1 Output/Proximo Debug/Obj/nrfx_uart.o
- *fill*         0x000000000003eff9        0x3 
- .rodata        0x000000000003effc       0xb2 Output/Proximo Debug/Obj/nrfx_uarte.o
- *fill*         0x000000000003f0ae        0x2 
- .rodata        0x000000000003f0b0       0xac Output/Proximo Debug/Obj/nrfx_rtc.o
- .rodata        0x000000000003f15c       0x83 Output/Proximo Debug/Obj/nrfx_lpcomp.o
- *fill*         0x000000000003f1df        0x1 
- .rodata        0x000000000003f1e0       0xdc Output/Proximo Debug/Obj/nrfx_pwm.o
- .rodata        0x000000000003f2bc       0xb1 Output/Proximo Debug/Obj/nrfx_twim.o
- *fill*         0x000000000003f36d        0x3 
+                0x000000000003eda8        0x3 Output/Proximo Debug/Obj/boards.o
+ *fill*         0x000000000003edab        0x1 
+ .rodata        0x000000000003edac       0x54 Output/Proximo Debug/Obj/nrf_drv_clock.o
+ .rodata        0x000000000003ee00       0x82 Output/Proximo Debug/Obj/nrfx_clock.o
+ *fill*         0x000000000003ee82        0x2 
+ .rodata        0x000000000003ee84       0xb3 Output/Proximo Debug/Obj/nrfx_gpiote.o
+ *fill*         0x000000000003ef37        0x1 
+ .rodata        0x000000000003ef38       0x50 Output/Proximo Debug/Obj/nrfx_prs.o
+ .rodata        0x000000000003ef88       0xb1 Output/Proximo Debug/Obj/nrfx_uart.o
+ *fill*         0x000000000003f039        0x3 
+ .rodata        0x000000000003f03c       0xb2 Output/Proximo Debug/Obj/nrfx_uarte.o
+ *fill*         0x000000000003f0ee        0x2 
+ .rodata        0x000000000003f0f0       0xac Output/Proximo Debug/Obj/nrfx_rtc.o
+ .rodata        0x000000000003f19c       0x83 Output/Proximo Debug/Obj/nrfx_lpcomp.o
+ *fill*         0x000000000003f21f        0x1 
+ .rodata        0x000000000003f220       0xdc Output/Proximo Debug/Obj/nrfx_pwm.o
+ .rodata        0x000000000003f2fc       0xb1 Output/Proximo Debug/Obj/nrfx_twim.o
+ *fill*         0x000000000003f3ad        0x3 
  .rodata.irq_handlers.8742
-                0x000000000003f370        0x4 Output/Proximo Debug/Obj/nrfx_twim.o
- .rodata        0x000000000003f374       0x2f Output/Proximo Debug/Obj/nrf_drv_twi.o
- *fill*         0x000000000003f3a3        0xd 
+                0x000000000003f3b0        0x4 Output/Proximo Debug/Obj/nrfx_twim.o
+ .rodata        0x000000000003f3b4       0x2f Output/Proximo Debug/Obj/nrf_drv_twi.o
+ *fill*         0x000000000003f3e3        0xd 
  .rodata.delay_bytecode.7883
-                0x000000000003f3b0        0x6 Output/Proximo Debug/Obj/nrf_drv_twi.o
- *fill*         0x000000000003f3b6        0x2 
- .rodata        0x000000000003f3b8       0xb2 Output/Proximo Debug/Obj/nrfx_saadc.o
- *fill*         0x000000000003f46a        0x6 
+                0x000000000003f3f0        0x6 Output/Proximo Debug/Obj/nrf_drv_twi.o
+ *fill*         0x000000000003f3f6        0x2 
+ .rodata        0x000000000003f3f8       0xb2 Output/Proximo Debug/Obj/nrfx_saadc.o
+ *fill*         0x000000000003f4aa        0x6 
  .rodata.delay_bytecode.7883
-                0x000000000003f470        0x6 Output/Proximo Debug/Obj/nrfx_saadc.o
- *fill*         0x000000000003f476        0x2 
+                0x000000000003f4b0        0x6 Output/Proximo Debug/Obj/nrfx_saadc.o
+ *fill*         0x000000000003f4b6        0x2 
  .rodata.m_bsp_button_tmr
-                0x000000000003f478        0x4 Output/Proximo Debug/Obj/bsp.o
+                0x000000000003f4b8        0x4 Output/Proximo Debug/Obj/bsp.o
  .rodata.app_buttons
-                0x000000000003f47c       0x18 Output/Proximo Debug/Obj/bsp.o
- .rodata        0x000000000003f494       0x17 Output/Proximo Debug/Obj/SEGGER_RTT.o
- *fill*         0x000000000003f4ab        0x1 
- .rodata        0x000000000003f4ac       0x4b Output/Proximo Debug/Obj/ble_conn_state.o
- *fill*         0x000000000003f4f7        0x1 
- .rodata        0x000000000003f4f8       0x4b Output/Proximo Debug/Obj/ble_srv_common.o
- *fill*         0x000000000003f543        0x1 
- .rodata        0x000000000003f544       0x10 Output/Proximo Debug/Obj/gatts_cache_manager.o
+                0x000000000003f4bc       0x18 Output/Proximo Debug/Obj/bsp.o
+ .rodata        0x000000000003f4d4       0x17 Output/Proximo Debug/Obj/SEGGER_RTT.o
+ *fill*         0x000000000003f4eb        0x1 
+ .rodata        0x000000000003f4ec       0x4b Output/Proximo Debug/Obj/ble_conn_state.o
+ *fill*         0x000000000003f537        0x1 
+ .rodata        0x000000000003f538       0x4b Output/Proximo Debug/Obj/ble_srv_common.o
+ *fill*         0x000000000003f583        0x1 
+ .rodata        0x000000000003f584       0x10 Output/Proximo Debug/Obj/gatts_cache_manager.o
  .rodata.service_changed_pending.9552
-                0x000000000003f554        0x4 Output/Proximo Debug/Obj/gatts_cache_manager.o
+                0x000000000003f594        0x4 Output/Proximo Debug/Obj/gatts_cache_manager.o
  .rodata.service_changed_pending.9608
-                0x000000000003f558        0x4 Output/Proximo Debug/Obj/gatts_cache_manager.o
+                0x000000000003f598        0x4 Output/Proximo Debug/Obj/gatts_cache_manager.o
  .rodata.m_evt_handlers
-                0x000000000003f55c        0x8 Output/Proximo Debug/Obj/id_manager.o
- .rodata        0x000000000003f564      0x3d1 Output/Proximo Debug/Obj/nrf_ble_gatt.o
- *fill*         0x000000000003f935        0x3 
+                0x000000000003f59c        0x8 Output/Proximo Debug/Obj/id_manager.o
+ .rodata        0x000000000003f5a4      0x3d1 Output/Proximo Debug/Obj/nrf_ble_gatt.o
+ *fill*         0x000000000003f975        0x3 
  .rodata.m_evt_handlers
-                0x000000000003f938       0x10 Output/Proximo Debug/Obj/peer_database.o
- .rodata        0x000000000003f948      0x3ca Output/Proximo Debug/Obj/ble_setup.o
- *fill*         0x000000000003fd12        0x2 
- .rodata        0x000000000003fd14        0x8 Output/Proximo Debug/Obj/ble_bas.o
- .rodata        0x000000000003fd1c       0x52 Output/Proximo Debug/Obj/ble_dis.o
- *fill*         0x000000000003fd6e        0x2 
- .rodata        0x000000000003fd70       0xa4 Output/Proximo Debug/Obj/ble_prox.o
- .rodata        0x000000000003fe14       0xb0 Output/Proximo Debug/Obj/nrf_sdh.o
+                0x000000000003f978       0x10 Output/Proximo Debug/Obj/peer_database.o
+ .rodata        0x000000000003f988      0x3ca Output/Proximo Debug/Obj/ble_setup.o
+ *fill*         0x000000000003fd52        0x2 
+ .rodata        0x000000000003fd54        0x8 Output/Proximo Debug/Obj/ble_bas.o
+ .rodata        0x000000000003fd5c       0x52 Output/Proximo Debug/Obj/ble_dis.o
+ *fill*         0x000000000003fdae        0x2 
+ .rodata        0x000000000003fdb0       0xa4 Output/Proximo Debug/Obj/ble_prox.o
+ .rodata        0x000000000003fe54       0xb0 Output/Proximo Debug/Obj/nrf_sdh.o
  .rodata.sdh_req_observers
-                0x000000000003fec4        0xc Output/Proximo Debug/Obj/nrf_sdh.o
+                0x000000000003ff04        0xc Output/Proximo Debug/Obj/nrf_sdh.o
  .rodata.sdh_state_observers
-                0x000000000003fed0        0xc Output/Proximo Debug/Obj/nrf_sdh.o
+                0x000000000003ff10        0xc Output/Proximo Debug/Obj/nrf_sdh.o
  .rodata.sdh_stack_observers
-                0x000000000003fedc        0xc Output/Proximo Debug/Obj/nrf_sdh.o
- .rodata        0x000000000003fee8      0x333 Output/Proximo Debug/Obj/nrf_sdh_ble.o
- *fill*         0x000000000004021b        0x1 
+                0x000000000003ff1c        0xc Output/Proximo Debug/Obj/nrf_sdh.o
+ .rodata        0x000000000003ff28      0x333 Output/Proximo Debug/Obj/nrf_sdh_ble.o
+ *fill*         0x000000000004025b        0x1 
  .rodata.sdh_ble_observers
-                0x000000000004021c        0xc Output/Proximo Debug/Obj/nrf_sdh_ble.o
- .rodata        0x0000000000040228       0xb3 Output/Proximo Debug/Obj/nrf_sdh_soc.o
- *fill*         0x00000000000402db        0x1 
+                0x000000000004025c        0xc Output/Proximo Debug/Obj/nrf_sdh_ble.o
+ .rodata        0x0000000000040268       0xb3 Output/Proximo Debug/Obj/nrf_sdh_soc.o
+ *fill*         0x000000000004031b        0x1 
  .rodata.sdh_soc_observers
-                0x00000000000402dc        0xc Output/Proximo Debug/Obj/nrf_sdh_soc.o
- .rodata        0x00000000000402e8       0x6d Output/Proximo Debug/Obj/sk6812.o
- *fill*         0x0000000000040355        0x3 
- .rodata        0x0000000000040358       0x40 Output/Proximo Debug/Obj/sq_min_200.o
- .rodata.m_twi  0x0000000000040398       0x10 Output/Proximo Debug/Obj/th06.o
- .rodata        0x00000000000403a8       0x2e Output/Proximo Debug/Obj/th06.o
- *fill*         0x00000000000403d6        0x2 
- .rodata        0x00000000000403d8       0x40 Output/Proximo Debug/Obj/buzzer.o
- .rodata        0x0000000000040418       0x8d Output/Proximo Debug/Obj/adc.o
- *fill*         0x00000000000404a5        0x3 
+                0x000000000004031c        0xc Output/Proximo Debug/Obj/nrf_sdh_soc.o
+ .rodata        0x0000000000040328       0x6d Output/Proximo Debug/Obj/sk6812.o
+ *fill*         0x0000000000040395        0x3 
+ .rodata        0x0000000000040398       0x40 Output/Proximo Debug/Obj/sq_min_200.o
+ .rodata.m_twi  0x00000000000403d8       0x10 Output/Proximo Debug/Obj/th06.o
+ .rodata        0x00000000000403e8       0x2e Output/Proximo Debug/Obj/th06.o
+ *fill*         0x0000000000040416        0x2 
+ .rodata        0x0000000000040418       0x40 Output/Proximo Debug/Obj/buzzer.o
+ .rodata        0x0000000000040458       0x8d Output/Proximo Debug/Obj/adc.o
+ *fill*         0x00000000000404e5        0x3 
  .rodata.m_ADC_id
-                0x00000000000404a8        0x4 Output/Proximo Debug/Obj/adc.o
+                0x00000000000404e8        0x4 Output/Proximo Debug/Obj/adc.o
  .rodata.default_config.8431
-                0x00000000000404ac        0x4 Output/Proximo Debug/Obj/adc.o
- .rodata        0x00000000000404b0       0x60 Output/Proximo Debug/Obj/io.o
+                0x00000000000404ec        0x4 Output/Proximo Debug/Obj/adc.o
+ .rodata        0x00000000000404f0       0x60 Output/Proximo Debug/Obj/io.o
  .rodata.delay_bytecode.7883
-                0x0000000000040510        0x6 Output/Proximo Debug/Obj/io.o
- *fill*         0x0000000000040516        0x2 
- .rodata        0x0000000000040518       0x3a Output/Proximo Debug/Obj/system.o
- *fill*         0x0000000000040552        0x2 
- .rodata        0x0000000000040554       0x63 Output/Proximo Debug/Obj/event.o
- *fill*         0x00000000000405b7        0x1 
+                0x0000000000040550        0x6 Output/Proximo Debug/Obj/io.o
+ *fill*         0x0000000000040556        0x2 
+ .rodata        0x0000000000040558       0x3a Output/Proximo Debug/Obj/system.o
+ *fill*         0x0000000000040592        0x2 
+ .rodata        0x0000000000040594       0x63 Output/Proximo Debug/Obj/event.o
+ *fill*         0x00000000000405f7        0x1 
  .rodata.m_LED_id
-                0x00000000000405b8        0x4 Output/Proximo Debug/Obj/event.o
+                0x00000000000405f8        0x4 Output/Proximo Debug/Obj/event.o
  .rodata.m_ALARM_id
-                0x00000000000405bc        0x4 Output/Proximo Debug/Obj/event.o
+                0x00000000000405fc        0x4 Output/Proximo Debug/Obj/event.o
  .rodata.m_BUZZER_id
-                0x00000000000405c0        0x4 Output/Proximo Debug/Obj/event.o
- .rodata        0x00000000000405c4       0x64 Output/Proximo Debug/Obj/ble_dfu.o
- .rodata        0x0000000000040628       0xce Output/Proximo Debug/Obj/ble_dfu_unbonded.o
- *fill*         0x00000000000406f6        0x2 
+                0x0000000000040600        0x4 Output/Proximo Debug/Obj/event.o
+ .rodata        0x0000000000040604       0x64 Output/Proximo Debug/Obj/ble_dfu.o
+ .rodata        0x0000000000040668       0xce Output/Proximo Debug/Obj/ble_dfu_unbonded.o
+ *fill*         0x0000000000040736        0x2 
  .rodata.libc.__RAL_ascii_ctype_map
-                0x00000000000406f8       0x80 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.40/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
-                0x00000000000406f8                __RAL_ascii_ctype_map
+                0x0000000000040738       0x80 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.40/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
+                0x0000000000040738                __RAL_ascii_ctype_map
  .rodata.libc.__RAL_ascii_ctype_mask
-                0x0000000000040778        0xd C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.40/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
- *fill*         0x0000000000040785        0x3 
+                0x00000000000407b8        0xd C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.40/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
+ *fill*         0x00000000000407c5        0x3 
  .rodata.libc.__RAL_c_locale
-                0x0000000000040788        0xc C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.40/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
-                0x0000000000040788                __RAL_c_locale
+                0x00000000000407c8        0xc C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.40/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
+                0x00000000000407c8                __RAL_c_locale
  .rodata.libc.__RAL_c_locale_abbrev_day_names
-                0x0000000000040794       0x1d C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.40/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
-                0x0000000000040794                __RAL_c_locale_abbrev_day_names
- *fill*         0x00000000000407b1        0x3 
+                0x00000000000407d4       0x1d C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.40/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
+                0x00000000000407d4                __RAL_c_locale_abbrev_day_names
+ *fill*         0x00000000000407f1        0x3 
  .rodata.libc.__RAL_c_locale_abbrev_month_names
-                0x00000000000407b4       0x31 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.40/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
-                0x00000000000407b4                __RAL_c_locale_abbrev_month_names
- *fill*         0x00000000000407e5        0x3 
+                0x00000000000407f4       0x31 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.40/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
+                0x00000000000407f4                __RAL_c_locale_abbrev_month_names
+ *fill*         0x0000000000040825        0x3 
  .rodata.libc.__RAL_c_locale_am_pm_indicator
-                0x00000000000407e8        0x7 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.40/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
-                0x00000000000407e8                __RAL_c_locale_am_pm_indicator
- *fill*         0x00000000000407ef        0x1 
+                0x0000000000040828        0x7 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.40/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
+                0x0000000000040828                __RAL_c_locale_am_pm_indicator
+ *fill*         0x000000000004082f        0x1 
  .rodata.libc.__RAL_c_locale_data
-                0x00000000000407f0       0x58 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.40/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
-                0x00000000000407f0                __RAL_c_locale_data
+                0x0000000000040830       0x58 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.40/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
+                0x0000000000040830                __RAL_c_locale_data
  .rodata.libc.__RAL_c_locale_date_format
-                0x0000000000040848        0x9 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.40/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
-                0x0000000000040848                __RAL_c_locale_date_format
- *fill*         0x0000000000040851        0x3 
+                0x0000000000040888        0x9 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.40/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
+                0x0000000000040888                __RAL_c_locale_date_format
+ *fill*         0x0000000000040891        0x3 
  .rodata.libc.__RAL_c_locale_date_time_format
-                0x0000000000040854        0xf C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.40/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
-                0x0000000000040854                __RAL_c_locale_date_time_format
- *fill*         0x0000000000040863        0x1 
+                0x0000000000040894        0xf C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.40/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
+                0x0000000000040894                __RAL_c_locale_date_time_format
+ *fill*         0x00000000000408a3        0x1 
  .rodata.libc.__RAL_c_locale_day_names
-                0x0000000000040864       0x3a C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.40/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
-                0x0000000000040864                __RAL_c_locale_day_names
- *fill*         0x000000000004089e        0x2 
+                0x00000000000408a4       0x3a C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.40/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
+                0x00000000000408a4                __RAL_c_locale_day_names
+ *fill*         0x00000000000408de        0x2 
  .rodata.libc.__RAL_c_locale_month_names
-                0x00000000000408a0       0x57 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.40/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
-                0x00000000000408a0                __RAL_c_locale_month_names
- *fill*         0x00000000000408f7        0x1 
+                0x00000000000408e0       0x57 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.40/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
+                0x00000000000408e0                __RAL_c_locale_month_names
+ *fill*         0x0000000000040937        0x1 
  .rodata.libc.__RAL_c_locale_time_format
-                0x00000000000408f8        0x9 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.40/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
-                0x00000000000408f8                __RAL_c_locale_time_format
- *fill*         0x0000000000040901        0x3 
+                0x0000000000040938        0x9 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.40/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
+                0x0000000000040938                __RAL_c_locale_time_format
+ *fill*         0x0000000000040941        0x3 
  .rodata.libc.__RAL_codeset_ascii
-                0x0000000000040904       0x20 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.40/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
-                0x0000000000040904                __RAL_codeset_ascii
+                0x0000000000040944       0x20 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.40/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
+                0x0000000000040944                __RAL_codeset_ascii
  .rodata.libc.__RAL_data_empty_string
-                0x0000000000040924        0x1 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.40/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
-                0x0000000000040924                __RAL_data_empty_string
- *fill*         0x0000000000040925        0x3 
+                0x0000000000040964        0x1 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.40/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
+                0x0000000000040964                __RAL_data_empty_string
+ *fill*         0x0000000000040965        0x3 
  .rodata.libc.__RAL_data_utf8_period
-                0x0000000000040928        0x2 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.40/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
-                0x0000000000040928                __RAL_data_utf8_period
- *fill*         0x000000000004092a        0x2 
+                0x0000000000040968        0x2 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.40/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
+                0x0000000000040968                __RAL_data_utf8_period
+ *fill*         0x000000000004096a        0x2 
  .rodata.libc.__RAL_find_locale.str1.4
-                0x000000000004092c        0xc C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.40/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
+                0x000000000004096c        0xc C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.40/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
                                           0xa (size before relaxing)
-                0x0000000000040938                __rodata_end__ = (__rodata_start__ + SIZEOF (.rodata))
-                0x000000000000297c                __rodata_size__ = SIZEOF (.rodata)
-                0x0000000000040938                __rodata_load_end__ = __rodata_end__
+                0x0000000000040978                __rodata_end__ = (__rodata_start__ + SIZEOF (.rodata))
+                0x0000000000002988                __rodata_size__ = SIZEOF (.rodata)
+                0x0000000000040978                __rodata_load_end__ = __rodata_end__
 
-.rel.dyn        0x0000000000040938        0x0
- .rel.iplt      0x0000000000040938        0x0 Output/Proximo Debug/Obj/thumb_crt0.o
+.rel.dyn        0x0000000000040978        0x0
+ .rel.iplt      0x0000000000040978        0x0 Output/Proximo Debug/Obj/thumb_crt0.o
                 0x0000000000000001                . = ASSERT (((__rodata_start__ == __rodata_end__) || ((__rodata_end__ >= __FLASH_segment_start__) && (__rodata_end__ <= __FLASH_segment_end__))), error: .rodata is too large to fit in FLASH memory segment)
-                0x0000000000040938                __ARM.exidx_load_start__ = ALIGN (__rodata_end__, 0x4)
+                0x0000000000040978                __ARM.exidx_load_start__ = ALIGN (__rodata_end__, 0x4)
 
-.ARM.exidx      0x0000000000040938        0x0
-                0x0000000000040938                __ARM.exidx_start__ = .
-                0x0000000000040938                __exidx_start = __ARM.exidx_start__
+.ARM.exidx      0x0000000000040978        0x0
+                0x0000000000040978                __ARM.exidx_start__ = .
+                0x0000000000040978                __exidx_start = __ARM.exidx_start__
  *(.ARM.exidx .ARM.exidx.*)
-                0x0000000000040938                __ARM.exidx_end__ = (__ARM.exidx_start__ + SIZEOF (.ARM.exidx))
+                0x0000000000040978                __ARM.exidx_end__ = (__ARM.exidx_start__ + SIZEOF (.ARM.exidx))
                 0x0000000000000000                __ARM.exidx_size__ = SIZEOF (.ARM.exidx)
-                0x0000000000040938                __exidx_end = __ARM.exidx_end__
-                0x0000000000040938                __ARM.exidx_load_end__ = __ARM.exidx_end__
+                0x0000000000040978                __exidx_end = __ARM.exidx_end__
+                0x0000000000040978                __ARM.exidx_load_end__ = __ARM.exidx_end__
                 0x0000000000000001                . = ASSERT (((__ARM.exidx_start__ == __ARM.exidx_end__) || ((__ARM.exidx_end__ >= __FLASH_segment_start__) && (__ARM.exidx_end__ <= __FLASH_segment_end__))), error: .ARM.exidx is too large to fit in FLASH memory segment)
-                0x0000000000040938                __fast_load_start__ = ALIGN (__ARM.exidx_end__, 0x4)
+                0x0000000000040978                __fast_load_start__ = ALIGN (__ARM.exidx_end__, 0x4)
 
-.fast           0x0000000020004d34        0x0 load address 0x0000000000040938
+.fast           0x0000000020004d34        0x0 load address 0x0000000000040978
                 0x0000000020004d34                __fast_start__ = .
  *(.fast .fast.*)
                 0x0000000020004d34                __fast_end__ = (__fast_start__ + SIZEOF (.fast))
                 0x0000000000000000                __fast_size__ = SIZEOF (.fast)
-                0x0000000000040938                __fast_load_end__ = (__fast_load_start__ + SIZEOF (.fast))
+                0x0000000000040978                __fast_load_end__ = (__fast_load_start__ + SIZEOF (.fast))
                 0x0000000000000001                . = ASSERT (((__fast_load_start__ == __fast_load_end__) || ((__fast_load_end__ >= __FLASH_segment_start__) && (__fast_load_end__ <= __FLASH_segment_end__))), error: .fast is too large to fit in FLASH memory segment)
 
 .fast_run       0x0000000020004d34        0x0
@@ -24526,9 +24525,9 @@ Linker script and memory map
                 0x0000000000000000                __fast_run_size__ = SIZEOF (.fast_run)
                 0x0000000020004d34                __fast_run_load_end__ = __fast_run_end__
                 0x0000000000000001                . = ASSERT (((__fast_run_start__ == __fast_run_end__) || ((__fast_run_end__ >= __RAM_segment_start__) && (__fast_run_end__ <= __RAM_segment_end__))), error: .fast_run is too large to fit in RAM memory segment)
-                0x0000000000040938                __data_load_start__ = ALIGN ((__fast_load_start__ + SIZEOF (.fast)), 0x4)
+                0x0000000000040978                __data_load_start__ = ALIGN ((__fast_load_start__ + SIZEOF (.fast)), 0x4)
 
-.data           0x0000000020004d34      0x108 load address 0x0000000000040938
+.data           0x0000000020004d34      0x108 load address 0x0000000000040978
                 0x0000000020004d34                __data_start__ = .
  *(.data .data.* .gnu.linkonce.d.*)
  .data.button1_event
@@ -24591,13 +24590,13 @@ Linker script and memory map
                 0x0000000020004e28                __RAL_global_locale
                 0x0000000020004e3c                __data_end__ = (__data_start__ + SIZEOF (.data))
                 0x0000000000000108                __data_size__ = SIZEOF (.data)
-                0x0000000000040a40                __data_load_end__ = (__data_load_start__ + SIZEOF (.data))
+                0x0000000000040a80                __data_load_end__ = (__data_load_start__ + SIZEOF (.data))
 
 .igot.plt       0x0000000100000000        0x0
  .igot.plt      0x0000000100000000        0x0 Output/Proximo Debug/Obj/thumb_crt0.o
                 0x0000000000000001                . = ASSERT (((__data_load_start__ == __data_load_end__) || ((__data_load_end__ >= __FLASH_segment_start__) && (__data_load_end__ <= __FLASH_segment_end__))), error: .data is too large to fit in FLASH memory segment)
 
-.data_run       0x0000000020004d34      0x108 load address 0x0000000000040938
+.data_run       0x0000000020004d34      0x108 load address 0x0000000000040978
                 0x0000000020004d34                __data_run_start__ = .
                 0x0000000020004e3c                . = MAX ((__data_run_start__ + SIZEOF (.data)), .)
  *fill*         0x0000000020004d34      0x108 
@@ -24605,16 +24604,16 @@ Linker script and memory map
                 0x0000000000000108                __data_run_size__ = SIZEOF (.data_run)
                 0x0000000020004e3c                __data_run_load_end__ = __data_run_end__
                 0x0000000000000001                . = ASSERT (((__data_run_start__ == __data_run_end__) || ((__data_run_end__ >= __RAM_segment_start__) && (__data_run_end__ <= __RAM_segment_end__))), error: .data_run is too large to fit in RAM memory segment)
-                0x0000000000040a40                __tdata_load_start__ = ALIGN ((__data_load_start__ + SIZEOF (.data)), 0x4)
+                0x0000000000040a80                __tdata_load_start__ = ALIGN ((__data_load_start__ + SIZEOF (.data)), 0x4)
 
-.tdata          0x0000000020004e3c        0x0 load address 0x0000000000040a40
+.tdata          0x0000000020004e3c        0x0 load address 0x0000000000040a80
                 0x0000000020004e3c                __tdata_start__ = .
  *(.tdata .tdata.*)
                 0x0000000020004e3c                __tdata_end__ = (__tdata_start__ + SIZEOF (.tdata))
                 0x0000000000000000                __tdata_size__ = SIZEOF (.tdata)
-                0x0000000000040a40                __tdata_load_end__ = (__tdata_load_start__ + SIZEOF (.tdata))
-                0x0000000000040a40                __FLASH_segment_used_end__ = (ALIGN ((__data_load_start__ + SIZEOF (.data)), 0x4) + SIZEOF (.tdata))
-                0x0000000000040a40                __FLASH_segment_used_size__ = (__FLASH_segment_used_end__ - __FLASH_segment_start__)
+                0x0000000000040a80                __tdata_load_end__ = (__tdata_load_start__ + SIZEOF (.tdata))
+                0x0000000000040a80                __FLASH_segment_used_end__ = (ALIGN ((__data_load_start__ + SIZEOF (.data)), 0x4) + SIZEOF (.tdata))
+                0x0000000000040a80                __FLASH_segment_used_size__ = (__FLASH_segment_used_end__ - __FLASH_segment_start__)
                 0x0000000000000001                . = ASSERT (((__tdata_load_start__ == __tdata_load_end__) || ((__tdata_load_end__ >= __FLASH_segment_start__) && (__tdata_load_end__ <= __FLASH_segment_end__))), error: .tdata is too large to fit in FLASH memory segment)
 
 .tdata_run      0x0000000020004e3c        0x0
@@ -25368,7 +25367,7 @@ OUTPUT(Output/Debug/Exe/Proximo.elf elf32-littlearm)
  .comment       0x000000000000004c       0x4d Output/Proximo Debug/Obj/ble_dfu_unbonded.o
  .comment       0x000000000000004c       0x4d C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.40/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
 
-.debug_line     0x0000000000000000    0x3c233
+.debug_line     0x0000000000000000    0x3c1d1
  .debug_line    0x0000000000000000      0x1ec Output/Proximo Debug/Obj/thumb_crt0.o
  .debug_line    0x00000000000001ec     0x1a58 Output/Proximo Debug/Obj/main.o
  .debug_line    0x0000000000001c44      0xbdb Output/Proximo Debug/Obj/nrf_log_backend_rtt.o
@@ -25434,22 +25433,22 @@ OUTPUT(Output/Debug/Exe/Proximo.elf elf32-littlearm)
  .debug_line    0x000000000002c5ab     0x1ea1 Output/Proximo Debug/Obj/ble_setup.o
  .debug_line    0x000000000002e44c      0xd16 Output/Proximo Debug/Obj/ble_bas.o
  .debug_line    0x000000000002f162      0xb00 Output/Proximo Debug/Obj/ble_dis.o
- .debug_line    0x000000000002fc62     0x13f1 Output/Proximo Debug/Obj/ble_prox.o
- .debug_line    0x0000000000031053      0xb90 Output/Proximo Debug/Obj/nrf_sdh.o
- .debug_line    0x0000000000031be3      0xc01 Output/Proximo Debug/Obj/nrf_sdh_ble.o
- .debug_line    0x00000000000327e4      0x87d Output/Proximo Debug/Obj/nrf_sdh_soc.o
- .debug_line    0x0000000000033061      0xcbc Output/Proximo Debug/Obj/sk6812.o
- .debug_line    0x0000000000033d1d      0x916 Output/Proximo Debug/Obj/sq_min_200.o
- .debug_line    0x0000000000034633      0xbc6 Output/Proximo Debug/Obj/th06.o
- .debug_line    0x00000000000351f9      0xa9c Output/Proximo Debug/Obj/buzzer.o
- .debug_line    0x0000000000035c95     0x1920 Output/Proximo Debug/Obj/adc.o
- .debug_line    0x00000000000375b5      0xcb1 Output/Proximo Debug/Obj/io.o
- .debug_line    0x0000000000038266      0xc75 Output/Proximo Debug/Obj/system.o
- .debug_line    0x0000000000038edb      0xd4a Output/Proximo Debug/Obj/event.o
- .debug_line    0x0000000000039c25     0x1399 Output/Proximo Debug/Obj/ble_dfu.o
- .debug_line    0x000000000003afbe     0x1275 Output/Proximo Debug/Obj/ble_dfu_unbonded.o
+ .debug_line    0x000000000002fc62     0x138f Output/Proximo Debug/Obj/ble_prox.o
+ .debug_line    0x0000000000030ff1      0xb90 Output/Proximo Debug/Obj/nrf_sdh.o
+ .debug_line    0x0000000000031b81      0xc01 Output/Proximo Debug/Obj/nrf_sdh_ble.o
+ .debug_line    0x0000000000032782      0x87d Output/Proximo Debug/Obj/nrf_sdh_soc.o
+ .debug_line    0x0000000000032fff      0xcbc Output/Proximo Debug/Obj/sk6812.o
+ .debug_line    0x0000000000033cbb      0x916 Output/Proximo Debug/Obj/sq_min_200.o
+ .debug_line    0x00000000000345d1      0xbc6 Output/Proximo Debug/Obj/th06.o
+ .debug_line    0x0000000000035197      0xa9c Output/Proximo Debug/Obj/buzzer.o
+ .debug_line    0x0000000000035c33     0x1920 Output/Proximo Debug/Obj/adc.o
+ .debug_line    0x0000000000037553      0xcb1 Output/Proximo Debug/Obj/io.o
+ .debug_line    0x0000000000038204      0xc75 Output/Proximo Debug/Obj/system.o
+ .debug_line    0x0000000000038e79      0xd4a Output/Proximo Debug/Obj/event.o
+ .debug_line    0x0000000000039bc3     0x1399 Output/Proximo Debug/Obj/ble_dfu.o
+ .debug_line    0x000000000003af5c     0x1275 Output/Proximo Debug/Obj/ble_dfu_unbonded.o
 
-.debug_info     0x0000000000000000    0xcf029
+.debug_info     0x0000000000000000    0xcefff
  .debug_info    0x0000000000000000       0x22 Output/Proximo Debug/Obj/thumb_crt0.o
  .debug_info    0x0000000000000022     0x4118 Output/Proximo Debug/Obj/main.o
  .debug_info    0x000000000000413a     0x1643 Output/Proximo Debug/Obj/nrf_log_backend_rtt.o
@@ -25515,20 +25514,20 @@ OUTPUT(Output/Debug/Exe/Proximo.elf elf32-littlearm)
  .debug_info    0x0000000000099382     0x733f Output/Proximo Debug/Obj/ble_setup.o
  .debug_info    0x00000000000a06c1     0x47d3 Output/Proximo Debug/Obj/ble_bas.o
  .debug_info    0x00000000000a4e94     0x3465 Output/Proximo Debug/Obj/ble_dis.o
- .debug_info    0x00000000000a82f9     0x54e8 Output/Proximo Debug/Obj/ble_prox.o
- .debug_info    0x00000000000ad7e1     0x1ff4 Output/Proximo Debug/Obj/nrf_sdh.o
- .debug_info    0x00000000000af7d5     0x4a1e Output/Proximo Debug/Obj/nrf_sdh_ble.o
- .debug_info    0x00000000000b41f3     0x14ac Output/Proximo Debug/Obj/nrf_sdh_soc.o
- .debug_info    0x00000000000b569f     0x1c0a Output/Proximo Debug/Obj/sk6812.o
- .debug_info    0x00000000000b72a9     0x144a Output/Proximo Debug/Obj/sq_min_200.o
- .debug_info    0x00000000000b86f3     0x1ea3 Output/Proximo Debug/Obj/th06.o
- .debug_info    0x00000000000ba596     0x199a Output/Proximo Debug/Obj/buzzer.o
- .debug_info    0x00000000000bbf30     0x4ab3 Output/Proximo Debug/Obj/adc.o
- .debug_info    0x00000000000c09e3     0x1980 Output/Proximo Debug/Obj/io.o
- .debug_info    0x00000000000c2363     0x18cf Output/Proximo Debug/Obj/system.o
- .debug_info    0x00000000000c3c32     0x19e1 Output/Proximo Debug/Obj/event.o
- .debug_info    0x00000000000c5613     0x56e1 Output/Proximo Debug/Obj/ble_dfu.o
- .debug_info    0x00000000000cacf4     0x4335 Output/Proximo Debug/Obj/ble_dfu_unbonded.o
+ .debug_info    0x00000000000a82f9     0x54be Output/Proximo Debug/Obj/ble_prox.o
+ .debug_info    0x00000000000ad7b7     0x1ff4 Output/Proximo Debug/Obj/nrf_sdh.o
+ .debug_info    0x00000000000af7ab     0x4a1e Output/Proximo Debug/Obj/nrf_sdh_ble.o
+ .debug_info    0x00000000000b41c9     0x14ac Output/Proximo Debug/Obj/nrf_sdh_soc.o
+ .debug_info    0x00000000000b5675     0x1c0a Output/Proximo Debug/Obj/sk6812.o
+ .debug_info    0x00000000000b727f     0x144a Output/Proximo Debug/Obj/sq_min_200.o
+ .debug_info    0x00000000000b86c9     0x1ea3 Output/Proximo Debug/Obj/th06.o
+ .debug_info    0x00000000000ba56c     0x199a Output/Proximo Debug/Obj/buzzer.o
+ .debug_info    0x00000000000bbf06     0x4ab3 Output/Proximo Debug/Obj/adc.o
+ .debug_info    0x00000000000c09b9     0x1980 Output/Proximo Debug/Obj/io.o
+ .debug_info    0x00000000000c2339     0x18cf Output/Proximo Debug/Obj/system.o
+ .debug_info    0x00000000000c3c08     0x19e1 Output/Proximo Debug/Obj/event.o
+ .debug_info    0x00000000000c55e9     0x56e1 Output/Proximo Debug/Obj/ble_dfu.o
+ .debug_info    0x00000000000cacca     0x4335 Output/Proximo Debug/Obj/ble_dfu_unbonded.o
 
 .debug_abbrev   0x0000000000000000     0xe308
  .debug_abbrev  0x0000000000000000       0x12 Output/Proximo Debug/Obj/thumb_crt0.o
@@ -25611,7 +25610,7 @@ OUTPUT(Output/Debug/Exe/Proximo.elf elf32-littlearm)
  .debug_abbrev  0x000000000000dc4d      0x348 Output/Proximo Debug/Obj/ble_dfu.o
  .debug_abbrev  0x000000000000df95      0x373 Output/Proximo Debug/Obj/ble_dfu_unbonded.o
 
-.debug_aranges  0x0000000000000000     0xbf38
+.debug_aranges  0x0000000000000000     0xbf30
  .debug_aranges
                 0x0000000000000000       0x80 Output/Proximo Debug/Obj/thumb_crt0.o
  .debug_aranges
@@ -25743,35 +25742,35 @@ OUTPUT(Output/Debug/Exe/Proximo.elf elf32-littlearm)
  .debug_aranges
                 0x0000000000009858      0x2b8 Output/Proximo Debug/Obj/ble_dis.o
  .debug_aranges
-                0x0000000000009b10      0x430 Output/Proximo Debug/Obj/ble_prox.o
+                0x0000000000009b10      0x428 Output/Proximo Debug/Obj/ble_prox.o
  .debug_aranges
-                0x0000000000009f40      0x260 Output/Proximo Debug/Obj/nrf_sdh.o
+                0x0000000000009f38      0x260 Output/Proximo Debug/Obj/nrf_sdh.o
  .debug_aranges
-                0x000000000000a1a0      0x2c0 Output/Proximo Debug/Obj/nrf_sdh_ble.o
+                0x000000000000a198      0x2c0 Output/Proximo Debug/Obj/nrf_sdh_ble.o
  .debug_aranges
-                0x000000000000a460      0x180 Output/Proximo Debug/Obj/nrf_sdh_soc.o
+                0x000000000000a458      0x180 Output/Proximo Debug/Obj/nrf_sdh_soc.o
  .debug_aranges
-                0x000000000000a5e0      0x1a8 Output/Proximo Debug/Obj/sk6812.o
+                0x000000000000a5d8      0x1a8 Output/Proximo Debug/Obj/sk6812.o
  .debug_aranges
-                0x000000000000a788      0x198 Output/Proximo Debug/Obj/sq_min_200.o
+                0x000000000000a780      0x198 Output/Proximo Debug/Obj/sq_min_200.o
  .debug_aranges
-                0x000000000000a920      0x1b8 Output/Proximo Debug/Obj/th06.o
+                0x000000000000a918      0x1b8 Output/Proximo Debug/Obj/th06.o
  .debug_aranges
-                0x000000000000aad8      0x180 Output/Proximo Debug/Obj/buzzer.o
+                0x000000000000aad0      0x180 Output/Proximo Debug/Obj/buzzer.o
  .debug_aranges
-                0x000000000000ac58      0x448 Output/Proximo Debug/Obj/adc.o
+                0x000000000000ac50      0x448 Output/Proximo Debug/Obj/adc.o
  .debug_aranges
-                0x000000000000b0a0      0x238 Output/Proximo Debug/Obj/io.o
+                0x000000000000b098      0x238 Output/Proximo Debug/Obj/io.o
  .debug_aranges
-                0x000000000000b2d8      0x1b8 Output/Proximo Debug/Obj/system.o
+                0x000000000000b2d0      0x1b8 Output/Proximo Debug/Obj/system.o
  .debug_aranges
-                0x000000000000b490      0x1e8 Output/Proximo Debug/Obj/event.o
+                0x000000000000b488      0x1e8 Output/Proximo Debug/Obj/event.o
  .debug_aranges
-                0x000000000000b678      0x460 Output/Proximo Debug/Obj/ble_dfu.o
+                0x000000000000b670      0x460 Output/Proximo Debug/Obj/ble_dfu.o
  .debug_aranges
-                0x000000000000bad8      0x460 Output/Proximo Debug/Obj/ble_dfu_unbonded.o
+                0x000000000000bad0      0x460 Output/Proximo Debug/Obj/ble_dfu_unbonded.o
 
-.debug_str      0x0000000000000000    0xa10bc
+.debug_str      0x0000000000000000    0xa10aa
  .debug_str     0x0000000000000000       0x7f Output/Proximo Debug/Obj/thumb_crt0.o
  .debug_str     0x000000000000007f    0x843d4 Output/Proximo Debug/Obj/main.o
                                       0x8662c (size before relaxing)
@@ -25901,36 +25900,36 @@ OUTPUT(Output/Debug/Exe/Proximo.elf elf32-littlearm)
                                       0x75cc0 (size before relaxing)
  .debug_str     0x000000000009d615      0x185 Output/Proximo Debug/Obj/ble_dis.o
                                       0x7259c (size before relaxing)
- .debug_str     0x000000000009d79a      0x117 Output/Proximo Debug/Obj/ble_prox.o
-                                      0x7f884 (size before relaxing)
- .debug_str     0x000000000009d8b1      0x3f5 Output/Proximo Debug/Obj/nrf_sdh.o
+ .debug_str     0x000000000009d79a      0x105 Output/Proximo Debug/Obj/ble_prox.o
+                                      0x7f863 (size before relaxing)
+ .debug_str     0x000000000009d89f      0x3f5 Output/Proximo Debug/Obj/nrf_sdh.o
                                       0x6f56d (size before relaxing)
- .debug_str     0x000000000009dca6      0x39c Output/Proximo Debug/Obj/nrf_sdh_ble.o
+ .debug_str     0x000000000009dc94      0x39c Output/Proximo Debug/Obj/nrf_sdh_ble.o
                                       0x7520a (size before relaxing)
- .debug_str     0x000000000009e042      0x182 Output/Proximo Debug/Obj/nrf_sdh_soc.o
+ .debug_str     0x000000000009e030      0x182 Output/Proximo Debug/Obj/nrf_sdh_soc.o
                                       0x6e0ff (size before relaxing)
- .debug_str     0x000000000009e1c4      0x79b Output/Proximo Debug/Obj/sk6812.o
+ .debug_str     0x000000000009e1b2      0x79b Output/Proximo Debug/Obj/sk6812.o
                                       0x779e6 (size before relaxing)
- .debug_str     0x000000000009e95f       0xb7 Output/Proximo Debug/Obj/sq_min_200.o
+ .debug_str     0x000000000009e94d       0xb7 Output/Proximo Debug/Obj/sq_min_200.o
                                       0x728a4 (size before relaxing)
- .debug_str     0x000000000009ea16      0x273 Output/Proximo Debug/Obj/th06.o
+ .debug_str     0x000000000009ea04      0x273 Output/Proximo Debug/Obj/th06.o
                                       0x77c38 (size before relaxing)
- .debug_str     0x000000000009ec89       0x5f Output/Proximo Debug/Obj/buzzer.o
+ .debug_str     0x000000000009ec77       0x5f Output/Proximo Debug/Obj/buzzer.o
                                       0x75d73 (size before relaxing)
- .debug_str     0x000000000009ece8      0x16f Output/Proximo Debug/Obj/adc.o
+ .debug_str     0x000000000009ecd6      0x16f Output/Proximo Debug/Obj/adc.o
                                       0x83768 (size before relaxing)
- .debug_str     0x000000000009ee57      0x108 Output/Proximo Debug/Obj/io.o
+ .debug_str     0x000000000009ee45      0x108 Output/Proximo Debug/Obj/io.o
                                       0x76032 (size before relaxing)
- .debug_str     0x000000000009ef5f       0xee Output/Proximo Debug/Obj/system.o
+ .debug_str     0x000000000009ef4d       0xee Output/Proximo Debug/Obj/system.o
                                       0x76e7c (size before relaxing)
- .debug_str     0x000000000009f04d      0x20d Output/Proximo Debug/Obj/event.o
+ .debug_str     0x000000000009f03b      0x20d Output/Proximo Debug/Obj/event.o
                                       0x76c76 (size before relaxing)
- .debug_str     0x000000000009f25a     0x1ade Output/Proximo Debug/Obj/ble_dfu.o
+ .debug_str     0x000000000009f248     0x1ade Output/Proximo Debug/Obj/ble_dfu.o
                                       0x7aabf (size before relaxing)
- .debug_str     0x00000000000a0d38      0x384 Output/Proximo Debug/Obj/ble_dfu_unbonded.o
+ .debug_str     0x00000000000a0d26      0x384 Output/Proximo Debug/Obj/ble_dfu_unbonded.o
                                       0x787cc (size before relaxing)
 
-.debug_ranges   0x0000000000000000     0xbba0
+.debug_ranges   0x0000000000000000     0xbb98
  .debug_ranges  0x0000000000000000       0x78 Output/Proximo Debug/Obj/thumb_crt0.o
  .debug_ranges  0x0000000000000078      0x450 Output/Proximo Debug/Obj/main.o
  .debug_ranges  0x00000000000004c8      0x1b0 Output/Proximo Debug/Obj/nrf_log_backend_rtt.o
@@ -25994,22 +25993,22 @@ OUTPUT(Output/Debug/Exe/Proximo.elf elf32-littlearm)
  .debug_ranges  0x0000000000008dd8      0x4e0 Output/Proximo Debug/Obj/ble_setup.o
  .debug_ranges  0x00000000000092b8      0x2c8 Output/Proximo Debug/Obj/ble_bas.o
  .debug_ranges  0x0000000000009580      0x2a8 Output/Proximo Debug/Obj/ble_dis.o
- .debug_ranges  0x0000000000009828      0x420 Output/Proximo Debug/Obj/ble_prox.o
- .debug_ranges  0x0000000000009c48      0x250 Output/Proximo Debug/Obj/nrf_sdh.o
- .debug_ranges  0x0000000000009e98      0x2c8 Output/Proximo Debug/Obj/nrf_sdh_ble.o
- .debug_ranges  0x000000000000a160      0x188 Output/Proximo Debug/Obj/nrf_sdh_soc.o
- .debug_ranges  0x000000000000a2e8      0x198 Output/Proximo Debug/Obj/sk6812.o
- .debug_ranges  0x000000000000a480      0x188 Output/Proximo Debug/Obj/sq_min_200.o
- .debug_ranges  0x000000000000a608      0x1a8 Output/Proximo Debug/Obj/th06.o
- .debug_ranges  0x000000000000a7b0      0x170 Output/Proximo Debug/Obj/buzzer.o
- .debug_ranges  0x000000000000a920      0x438 Output/Proximo Debug/Obj/adc.o
- .debug_ranges  0x000000000000ad58      0x228 Output/Proximo Debug/Obj/io.o
- .debug_ranges  0x000000000000af80      0x1a8 Output/Proximo Debug/Obj/system.o
- .debug_ranges  0x000000000000b128      0x1d8 Output/Proximo Debug/Obj/event.o
- .debug_ranges  0x000000000000b300      0x450 Output/Proximo Debug/Obj/ble_dfu.o
- .debug_ranges  0x000000000000b750      0x450 Output/Proximo Debug/Obj/ble_dfu_unbonded.o
+ .debug_ranges  0x0000000000009828      0x418 Output/Proximo Debug/Obj/ble_prox.o
+ .debug_ranges  0x0000000000009c40      0x250 Output/Proximo Debug/Obj/nrf_sdh.o
+ .debug_ranges  0x0000000000009e90      0x2c8 Output/Proximo Debug/Obj/nrf_sdh_ble.o
+ .debug_ranges  0x000000000000a158      0x188 Output/Proximo Debug/Obj/nrf_sdh_soc.o
+ .debug_ranges  0x000000000000a2e0      0x198 Output/Proximo Debug/Obj/sk6812.o
+ .debug_ranges  0x000000000000a478      0x188 Output/Proximo Debug/Obj/sq_min_200.o
+ .debug_ranges  0x000000000000a600      0x1a8 Output/Proximo Debug/Obj/th06.o
+ .debug_ranges  0x000000000000a7a8      0x170 Output/Proximo Debug/Obj/buzzer.o
+ .debug_ranges  0x000000000000a918      0x438 Output/Proximo Debug/Obj/adc.o
+ .debug_ranges  0x000000000000ad50      0x228 Output/Proximo Debug/Obj/io.o
+ .debug_ranges  0x000000000000af78      0x1a8 Output/Proximo Debug/Obj/system.o
+ .debug_ranges  0x000000000000b120      0x1d8 Output/Proximo Debug/Obj/event.o
+ .debug_ranges  0x000000000000b2f8      0x450 Output/Proximo Debug/Obj/ble_dfu.o
+ .debug_ranges  0x000000000000b748      0x450 Output/Proximo Debug/Obj/ble_dfu_unbonded.o
 
-.debug_frame    0x0000000000000000    0x1e234
+.debug_frame    0x0000000000000000    0x1e214
  .debug_frame   0x0000000000000000      0x978 Output/Proximo Debug/Obj/main.o
  .debug_frame   0x0000000000000978      0x3bc Output/Proximo Debug/Obj/nrf_log_backend_rtt.o
  .debug_frame   0x0000000000000d34      0x2e8 Output/Proximo Debug/Obj/nrf_log_backend_serial.o
@@ -26072,23 +26071,23 @@ OUTPUT(Output/Debug/Exe/Proximo.elf elf32-littlearm)
  .debug_frame   0x00000000000177cc      0xc30 Output/Proximo Debug/Obj/ble_setup.o
  .debug_frame   0x00000000000183fc      0x5f0 Output/Proximo Debug/Obj/ble_bas.o
  .debug_frame   0x00000000000189ec      0x5c4 Output/Proximo Debug/Obj/ble_dis.o
- .debug_frame   0x0000000000018fb0      0x91c Output/Proximo Debug/Obj/ble_prox.o
- .debug_frame   0x00000000000198cc      0x684 Output/Proximo Debug/Obj/nrf_sdh.o
- .debug_frame   0x0000000000019f50      0x5e8 Output/Proximo Debug/Obj/nrf_sdh_ble.o
- .debug_frame   0x000000000001a538      0x310 Output/Proximo Debug/Obj/nrf_sdh_soc.o
- .debug_frame   0x000000000001a848      0x3cc Output/Proximo Debug/Obj/sk6812.o
- .debug_frame   0x000000000001ac14      0x344 Output/Proximo Debug/Obj/sq_min_200.o
- .debug_frame   0x000000000001af58      0x408 Output/Proximo Debug/Obj/th06.o
- .debug_frame   0x000000000001b360      0x314 Output/Proximo Debug/Obj/buzzer.o
- .debug_frame   0x000000000001b674      0x950 Output/Proximo Debug/Obj/adc.o
- .debug_frame   0x000000000001bfc4      0x630 Output/Proximo Debug/Obj/io.o
- .debug_frame   0x000000000001c5f4      0x414 Output/Proximo Debug/Obj/system.o
- .debug_frame   0x000000000001ca08      0x4fc Output/Proximo Debug/Obj/event.o
- .debug_frame   0x000000000001cf04      0x984 Output/Proximo Debug/Obj/ble_dfu.o
- .debug_frame   0x000000000001d888      0x9ac Output/Proximo Debug/Obj/ble_dfu_unbonded.o
+ .debug_frame   0x0000000000018fb0      0x8fc Output/Proximo Debug/Obj/ble_prox.o
+ .debug_frame   0x00000000000198ac      0x684 Output/Proximo Debug/Obj/nrf_sdh.o
+ .debug_frame   0x0000000000019f30      0x5e8 Output/Proximo Debug/Obj/nrf_sdh_ble.o
+ .debug_frame   0x000000000001a518      0x310 Output/Proximo Debug/Obj/nrf_sdh_soc.o
+ .debug_frame   0x000000000001a828      0x3cc Output/Proximo Debug/Obj/sk6812.o
+ .debug_frame   0x000000000001abf4      0x344 Output/Proximo Debug/Obj/sq_min_200.o
+ .debug_frame   0x000000000001af38      0x408 Output/Proximo Debug/Obj/th06.o
+ .debug_frame   0x000000000001b340      0x314 Output/Proximo Debug/Obj/buzzer.o
+ .debug_frame   0x000000000001b654      0x950 Output/Proximo Debug/Obj/adc.o
+ .debug_frame   0x000000000001bfa4      0x630 Output/Proximo Debug/Obj/io.o
+ .debug_frame   0x000000000001c5d4      0x414 Output/Proximo Debug/Obj/system.o
+ .debug_frame   0x000000000001c9e8      0x4fc Output/Proximo Debug/Obj/event.o
+ .debug_frame   0x000000000001cee4      0x984 Output/Proximo Debug/Obj/ble_dfu.o
+ .debug_frame   0x000000000001d868      0x9ac Output/Proximo Debug/Obj/ble_dfu_unbonded.o
 
 .debug_pubnames
-                0x0000000000000000    0x58353
+                0x0000000000000000    0x5833d
  .debug_pubnames
                 0x0000000000000000     0x211d Output/Proximo Debug/Obj/main.o
  .debug_pubnames
@@ -26214,33 +26213,33 @@ OUTPUT(Output/Debug/Exe/Proximo.elf elf32-littlearm)
  .debug_pubnames
                 0x0000000000045659     0x13f6 Output/Proximo Debug/Obj/ble_dis.o
  .debug_pubnames
-                0x0000000000046a4f     0x20ab Output/Proximo Debug/Obj/ble_prox.o
+                0x0000000000046a4f     0x2095 Output/Proximo Debug/Obj/ble_prox.o
  .debug_pubnames
-                0x0000000000048afa     0x134a Output/Proximo Debug/Obj/nrf_sdh.o
+                0x0000000000048ae4     0x134a Output/Proximo Debug/Obj/nrf_sdh.o
  .debug_pubnames
-                0x0000000000049e44     0x1531 Output/Proximo Debug/Obj/nrf_sdh_ble.o
+                0x0000000000049e2e     0x1531 Output/Proximo Debug/Obj/nrf_sdh_ble.o
  .debug_pubnames
-                0x000000000004b375      0xa91 Output/Proximo Debug/Obj/nrf_sdh_soc.o
+                0x000000000004b35f      0xa91 Output/Proximo Debug/Obj/nrf_sdh_soc.o
  .debug_pubnames
-                0x000000000004be06      0xd6c Output/Proximo Debug/Obj/sk6812.o
+                0x000000000004bdf0      0xd6c Output/Proximo Debug/Obj/sk6812.o
  .debug_pubnames
-                0x000000000004cb72      0x9f0 Output/Proximo Debug/Obj/sq_min_200.o
+                0x000000000004cb5c      0x9f0 Output/Proximo Debug/Obj/sq_min_200.o
  .debug_pubnames
-                0x000000000004d562      0xcfb Output/Proximo Debug/Obj/th06.o
+                0x000000000004d54c      0xcfb Output/Proximo Debug/Obj/th06.o
  .debug_pubnames
-                0x000000000004e25d      0xcb4 Output/Proximo Debug/Obj/buzzer.o
+                0x000000000004e247      0xcb4 Output/Proximo Debug/Obj/buzzer.o
  .debug_pubnames
-                0x000000000004ef11     0x277e Output/Proximo Debug/Obj/adc.o
+                0x000000000004eefb     0x277e Output/Proximo Debug/Obj/adc.o
  .debug_pubnames
-                0x000000000005168f      0xf05 Output/Proximo Debug/Obj/io.o
+                0x0000000000051679      0xf05 Output/Proximo Debug/Obj/io.o
  .debug_pubnames
-                0x0000000000052594      0xe66 Output/Proximo Debug/Obj/system.o
+                0x000000000005257e      0xe66 Output/Proximo Debug/Obj/system.o
  .debug_pubnames
-                0x00000000000533fa      0xb70 Output/Proximo Debug/Obj/event.o
+                0x00000000000533e4      0xb70 Output/Proximo Debug/Obj/event.o
  .debug_pubnames
-                0x0000000000053f6a     0x2422 Output/Proximo Debug/Obj/ble_dfu.o
+                0x0000000000053f54     0x2422 Output/Proximo Debug/Obj/ble_dfu.o
  .debug_pubnames
-                0x000000000005638c     0x1fc7 Output/Proximo Debug/Obj/ble_dfu_unbonded.o
+                0x0000000000056376     0x1fc7 Output/Proximo Debug/Obj/ble_dfu_unbonded.o
 
 .debug_pubtypes
                 0x0000000000000000    0x28d69

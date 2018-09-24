@@ -10,9 +10,9 @@
   #include "nrf_delay.h"
   #include "proximo_board.h" 
 
-  #define ALARM_PARAM_LENGHT  5 // 2 * uint16_t + 1 * uint8_t = 5 bytes
-  #define LED_PARAM_LENGHT    8	// 2 * uint16_t + 4 * uint8_t = 8 bytes
-  #define BUZZ_PARAM_LENGHT   8	// 3 * uint16_t + 2 * uint8_t = 8 bytes
+  #define ALARM_PARAM_LENGHT  3 // 3 * uint8_t = 3 bytes
+  #define LED_PARAM_LENGHT    6	// 6 * uint8_t = 6 bytes
+  #define BUZZ_PARAM_LENGHT   5	// 5 * uint8_t = 5 bytes
   #define PIN_HYSTERESIS      5
   #define BUTTON_EVENT_BLINK  100, 100, 10  // Upon reaching the maximum pushbutton count the LEDs wil flash 10 times 10ms on, 10 ms off 
   #define POWER_ON_DELAY      10

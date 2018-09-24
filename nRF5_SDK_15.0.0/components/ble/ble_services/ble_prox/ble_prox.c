@@ -87,9 +87,9 @@ static void on_write_authorize_request(ble_prox_t * p_prox, ble_gatts_evt_t cons
           uint8_t   Green       = p_evt_write->data[0];
           uint8_t   Red         = p_evt_write->data[1];
           uint8_t   Blue        = p_evt_write->data[2];
-          uint16_t  on_time     = uint16_big_decode(&p_evt_write->data[3]);
-          uint16_t  off_time    = uint16_big_decode(&p_evt_write->data[5]);
-          uint16_t  blink_count = p_evt_write->data[7];
+          uint16_t  on_time     = (uint16_t)p_evt_write->data[3] * 100;
+          uint16_t  off_time    = (uint16_t)p_evt_write->data[4] * 100;
+          uint16_t  blink_count = p_evt_write->data[5];
 
           NRF_LOG_INFO("Led Colour: G:0x%02X R:0x%02X B:0x%02X, On:%u, Off:%u, Repeat: %u",
               Green, Red, Blue,
@@ -113,11 +113,11 @@ static void on_write_authorize_request(ble_prox_t * p_prox, ble_gatts_evt_t cons
       {
         if(p_evt_write->len == BUZZ_PARAM_LENGHT && p_evt_write->handle == p_prox->buzzer_charr.value_handle)
         {
-          uint16_t  frequency	  = uint16_big_decode(&p_evt_write->data[0]);
-          uint8_t   dutycycle	  = p_evt_write->data[2];
-          uint16_t  on_time       = uint16_big_decode(&p_evt_write->data[3]);
-          uint16_t  off_time	  = uint16_big_decode(&p_evt_write->data[5]);
-          uint8_t   repeat        = p_evt_write->data[7];
+          uint16_t  frequency	  = ((uint16_t) p_evt_write->data[0]) * 100;
+          uint8_t   dutycycle	  = p_evt_write->data[1];
+          uint16_t  on_time       = ((uint16_t) p_evt_write->data[2]) * 100;
+          uint16_t  off_time	  = ((uint16_t) p_evt_write->data[3]) * 100;
+          uint8_t   repeat        = p_evt_write->data[4];
 
           NRF_LOG_INFO("Buzz Freq: %u, D:%u, On:%u, Off:%u, Repeat: %u",
               frequency,
@@ -138,9 +138,9 @@ static void on_write_authorize_request(ble_prox_t * p_prox, ble_gatts_evt_t cons
       {
         if(p_evt_write->len == ALARM_PARAM_LENGHT && p_evt_write->handle == p_prox->alarm_charr.value_handle)
         {
-          uint16_t on_time  = uint16_big_decode(&p_evt_write->data[0]);
-          uint16_t off_time = uint16_big_decode(&p_evt_write->data[2]);
-          uint8_t repeat    = p_evt_write->data[4];
+          uint16_t on_time  = ((uint16_t) p_evt_write->data[0]) * 100;
+          uint16_t off_time = ((uint16_t) p_evt_write->data[1]) * 100;
+          uint8_t repeat    = p_evt_write->data[2];
 
           NRF_LOG_INFO("Alarm On:%u, Off:%u, Repeat: %u",
               on_time,

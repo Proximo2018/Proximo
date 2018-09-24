@@ -16,6 +16,15 @@ static ble_prox_t _name;                                                        
 NRF_SDH_BLE_OBSERVER(_name ## _obs, BLE_HRS_BLE_OBSERVER_PRIO, ble_prox_on_ble_evt, &_name)
 
 
+/*  BLE PROX Example/test string
+ *  LED:    00FF0001010A  G:0,	  R: 255, B:0,	  100ms ON, 100ms OFF, repeat 10 times.
+ *	    FF000001010A  G:255,  R: 0,	  B:0,	  100ms ON, 100ms OFF, repeat 10 times.
+ *	    0000FF01010A  G:0,	  R: 0,	  B:255,  100ms ON, 100ms OFF, repeat 10 times.
+ *  BUZZER: 183201010A  2.4kHz, Dutycycle 50%, 100ms ON, 100ms Off, Repeat 10 times
+ *  ALARM:  01010A  100ms ON, 100ms OFF, repeat 10 times
+*/
+
+
 
 // Proximo UUID BF05DEBC-2FE6-406E-9828-E1BD1A61054D
 #define PROX_UUID_BASE         {0xBF, 0x05, 0xDE, 0xBC, 0x2F, 0xE6, 0x40, 0x6E, 0x98, 0x28, 0xE1, 0xBD, 0x1A, 0x61, 0x05, 0x4D}
