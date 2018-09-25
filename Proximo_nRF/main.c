@@ -145,15 +145,9 @@ static void app_timers_init(void)
 static void app_timers_start(void)
 {
     ret_code_t err_code;
-
-    #ifdef APP_DEVELOPMENT
-      err_code = app_timer_start(m_BUTTONS_id, APP_TIMER_TICKS(100), NULL);
-    #else
-      err_code = app_timer_start(m_BUTTONS_id, APP_TIMER_TICKS(500), NULL);
-    #endif
+    err_code = app_timer_start(m_BUTTONS_id, APP_TIMER_TICKS(100), NULL);
     APP_ERROR_CHECK(err_code);
 }
-
 
 
 
@@ -164,7 +158,6 @@ static void app_timers_start(void)
 void bsp_event_handler(bsp_event_t event)
 {
     ret_code_t err_code;
-
 
     switch (event)
     {

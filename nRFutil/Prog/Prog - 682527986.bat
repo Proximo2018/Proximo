@@ -2,7 +2,7 @@
 SET /A minor_num=0
 ::Set all path to all files and configuration correctly here
 SET file=test.txt
-SET jlink_id= 682613435
+SET jlink_id= 682527986
 SET bootloader_path=../../Bootloader_nRF
 SET bootloader_prj_name=secure_bootloader_ble_s132_pca10040
 SET prj_path=../../Proximo_nRF

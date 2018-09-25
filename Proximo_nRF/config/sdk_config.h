@@ -47,7 +47,7 @@
 #include "app_config.h"
 #endif
 
-#define APP_DEVELOPMENT
+//#define APP_DEVELOPMENT
 // <h> Board Support 
 
 //==========================================================

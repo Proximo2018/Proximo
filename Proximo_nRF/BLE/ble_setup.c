@@ -204,17 +204,6 @@ void peer_list_load(void)
 }
 
 
-void disconnect_all (void)
-{
-    ble_conn_state_conn_handle_list_t list = ble_conn_state_conn_handles();
-
-    for( uint32_t i = 0 ; i < list.len ; i++)
-    {
-      sd_ble_gap_disconnect(list.conn_handles[i], BLE_HCI_REMOTE_USER_TERMINATED_CONNECTION);
-    }
-
-    NRF_LOG_INFO("Disconnected %u connections", list.len);
-}
 
 
 
@@ -235,8 +224,6 @@ void delete_bonds(void)
     // Retrieve the cleared whitelist
     m_whitelist_peer_cnt = (sizeof(m_whitelist_peers) / sizeof(pm_peer_id_t));
     peer_list_get(m_whitelist_peers, &m_whitelist_peer_cnt);
-
-    disconnect_all();
 
     advertising_start();
 }
@@ -367,9 +354,7 @@ static void pm_evt_handler(pm_evt_t const * p_evt)
             {
 		advertising_stop();
 
-                #ifdef APP_DEVELOPMENT
-		  sk6812_blink_event(SK6812_WHITE, 200, 200, 10);
-		#endif
+		sk6812_blink_event(SK6812_WHITE, 200, 200, 10);
 
                 NRF_LOG_INFO("New Bond, add the peer to the whitelist if possible");
                 NRF_LOG_INFO("\tm_whitelist_peer_cnt %d, MAX_PEERS_WLIST %d", m_whitelist_peer_cnt, BLE_GAP_WHITELIST_ADDR_MAX_COUNT);
@@ -895,6 +880,7 @@ void advertising_beacon_init(void)
     #else
       init.config.ble_adv_fast_timeout	  = APP_ADV_DURATION;
     #endif
+
     init.config.ble_adv_slow_enabled	  = true;
     init.config.ble_adv_slow_interval	  = APP_SLOW_ADV_INTERVAL;
     init.config.ble_adv_slow_timeout	  = 0; // 0=disable timeout
