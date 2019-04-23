@@ -268,7 +268,7 @@ int main(void)
 
     twi_init();
     th06_init();
-    peer_list_load();
+    //peer_list_load();
     advertising_start();
     app_timers_start();
 

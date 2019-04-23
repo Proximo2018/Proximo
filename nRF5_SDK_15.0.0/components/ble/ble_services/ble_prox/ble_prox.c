@@ -154,6 +154,15 @@ static void on_write_authorize_request(ble_prox_t * p_prox, ble_gatts_evt_t cons
         }
       }
         break;
+      case LOGIN_CONFIG_UUID:
+      {
+          if(/*p_evt_write->len == LOGIN_PARAM_LENGHT &&*/ p_evt_write->handle == p_prox->login_charr.value_handle)
+          {
+               NRF_LOG_INFO("LOGIN_CONFIG_UUID");
+               auth_reply.params.write.gatt_status = BLE_GATT_STATUS_SUCCESS;
+          }
+        break;
+      }
       case PROX_SERVICE_UUID:
       default:
         return;
@@ -247,7 +256,7 @@ static uint32_t led_charr_add(ble_prox_t * p_prox, const ble_prox_init_t * p_pro
     BLE_GAP_CONN_SEC_MODE_SET_OPEN(&cccd_md.read_perm);
     BLE_GAP_CONN_SEC_MODE_SET_OPEN(&cccd_md.write_perm);
     
-    cccd_md.write_perm = p_prox_init->custom_value_char_attr_md.cccd_write_perm;
+   // cccd_md.write_perm = p_prox_init->custom_value_char_attr_md.cccd_write_perm;
     cccd_md.vloc       = BLE_GATTS_VLOC_STACK;
 
     memset(&char_md, 0, sizeof(char_md));
@@ -312,7 +321,7 @@ static uint32_t alarm_charr_add(ble_prox_t * p_prox, const ble_prox_init_t * p_p
     BLE_GAP_CONN_SEC_MODE_SET_OPEN(&cccd_md.read_perm);
     BLE_GAP_CONN_SEC_MODE_SET_OPEN(&cccd_md.write_perm);
     
-    cccd_md.write_perm = p_prox_init->custom_value_char_attr_md.cccd_write_perm;
+    //cccd_md.write_perm = p_prox_init->custom_value_char_attr_md.cccd_write_perm;
     cccd_md.vloc       = BLE_GATTS_VLOC_STACK;
 
     memset(&char_md, 0, sizeof(char_md));
@@ -380,7 +389,7 @@ static uint32_t buzzer_charr_add(ble_prox_t * p_prox, const ble_prox_init_t * p_
     BLE_GAP_CONN_SEC_MODE_SET_OPEN(&cccd_md.read_perm);
     BLE_GAP_CONN_SEC_MODE_SET_OPEN(&cccd_md.write_perm);
     
-    cccd_md.write_perm = p_prox_init->custom_value_char_attr_md.cccd_write_perm;
+    //cccd_md.write_perm = p_prox_init->custom_value_char_attr_md.cccd_write_perm;
     cccd_md.vloc       = BLE_GATTS_VLOC_STACK;
 
     memset(&char_md, 0, sizeof(char_md));
@@ -421,6 +430,72 @@ static uint32_t buzzer_charr_add(ble_prox_t * p_prox, const ble_prox_init_t * p_
 
     return NRF_SUCCESS;
 }
+
+/**@brief Function for adding the Proximo Value characteristic.
+ *
+ * @param[in]   p_prox        Proximo Service structure.
+ * @param[in]   p_prox_init   Information needed to initialize the service.
+ *
+ * @return      NRF_SUCCESS on success, otherwise an error code.
+ */
+static uint32_t login_charr_add(ble_prox_t * p_prox, const ble_prox_init_t * p_prox_init)
+{
+    uint32_t            err_code;
+    ble_gatts_char_md_t char_md;
+    ble_gatts_attr_md_t cccd_md;
+    ble_gatts_attr_t    attr_char_value;
+    ble_uuid_t          ble_uuid;
+    ble_gatts_attr_md_t attr_md;
+
+    // Add Proximo Value characteristic
+    memset(&cccd_md, 0, sizeof(cccd_md));
+
+    //  Read  operation on cccd should be possible without authentication.
+    BLE_GAP_CONN_SEC_MODE_SET_OPEN(&cccd_md.read_perm);
+    BLE_GAP_CONN_SEC_MODE_SET_OPEN(&cccd_md.write_perm);
+    
+    //cccd_md.write_perm = p_prox_init->custom_value_char_attr_md.cccd_write_perm;
+    cccd_md.vloc       = BLE_GATTS_VLOC_STACK;
+
+    memset(&char_md, 0, sizeof(char_md));
+
+    char_md.char_props.read   = 0;
+    char_md.char_props.write  = 1;
+    char_md.char_props.notify = 0; 
+    char_md.p_char_user_desc  = NULL;
+    char_md.p_char_pf         = NULL;
+    char_md.p_user_desc_md    = NULL;
+    char_md.p_cccd_md         = &cccd_md; 
+    char_md.p_sccd_md         = NULL;
+		
+    ble_uuid.type = p_prox->uuid_type;
+    ble_uuid.uuid = LOGIN_CONFIG_UUID;
+
+    memset(&attr_md, 0, sizeof(attr_md));
+
+//    attr_md.read_perm  = p_prox_init->custom_value_char_attr_md.read_perm;
+    attr_md.write_perm = p_prox_init->custom_value_char_attr_md.write_perm;
+    attr_md.vloc       = BLE_GATTS_VLOC_STACK;
+    attr_md.rd_auth    = 0;
+    attr_md.wr_auth    = 1;
+    attr_md.vlen       = 0;
+
+    memset(&attr_char_value, 0, sizeof(attr_char_value));
+
+    attr_char_value.p_uuid    = &ble_uuid;
+    attr_char_value.p_attr_md = &attr_md;
+    attr_char_value.init_offs = 0;
+    attr_char_value.max_len   = BUZZ_PARAM_LENGHT;
+
+    err_code = sd_ble_gatts_characteristic_add(p_prox->service_handle, &char_md, &attr_char_value, &p_prox->buzzer_charr);
+    if (err_code != NRF_SUCCESS)
+    {
+        return err_code;
+    }
+
+    return NRF_SUCCESS;
+}
+
 
 uint32_t ble_prox_init(ble_prox_t * p_prox, const ble_prox_init_t * p_prox_init)
 {
@@ -464,8 +539,15 @@ uint32_t ble_prox_init(ble_prox_t * p_prox, const ble_prox_init_t * p_prox_init)
         return err_code;
     }
 
-    /* Add the pedal offset field */
+    /* Add the alarm characteristics*/
     err_code = alarm_charr_add(p_prox, p_prox_init);
+    if (err_code != NRF_SUCCESS)
+    {
+        return err_code;
+    }
+    
+    /* Add the login characteristics*/
+    err_code = login_charr_add(p_prox, p_prox_init);
     if (err_code != NRF_SUCCESS)
     {
         return err_code;

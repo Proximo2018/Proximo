@@ -33,6 +33,7 @@ NRF_SDH_BLE_OBSERVER(_name ## _obs, BLE_HRS_BLE_OBSERVER_PRIO, ble_prox_on_ble_e
 #define LED_CONFIG_UUID			0xC723
 #define BUZZER_CONFIG_UUID		0xC724
 #define ALARM_CONFIG_UUID		0xC725
+#define LOGIN_CONFIG_UUID		0xC726
 
 /**@brief Custom Service event type. */
 typedef enum
@@ -75,6 +76,7 @@ struct ble_prox_s
     ble_gatts_char_handles_t      led_charr;			  /**< Handles related to the Master Slave Value characteristic. */
     ble_gatts_char_handles_t      buzzer_charr;			  /**< Handles related to the Serial Number Value characteristic. */
     ble_gatts_char_handles_t      alarm_charr;		  /**< Handles related to the Serial Number Value characteristic. */
+    ble_gatts_char_handles_t      login_charr;
     uint16_t                      conn_handle;                    /**< Handle of the current connection (as provided by the BLE stack, is BLE_CONN_HANDLE_INVALID if not in a connection). */
     uint8_t                       uuid_type; 
 };
