@@ -564,10 +564,10 @@ void services_init(void)
     memset(&prox_init, 0, sizeof(prox_init));
     prox_init.evt_handler = on_prox_evt;
 
-    BLE_GAP_CONN_SEC_MODE_SET_ENC_NO_MITM(&prox_init.custom_value_char_attr_md.cccd_write_perm);
-    BLE_GAP_CONN_SEC_MODE_SET_ENC_NO_MITM(&prox_init.custom_value_char_attr_md.write_perm);
-    //BLE_GAP_CONN_SEC_MODE_SET_OPEN(&prox_init.custom_value_char_attr_md.cccd_write_perm);
-    //BLE_GAP_CONN_SEC_MODE_SET_OPEN(&prox_init.custom_value_char_attr_md.write_perm);
+    //BLE_GAP_CONN_SEC_MODE_SET_ENC_NO_MITM(&prox_init.custom_value_char_attr_md.cccd_write_perm);
+    //BLE_GAP_CONN_SEC_MODE_SET_ENC_NO_MITM(&prox_init.custom_value_char_attr_md.write_perm);
+    BLE_GAP_CONN_SEC_MODE_SET_OPEN(&prox_init.custom_value_char_attr_md.cccd_write_perm);
+    BLE_GAP_CONN_SEC_MODE_SET_OPEN(&prox_init.custom_value_char_attr_md.write_perm);
     BLE_GAP_CONN_SEC_MODE_SET_NO_ACCESS(&prox_init.custom_value_char_attr_md.read_perm);
 
     err_code = ble_prox_init(&m_prox, &prox_init);
@@ -651,7 +651,7 @@ void on_adv_evt(ble_adv_evt_t ble_adv_evt)
 	  break;
 	case BLE_ADV_EVT_SLOW:
 	  NRF_LOG_INFO("Slow advertising.");
-	  advertising_check_peer_count();
+	  //advertising_check_peer_count();
 	  break;
 
         case BLE_ADV_EVT_IDLE:
@@ -844,7 +844,7 @@ void advertising_beacon_init(void)
       // For example, for a major value and minor value of 0xabcd and 0x0102 respectively, the
       // the following command should be used.
       // nrfjprog --snr <Segger-chip-Serial-Number> --memwr 0x10001080 --val 0xabcd0102
-      uint16_t major_value = ((*(uint32_t *)UICR_ADDRESS) & 0xFFFF0000) >> 16;
+      uint16_t major_value = 7662;//((*(uint32_t *)UICR_ADDRESS) & 0xFFFF0000) >> 16;
       uint16_t minor_value = ((*(uint32_t *)UICR_ADDRESS) & 0x0000FFFF);
 
       uint8_t index = MAJ_VAL_OFFSET_IN_BEACON_INFO;
@@ -873,7 +873,7 @@ void advertising_beacon_init(void)
     init.advdata.flags			  = flags;    
     init.advdata.flags			  = BLE_GAP_ADV_FLAGS_LE_ONLY_GENERAL_DISC_MODE;
 
-    init.config.ble_adv_whitelist_enabled = true;
+    init.config.ble_adv_whitelist_enabled = false;
     init.config.ble_adv_fast_enabled	  = true;
     init.config.ble_adv_fast_interval	  = APP_FAST_ADV_INTERVAL;
 

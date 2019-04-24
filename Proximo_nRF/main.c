@@ -87,7 +87,7 @@ APP_TIMER_DEF(m_BUTTONS_id);
     callback_fp	callback;
 */
 PIN_EVENT button1_event = {BUTTON_1, 1, 0, 0, SK6812_RED,   &enable_enter_bootloader};
-PIN_EVENT button2_event = {BUTTON_3, 1, 0, 0, SK6812_BLUE,  &delete_bonds};
+//PIN_EVENT button2_event = {BUTTON_3, 1, 0, 0, SK6812_BLUE,  &delete_bonds};
 PIN_EVENT button3_event = {BUTTON_2, 1, 0, 0, SK6812_GREEN, &button_adv_start};
 
 
@@ -97,7 +97,7 @@ PIN_EVENT button3_event = {BUTTON_2, 1, 0, 0, SK6812_GREEN, &button_adv_start};
 void button_timer_event(void * p_context)
 {
     check_button_press_animation(&button1_event);
-    check_button_press_animation(&button2_event);
+    //check_button_press_animation(&button2_event);
     check_button_press_animation(&button3_event);
 }
 

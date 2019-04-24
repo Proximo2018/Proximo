@@ -62,7 +62,7 @@
   #define MANUFACTURER_NAME                   "FHI"                                   /**< Manufacturer. Will be passed to Device Information Service. */
   #define APP_FAST_ADV_INTERVAL               MSEC_TO_UNITS(100, UNIT_0_625_MS)	      /**< The advertising interval (in units of 0.625 ms.). */
   #define APP_SLOW_ADV_INTERVAL               MSEC_TO_UNITS(300, UNIT_0_625_MS)	      /**< The advertising interval (in units of 0.625 ms.). */
-  #define APP_ADV_DURATION                    6000				      /**< The advertising duration (30 seconds) in 10 millisecond resolution. */
+  #define APP_ADV_DURATION                    0                                       /**< The advertising duration (30 seconds) in 10 millisecond resolution. */
 
   #define APP_BLE_CONN_CFG_TAG                1                                       /**< A tag identifying the SoftDevice BLE configuration. */
   #define APP_BLE_OBSERVER_PRIO               3                                       /**< Application's BLE observer priority. You shouldn't need to modify this value. */

@@ -10,9 +10,9 @@
   #include "nrf_delay.h"
   #include "proximo_board.h" 
 
-  #define ALARM_PARAM_LENGHT  3 // 3 * uint8_t = 3 bytes
-  #define LED_PARAM_LENGHT    6	// 6 * uint8_t = 6 bytes
-  #define BUZZ_PARAM_LENGHT   5	// 5 * uint8_t = 5 bytes
+  #define ALARM_PARAM_LENGHT  5 // 5 * uint8_t = 5 bytes
+  #define LED_PARAM_LENGHT    8	// 8 * uint8_t = 8 bytes
+  #define BUZZ_PARAM_LENGHT   7	// 7 * uint8_t = 7 bytes
   #define LOGIN_PARAM_LENGHT  10
   
   #define PIN_HYSTERESIS      5

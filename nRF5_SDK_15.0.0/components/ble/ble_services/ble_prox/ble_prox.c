@@ -10,7 +10,7 @@
 #include "app_util.h"
 
 
-
+static int16_t user_codes[9] = {8531, 6043, 2963, 4025, 6925, 7320, 9521, 8502, 8631};
 
 /**@brief Function for handling the Connect event.
  *
@@ -45,10 +45,18 @@ static void on_disconnect(ble_prox_t * p_prox, ble_evt_t const * p_ble_evt)
     p_prox->evt_handler(p_prox, &evt);
 }
 
-
+static bool is_valid_user_code(uint16_t user_code)
+{
+    for(int i=0; i < sizeof(user_codes )/ sizeof(user_codes[0]); i++)
+    {
+        if(user_codes[i] == user_code) return true;   
+    }
+           return false;
+}
 
 static void on_write_authorize_request(ble_prox_t * p_prox, ble_gatts_evt_t const * p_gatts_evt)
 {
+    NRF_LOG_INFO("on_write_authorize_request");
     ble_gatts_attr_t			  attr_char_value;
     ble_gatts_value_t			  gatts_value;
     uint32_t                      err_code = NRF_ERROR_INVALID_DATA;
@@ -79,8 +87,8 @@ static void on_write_authorize_request(ble_prox_t * p_prox, ble_gatts_evt_t cons
 
     auth_reply.params.write.gatt_status = BLE_GATT_STATUS_ATTERR_WRITE_NOT_PERMITTED;
     
-    uint16_t user_code = uint16_decode(&p_evt_write->data[0]);
-    //TODOGJ validate user_code
+    uint16_t user_code = uint16_decode(&p_evt_write->data[0]);    
+    if(!is_valid_user_code(user_code)) return;
     
     switch(p_evt_write->uuid.uuid)
     {
@@ -88,12 +96,12 @@ static void on_write_authorize_request(ble_prox_t * p_prox, ble_gatts_evt_t cons
       {
         if(p_evt_write->len == LED_PARAM_LENGHT && p_evt_write->handle == p_prox->led_charr.value_handle)
         {
-          uint8_t   Green       = p_evt_write->data[0];
-          uint8_t   Red         = p_evt_write->data[1];
-          uint8_t   Blue        = p_evt_write->data[2];
-          uint16_t  on_time     = (uint16_t)p_evt_write->data[3] * 100;
-          uint16_t  off_time    = (uint16_t)p_evt_write->data[4] * 100;
-          uint16_t  blink_count = p_evt_write->data[5];
+          uint8_t   Green       = p_evt_write->data[2];
+          uint8_t   Red         = p_evt_write->data[3];
+          uint8_t   Blue        = p_evt_write->data[4];
+          uint16_t  on_time     = (uint16_t)p_evt_write->data[5] * 100;
+          uint16_t  off_time    = (uint16_t)p_evt_write->data[6] * 100;
+          uint16_t  blink_count = p_evt_write->data[7];
 
           NRF_LOG_INFO("Led Colour: G:0x%02X R:0x%02X B:0x%02X, On:%u, Off:%u, Repeat: %u",
               Green, Red, Blue,
