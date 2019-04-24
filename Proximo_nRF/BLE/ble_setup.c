@@ -566,6 +566,8 @@ void services_init(void)
 
     BLE_GAP_CONN_SEC_MODE_SET_ENC_NO_MITM(&prox_init.custom_value_char_attr_md.cccd_write_perm);
     BLE_GAP_CONN_SEC_MODE_SET_ENC_NO_MITM(&prox_init.custom_value_char_attr_md.write_perm);
+    //BLE_GAP_CONN_SEC_MODE_SET_OPEN(&prox_init.custom_value_char_attr_md.cccd_write_perm);
+    //BLE_GAP_CONN_SEC_MODE_SET_OPEN(&prox_init.custom_value_char_attr_md.write_perm);
     BLE_GAP_CONN_SEC_MODE_SET_NO_ACCESS(&prox_init.custom_value_char_attr_md.read_perm);
 
     err_code = ble_prox_init(&m_prox, &prox_init);

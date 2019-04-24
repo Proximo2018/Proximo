@@ -78,6 +78,10 @@ static void on_write_authorize_request(ble_prox_t * p_prox, ble_gatts_evt_t cons
     auth_reply.params.write.update      = 1;
 
     auth_reply.params.write.gatt_status = BLE_GATT_STATUS_ATTERR_WRITE_NOT_PERMITTED;
+    
+    uint16_t user_code = uint16_decode(&p_evt_write->data[0]);
+    //TODOGJ validate user_code
+    
     switch(p_evt_write->uuid.uuid)
     {
       case LED_CONFIG_UUID:
@@ -113,10 +117,10 @@ static void on_write_authorize_request(ble_prox_t * p_prox, ble_gatts_evt_t cons
       {
         if(p_evt_write->len == BUZZ_PARAM_LENGHT && p_evt_write->handle == p_prox->buzzer_charr.value_handle)
         {
-          uint16_t  frequency	  = ((uint16_t) p_evt_write->data[0]) * 100;
-          uint8_t   dutycycle	  = p_evt_write->data[1];
-          uint16_t  on_time       = ((uint16_t) p_evt_write->data[2]) * 100;
-          uint16_t  off_time	  = ((uint16_t) p_evt_write->data[3]) * 100;
+          uint16_t  frequency	  = ((uint16_t) p_evt_write->data[2]) * 100;
+          uint8_t   dutycycle	  = p_evt_write->data[3];
+          uint16_t  on_time       = ((uint16_t) p_evt_write->data[4]) * 100;
+          uint16_t  off_time	  = ((uint16_t) p_evt_write->data[5]) * 100;
           uint8_t   repeat        = p_evt_write->data[4];
 
           NRF_LOG_INFO("Buzz Freq: %u, D:%u, On:%u, Off:%u, Repeat: %u",
@@ -138,9 +142,9 @@ static void on_write_authorize_request(ble_prox_t * p_prox, ble_gatts_evt_t cons
       {
         if(p_evt_write->len == ALARM_PARAM_LENGHT && p_evt_write->handle == p_prox->alarm_charr.value_handle)
         {
-          uint16_t on_time  = ((uint16_t) p_evt_write->data[0]) * 100;
-          uint16_t off_time = ((uint16_t) p_evt_write->data[1]) * 100;
-          uint8_t repeat    = p_evt_write->data[2];
+          uint16_t on_time  = ((uint16_t) p_evt_write->data[2]) * 100;
+          uint16_t off_time = ((uint16_t) p_evt_write->data[3]) * 100;
+          uint8_t repeat    = p_evt_write->data[4];
 
           NRF_LOG_INFO("Alarm On:%u, Off:%u, Repeat: %u",
               on_time,
